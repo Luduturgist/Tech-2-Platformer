@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://ek6ktem8230k"]
+
+[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Debug/Player.tscn" id="1_xe0ui"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
+
+[node name="Debug Scene" type="Node2D" unique_id=1716765503]
+
+[node name="Player" parent="." unique_id=1254970227 instance=ExtResource("1_xe0ui")]
+
+[node name="Floor" type="Area2D" parent="." unique_id=1357974383]
+position = Vector2(0, 20)
+scale = Vector2(12.800001, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=372793739]
+shape = SubResource("RectangleShape2D_ejki1")
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=2030969952]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 9.936911
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
