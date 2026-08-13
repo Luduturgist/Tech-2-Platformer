@@ -14,6 +14,10 @@ config/name="Multiplayer 1"
 run/main_scene="uid://ek6ktem8230k"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[autoload]
+
+Wrapper="*uid://njyi8dt2oh4h"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -22,8 +26,15 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
-"res://Debug/": "orange"
+"res://Debug/": "orange",
+"res://Networking/": "green",
+"res://UI/": "blue",
+"res://World/": "pink"
 }
+
+[gui]
+
+theme/custom="uid://b5dqm6b0upucg"
 
 [input]
 
@@ -63,4 +74,5 @@ Jump={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

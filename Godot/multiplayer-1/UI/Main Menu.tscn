@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://c7db8e6o1sghv"]
+
+[ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/main_menu.gd" id="1_6iuai"]
+[ext_resource type="Texture2D" uid="uid://343hqrts60dh" path="res://UI/Menu Player A.png" id="2_kybp0"]
+[ext_resource type="Texture2D" uid="uid://c7us6dwdur40o" path="res://UI/Menu Player B.png" id="3_owi87"]
+
+[node name="MainMenu" type="Node2D" unique_id=141468875]
+script = ExtResource("1_6iuai")
+
+[node name="Network Buttons" type="CanvasLayer" parent="." unique_id=666372241]
+
+[node name="Host" type="Button" parent="Network Buttons" unique_id=1170498499]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.5
+offset_top = -58.0
+offset_right = 35.5
+offset_bottom = -11.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Host"
+
+[node name="Join" type="Button" parent="Network Buttons" unique_id=271699989]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = 45.0
+offset_right = 38.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Join"
+
+[node name="Host Waiting" type="CanvasLayer" parent="." unique_id=1935970027]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Host Waiting" unique_id=9155009]
+position = Vector2(577, 508)
+texture = ExtResource("2_kybp0")
+
+[node name="Label" type="Label" parent="Host Waiting" unique_id=369834226]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -19.5
+offset_right = 88.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Waiting for B"
+
+[node name="Disconnect" type="Button" parent="Host Waiting" unique_id=1942813283]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -558.0
+offset_top = -305.0
+offset_right = -400.0
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Disconnect"
+
+[node name="Client Waiting" type="CanvasLayer" parent="." unique_id=1698971818]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Client Waiting" unique_id=2113917778]
+position = Vector2(577, 508)
+texture = ExtResource("3_owi87")
+
+[node name="Label" type="Label" parent="Client Waiting" unique_id=1790139185]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -19.5
+offset_right = 88.0
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Waiting for A"
+
+[node name="Disconnect" type="Button" parent="Client Waiting" unique_id=1839357968]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -558.0
+offset_top = -305.0
+offset_right = -400.0
+offset_bottom = -258.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Disconnect"
