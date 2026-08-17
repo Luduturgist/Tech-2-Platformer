@@ -8,4 +8,4 @@ func _quit():
 	get_tree().quit()
 
 func _menu():
-	pass
+	Wrapper._disconnect()

@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://ek6ktem8230k"]
 
-[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Debug/Player.tscn" id="1_xe0ui"]
+[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Debug/game.gd" id="1_xe0ui"]
+[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="2_443tn"]
+[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/Player B.tscn" id="3_4ntsy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 
-[node name="Debug Scene" type="Node2D" unique_id=1716765503]
+[node name="Debug Scene" type="Node2D" unique_id=1716765503 node_paths=PackedStringArray("playerA", "playerB")]
+script = ExtResource("1_xe0ui")
+playerA = NodePath("Player")
+playerB = NodePath("Player2")
 
-[node name="Player" parent="." unique_id=1254970227 instance=ExtResource("1_xe0ui")]
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=1414800095]
+_spawnable_scenes = PackedStringArray("uid://b815wdlnbej0k", "uid://d11aymhapnwew")
+spawn_path = NodePath("..")
+spawn_limit = 2
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=257368736]
 position = Vector2(0, 20)
@@ -28,3 +36,9 @@ offset_right = 9.936911
 offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Player" parent="." unique_id=1254970227 instance=ExtResource("2_443tn")]
+position = Vector2(-84, -38)
+
+[node name="Player2" parent="." unique_id=2129702002 instance=ExtResource("3_4ntsy")]
+position = Vector2(52, -31)
