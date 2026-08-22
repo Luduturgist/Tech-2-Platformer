@@ -2,9 +2,8 @@ extends CharacterBody2D
 class_name Movement
 
 @export var speed: float = 10000
-@export var jump: float = 10000
+@export var jump: float = -300
 @export var cam: PackedScene
-@onready var pivot: Node2D = self
 var sp: float = 0
 
 func dress() -> void:
@@ -25,22 +24,27 @@ func _physics_process(delta: float) -> void:
 			else:
 				$Cheer.visible = true
 				cheer_timer = 0.5
-
+	
 	
 	if sp == 0: return
+	
+	
 	if not is_on_floor():
-		pivot.velocity += get_gravity() * delta
+		velocity += get_gravity() * delta
+		if velocity.y > -jump * 2: velocity.y = -jump * 2
 
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		pivot.velocity.y = jump
-
+	if Input.is_action_pressed("Jump") and is_on_floor():
+		velocity.y = jump
 	
 	var xRaw: float = Input.get_axis("Left", "Right")
-	var yRaw: float = Input.get_axis("Up", "Down")
+	# yRaw: float = Input.get_axis("Up", "Down")
 	
-	var dir := Vector2(xRaw, yRaw) * sp * delta
-	pivot.velocity = dir
-	pivot.move_and_slide()
+	var dir := Vector2(xRaw, 0)
+	if dir:
+		velocity.x = move_toward(0, dir.x * speed, speed * delta)
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed * delta)
+	move_and_slide()
 	
 	if Input.is_action_just_pressed("Cheer"): rpc("cheer")
 

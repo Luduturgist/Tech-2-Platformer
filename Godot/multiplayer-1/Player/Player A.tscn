@@ -10,7 +10,7 @@ properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 
-[node name="Player" type="CharacterBody2D" unique_id=1254970227]
+[node name="Player A" type="CharacterBody2D" unique_id=1254970227]
 script = ExtResource("1_34jae")
 cam = ExtResource("2_cp4ws")
 
