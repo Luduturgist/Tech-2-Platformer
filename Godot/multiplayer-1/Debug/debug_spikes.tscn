@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://kxlut2fjs1jj"]
+
+[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Debug/game.gd" id="1_rvo2y"]
+[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="2_vstgx"]
+[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/Player B.tscn" id="3_qhy05"]
+[ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://World/Hazard/Hazard.tscn" id="4_yab24"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
+
+[node name="Debug Scene" type="Node2D" unique_id=1716765503 node_paths=PackedStringArray("playerA", "playerB")]
+script = ExtResource("1_rvo2y")
+playerA = NodePath("Player")
+playerB = NodePath("Player2")
+
+[node name="Player" parent="." unique_id=1254970227 instance=ExtResource("2_vstgx")]
+position = Vector2(-84, -38)
+
+[node name="Player2" parent="." unique_id=2129702002 instance=ExtResource("3_qhy05")]
+position = Vector2(52, -31)
+
+[node name="Environment" type="Node2D" parent="." unique_id=1991506574]
+
+[node name="Floor" type="StaticBody2D" parent="Environment" unique_id=257368736]
+position = Vector2(0, 20)
+scale = Vector2(33.52, 1.015744)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Floor" unique_id=372793739]
+shape = SubResource("RectangleShape2D_ejki1")
+
+[node name="ColorRect" type="ColorRect" parent="Environment/Floor" unique_id=2030969952]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hazard" parent="Environment" unique_id=1082906915 instance=ExtResource("4_yab24")]
+position = Vector2(105, 0)
+
+[node name="Hazard5" parent="Environment" unique_id=1639814729 instance=ExtResource("4_yab24")]
+position = Vector2(-2, 0)
+
+[node name="Hazard6" parent="Environment" unique_id=1077062477 instance=ExtResource("4_yab24")]
+position = Vector2(-153, 0)
+
+[node name="Hazard7" parent="Environment" unique_id=557340765 instance=ExtResource("4_yab24")]
+position = Vector2(-295, 0)
+
+[node name="Hazard2" parent="Environment" unique_id=201475936 instance=ExtResource("4_yab24")]
+position = Vector2(225, 0)
+
+[node name="Hazard3" parent="Environment" unique_id=256431585 instance=ExtResource("4_yab24")]
+position = Vector2(323, 0)
+
+[node name="Hazard4" parent="Environment" unique_id=1045670569 instance=ExtResource("4_yab24")]
+position = Vector2(323, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7us6dwdur40o"
-path="res://.godot/imported/Menu Player B.png-e937b42b361217c517f17c1df160a6df.ctex"
+uid="uid://g75n6uebm35c"
+path="res://.godot/imported/Hazard.png-802e8cf7aa981339432f055a2b62d95c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Menu Player B.png"
-dest_files=["res://.godot/imported/Menu Player B.png-e937b42b361217c517f17c1df160a6df.ctex"]
+source_file="res://World/Hazard/Hazard.png"
+dest_files=["res://.godot/imported/Hazard.png-802e8cf7aa981339432f055a2b62d95c.ctex"]
 
 [params]
 

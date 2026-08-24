@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://t8gacvbucv5l"]
+
+[ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://World/Hazard/Hazard.png" id="1_ex4ww"]
+[ext_resource type="Script" uid="uid://xwvgbdvl7e4k" path="res://World/Hazard/hazard.gd" id="1_nhgl0"]
+
+[node name="Hazard" type="Area2D" unique_id=1082906915]
+script = ExtResource("1_nhgl0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2045813309]
+texture = ExtResource("1_ex4ww")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1063952423]
+polygon = PackedVector2Array(1, -9, 13, 12, -14, 12)

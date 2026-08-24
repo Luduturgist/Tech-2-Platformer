@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dy1ac85d0gw4e"]
+
+[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="1_1ed7c"]
+[ext_resource type="Script" uid="uid://crkxe5x7ythf" path="res://Debug/game_debug.gd" id="1_l5mhb"]
+[ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://World/Hazard/Hazard.tscn" id="3_7smxk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l5mhb"]
+
+[node name="DebugSolo" type="Node2D" unique_id=110176536]
+script = ExtResource("1_l5mhb")
+
+[node name="Player A" parent="." unique_id=1254970227 instance=ExtResource("1_1ed7c")]
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=210727243]
+position = Vector2(0, 20)
+scale = Vector2(12.800001, 1)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1720098531]
+shape = SubResource("RectangleShape2D_l5mhb")
+
+[node name="ColorRect" type="ColorRect" parent="Floor" unique_id=2134589652]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 9.936911
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hazard" parent="." unique_id=1082906915 instance=ExtResource("3_7smxk")]
+position = Vector2(79, 0)

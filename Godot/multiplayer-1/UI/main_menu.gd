@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var scene_to_load: String
+
 func _ready() -> void:
 	$"Network Buttons/Host".pressed.connect(host_button)
 	$"Network Buttons/Join".pressed.connect(join_button)
@@ -20,7 +22,7 @@ func back_button():
 
 func player_connected(id: int):
 	print("Player " + str(id) + " joined!")
-	get_tree().change_scene_to_file("res://Debug/debug_scene.tscn")
+	get_tree().change_scene_to_file(scene_to_load)
 
 func switch(host: bool = false):
 	$"Network Buttons".visible = false

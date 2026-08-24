@@ -22,3 +22,10 @@ func _register_client(id: int):
 func _disconnect():
 	peer.close()
 	get_tree().change_scene_to_file("res://UI/Main Menu.tscn")
+
+func _load_scene(scene: String):
+	rpc("multiplayer_scene", scene)
+
+@rpc("call_local", "any_peer")
+func multiplayer_scene(scene: String):
+	get_tree().call_deferred("change_scene_to_file", scene)
