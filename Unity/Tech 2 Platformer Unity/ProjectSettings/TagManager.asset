@@ -48,6 +48,9 @@ TagManager:
   - name: Midgard
     uniqueID: 3135845857
     locked: 0
+  - name: Realm of mun
+    uniqueID: 581824645
+    locked: 0
   - name: Foreground
     uniqueID: 2818156699
     locked: 0
