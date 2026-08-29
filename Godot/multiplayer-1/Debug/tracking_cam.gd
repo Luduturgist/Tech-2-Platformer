@@ -5,9 +5,10 @@ class_name TrackingCam
 var speed: float = 20
 
 func _ready() -> void:
-	global_position = follow.global_position
+	if follow: global_position = follow.global_position
 
 func _process(delta: float) -> void:
+	if not follow: return
 	var diff = follow.global_position - global_position
 	var dir = diff.normalized() * speed * delta * sqrt(diff.length())
 	if diff.length() >= dir.length():

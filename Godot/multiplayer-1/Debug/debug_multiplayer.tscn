@@ -13,8 +13,10 @@ playerA = NodePath("Player A")
 playerB = NodePath("Player B")
 
 [node name="Player A" parent="." unique_id=1254970227 instance=ExtResource("2_73yir")]
+position = Vector2(-71, -32)
 
 [node name="Player B" parent="." unique_id=893918040 instance=ExtResource("3_to0p3")]
+position = Vector2(35, -29)
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=257368736]
 position = Vector2(0, 20)

@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Movement
 
 @export var speed: float = 100
-@export var accel: float = 4000
-@export var jump: float = -200
+@export var accel: float = 800
+@export var jump: float = -300
 @export var cam: PackedScene
 @export var health: int = 3
 @export var swing:= 500
@@ -19,7 +19,7 @@ func dress() -> void:
 	sp = speed
 	collision_layer = 1
 	collision_mask = 1
-	visibility_layer = 1
+	visibility_layer += 1
 
 func _take_damage(amount: int = 1):
 	if sp <= 0: return
@@ -85,7 +85,7 @@ func _physics_process(delta: float) -> void:
 		if dir:
 			velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
 	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, accel * delta / sqrt(velocity.length()))
+		velocity.x = move_toward(velocity.x, 0, accel * delta)
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("Cheer"): rpc("cheer")

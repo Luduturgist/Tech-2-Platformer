@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://Debug/tracking_cam.gd" id="1_qvd8m"]
 
 [node name="CameraFollow" type="Camera2D" unique_id=728822637]
+zoom = Vector2(2, 2)
 script = ExtResource("1_qvd8m")

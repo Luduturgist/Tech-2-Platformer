@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3515904352610422596}
   - component: {fileID: 4641290915570569407}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4946265683221091034}
+  m_Father: {fileID: 3110144320534875212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4641290915570569407
 BoxCollider2D:
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.0020539612}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -76,7 +76,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7548258, y: 0.616416}
+  m_Size: {x: 0.7548258, y: 0.6205239}
   m_EdgeRadius: 0
 --- !u!1 &1821540746330502128
 GameObject:
@@ -90,7 +90,8 @@ GameObject:
   - component: {fileID: 4317598095124095780}
   - component: {fileID: 7396521145451222015}
   - component: {fileID: 4621418028401071928}
-  m_Layer: 0
+  - component: {fileID: 3507201527208766050}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -112,6 +113,7 @@ Transform:
   m_Children:
   - {fileID: 4946265683221091034}
   - {fileID: 6767695978959628300}
+  - {fileID: 3515904352610422596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4317598095124095780
@@ -153,9 +155,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae68f7629262084cab0d12cee32aad7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Movement
+  debug: 0
   speed: 5
-  height: 10
+  accel: 10
+  jumpHeight: 50
+  rayMask:
+    serializedVersion: 2
+    m_Bits: 1
+  leftRaycast: {fileID: 7396623519151723452}
+  rightRaycast: {fileID: 7805695710515497965}
+  foot: {fileID: 672524278071603260}
   pivot: {fileID: 4946265683221091034}
+  debugObject: {fileID: 4265119927617599551, guid: 6333ad5372d122c48b04259fe22cc332, type: 3}
 --- !u!114 &4621418028401071928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +181,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Wallet
   text: {fileID: 6215283589623384993}
   coins: 0
+--- !u!114 &3507201527208766050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821540746330502128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73fed65eca1743f43a88dd099b490e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  health: 10
 --- !u!1 &1894661311031023746
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6543167784336910102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Raycasts
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,6 +225,7 @@ Transform:
   m_Children:
   - {fileID: 7396623519151723452}
   - {fileID: 7805695710515497965}
+  - {fileID: 672524278071603260}
   m_Father: {fileID: 4946265683221091034}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2559786181025016331
@@ -214,7 +239,7 @@ GameObject:
   - component: {fileID: 4946265683221091034}
   - component: {fileID: 2878383375950600169}
   - component: {fileID: 8933726591486831463}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +259,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3515904352610422596}
   - {fileID: 6543167784336910102}
   m_Father: {fileID: 3110144320534875212}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -320,6 +344,37 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3406700188884587186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 672524278071603260}
+  m_Layer: 6
+  m_Name: Foot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &672524278071603260
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406700188884587186}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6543167784336910102}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5157805889426195936
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,7 +384,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7805695710515497965}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +400,7 @@ Transform:
   m_GameObject: {fileID: 5157805889426195936}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.374, y: -0.314, z: 0}
+  m_LocalPosition: {x: 0.369, y: -0.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -362,7 +417,7 @@ GameObject:
   - component: {fileID: 7203832975625048566}
   - component: {fileID: 251129471479681360}
   - component: {fileID: 6215283589623384993}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -425,8 +480,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4280343026
+  m_fontColor: {r: 0.94716984, g: 0.8491192, b: 0.12688503, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -500,7 +555,7 @@ GameObject:
   - component: {fileID: 3171919294764377193}
   - component: {fileID: 339262973590220658}
   - component: {fileID: 655368594070694693}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +655,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7396623519151723452}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -616,7 +671,7 @@ Transform:
   m_GameObject: {fileID: 8705760876809796938}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.369, y: -0.314, z: 0}
+  m_LocalPosition: {x: -0.369, y: -0.171, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

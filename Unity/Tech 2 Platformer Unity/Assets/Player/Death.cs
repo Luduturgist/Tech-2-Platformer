@@ -7,7 +7,7 @@ public class Death : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            GameManager.ReloadScene();
         }
 
     }
