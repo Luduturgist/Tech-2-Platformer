@@ -4,22 +4,17 @@ class_name Movement
 @export var speed: float = 100
 @export var accel: float = 800
 @export var jump: float = -300
-@export var cam: PackedScene
 @export var health: int = 3
 @export var swing:= 500
+@export var pivot: Node2D
 var sp: float = 0
 
 func dress() -> void:
-	var c: Camera2D = cam.instantiate()
-	c.follow = self
-	
-	await get_tree().process_frame
-	get_parent().add_child(c)
-	c.make_current()
 	sp = speed
 	collision_layer = 1
 	collision_mask = 1
-	visibility_layer += 1
+	visibility_layer = 1
+	z_index += 1
 
 func _take_damage(amount: int = 1):
 	if sp <= 0: return
@@ -44,21 +39,21 @@ func _physics_process(delta: float) -> void:
 	if cheer_timer > 0:
 		cheer_timer -= delta
 		if cheer_timer <= 0:
-			if $Cheer.visible:
-				$Cheer.visible = false
+			if $CollisionShape2D/Cheer.visible:
+				$CollisionShape2D/Cheer.visible = false
 				cheer_timer = 0
 			else:
-				$Cheer.visible = true
+				$CollisionShape2D/Cheer.visible = true
 				cheer_timer = 0.5
 	
 	if pain_timer > 0:
 		pain_timer -= delta
 		if pain_timer <= 0:
-			if $Pain.visible:
-				$Pain.visible = false
+			if $CollisionShape2D/Pain.visible:
+				$CollisionShape2D/Pain.visible = false
 				pain_timer = 0
 			else:
-				$Pain.visible = true
+				$CollisionShape2D/Pain.visible = true
 				pain_timer = 0.5
 	
 	
@@ -82,8 +77,8 @@ func _physics_process(delta: float) -> void:
 	
 	var dir := Vector2(xRaw, 0)
 	if dir:
-		if dir:
-			velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
+		velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
+		if dir.x * pivot.scale.x < 0: pivot.scale.x *= -1
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, accel * delta)
 	move_and_slide()
@@ -93,19 +88,19 @@ func _physics_process(delta: float) -> void:
 var cheer_timer: float
 @rpc("authority", "call_local")
 func cheer():
-	if $Cheer.visible:
-		$Cheer.visible = false
+	if $CollisionShape2D/Cheer.visible:
+		$CollisionShape2D/Cheer.visible = false
 		cheer_timer = 0.075
 	else:
-		$Cheer.visible = true
+		$CollisionShape2D/Cheer.visible = true
 		cheer_timer = 0.5
 
 var pain_timer: float
 @rpc("authority", "call_local")
 func damage_feedback():
-	if $Pain.visible:
-		$Pain.visible = false
+	if $CollisionShape2D/Pain.visible:
+		$CollisionShape2D/Pain.visible = false
 		pain_timer = 0.075
 	else:
-		$Pain.visible = true
+		$CollisionShape2D/Pain.visible = true
 		pain_timer = 0.5

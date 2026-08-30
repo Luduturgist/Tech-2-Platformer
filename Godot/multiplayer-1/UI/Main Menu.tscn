@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/main_menu.gd" id="1_6iuai"]
 [ext_resource type="Texture2D" uid="uid://343hqrts60dh" path="res://UI/Menu Player Sprites/Menu Player A.png" id="2_kybp0"]
 [ext_resource type="Texture2D" uid="uid://c7us6dwdur40o" path="res://UI/Menu Player Sprites/Menu Player B.png" id="3_owi87"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="4_ugbd5"]
 
 [node name="MainMenu" type="Node2D" unique_id=141468875]
 script = ExtResource("1_6iuai")
@@ -113,5 +112,3 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 text = "Disconnect"
-
-[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("4_ugbd5")]

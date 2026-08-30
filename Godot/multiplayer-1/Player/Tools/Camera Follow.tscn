@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://btvsqab4xkf0q"]
 
-[ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://Debug/tracking_cam.gd" id="1_qvd8m"]
+[ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://Player/Tools/tracking_cam.gd" id="1_qvd8m"]
 
 [node name="CameraFollow" type="Camera2D" unique_id=728822637]
-zoom = Vector2(2, 2)
+offset = Vector2(0, -50)
+zoom = Vector2(4, 4)
 script = ExtResource("1_qvd8m")

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d11aymhapnwew"]
 
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/movement.gd" id="1_yifjq"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="2_8w4ie"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yifjq"]
 properties/0/path = NodePath(".:position")
@@ -10,35 +9,15 @@ properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 
-[node name="Player B" type="CharacterBody2D" unique_id=1254970227]
+[node name="Player B" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot")]
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_yifjq")
-cam = ExtResource("2_8w4ie")
+pivot = NodePath("CollisionShape2D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
 replication_config = SubResource("SceneReplicationConfig_yifjq")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=140929296]
-shape = SubResource("RectangleShape2D_ejki1")
-
-[node name="Cheer" type="ColorRect" parent="." unique_id=1422860486]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -12.0
-offset_top = -12.0
-offset_right = 12.0
-offset_bottom = 12.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0.99, 0.9735, 0, 0.5529412)
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1462470640]
 anchors_preset = 8
@@ -57,7 +36,27 @@ size_flags_vertical = 4
 color = Color(3.85046e-07, 0.5276499, 0.7705033, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="Pain" type="ColorRect" parent="." unique_id=1876905498]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=140929296]
+shape = SubResource("RectangleShape2D_ejki1")
+
+[node name="Cheer" type="ColorRect" parent="CollisionShape2D" unique_id=1422860486]
+z_index = -1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -12.0
+offset_right = 12.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.99, 0.9735, 0, 0.5529412)
+
+[node name="Pain" type="ColorRect" parent="CollisionShape2D" unique_id=1876905498]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5

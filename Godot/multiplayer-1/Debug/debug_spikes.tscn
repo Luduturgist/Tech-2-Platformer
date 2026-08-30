@@ -4,13 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="2_vstgx"]
 [ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/Player B.tscn" id="3_qhy05"]
 [ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://World/Hazard/Hazard.tscn" id="4_yab24"]
+[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="5_vstgx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 
-[node name="Debug Scene" type="Node2D" unique_id=1716765503 node_paths=PackedStringArray("playerA", "playerB")]
+[node name="Debug Scene" type="Node2D" unique_id=1716765503 node_paths=PackedStringArray("playerA", "playerB", "camera")]
 script = ExtResource("1_rvo2y")
 playerA = NodePath("Player")
 playerB = NodePath("Player2")
+camera = NodePath("CameraFollow")
 
 [node name="Player" parent="." unique_id=1254970227 instance=ExtResource("2_vstgx")]
 position = Vector2(-84, -38)
@@ -61,3 +63,5 @@ position = Vector2(323, 0)
 
 [node name="Hazard4" parent="Environment" unique_id=1045670569 instance=ExtResource("4_yab24")]
 position = Vector2(323, 0)
+
+[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("5_vstgx")]

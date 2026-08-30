@@ -3,6 +3,7 @@ class_name Game
 
 @export var playerA: Movement
 @export var playerB: Movement
+@export var camera: Game_Cam
 
 var local: Movement
 var friend: Movement
@@ -28,6 +29,7 @@ func dress_rig():
 		friend = playerA
 	
 	local.dress()
+	camera.follow = local
 	
 	#push_error("A is owned by " + str(playerA.get_multiplayer_authority()))
 	#push_error("B is owned by " + str(playerB.get_multiplayer_authority()))

@@ -1,62 +1,56 @@
 [gd_scene format=3 uid="uid://b815wdlnbej0k"]
 
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/movement.gd" id="1_34jae"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="2_cp4ws"]
+[ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Character.png" id="2_n1ja2"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_n1ja2"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("CollisionShape2D:scale:x")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
+size = Vector2(14, 30)
 
-[node name="Player A" type="CharacterBody2D" unique_id=1254970227]
+[node name="Player A" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot")]
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_34jae")
-cam = ExtResource("2_cp4ws")
+pivot = NodePath("CollisionShape2D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1083919850]
 replication_config = SubResource("SceneReplicationConfig_n1ja2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=140929296]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_ejki1")
 
-[node name="Cheer" type="ColorRect" parent="." unique_id=801280567]
+[node name="Character" type="Sprite2D" parent="CollisionShape2D" unique_id=2094479128]
+position = Vector2(0, -1)
+texture = ExtResource("2_n1ja2")
+
+[node name="Cheer" type="ColorRect" parent="CollisionShape2D" unique_id=801280567]
 visible = false
+z_index = -1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -12.0
-offset_top = -12.0
+offset_top = -13.0
 offset_right = 12.0
-offset_bottom = 12.0
+offset_bottom = 11.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.99, 0.9735, 0, 0.5529412)
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1462470640]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0.101960786, 0.59607846, 0.08235294, 1)
-
-[node name="Pain" type="ColorRect" parent="." unique_id=1866418209]
+[node name="Pain" type="ColorRect" parent="CollisionShape2D" unique_id=1866418209]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
@@ -64,9 +58,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -7.0
-offset_top = -7.0
+offset_top = -8.0
 offset_right = 7.0
-offset_bottom = 7.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4

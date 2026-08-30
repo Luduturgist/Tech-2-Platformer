@@ -1,8 +1,7 @@
-extends Camera2D
+extends Game_Cam
 class_name TrackingCam
 
-@export var follow: Node2D
-var speed: float = 20
+@export var speed: float = 20
 
 func _ready() -> void:
 	if follow: global_position = follow.global_position
