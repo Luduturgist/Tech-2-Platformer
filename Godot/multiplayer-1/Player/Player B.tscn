@@ -40,6 +40,7 @@ metadata/_edit_use_anchors_ = true
 shape = SubResource("RectangleShape2D_ejki1")
 
 [node name="Cheer" type="ColorRect" parent="CollisionShape2D" unique_id=1422860486]
+visible = false
 z_index = -1
 anchors_preset = 8
 anchor_left = 0.5

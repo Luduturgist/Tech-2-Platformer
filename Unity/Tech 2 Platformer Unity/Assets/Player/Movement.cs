@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
     InputAction move;
     InputAction jump;
     bool grounded = false;
+    public static Movement instance;
 
     void Start()
     {
@@ -35,9 +36,10 @@ public class Movement : MonoBehaviour
         move = InputSystem.actions.FindAction("Move");
         jump = InputSystem.actions.FindAction("Jump");
         grounded = CheckFloor();
+        instance = this;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         ProcessMove();
     }
@@ -67,7 +69,7 @@ public class Movement : MonoBehaviour
 
         if (dir != Vector2.zero)
         {
-            vel += dir.x * accel * Time.deltaTime;
+            vel += dir.x * accel * Time.fixedDeltaTime;
 
             if (Mathf.Abs(vel) > speed) vel = (vel / Mathf.Abs(vel)) * speed;
 
@@ -76,17 +78,19 @@ public class Movement : MonoBehaviour
         else if (vel != 0)
         {
             int pos = (int)(vel / Mathf.Abs(vel));
-            vel -= accel * pos * Time.deltaTime;
+            vel -= accel * pos * Time.fixedDeltaTime;
             if (pos * vel < 0) vel = 0;
 
             transform.position += new Vector3(vel, 0);
         }
 
-        if (jump.WasPressedThisDynamicUpdate() && CheckFloor())
+        if (jump.IsPressed() && grounded)
         {
+            if (!CheckFloor()) return;
             rb.linearVelocityY += jumpHeight;
             if (rb.linearVelocityY > jumpHeight) rb.linearVelocityY = jumpHeight;
             grounded = false;
+            print("Jump");
         }
 
         if (dir.x * pivot.localScale.x < 0)
@@ -97,6 +101,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        CheckFloor();
         RaycastHit2D hit = Physics2D.Raycast(collision.transform.position, Vector2.down);
         if (hit.transform.position.y >= foot.position.y) grounded = true;
     }

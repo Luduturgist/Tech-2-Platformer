@@ -4,7 +4,7 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     [SerializeField] Transform track;
-    [SerializeField] float scale = 1;
+    [SerializeField] float scale = 0.5f;
 
     float origin;
     float offset;
@@ -12,6 +12,7 @@ public class Parallax : MonoBehaviour
     void Start()
     {
         offset = transform.position.x;
+        if (!track) track = Movement.instance.transform;
         Update();
     }
 
