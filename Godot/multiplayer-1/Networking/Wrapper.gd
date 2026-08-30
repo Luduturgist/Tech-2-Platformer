@@ -8,7 +8,7 @@ func _ready() -> void:
 	peer.peer_connected.connect(_register_client)
 
 func _host():
-	peer.create_server(127, 2)
+	peer.create_server(1027, 2)
 	multiplayer.multiplayer_peer = peer
 
 func _join():
