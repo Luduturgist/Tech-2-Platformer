@@ -3,6 +3,6 @@
 [ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://Player/Tools/tracking_cam.gd" id="1_qvd8m"]
 
 [node name="CameraFollow" type="Camera2D" unique_id=728822637]
-offset = Vector2(0, -50)
+offset = Vector2(0, -45)
 zoom = Vector2(4, 4)
 script = ExtResource("1_qvd8m")

@@ -1,7 +1,7 @@
 extends Node
 class_name NetworkingWrapper
 
-var client: int
+var client: int = 0
 @onready var peer: ENetMultiplayerPeer = ENetMultiplayerPeer.new()
 
 func _ready() -> void:

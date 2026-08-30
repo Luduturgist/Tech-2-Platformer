@@ -1,0 +1,28 @@
+[gd_scene format=4 uid="uid://boledd8vtsvtc"]
+
+[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Debug/game.gd" id="1_5yvi0"]
+[ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_f4qae"]
+[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="3_o7uj6"]
+[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="4_cgekv"]
+[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/Player B.tscn" id="5_moakd"]
+
+[node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("playerA", "playerB", "camera")]
+script = ExtResource("1_5yvi0")
+playerA = NodePath("Player A")
+playerB = NodePath("Player B")
+camera = NodePath("CameraFollow")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1221429451]
+tile_map_data = PackedByteArray("AAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAAHAP//AAAAAAAAAAAGAP//AAAAAAAAAAAFAP//AAAAAAAAAAAEAP//AAAAAAAAAAADAP//AAAAAAAAAAACAP//AAAAAAAAAAA=")
+tile_set = ExtResource("2_f4qae")
+physics_quadrant_size = 32
+
+[node name="CameraFollow" parent="." unique_id=728822637 node_paths=PackedStringArray("follow") instance=ExtResource("3_o7uj6")]
+follow = NodePath("../Player A")
+
+[node name="Player A" parent="." unique_id=1254970227 instance=ExtResource("4_cgekv")]
+position = Vector2(-109, -22)
+fallSpeed = 1150
+
+[node name="Player B" parent="." unique_id=228450361 instance=ExtResource("5_moakd")]
+position = Vector2(-32, -22)

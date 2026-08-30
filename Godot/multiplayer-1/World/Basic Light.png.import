@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwa5o32jhrfpo"
-path="res://.godot/imported/Character.png-01af7b271bafe7915bf0f3da413fb281.ctex"
+uid="uid://dbdgqdgklcc2"
+path="res://.godot/imported/Basic Light.png-b31b65e3e12fa3628cc97d81fb79170f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Character.png"
-dest_files=["res://.godot/imported/Character.png-01af7b271bafe7915bf0f3da413fb281.ctex"]
+source_file="res://World/Basic Light.png"
+dest_files=["res://.godot/imported/Basic Light.png-b31b65e3e12fa3628cc97d81fb79170f.ctex"]
 
 [params]
 

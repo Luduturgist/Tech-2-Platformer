@@ -3,11 +3,13 @@ class_name Movement
 
 @export var speed: float = 100
 @export var accel: float = 800
-@export var jump: float = -300
+@export var jump: float = 300
 @export var health: int = 3
+@export var fallSpeed: int = 1200
 @export var swing:= 500
 @export var pivot: Node2D
 var sp: float = 0
+signal cheering
 
 func dress() -> void:
 	sp = speed
@@ -63,14 +65,14 @@ func _physics_process(delta: float) -> void:
 		coop_swing()
 	
 	if not is_on_floor():
-		velocity += get_gravity() * delta
-		if velocity.y > -jump * 2:
-			velocity.y = -jump * 2
+		velocity += fallSpeed * Vector2.DOWN * delta
+		if velocity.y > jump * 2:
+			velocity.y = jump * 2
 		#elif velocity.y < jump:
 			#velocity.y = jump
 
 	if Input.is_action_pressed("Jump") and is_on_floor():
-		velocity.y = jump
+		velocity.y = -jump
 	
 	var xRaw: float = Input.get_axis("Left", "Right")
 	# yRaw: float = Input.get_axis("Up", "Down")
@@ -83,7 +85,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, accel * delta)
 	move_and_slide()
 	
-	if Input.is_action_just_pressed("Cheer"): rpc("cheer")
+	if Input.is_action_just_pressed("Cheer"):
+		rpc("cheer")
+		cheering.emit()
 
 var cheer_timer: float
 @rpc("authority", "call_local")
