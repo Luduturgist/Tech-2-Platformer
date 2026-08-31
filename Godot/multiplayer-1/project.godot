@@ -31,6 +31,11 @@ folder_colors={
 "res://Debug/": "gray",
 "res://Networking/": "green",
 "res://Player/": "orange",
+"res://Player/Actions/Flash/": "yellow",
+"res://Player/Actions/Swing/": "pink",
+"res://Player/River/": "blue",
+"res://Player/Soil/": "yellow",
+"res://Player/Tools/": "green",
 "res://UI/": "blue",
 "res://World/": "pink"
 }

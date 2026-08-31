@@ -8,13 +8,17 @@ func _ready() -> void:
 	$"Host Waiting/Disconnect".pressed.connect(back_button)
 	$"Client Waiting/Disconnect".pressed.connect(back_button)
 	Wrapper.peer.peer_connected.connect(player_connected)
+	
+	$"Network Buttons/Local IP".text = Wrapper.localIP
+	$"Host Waiting/Local IP".text = Wrapper.localIP
+	$"Network Buttons/Join IP".placeholder_text = Wrapper.localIP
 
 func host_button():
 	Wrapper._host()
 	switch(true)
 
 func join_button():
-	Wrapper._join()
+	Wrapper._join($"Network Buttons/Join IP".text)
 	switch()
 
 func back_button():

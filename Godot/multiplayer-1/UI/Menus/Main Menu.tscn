@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://c7db8e6o1sghv"]
 
-[ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/main_menu.gd" id="1_6iuai"]
-[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/Character 2.png" id="3_owi87"]
-[ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Character.png" id="3_ugbd5"]
+[ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/Menus/main_menu.gd" id="1_vf7q5"]
+[ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_e1hbh"]
+[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="3_tcef6"]
 
 [node name="MainMenu" type="Node2D" unique_id=141468875]
-script = ExtResource("1_6iuai")
-scene_to_load = "res://World/Levels/Level 1/Level 1.tscn"
+script = ExtResource("1_vf7q5")
+scene_to_load = "res://UI/Menus/Level Select.tscn"
 metadata/_edit_vertical_guides_ = [-250.0]
 
 [node name="Network Buttons" type="CanvasLayer" parent="." unique_id=666372241]
@@ -26,6 +26,13 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "Host"
 
+[node name="Local IP" type="Label" parent="Network Buttons" unique_id=2095598327]
+offset_left = 1023.0
+offset_top = 486.0
+offset_right = 1126.0
+offset_bottom = 525.0
+text = "10.0.0.1"
+
 [node name="Join" type="Button" parent="Network Buttons" unique_id=271699989]
 anchors_preset = 8
 anchor_left = 0.5
@@ -41,10 +48,18 @@ grow_vertical = 2
 size_flags_horizontal = 4
 text = "Join"
 
+[node name="Join IP" type="LineEdit" parent="Network Buttons" unique_id=1407063563]
+offset_left = 1019.0
+offset_top = 585.0
+offset_right = 1131.0
+offset_bottom = 632.0
+placeholder_text = "10.0.0.1"
+expand_to_text_length = true
+
 [node name="Host Waiting" type="CanvasLayer" parent="." unique_id=1935970027]
 visible = false
 
-[node name="Label" type="Label" parent="Host Waiting" unique_id=369834226]
+[node name="Waiting" type="Label" parent="Host Waiting" unique_id=369834226]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -57,6 +72,13 @@ offset_bottom = 19.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "Waiting for B"
+
+[node name="Local IP" type="Label" parent="Host Waiting" unique_id=1355077822]
+offset_left = 909.0
+offset_top = 568.0
+offset_right = 1012.0
+offset_bottom = 607.0
+text = "10.0.0.1"
 
 [node name="Disconnect" type="Button" parent="Host Waiting" unique_id=1942813283]
 anchors_preset = 8
@@ -76,7 +98,7 @@ text = "Disconnect"
 [node name="Sprite2D" type="Sprite2D" parent="Host Waiting" unique_id=1175230349]
 position = Vector2(971, 808)
 scale = Vector2(8, 8)
-texture = ExtResource("3_ugbd5")
+texture = ExtResource("2_e1hbh")
 
 [node name="Client Waiting" type="CanvasLayer" parent="." unique_id=1698971818]
 visible = false
@@ -84,9 +106,9 @@ visible = false
 [node name="Sprite2D2" type="Sprite2D" parent="Client Waiting" unique_id=387641268]
 position = Vector2(971, 808)
 scale = Vector2(8, 8)
-texture = ExtResource("3_owi87")
+texture = ExtResource("3_tcef6")
 
-[node name="Label" type="Label" parent="Client Waiting" unique_id=1790139185]
+[node name="Waiting" type="Label" parent="Client Waiting" unique_id=1790139185]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

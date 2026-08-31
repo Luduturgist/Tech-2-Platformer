@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwa5o32jhrfpo"
-path="res://.godot/imported/Character.png-c10f270d0767486ecdece55d90ab2c16.ctex"
+uid="uid://dij506xchx0on"
+path="res://.godot/imported/Energy Bar.png-8da3bbab8aa0dfa63d46024701360689.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Soil/Character.png"
-dest_files=["res://.godot/imported/Character.png-c10f270d0767486ecdece55d90ab2c16.ctex"]
+source_file="res://UI/GUI/Energy Bar.png"
+dest_files=["res://.godot/imported/Energy Bar.png-8da3bbab8aa0dfa63d46024701360689.ctex"]
 
 [params]
 
