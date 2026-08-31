@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://cg7govw5o30nj"]
 
-[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Debug/game.gd" id="1_c63vy"]
+[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game.gd" id="1_c63vy"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_aevyd"]
 [ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="3_510j6"]
 [ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="4_6c2so"]

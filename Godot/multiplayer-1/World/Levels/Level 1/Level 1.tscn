@@ -1,16 +1,21 @@
 [gd_scene format=4 uid="uid://boledd8vtsvtc"]
 
-[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Debug/game.gd" id="1_5yvi0"]
+[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game.gd" id="1_5yvi0"]
 [ext_resource type="PackedScene" uid="uid://b7x1xel6pnfcx" path="res://UI/GUI/gui.tscn" id="2_8ghjs"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_f4qae"]
 [ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="3_o7uj6"]
 [ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="4_cgekv"]
 [ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/Player B.tscn" id="5_moakd"]
-[ext_resource type="Script" uid="uid://d3lhj80udymsw" path="res://Player/Actions/Flash/flash_action.gd" id="6_tcduv"]
+[ext_resource type="Script" uid="uid://d3lhj80udymsw" path="res://Player/Actions/flash_action.gd" id="6_tcduv"]
+[ext_resource type="Script" uid="uid://46d3ayd01ra7" path="res://Interacteable/interacteable.gd" id="8_fp4rx"]
+[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Events/flash_object.gd" id="8_qoxgt"]
 
 [sub_resource type="Resource" id="Resource_8ghjs"]
 script = ExtResource("6_tcduv")
 metadata/_custom_type_script = "uid://d3lhj80udymsw"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fp4rx"]
+size = Vector2(34, 20)
 
 [node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("playerA", "playerB", "camera", "gui")]
 script = ExtResource("1_5yvi0")
@@ -36,3 +41,58 @@ pain_feedback = SubResource("Resource_8ghjs")
 
 [node name="Player B" parent="." unique_id=228450361 instance=ExtResource("5_moakd")]
 position = Vector2(-32, -22)
+
+[node name="Interacteable" type="Node2D" parent="." unique_id=1954835801 node_paths=PackedStringArray("light", "player_area")]
+position = Vector2(110, -32)
+script = ExtResource("8_fp4rx")
+light = NodePath("Panel On")
+player_area = NodePath("Area2D")
+
+[node name="ColorRect" type="ColorRect" parent="Interacteable" unique_id=1453494778]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -11.0
+offset_top = -15.0
+offset_right = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.66, 0.5335, 0.495, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Interacteable" unique_id=454921750]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.27, 0.21825, 0.20250002, 1)
+
+[node name="Panel On" type="ColorRect" parent="Interacteable" unique_id=621611035]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(1, 0.977, 0.97, 1)
+script = ExtResource("8_qoxgt")
+
+[node name="Area2D" type="Area2D" parent="Interacteable" unique_id=1641419204]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interacteable/Area2D" unique_id=1476173058]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_fp4rx")

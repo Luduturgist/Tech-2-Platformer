@@ -4,6 +4,7 @@ class_name PlayerMovement
 @export var friendly: Action = Flash_Action.new()
 @export var pain_feedback: Action = Flash_Action.new()
 @export var move_ability: Action = Swing_Action.new()
+@export var golem: Golem
 
 @export_group("Settings")
 @export var speed: float = 100
@@ -17,12 +18,17 @@ class_name PlayerMovement
 
 var sp: float = 0
 var energy: Energy
+static var active: PlayerMovement
+var local: bool
+
+enum Golem {Soil, River}
 
 func _ready() -> void:
 	friendly._start(self)
 
 func dress() -> void:
-	sp = speed
+	active = self
+	local = true
 	collision_layer = 1
 	collision_mask = 1
 	visibility_layer = 1
@@ -31,7 +37,7 @@ func dress() -> void:
 	move_ability._start(self)
 
 func _take_damage(amount: int = 1):
-	if sp <= 0: return
+	if not local: return
 	health -= amount
 	if pain_feedback: pain_feedback._perform_action()
 	if health <= 0:
@@ -41,7 +47,7 @@ func _physics_process(delta: float) -> void:
 	if friendly: friendly._update(delta)
 	if pain_feedback: pain_feedback._update(delta)
 	
-	if sp == 0: return
+	if not local: return
 	
 	energy._update(delta)
 	move_ability._update(delta)
@@ -49,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Swing"): move_ability._perform_action()
 	if Input.is_action_just_pressed("Cheer") && friendly: friendly._perform_action()
 	
-	if Input.is_action_pressed("Jump") and is_on_floor(): velocity.y = -jump
+	if Input.is_action_just_pressed("Jump") and is_on_floor(): velocity.y = -jump
 	
 	process_move(delta)
 

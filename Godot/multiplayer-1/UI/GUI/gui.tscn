@@ -45,7 +45,7 @@ texture_under = SubResource("AtlasTexture_cm023")
 texture_over = SubResource("AtlasTexture_7thrl")
 texture_progress = SubResource("AtlasTexture_qyonj")
 texture_progress_offset = Vector2(1, 0)
-tint_under = Color(0.12941177, 0.12941177, 0.12941177, 1)
+tint_under = Color(0, 0, 0, 0.22745098)
 
 [node name="Health" type="TextureProgressBar" parent="." unique_id=1938477846]
 offset_left = 14.0
@@ -58,4 +58,4 @@ texture_under = SubResource("AtlasTexture_8fjdy")
 texture_over = SubResource("AtlasTexture_1a5em")
 texture_progress = SubResource("AtlasTexture_808i8")
 texture_progress_offset = Vector2(1, 0)
-tint_under = Color(0.12955844, 0.12955847, 0.12955844, 1)
+tint_under = Color(0, 0, 0, 0.22745098)

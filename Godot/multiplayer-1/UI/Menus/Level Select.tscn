@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://051cxfa2ec0p"]
 
 [ext_resource type="Script" uid="uid://ww1bxlixkt33" path="res://UI/Menus/level_select.gd" id="1_406it"]
-[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Player/Actions/Flash/flash_object.gd" id="2_qfsfe"]
+[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Events/flash_object.gd" id="2_qfsfe"]
 
 [node name="LevelSelect" type="CanvasLayer" unique_id=1351488328 node_paths=PackedStringArray("buttons", "flashes")]
 script = ExtResource("1_406it")

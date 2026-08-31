@@ -11,48 +11,44 @@ metadata/_edit_vertical_guides_ = [-250.0]
 
 [node name="Network Buttons" type="CanvasLayer" parent="." unique_id=666372241]
 
-[node name="Host" type="Button" parent="Network Buttons" unique_id=1170498499]
+[node name="VBoxContainer" type="VBoxContainer" parent="Network Buttons" unique_id=158323834]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -58.0
-offset_right = 35.5
-offset_bottom = -11.0
+offset_left = -89.0
+offset_top = -49.0
+offset_right = 89.0
+offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 28
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons/VBoxContainer" unique_id=1850283834]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Host" type="Button" parent="Network Buttons/VBoxContainer/HBoxContainer" unique_id=1170498499]
+layout_mode = 2
 size_flags_horizontal = 4
 text = "Host"
 
-[node name="Local IP" type="Label" parent="Network Buttons" unique_id=2095598327]
-offset_left = 1023.0
-offset_top = 486.0
-offset_right = 1126.0
-offset_bottom = 525.0
+[node name="Local IP" type="Label" parent="Network Buttons/VBoxContainer/HBoxContainer" unique_id=2095598327]
+layout_mode = 2
 text = "10.0.0.1"
 
-[node name="Join" type="Button" parent="Network Buttons" unique_id=271699989]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -39.0
-offset_top = 45.0
-offset_right = 38.0
-offset_bottom = 92.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HBoxContainer2" type="HBoxContainer" parent="Network Buttons/VBoxContainer" unique_id=1006879946]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Join" type="Button" parent="Network Buttons/VBoxContainer/HBoxContainer2" unique_id=271699989]
+layout_mode = 2
 size_flags_horizontal = 4
 text = "Join"
 
-[node name="Join IP" type="LineEdit" parent="Network Buttons" unique_id=1407063563]
-offset_left = 1019.0
-offset_top = 585.0
-offset_right = 1131.0
-offset_bottom = 632.0
+[node name="Join IP" type="LineEdit" parent="Network Buttons/VBoxContainer/HBoxContainer2" unique_id=1407063563]
+layout_mode = 2
 placeholder_text = "10.0.0.1"
 expand_to_text_length = true
 

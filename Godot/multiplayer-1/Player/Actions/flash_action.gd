@@ -8,5 +8,5 @@ func _start(m: PlayerMovement):
 	super(m)
 	obj = m.get_node(flash_object_path)
 
-func _perform_action():
+func _perform_event():
 	obj.rpc("flash")
