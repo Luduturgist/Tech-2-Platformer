@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Multiplayer 1"
+config/name="Petrichor"
 run/main_scene="uid://c7db8e6o1sghv"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
