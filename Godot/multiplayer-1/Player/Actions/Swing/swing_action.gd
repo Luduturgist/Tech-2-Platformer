@@ -3,7 +3,7 @@ class_name Swing_Action
 
 @export var swing:= 500
 
-func _perform_event():
+func _perform_action():
 	var friend:= Game.active.friend.position
 	var diff = friend - move.position
 	var dir = diff.normalized() * swing

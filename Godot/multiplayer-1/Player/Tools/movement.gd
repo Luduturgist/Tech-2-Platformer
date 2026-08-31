@@ -1,8 +1,9 @@
+@icon("res://Player/Soil/Soil.png")
 extends CharacterBody2D
 class_name PlayerMovement
 
-@export var friendly: Action = Flash_Action.new()
-@export var pain_feedback: Action = Flash_Action.new()
+@export var friendly: Action
+@export var pain_feedback: Action
 @export var move_ability: Action = Swing_Action.new()
 @export var golem: Golem
 
@@ -20,11 +21,13 @@ var sp: float = 0
 var energy: Energy
 static var active: PlayerMovement
 var local: bool
+signal interact
 
 enum Golem {Soil, River}
 
 func _ready() -> void:
-	friendly._start(self)
+	if friendly: friendly._start(self)
+	if pain_feedback: pain_feedback._start(self)
 
 func dress() -> void:
 	active = self
@@ -56,6 +59,8 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Cheer") && friendly: friendly._perform_action()
 	
 	if Input.is_action_just_pressed("Jump") and is_on_floor(): velocity.y = -jump
+	
+	if Input.is_action_just_pressed("Interact"): interact.emit()
 	
 	process_move(delta)
 

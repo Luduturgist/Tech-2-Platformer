@@ -1,14 +1,8 @@
-extends Node
+extends Event_Object
 class_name Flash_Object
 
-var obj
-
-func _ready() -> void:
-	var s = self
-	if s is Control:
-		obj = s
-	elif s is Node2D:
-		obj = s
+func _trigger_event():
+	rpc("flash")
 
 var flash_timer: float = 0
 func _process(delta: float) -> void:
