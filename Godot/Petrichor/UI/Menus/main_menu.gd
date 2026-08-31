@@ -4,25 +4,26 @@ extends Node2D
 
 func _ready() -> void:
 	$"Network Buttons/VBoxContainer/HBoxContainer/Host".pressed.connect(host_button)
-	$"Network Buttons/VBoxContainer/HBoxContainer2/Join".pressed.connect(join_button)
+	$"Network Buttons/VBoxContainer/HBoxContainer2/Join".pressed.connect(join_button.bind(""))
 	$"Host Waiting/Disconnect".pressed.connect(back_button)
 	$"Client Waiting/Disconnect".pressed.connect(back_button)
 	Wrapper.peer.peer_connected.connect(player_connected)
+	$"Network Buttons/VBoxContainer/HBoxContainer2/Join IP".text_submitted.connect(join_button)
 	
 	$"Network Buttons/VBoxContainer/HBoxContainer/Local IP".text = Wrapper.localIP
 	$"Network Buttons/VBoxContainer/HBoxContainer2/Join IP".placeholder_text = Wrapper.localIP
 	$"Host Waiting/Local IP".text = Wrapper.localIP
-
+	
 func host_button():
 	Wrapper._host()
 	switch(true)
 
-func join_button():
-	Wrapper._join()
+func join_button(_s: String):
+	Wrapper._join($"Network Buttons/VBoxContainer/HBoxContainer2/Join IP".text)
 	switch()
 
 func back_button():
-	Wrapper._disconnect()
+	Wrapper._end_session()
 
 func player_connected(id: int):
 	print("Player " + str(id) + " joined!")

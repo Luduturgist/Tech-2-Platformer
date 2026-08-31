@@ -15,7 +15,10 @@
 size = Vector2(34, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3nu2"]
-size = Vector2(26, 43)
+size = Vector2(24, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju0ar"]
+size = Vector2(24, 2)
 
 [node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("playerA", "playerB", "camera", "gui")]
 script = ExtResource("1_5yvi0")
@@ -102,37 +105,46 @@ shape = SubResource("RectangleShape2D_fp4rx")
 position = Vector2(182, -32)
 script = ExtResource("9_fp4rx")
 door_block = NodePath("Block")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=84205515]
 z_index = -1
-position = Vector2(0, -6)
+position = Vector2(0, -17)
 rotation = -1.5707964
-scale = Vector2(2.3033211, 4.226361)
+scale = Vector2(2, 4)
 texture = ExtResource("10_t3nu2")
 vframes = 8
 
 [node name="Sprite2D2" type="Sprite2D" parent="Door" unique_id=1918853555]
 z_index = 1
-position = Vector2(17, -6)
+position = Vector2(16, -17)
 rotation = -1.5707964
-scale = Vector2(2.3033211, 4.226361)
+scale = Vector2(2, 4)
 texture = ExtResource("10_t3nu2")
 vframes = 8
 frame = 1
 
 [node name="Block" type="StaticBody2D" parent="Door" unique_id=1876634525]
-position = Vector2(9, 0)
+position = Vector2(9, -11)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Block" unique_id=314885130]
-position = Vector2(0, -21.5)
+position = Vector2(-1, -12.5)
 shape = SubResource("RectangleShape2D_t3nu2")
 
 [node name="Sprite2D" type="Sprite2D" parent="Door/Block" unique_id=359817531]
 modulate = Color(17.275812, 17.275812, 17.275812, 1)
-position = Vector2(0, -5.8435364)
+z_index = -3
+position = Vector2(-1, -6)
 rotation = -1.5707964
-scale = Vector2(2.3033211, 4.226361)
+scale = Vector2(2, 4)
 texture = ExtResource("10_t3nu2")
 offset = Vector2(1, 0)
 vframes = 4
 frame = 1
+
+[node name="Frame" type="StaticBody2D" parent="Door" unique_id=1473358788]
+position = Vector2(0, -11)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Frame" unique_id=1244093388]
+position = Vector2(8, -37)
+shape = SubResource("RectangleShape2D_ju0ar")

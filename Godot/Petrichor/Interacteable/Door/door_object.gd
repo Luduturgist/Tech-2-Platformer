@@ -1,7 +1,7 @@
 extends Event_Object
 class_name Door_Object
 
-@export var lock_open := true
+@export var lock_open := false
 @export var door_block: StaticBody2D
 
 func _trigger_event():
