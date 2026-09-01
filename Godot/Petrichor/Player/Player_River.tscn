@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cyku6dkvqwqgq"]
+
+[ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_3funa"]
+[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="4_hq4ce"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
+size = Vector2(12, 30)
+
+[node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
+
+[node name="Character" parent="." index="1" unique_id=905952174]
+texture = ExtResource("4_hq4ce")
+
+[node name="Brace" parent="Character" index="2" unique_id=1484055677]
+position = Vector2(4, -1)
+
+[node name="Collider" parent="." index="2" unique_id=1016117325]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_1d0tu")

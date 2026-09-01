@@ -4,12 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://b7x1xel6pnfcx" path="res://UI/GUI/gui.tscn" id="2_8ghjs"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_f4qae"]
 [ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="3_o7uj6"]
-[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Player A.tscn" id="4_cgekv"]
-[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/Player B.tscn" id="5_moakd"]
+[ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="4_cgekv"]
+[ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="5_moakd"]
 [ext_resource type="Script" uid="uid://46d3ayd01ra7" path="res://Interacteable/interacteable.gd" id="8_fp4rx"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="8_qoxgt"]
 [ext_resource type="Script" uid="uid://b27nvv6imn8gp" path="res://Interacteable/Door/door_object.gd" id="9_fp4rx"]
 [ext_resource type="Texture2D" uid="uid://dij506xchx0on" path="res://UI/GUI/Energy Bar.png" id="10_t3nu2"]
+[ext_resource type="PackedScene" uid="uid://dtuonyxu5k0wb" path="res://Debug/Debug Enemy/Debug Projectile.tscn" id="11_tgpit"]
+[ext_resource type="Script" uid="uid://o0mpm37m04yy" path="res://Enemies/damage_area.gd" id="12_klnrk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fp4rx"]
 size = Vector2(34, 20)
@@ -22,8 +24,8 @@ size = Vector2(24, 2)
 
 [node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("playerA", "playerB", "camera", "gui")]
 script = ExtResource("1_5yvi0")
-playerA = NodePath("Player A")
-playerB = NodePath("Player B")
+playerA = NodePath("Player_Soil")
+playerB = NodePath("Player_River")
 camera = NodePath("CameraFollow")
 gui = NodePath("Gui")
 
@@ -35,14 +37,7 @@ tile_map_data = PackedByteArray("AAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAA
 tile_set = ExtResource("2_f4qae")
 physics_quadrant_size = 32
 
-[node name="CameraFollow" parent="." unique_id=728822637 node_paths=PackedStringArray("follow") instance=ExtResource("3_o7uj6")]
-follow = NodePath("../Player A")
-
-[node name="Player A" parent="." unique_id=1254970227 instance=ExtResource("4_cgekv")]
-position = Vector2(-109, -22)
-
-[node name="Player B" parent="." unique_id=228450361 instance=ExtResource("5_moakd")]
-position = Vector2(-32, -22)
+[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("3_o7uj6")]
 
 [node name="Interacteable" type="Node2D" parent="." unique_id=1954835801 node_paths=PackedStringArray("light", "player_area", "event_objects")]
 position = Vector2(110, -32)
@@ -50,6 +45,7 @@ script = ExtResource("8_fp4rx")
 light = NodePath("Panel On")
 player_area = NodePath("Area2D")
 event_objects = [NodePath("../Door")]
+single_use = false
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Interacteable" unique_id=1453494778]
@@ -116,7 +112,7 @@ texture = ExtResource("10_t3nu2")
 vframes = 8
 
 [node name="Sprite2D2" type="Sprite2D" parent="Door" unique_id=1918853555]
-z_index = 1
+z_index = 2
 position = Vector2(16, -17)
 rotation = -1.5707964
 scale = Vector2(2, 4)
@@ -148,3 +144,13 @@ position = Vector2(0, -11)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Frame" unique_id=1244093388]
 position = Vector2(8, -37)
 shape = SubResource("RectangleShape2D_ju0ar")
+
+[node name="DebugProjectile" parent="." unique_id=1858985648 instance=ExtResource("11_tgpit")]
+position = Vector2(36, -23)
+script = ExtResource("12_klnrk")
+
+[node name="Player_Soil" parent="." unique_id=1254970227 instance=ExtResource("4_cgekv")]
+position = Vector2(-133, -22)
+
+[node name="Player_River" parent="." unique_id=1368555353 instance=ExtResource("5_moakd")]
+position = Vector2(-68, -24)

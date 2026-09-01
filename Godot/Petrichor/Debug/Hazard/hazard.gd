@@ -4,5 +4,5 @@ func _ready():
 	body_entered.connect(damage_player)
 
 func damage_player(body):
-	if body is not Movement or not body.sp: return
+	if body is not PlayerMovement or not body.local: return
 	body._take_damage()

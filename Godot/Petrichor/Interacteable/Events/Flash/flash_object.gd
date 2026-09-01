@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 				obj.visible = true
 				flash_timer = 0.5
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func flash():
 	if not obj: return
 	if obj.visible:

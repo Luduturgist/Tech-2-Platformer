@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cp8uueu7yc7y8"
-path="res://.godot/imported/Soil Idle.png-0c3e48fe2688889408ad2f997e7c66a0.ctex"
+uid="uid://g75n6uebm35c"
+path="res://.godot/imported/Hazard.png-887af8b654248f6f911eb24be513f359.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Soil/Idle/Soil Idle.png"
-dest_files=["res://.godot/imported/Soil Idle.png-0c3e48fe2688889408ad2f997e7c66a0.ctex"]
+source_file="res://Debug/Hazard/Hazard.png"
+dest_files=["res://.godot/imported/Hazard.png-887af8b654248f6f911eb24be513f359.ctex"]
 
 [params]
 

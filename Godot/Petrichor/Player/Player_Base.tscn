@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://c5sn821thiii1"]
+
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="1_j7rw5"]
+[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_btxq5"]
+[ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
+[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
+[ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
+
+[sub_resource type="Resource" id="Resource_sln64"]
+script = ExtResource("2_btxq5")
+event_path = NodePath("Character/Cheer")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_ak3bm"]
+script = ExtResource("2_btxq5")
+event_path = NodePath("Character/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_gkydo"]
+script = ExtResource("3_awm26")
+metadata/_custom_type_script = "uid://tv13wd5op1f0"
+
+[sub_resource type="Resource" id="Resource_8voip"]
+script = ExtResource("4_82fik")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yifjq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Character:scale:x")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
+size = Vector2(12, 23)
+
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider")]
+visibility_layer = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_j7rw5")
+friendly = SubResource("Resource_sln64")
+pain_feedback = SubResource("Resource_ak3bm")
+move_ability = SubResource("Resource_gkydo")
+brace = SubResource("Resource_8voip")
+pivot = NodePath("Character")
+collider = NodePath("Collider")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
+replication_config = SubResource("SceneReplicationConfig_yifjq")
+
+[node name="Character" type="Sprite2D" parent="." unique_id=905952174]
+
+[node name="Cheer" type="PointLight2D" parent="Character" unique_id=1359862573]
+visible = false
+position = Vector2(0, -6)
+color = Color(0.12941177, 0.94509804, 0.75686276, 1)
+energy = 1.7
+texture = ExtResource("6_fpjr1")
+script = ExtResource("7_boe6u")
+
+[node name="Pain" type="ColorRect" parent="Character" unique_id=1026537008]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -22.5
+offset_right = -9.0
+offset_bottom = -8.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.64937407, 0.23693731, 0.20709178, 1)
+
+[node name="Brace" type="Area2D" parent="Character" unique_id=1484055677]
+visible = false
+monitoring = false
+monitorable = false
+script = ExtResource("8_tjj38")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Brace" unique_id=1081634292]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_wfmxh")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="Debug" type="ColorRect" parent="Character/Brace" unique_id=21867081]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -13.0
+offset_right = 6.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
+
+[node name="Sprite2D" type="Sprite2D" parent="Character/Brace" unique_id=762785518]
+visible = false
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]

@@ -8,18 +8,22 @@ class_name Game
 
 var local: PlayerMovement
 var friend: PlayerMovement
+const COMBAT_METADATA := "Mortal"
 
 static var active: Game
 func _ready() -> void:
 	active = self
-	gui.visible = true
+	if gui: gui.visible = true
 	host_setup()
 
 func host_setup():
 	if not multiplayer.is_server(): return
 	rpc("dress_rig")
 
-@rpc("authority", "call_local")
+static func check_combat(node: Node) -> bool:
+	return node.get_meta(Game.COMBAT_METADATA, false)
+
+@rpc("authority", "call_local", "reliable")
 func dress_rig():
 	playerB.set_multiplayer_authority(Wrapper.client, true)
 	if multiplayer.is_server():

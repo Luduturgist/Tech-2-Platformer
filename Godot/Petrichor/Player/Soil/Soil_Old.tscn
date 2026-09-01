@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://b815wdlnbej0k"]
 
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="1_34jae"]
-[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Idle/soil_idle.tres" id="2_f827i"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="2_f827i"]
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_jprxu"]
 [ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_n1ja2"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="3_essyl"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_whria"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_rayeu"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="5_gkydo"]
+[ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_xre7c"]
 
 [sub_resource type="Resource" id="Resource_0idku"]
 script = ExtResource("2_jprxu")
@@ -22,18 +24,25 @@ metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 script = ExtResource("3_whria")
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
+[sub_resource type="Resource" id="Resource_hq4ce"]
+script = ExtResource("4_rayeu")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_n1ja2"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("CollisionShape2D:scale:x")
+properties/1/path = NodePath("Pivot:scale:x")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rayeu"]
+size = Vector2(12, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 size = Vector2(15, 30)
 
-[node name="Player A" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot")]
+[node name="Player_Soil" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider")]
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
@@ -41,7 +50,9 @@ script = ExtResource("1_34jae")
 friendly = SubResource("Resource_0idku")
 pain_feedback = SubResource("Resource_fwbis")
 move_ability = SubResource("Resource_nxf8r")
-pivot = [NodePath("Pivot"), NodePath("Collider")]
+brace = SubResource("Resource_hq4ce")
+pivot = NodePath("Pivot")
+collider = NodePath("Collider")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1083919850]
 replication_config = SubResource("SceneReplicationConfig_n1ja2")
@@ -79,11 +90,33 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.64937407, 0.23693731, 0.20709178, 1)
 
-[node name="Brace" type="Sprite2D" parent="Pivot" unique_id=685037698]
+[node name="Brace" type="Area2D" parent="Pivot" unique_id=804337997]
+visible = false
+monitoring = false
+monitorable = false
+script = ExtResource("8_xre7c")
 
-[node name="ColorRect" type="ColorRect" parent="Pivot/Brace" unique_id=8542594]
-offset_left = -30.5
-offset_top = -11.0
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Brace" unique_id=227536055]
+position = Vector2(10, -2)
+shape = SubResource("RectangleShape2D_rayeu")
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="Debug" type="ColorRect" parent="Pivot/Brace" unique_id=544811854]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 4.0
+offset_top = -17.0
+offset_right = 16.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=625298726]
+visible = false
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=140929296]
 position = Vector2(1.5, 1)

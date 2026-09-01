@@ -9,7 +9,7 @@ func _trigger_event():
 	if value and lock_open: return
 	rpc("open_door", value)
 
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func open_door(value: int):
 	door_block.visible = value
 	door_block.find_child("CollisionShape2D").disabled = not value

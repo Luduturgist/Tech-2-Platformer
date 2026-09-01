@@ -6,10 +6,12 @@ class_name Energy
 @export var regen: float = 1
 signal depleted
 var move: PlayerMovement
+var gui
 
 func _init(m: PlayerMovement) -> void:
 	move = m
 	update_ui()
+	gui = Game.active.gui
 
 func _update(delta: float):
 	_charge(regen * delta)
@@ -31,4 +33,4 @@ func on_deplete():
 	Wrapper._end_session()
 
 func update_ui():
-	Game.active.gui.energyBar.value = value / maxValue * 100
+	if gui: gui.energyBar.value = value / maxValue * 100

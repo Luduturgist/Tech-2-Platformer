@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t8gacvbucv5l"]
 
-[ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://World/Hazard/Hazard.png" id="1_ex4ww"]
-[ext_resource type="Script" uid="uid://xwvgbdvl7e4k" path="res://World/Hazard/hazard.gd" id="1_nhgl0"]
+[ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://Debug/Hazard/Hazard.png" id="1_ex4ww"]
+[ext_resource type="Script" uid="uid://xwvgbdvl7e4k" path="res://Debug/Hazard/hazard.gd" id="1_nhgl0"]
 
 [node name="Hazard" type="Area2D" unique_id=1082906915]
 script = ExtResource("1_nhgl0")

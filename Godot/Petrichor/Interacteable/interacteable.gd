@@ -31,7 +31,7 @@ func interact():
 		rpc("flip_light", -10)
 
 var contacts: int = 0
-@rpc("any_peer", "call_local")
+@rpc("any_peer", "call_local", "reliable")
 func flip_light(i: int):
 	if i == -10:
 		contacts = 0
