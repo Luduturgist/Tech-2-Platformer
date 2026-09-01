@@ -8,20 +8,20 @@ class_name PlayerMovement
 @export var golem: Golem
 
 @export_group("Settings")
-@export var speed: float = 100
+@export var move_speed: float = 100
 @export var accel: float = 800
 @export var jump: float = 300
 @export var fallSpeed: int = 1150
 @export var health: int = 3
 
 @export_group("References")
-@export var pivot: Node2D
+@export var pivot: Array[Node2D]
 
-var sp: float = 0
 var energy: Energy
 static var active: PlayerMovement
 var local: bool
 signal interact
+var speed_mods: Dictionary[String, float]
 
 enum Golem {Soil, River}
 
@@ -76,9 +76,16 @@ func process_move(delta: float):
 	# yRaw: float = Input.get_axis("Up", "Down")
 	var dir := Vector2(xRaw, 0)
 	
+	var speed = move_speed
+	if speed_mods.size():
+		for m in speed_mods.values():
+			speed *= m
+	
 	if dir:
 		velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
-		if dir.x * pivot.scale.x < 0: pivot.scale.x *= -1
+		if dir.x * pivot[0].scale.x < 0:
+			for p in pivot:
+				p.scale.x *= -1
 	elif is_on_floor():
 		velocity.x = move_toward(velocity.x, 0, accel * delta)
 	move_and_slide()

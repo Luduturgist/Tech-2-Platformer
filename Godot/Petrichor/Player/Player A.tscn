@@ -5,17 +5,17 @@
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_jprxu"]
 [ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_n1ja2"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="3_essyl"]
-[ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/Swing/swing_action.gd" id="3_whria"]
+[ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_whria"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="5_gkydo"]
 
 [sub_resource type="Resource" id="Resource_0idku"]
 script = ExtResource("2_jprxu")
-event_path = NodePath("CollisionShape2D/Cheer")
+event_path = NodePath("Pivot/Cheer")
 metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_fwbis"]
 script = ExtResource("2_jprxu")
-event_path = NodePath("CollisionShape2D/Pain")
+event_path = NodePath("Pivot/Pain")
 metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_nxf8r"]
@@ -41,46 +41,50 @@ script = ExtResource("1_34jae")
 friendly = SubResource("Resource_0idku")
 pain_feedback = SubResource("Resource_fwbis")
 move_ability = SubResource("Resource_nxf8r")
-pivot = NodePath("CollisionShape2D")
+pivot = [NodePath("Pivot"), NodePath("Collider")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1083919850]
 replication_config = SubResource("SceneReplicationConfig_n1ja2")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=140929296]
-position = Vector2(1.5, 1)
-shape = SubResource("RectangleShape2D_ejki1")
+[node name="Pivot" type="Sprite2D" parent="." unique_id=2094479128]
+texture = ExtResource("2_n1ja2")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D" unique_id=1474032076]
-position = Vector2(-1.5, -1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1474032076]
+visible = false
 sprite_frames = ExtResource("2_f827i")
 autoplay = "default"
 
-[node name="Character" type="Sprite2D" parent="CollisionShape2D" unique_id=2094479128]
+[node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=942599767]
 visible = false
-position = Vector2(-1.5, -1)
-texture = ExtResource("2_n1ja2")
-
-[node name="Cheer" type="PointLight2D" parent="CollisionShape2D" unique_id=942599767]
-visible = false
-position = Vector2(0.5, -6)
+position = Vector2(2, -5)
 color = Color(1, 1, 0, 1)
 energy = 1.7
 texture = ExtResource("3_essyl")
 script = ExtResource("5_gkydo")
 
-[node name="Pain" type="ColorRect" parent="CollisionShape2D" unique_id=1866418209]
+[node name="Pain" type="ColorRect" parent="Pivot" unique_id=1866418209]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -7.0
-offset_top = -8.0
-offset_right = 7.0
-offset_bottom = 6.0
+offset_left = -21.5
+offset_top = -23.0
+offset_right = -7.5
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.64937407, 0.23693731, 0.20709178, 1)
+
+[node name="Brace" type="Sprite2D" parent="Pivot" unique_id=685037698]
+
+[node name="ColorRect" type="ColorRect" parent="Pivot/Brace" unique_id=8542594]
+offset_left = -30.5
+offset_top = -11.0
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=140929296]
+position = Vector2(1.5, 1)
+shape = SubResource("RectangleShape2D_ejki1")

@@ -38,7 +38,6 @@ folder_colors={
 "res://Level 3/": "red",
 "res://Level 4/": "red",
 "res://Player/": "orange",
-"res://Player/Actions/Swing/": "pink",
 "res://Player/River/": "blue",
 "res://Player/Soil/": "yellow",
 "res://Player/Tools/": "green",
