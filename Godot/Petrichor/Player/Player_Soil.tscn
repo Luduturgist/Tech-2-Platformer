@@ -1,21 +1,27 @@
 [gd_scene format=3 uid="uid://cng47udpw4m2a"]
 
 [ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_m25y2"]
-[ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_n1ja2"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="2_oq2wa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq2wa"]
 size = Vector2(15, 31)
 
 [node name="Player_Soil" unique_id=1254970227 instance=ExtResource("1_m25y2")]
 
-[node name="Character" parent="." index="1" unique_id=905952174]
-texture = ExtResource("2_n1ja2")
-
-[node name="Cheer" parent="Character" index="0" unique_id=1359862573]
+[node name="Cheer" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1359862573]
 color = Color(1, 1, 0, 1)
 
-[node name="Brace" parent="Character" index="2" unique_id=1484055677]
+[node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="2" unique_id=1484055677]
 position = Vector2(6, -3)
+
+[node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="3" unique_id=1245137744]
+visible = true
+sprite_frames = ExtResource("2_oq2wa")
+frame = 1
+frame_progress = 0.71503925
+
+[node name="Static Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="4" unique_id=905952174]
+visible = false
 
 [node name="Collider" parent="." index="2" unique_id=1016117325]
 position = Vector2(1.5, 0.5)
