@@ -21,9 +21,7 @@ func track_target(body: Node2D):
 	if body.get_script() == filter:
 		print("hello")
 		targets.append(body)
-		if not target:
-			target = body
-			aim()
+		aim()
 
 func untrack_target(body: Node2D):
 	if body.get_script() == filter:
@@ -34,40 +32,42 @@ func untrack_target(body: Node2D):
 			if targets.size():
 				target = targets[0]
 
-func _process(_delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	aim()
 	queue_redraw()
 
 func aim():
-	if not target or not active: return
+	if not active or not targets.size(): return
 	
-	var dist: float = abs((global_position - target.global_position).length())
-	for t in targets:
-		var d: float = abs((global_position - t.global_position).length())
-		if dist > d:
-			target = t
-			dist = d
+	if not target or targets.size() > 1:
+		target = nearest_target(true)
+		if target == null: return
 	
 	var offset: Vector2 = target.global_position - (muzzle.position.rotated(head.rotation))
 	head.look_at(offset)
 
+func nearest_target(visible: bool = true) -> Node2D:
+	var closest_target: Node2D = null
+	if target: closest_target = target
+	var dist: float = INF
+	if target: dist = abs((global_position - target.global_position).length())
+	for t in targets:
+		var d: float = abs((global_position - t.global_position).length())
+		if dist > d:
+			closest_target = t
+			dist = d
+	return closest_target
+
 func _set_turret(value: bool):
 	active = value
-	aim()
-
-@rpc("authority", "reliable")
-func change_target(new_target: PlayerMovement, rot: float):
-	if new_target == null:
-		target = null
-		head.rotation = rot
-		return
-	if rot == INF:
-		active = true
-	elif rot == -INF:
-		active = false
-
-	target = new_target
+	if value: aim()
 
 func _draw():
-	draw_line(muzzle.global_position - global_position, $"Head/Muzzle Debug".global_position - global_position, Color.RED)
+	if target:
+		draw_line(muzzle.position.rotated(head.rotation), target.global_position - global_position, Color.GREEN)
+	elif targets.size():
+		draw_line(muzzle.global_position - global_position, nearest_target(false).global_position - global_position, Color.YELLOW)
+	else:
+		draw_line(muzzle.global_position - global_position, $"Head/Muzzle Debug".global_position - global_position, Color.RED)
+
 	pass

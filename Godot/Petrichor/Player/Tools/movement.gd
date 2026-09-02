@@ -79,9 +79,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Cheer"): friendly._perform_action()
 	if Input.is_action_just_pressed("Brace"): brace._perform_action()
 	
-	
 	if Input.is_action_just_pressed("Interact"): interact.emit()
-	
 
 var can_move: bool = true
 func process_move(delta: float):
