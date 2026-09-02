@@ -191,7 +191,8 @@ position = Vector2(8, -37)
 shape = SubResource("RectangleShape2D_ju0ar")
 
 [node name="Hazard" parent="." unique_id=1082906915 instance=ExtResource("13_20h5i")]
-position = Vector2(-175, 0)
+position = Vector2(-192, -17)
+rotation = 1.5707964
 damage = 2
 
 [node name="Player_River" parent="." unique_id=1254970227 instance=ExtResource("5_moakd")]

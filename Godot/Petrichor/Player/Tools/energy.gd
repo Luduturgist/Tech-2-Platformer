@@ -18,11 +18,19 @@ func _init(m: PlayerMovement) -> void:
 		charge = maxCharge - pain
 	update_ui()
 
-func _replenish_charge(amount: int):
+func _debug():
+	charge = maxCharge
+	pain = 0
+	health = maxHealth
+	update_ui()
+
+func _replenish_charge(amount: int) -> int:
 	charge += amount
 	if charge > maxCharge - pain:
+		amount += maxCharge - pain - amount
 		charge = maxCharge - pain
 	update_ui()
+	return amount
 
 func _drain_charge(amount: int) -> int:
 	var drain: int = amount
@@ -31,8 +39,6 @@ func _drain_charge(amount: int) -> int:
 		drain += charge
 		charge = 0
 		depleted.emit()
-		update_ui()
-		return drain
 	update_ui()
 	return drain
 
@@ -47,11 +53,13 @@ func _take_damage(amount: int, hurt: int = -99):
 		_inflict_pain(amount)
 	else:
 		_inflict_pain(hurt)
+	update_ui()
 
 func _heal_damage(amount: int):
 	health += amount
 	if health > maxHealth:
 		health = maxHealth
+	update_ui()
 
 func _inflict_pain(amount: int):
 	pain += amount

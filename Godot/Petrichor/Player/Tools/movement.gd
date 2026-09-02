@@ -50,7 +50,6 @@ func dress() -> void:
 
 func _take_damage(amount: int = 1):
 	if not local: return
-	print("Damage tooken")
 	if amount > 0: pain_feedback._perform_action()
 	energy._take_damage(amount)
 
@@ -64,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	if pain_feedback: pain_feedback._update(delta)
 	
 	if not local: return
+	if Input.is_action_just_pressed("Debug"): move_ability._debug()
 	
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and can_jump: velocity.y = -jump
 	if Input.is_action_just_released("Brace"): brace._release_action()

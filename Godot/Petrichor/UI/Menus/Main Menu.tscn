@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/Menus/main_menu.gd" id="1_vf7q5"]
 [ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_e1hbh"]
+[ext_resource type="Script" uid="uid://bpwcnr5wvqh27" path="res://UI/Menus/quit_button.gd" id="2_tcef6"]
 [ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="3_tcef6"]
 
 [node name="MainMenu" type="Node2D" unique_id=141468875]
@@ -51,6 +52,29 @@ text = "Join"
 layout_mode = 2
 placeholder_text = "10.0.0.1"
 expand_to_text_length = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons" unique_id=515100057]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.5
+offset_top = -199.0
+offset_right = 32.5
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 46
+
+[node name="Controls" type="Button" parent="Network Buttons/HBoxContainer" unique_id=377714886]
+layout_mode = 2
+text = "Controls"
+
+[node name="Quit" type="Button" parent="Network Buttons/HBoxContainer" unique_id=1413547334]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("2_tcef6")
 
 [node name="Host Waiting" type="CanvasLayer" parent="." unique_id=1935970027]
 visible = false

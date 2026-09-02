@@ -43,7 +43,11 @@ func aim():
 		target = nearest_target(true)
 		if target == null: return
 	
-	var offset: Vector2 = target.global_position - (muzzle.position.rotated(head.rotation))
+	var offset: Vector2
+	if (muzzle.global_position - target.global_position).length() > (global_position - muzzle.global_position).length():
+		offset = target.global_position - (muzzle.position.rotated(head.rotation))
+	else:
+		offset = target.global_position
 	head.look_at(offset)
 
 func nearest_target(_visible: bool = true) -> Node2D:
@@ -64,10 +68,8 @@ func _set_turret(value: bool):
 
 func _draw():
 	if target:
-		draw_line(muzzle.position.rotated(head.rotation), target.global_position - global_position, Color.GREEN)
-	elif targets.size():
-		draw_line(muzzle.global_position - global_position, nearest_target(false).global_position - global_position, Color.YELLOW)
+		draw_line(muzzle.global_position - global_position, $"Head/Muzzle Debug".global_position - global_position, Color.GREEN)
+	#elif targets.size():
+		#draw_line(muzzle.global_position - global_position, nearest_target(false).global_position - global_position, Color.YELLOW)
 	else:
 		draw_line(muzzle.global_position - global_position, $"Head/Muzzle Debug".global_position - global_position, Color.RED)
-
-	pass
