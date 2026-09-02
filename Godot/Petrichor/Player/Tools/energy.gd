@@ -1,8 +1,11 @@
 extends Resource
-class_name Energy
+class_name PlayerEnergy
 
-@export var value: float = 10
-@export var maxValue: float = 10
+@export var charge: int = 10
+@export var maxCharge: int = 10
+@export var pain: int = 0
+@export var health: int = 10
+@export var maxHealth: int = 10
 @export var regen: float = 0
 signal depleted
 var move: PlayerMovement
@@ -11,26 +14,64 @@ var gui: PlayerGUI
 func _init(m: PlayerMovement) -> void:
 	move = m
 	gui = Game.active.gui
+	if charge > maxCharge - pain:
+		charge = maxCharge - pain
 	update_ui()
 
-func _update(delta: float):
-	_charge(regen * delta)
-
-func _charge(amount: float):
-	value += amount
-	if value > maxValue:
-		value = maxValue
+func _replenish_charge(amount: int):
+	charge += amount
+	if charge > maxCharge - pain:
+		charge = maxCharge - pain
 	update_ui()
 
-func _drain(amount: float):
-	value -= amount
-	if value < 0:
-		value = 0
+func _drain_charge(amount: int) -> int:
+	var drain: int = amount
+	charge -= amount
+	if charge <= 0:
+		drain += charge
+		charge = 0
 		depleted.emit()
+		update_ui()
+		return drain
+	update_ui()
+	return drain
+
+func _take_damage(amount: int, hurt: int = -99):
+	health -= amount
+	if health <= 0:
+		health = 0
+		move.player_die()
+	elif health > maxHealth:
+		health = maxHealth
+	if hurt == -99:
+		_inflict_pain(amount)
+	else:
+		_inflict_pain(hurt)
+
+func _heal_damage(amount: int):
+	health += amount
+	if health > maxHealth:
+		health = maxHealth
+
+func _inflict_pain(amount: int):
+	pain += amount
+	if pain < 0: pain = 0
+	if pain >= maxCharge:
+		move.player_die()
+	elif charge > maxCharge - pain:
+		charge = maxCharge - pain
+	update_ui()
+
+func _relieve_pain(amount: int):
+	pain -= amount
+	if pain < 0:
+		pain = 0
 	update_ui()
 
 func on_deplete():
 	Wrapper._end_session()
 
 func update_ui():
-	if gui: gui.energyBar.value = value / maxValue * 100
+	if gui:
+		gui.energyBar.value = float(charge) / float(maxCharge) * 100
+		gui.pain_bar.value = float(pain) / float(maxCharge) * 100

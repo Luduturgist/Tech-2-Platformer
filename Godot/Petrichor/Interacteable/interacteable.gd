@@ -1,7 +1,7 @@
 extends Node2D
 class_name Interacteable
 
-@export var light: Node
+@export var highlights: Array[Event_Object]
 @export var player_area: Area2D
 
 @export var event_objects: Array[Event_Object]
@@ -34,8 +34,18 @@ var contacts: int = 0
 @rpc("any_peer", "call_local", "reliable")
 func flip_light(i: int):
 	if i == -10:
-		contacts = 0
-		light.visible = false
 		exhausted = true
+		contacts = 0
+		toggle_highlights(false)
+		return
 	contacts += i
-	light.visible = contacts > 0
+	toggle_highlights(contacts > 0)
+
+func toggle_highlights(toggle: bool):
+		if not highlights.size(): return
+		
+		var value: int = 1
+		if not toggle: value = -1
+		
+		for h in highlights:
+			h._trigger_event(value)

@@ -21,9 +21,8 @@ var taking_action: bool = false
 @export var pivot: Node2D
 @export var collider: CollisionShape2D
 
-var energy: Energy
-var pain: Energy
-var health: Energy
+var energy: PlayerEnergy
+
 static var active: PlayerMovement
 var local: bool
 signal interact
@@ -44,9 +43,7 @@ func dress() -> void:
 	collision_mask = 1
 	visibility_layer = 1
 	z_index += 1
-	energy = Energy.new(self)
-	health = Energy.new(self)
-	pain = Energy.new(self)
+	energy = PlayerEnergy.new(self)
 	move_ability._start(self)
 	brace._start(self)
 	set_meta(Game.COMBAT_METADATA, true)
@@ -54,10 +51,11 @@ func dress() -> void:
 func _take_damage(amount: int = 1):
 	if not local: return
 	print("Damage tooken")
-	health._drain(amount)
-	if pain_feedback: pain_feedback._perform_action()
-	if health.value <= 0:
-		Wrapper._load_scene(get_tree().current_scene.scene_file_path)
+	if amount > 0: pain_feedback._perform_action()
+	energy._take_damage(amount)
+
+func player_die():
+	Wrapper._load_scene(get_tree().current_scene.scene_file_path)
 
 var can_jump: bool = true
 
@@ -70,7 +68,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and can_jump: velocity.y = -jump
 	if Input.is_action_just_released("Brace"): brace._release_action()
 	move_ability._update(delta)
-	energy._update(delta)
 	process_move(delta)
 	
 	if taking_action: return
@@ -103,8 +100,6 @@ func process_move(delta: float):
 			pivot.scale.x *= -1
 			collider.position.x *= -1
 	elif is_on_floor():
-		var drag := accel * delta
-		if velocity.x > move_speed:
-			drag *= velocity.x / move_speed
+		var drag := (accel + velocity.x / move_speed) * delta
 		velocity.x = move_toward(velocity.x, 0, drag)
 	move_and_slide()

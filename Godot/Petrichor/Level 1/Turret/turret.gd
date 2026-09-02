@@ -46,7 +46,7 @@ func aim():
 	var offset: Vector2 = target.global_position - (muzzle.position.rotated(head.rotation))
 	head.look_at(offset)
 
-func nearest_target(visible: bool = true) -> Node2D:
+func nearest_target(_visible: bool = true) -> Node2D:
 	var closest_target: Node2D = null
 	if target: closest_target = target
 	var dist: float = INF

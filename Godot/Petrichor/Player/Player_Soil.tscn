@@ -32,12 +32,6 @@ friendly = SubResource("Resource_xre7c")
 pain_feedback = SubResource("Resource_rayeu")
 move_ability = SubResource("Resource_wobsq")
 brace = SubResource("Resource_ijxfx")
-golem = null
-move_speed = null
-accel = null
-jump = null
-fallSpeed = null
-health = null
 
 [node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1245137744]
 visible = true

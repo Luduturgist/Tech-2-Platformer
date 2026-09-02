@@ -7,13 +7,6 @@
 atlas = ExtResource("2_7thrl")
 region = Rect2(0, 9, 32, 9)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7thrl"]
-load_path = "res://.godot/imported/River Energy Bar.png-6e24b81751d8c23f171d54947148ae76.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qyonj"]
-atlas = SubResource("CompressedTexture2D_7thrl")
-region = Rect2(0, 0, 32, 9)
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1a5em"]
 load_path = "res://.godot/imported/River Energy Bar.png-6e24b81751d8c23f171d54947148ae76.ctex"
 
@@ -32,9 +25,10 @@ region = Rect2(0, 0, 32, 9)
 atlas = ExtResource("2_7thrl")
 region = Rect2(0, 25, 30, 6)
 
-[node name="Gui" type="CanvasLayer" unique_id=1157994508 node_paths=PackedStringArray("energyBar")]
+[node name="Gui" type="CanvasLayer" unique_id=1157994508 node_paths=PackedStringArray("energyBar", "pain_bar")]
 script = ExtResource("1_7thrl")
 energyBar = NodePath("Energy")
+pain_bar = NodePath("Pain")
 
 [node name="Energy" type="TextureProgressBar" parent="." unique_id=130112771]
 offset_left = 10.000008
@@ -45,7 +39,6 @@ scale = Vector2(13.407936, 13.305421)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_under = SubResource("AtlasTexture_cm023")
-texture_over = SubResource("AtlasTexture_qyonj")
 texture_progress = SubResource("AtlasTexture_1a5em")
 texture_progress_offset = Vector2(1, 1)
 metadata/_edit_lock_ = true

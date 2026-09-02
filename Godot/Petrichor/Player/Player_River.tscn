@@ -25,7 +25,7 @@ script = ExtResource("4_8voip")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
-size = Vector2(14, 30)
+size = Vector2(13, 30)
 
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
 friendly = SubResource("Resource_otcxl")
@@ -39,6 +39,9 @@ texture = ExtResource("4_hq4ce")
 [node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="4" unique_id=1484055677]
 position = Vector2(6, -2)
 
+[node name="CollisionShape2D" parent="Pivot/Brace" index="0" unique_id=1081634292]
+disabled = true
+
 [node name="Collider" parent="." index="2" unique_id=1016117325]
-position = Vector2(0, 1)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")

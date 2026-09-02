@@ -44,6 +44,8 @@ size = Vector2(24, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(3209, 54)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
+
 [node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
 script = ExtResource("1_5yvi0")
 soil = NodePath("Player_Soil")
@@ -69,12 +71,12 @@ physics_quadrant_size = 32
 
 [node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("3_o7uj6")]
 
-[node name="Interacteable" type="Node2D" parent="." unique_id=1954835801 node_paths=PackedStringArray("light", "player_area", "event_objects")]
+[node name="Interacteable" type="Node2D" parent="." unique_id=1954835801 node_paths=PackedStringArray("highlights", "player_area", "event_objects")]
 position = Vector2(-18, 0)
 script = ExtResource("8_fp4rx")
-light = NodePath("Panel On")
+highlights = [NodePath("Panel On")]
 player_area = NodePath("Area2D")
-event_objects = [NodePath("../Door")]
+event_objects = [NodePath("Panel Interact"), NodePath("../Door")]
 single_use = false
 metadata/_edit_group_ = true
 
@@ -120,6 +122,24 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(1, 0.977, 0.97, 1)
 script = ExtResource("8_qoxgt")
+
+[node name="Panel Interact" type="ColorRect" parent="Interacteable" unique_id=1755460369]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -17.0
+offset_right = 6.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 1, 0, 1)
+script = ExtResource("8_qoxgt")
+flash_time = 0.125
+flash_repeat_delay = 0.5
 
 [node name="Area2D" type="Area2D" parent="Interacteable" unique_id=1641419204]
 
@@ -171,18 +191,14 @@ position = Vector2(8, -37)
 shape = SubResource("RectangleShape2D_ju0ar")
 
 [node name="Hazard" parent="." unique_id=1082906915 instance=ExtResource("13_20h5i")]
-position = Vector2(-174, -12)
+position = Vector2(-175, 0)
+damage = 2
 
 [node name="Player_River" parent="." unique_id=1254970227 instance=ExtResource("5_moakd")]
 position = Vector2(-67, -28)
 
 [node name="Player_Soil" parent="." unique_id=1847633799 instance=ExtResource("4_cgekv")]
 position = Vector2(-122, -28)
-golem = 0
-move_speed = 100.0
-accel = 800.0
-jump = 300.0
-fallSpeed = 1150
 
 [node name="Damage_Area" type="Area2D" parent="." unique_id=1473246612]
 script = ExtResource("12_klnrk")
@@ -203,3 +219,27 @@ shape = SubResource("RectangleShape2D_20h5i")
 [node name="RiverEnergyBar" type="Sprite2D" parent="." unique_id=451346127]
 position = Vector2(-34, -35)
 texture = ExtResource("8_k6t00")
+
+[node name="Damage_Area2" type="Area2D" parent="." unique_id=769883578]
+position = Vector2(82, -63)
+script = ExtResource("12_klnrk")
+damage = -1
+destroy_on_collision = false
+metadata/_custom_type_script = "uid://o0mpm37m04yy"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage_Area2" unique_id=806027211]
+shape = SubResource("RectangleShape2D_ejki1")
+
+[node name="ColorRect" type="ColorRect" parent="Damage_Area2" unique_id=178997085]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2

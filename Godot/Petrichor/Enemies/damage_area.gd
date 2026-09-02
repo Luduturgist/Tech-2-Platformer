@@ -2,6 +2,7 @@ extends Area2D
 class_name Damage_Area
 
 @export var damage: int = 1
+@export var destroy_on_collision = true
 @export var ignore: Array[Node2D]
 
 func _ready() -> void:
@@ -24,7 +25,7 @@ func try_damage_body(body: Node2D):
 var blocked: bool = false
 func _hit_obstacle(blocking: bool = false) -> int:
 	if blocking: blocked = true
-	rpc("disappear")
+	if destroy_on_collision: rpc("disappear")
 	return damage
 
 @rpc("any_peer", "call_local", "reliable")

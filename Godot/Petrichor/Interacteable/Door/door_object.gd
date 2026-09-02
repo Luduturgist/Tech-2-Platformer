@@ -4,7 +4,7 @@ class_name Door_Object
 @export var lock_open := false
 @export var door_block: StaticBody2D
 
-func _trigger_event():
+func _trigger_event(_toggle: int = 0):
 	var value := not door_block.visible
 	if value and lock_open: return
 	rpc("open_door", value)
