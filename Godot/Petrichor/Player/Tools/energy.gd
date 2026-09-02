@@ -3,15 +3,15 @@ class_name Energy
 
 @export var value: float = 10
 @export var maxValue: float = 10
-@export var regen: float = 1
+@export var regen: float = 0
 signal depleted
 var move: PlayerMovement
-var gui
+var gui: PlayerGUI
 
 func _init(m: PlayerMovement) -> void:
 	move = m
-	update_ui()
 	gui = Game.active.gui
+	update_ui()
 
 func _update(delta: float):
 	_charge(regen * delta)

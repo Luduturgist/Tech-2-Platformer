@@ -1,7 +1,7 @@
 extends Action
 class_name Swing_Action
 
-@export var swing:= 500
+@export var swing:= 400
 
 func _perform_action():
 	var friend:= Game.active.friend.position

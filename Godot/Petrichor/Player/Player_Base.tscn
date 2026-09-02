@@ -30,9 +30,12 @@ metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
-properties/1/path = NodePath("Character:scale:x")
+properties/1/path = NodePath("Collider:position:x")
 properties/1/spawn = true
 properties/1/replication_mode = 1
+properties/2/path = NodePath("Pivot:scale:x")
+properties/2/spawn = true
+properties/2/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
 size = Vector2(12, 23)
@@ -54,6 +57,12 @@ replication_config = SubResource("SceneReplicationConfig_yifjq")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=615041083]
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1245137744]
+visible = false
+autoplay = "default"
+
+[node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+
 [node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573]
 visible = false
 position = Vector2(0, -6)
@@ -69,15 +78,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -22.5
-offset_top = -22.0
-offset_right = -8.5
-offset_bottom = -8.0
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.64937407, 0.23693731, 0.20709178, 1)
+color = Color(0.65, 0.23746665, 0.20799999, 0.60784316)
+script = ExtResource("7_boe6u")
 
 [node name="Brace" type="Area2D" parent="Pivot" unique_id=1484055677]
 visible = false
@@ -107,11 +117,5 @@ color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=762785518]
 visible = false
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1245137744]
-visible = false
-autoplay = "default"
-
-[node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]

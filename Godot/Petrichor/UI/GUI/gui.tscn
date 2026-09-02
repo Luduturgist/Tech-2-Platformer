@@ -1,61 +1,67 @@
 [gd_scene format=3 uid="uid://b7x1xel6pnfcx"]
 
 [ext_resource type="Script" uid="uid://bhbc0tamalo1y" path="res://UI/GUI/player_gui.gd" id="1_7thrl"]
-[ext_resource type="Texture2D" uid="uid://dij506xchx0on" path="res://UI/GUI/Energy Bar.png" id="1_hkuxh"]
+[ext_resource type="Texture2D" uid="uid://cwoqcmg7a8xeb" path="res://UI/GUI/River Energy Bar.png" id="2_7thrl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cm023"]
-atlas = ExtResource("1_hkuxh")
-region = Rect2(0, 9, 30, 6)
-margin = Rect2(1, 1, 0, 0)
+atlas = ExtResource("2_7thrl")
+region = Rect2(0, 9, 32, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7thrl"]
-atlas = ExtResource("1_hkuxh")
-region = Rect2(0, 0, 0, 8)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7thrl"]
+load_path = "res://.godot/imported/River Energy Bar.png-6e24b81751d8c23f171d54947148ae76.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qyonj"]
-atlas = ExtResource("1_hkuxh")
-region = Rect2(0, 8, 30, 8)
+atlas = SubResource("CompressedTexture2D_7thrl")
+region = Rect2(0, 0, 32, 9)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8fjdy"]
-atlas = ExtResource("1_hkuxh")
-region = Rect2(0, 24, 0, 8)
-margin = Rect2(1, 0, 0, 0)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1a5em"]
+load_path = "res://.godot/imported/River Energy Bar.png-6e24b81751d8c23f171d54947148ae76.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1a5em"]
-atlas = ExtResource("1_hkuxh")
-region = Rect2(0, 16, 32, 8)
+atlas = SubResource("CompressedTexture2D_1a5em")
+region = Rect2(0, 18, 30, 6)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qyonj"]
+load_path = "res://.godot/imported/River Energy Bar.png-6e24b81751d8c23f171d54947148ae76.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_808i8"]
-atlas = ExtResource("1_hkuxh")
-region = Rect2(0, 24, 30, 8)
+atlas = SubResource("CompressedTexture2D_qyonj")
+region = Rect2(0, 0, 32, 9)
 
-[node name="Gui" type="CanvasLayer" unique_id=1157994508 node_paths=PackedStringArray("energyBar", "healthBar")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7thrl"]
+atlas = ExtResource("2_7thrl")
+region = Rect2(0, 25, 30, 6)
+
+[node name="Gui" type="CanvasLayer" unique_id=1157994508 node_paths=PackedStringArray("energyBar")]
 script = ExtResource("1_7thrl")
 energyBar = NodePath("Energy")
-healthBar = NodePath("Health")
 
 [node name="Energy" type="TextureProgressBar" parent="." unique_id=130112771]
-offset_left = 14.0
-offset_top = 15.0
-offset_right = 46.0
-offset_bottom = 23.0
+offset_left = 10.000008
+offset_top = 949.0
+offset_right = 42.000008
+offset_bottom = 958.0
 scale = Vector2(13.407936, 13.305421)
-value = 25.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_under = SubResource("AtlasTexture_cm023")
-texture_over = SubResource("AtlasTexture_7thrl")
-texture_progress = SubResource("AtlasTexture_qyonj")
-texture_progress_offset = Vector2(1, 0)
-tint_under = Color(0, 0, 0, 0.22745098)
+texture_over = SubResource("AtlasTexture_qyonj")
+texture_progress = SubResource("AtlasTexture_1a5em")
+texture_progress_offset = Vector2(1, 1)
+metadata/_edit_lock_ = true
 
-[node name="Health" type="TextureProgressBar" parent="." unique_id=1938477846]
-offset_left = 14.0
-offset_top = 146.0
-offset_right = 46.0
-offset_bottom = 154.0
+[node name="Pain" type="TextureProgressBar" parent="." unique_id=1623681327]
+offset_left = 10.000008
+offset_top = 949.0
+offset_right = 42.000008
+offset_bottom = 958.0
 scale = Vector2(13.407936, 13.305421)
-value = 50.0
-texture_under = SubResource("AtlasTexture_8fjdy")
-texture_over = SubResource("AtlasTexture_1a5em")
-texture_progress = SubResource("AtlasTexture_808i8")
-texture_progress_offset = Vector2(1, 0)
-tint_under = Color(0, 0, 0, 0.22745098)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.0
+value = 100.0
+fill_mode = 1
+texture_over = SubResource("AtlasTexture_808i8")
+texture_progress = SubResource("AtlasTexture_7thrl")
+texture_progress_offset = Vector2(1, 1)
+metadata/_edit_lock_ = true

@@ -9,7 +9,6 @@ class_name PlayerMovement
 @export var accel: float = 800
 @export var jump: float = 300
 @export var fallSpeed: int = 1150
-@export var health: int = 3
 
 @export_group("Actions")
 @export var friendly: Action
@@ -23,6 +22,8 @@ var taking_action: bool = false
 @export var collider: CollisionShape2D
 
 var energy: Energy
+var pain: Energy
+var health: Energy
 static var active: PlayerMovement
 var local: bool
 signal interact
@@ -36,6 +37,7 @@ func _ready() -> void:
 	if pain_feedback: pain_feedback._start(self)
 
 func dress() -> void:
+	print(name + " dressed by " + str(multiplayer.get_unique_id()))
 	active = self
 	local = true
 	collision_layer = 1
@@ -43,6 +45,8 @@ func dress() -> void:
 	visibility_layer = 1
 	z_index += 1
 	energy = Energy.new(self)
+	health = Energy.new(self)
+	pain = Energy.new(self)
 	move_ability._start(self)
 	brace._start(self)
 	set_meta(Game.COMBAT_METADATA, true)
@@ -50,14 +54,14 @@ func dress() -> void:
 func _take_damage(amount: int = 1):
 	if not local: return
 	print("Damage tooken")
-	health -= amount
+	health._drain(amount)
 	if pain_feedback: pain_feedback._perform_action()
-	if health <= 0:
-		Wrapper._load_scene("res://Debug/debug_spikes.tscn")
+	if health.value <= 0:
+		Wrapper._load_scene(get_tree().current_scene.scene_file_path)
 
 var can_jump: bool = true
 
-func _physics_process(delta: float) -> void:	
+func _physics_process(delta: float) -> void:
 	if friendly: friendly._update(delta)
 	if pain_feedback: pain_feedback._update(delta)
 	
@@ -101,5 +105,8 @@ func process_move(delta: float):
 			pivot.scale.x *= -1
 			collider.position.x *= -1
 	elif is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, accel * delta)
+		var drag := accel * delta
+		if velocity.x > move_speed:
+			drag *= velocity.x / move_speed
+		velocity.x = move_toward(velocity.x, 0, drag)
 	move_and_slide()

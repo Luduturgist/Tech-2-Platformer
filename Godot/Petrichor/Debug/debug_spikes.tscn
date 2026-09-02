@@ -1,24 +1,18 @@
 [gd_scene format=3 uid="uid://kxlut2fjs1jj"]
 
 [ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game.gd" id="1_rvo2y"]
-[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Soil/Soil_Old.tscn" id="2_vstgx"]
-[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/River/River_Old.tscn" id="3_qhy05"]
+[ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="4_vstgx"]
 [ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://Debug/Hazard/Hazard.tscn" id="4_yab24"]
+[ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="5_qhy05"]
 [ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="5_vstgx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 
-[node name="Debug Scene" type="Node2D" unique_id=1716765503 node_paths=PackedStringArray("playerA", "playerB", "camera")]
+[node name="Debug Scene" type="Node2D" unique_id=1716765503 node_paths=PackedStringArray("soil", "river", "camera")]
 script = ExtResource("1_rvo2y")
-playerA = NodePath("Player")
-playerB = NodePath("Player2")
+soil = NodePath("Player_Soil")
+river = NodePath("Player_River")
 camera = NodePath("CameraFollow")
-
-[node name="Player" parent="." unique_id=1254970227 instance=ExtResource("2_vstgx")]
-position = Vector2(-84, -38)
-
-[node name="Player2" parent="." unique_id=2129702002 instance=ExtResource("3_qhy05")]
-position = Vector2(52, -31)
 
 [node name="Environment" type="Node2D" parent="." unique_id=1991506574]
 
@@ -65,3 +59,9 @@ position = Vector2(323, 0)
 position = Vector2(323, 0)
 
 [node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("5_vstgx")]
+
+[node name="Player_Soil" parent="." unique_id=1471588087 instance=ExtResource("5_qhy05")]
+position = Vector2(-102, -38)
+
+[node name="Player_River" parent="." unique_id=1254970227 instance=ExtResource("4_vstgx")]
+position = Vector2(43, -38)
