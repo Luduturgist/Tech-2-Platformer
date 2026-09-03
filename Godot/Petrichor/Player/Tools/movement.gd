@@ -7,8 +7,8 @@ class_name PlayerMovement
 @export_group("Settings")
 @export var move_speed: float = 100
 @export var accel: float = 800
-@export var jump: float = 300
-@export var fallSpeed: int = 1150
+@export var jump: float = 280
+@export var fallSpeed: int = 1200
 
 @export_group("Actions")
 @export var friendly: Action
@@ -63,7 +63,8 @@ func _physics_process(delta: float) -> void:
 	if pain_feedback: pain_feedback._update(delta)
 	
 	if not local: return
-	if Input.is_action_just_pressed("Debug"): move_ability._debug()
+	
+	if Input.is_action_just_pressed("Debug"): energy._debug()
 	
 	if Input.is_action_just_pressed("Jump") and is_on_floor() and can_jump: velocity.y = -jump
 	if Input.is_action_just_released("Brace"): brace._release_action()
@@ -102,4 +103,9 @@ func process_move(delta: float):
 	elif is_on_floor():
 		var drag := (accel + velocity.x / move_speed) * delta
 		velocity.x = move_toward(velocity.x, 0, drag)
+		
+	var was_grounded = is_on_floor()
+	var last_vel:= velocity.length()
 	move_and_slide()
+	if not was_grounded and is_on_floor() and last_vel > 375:
+		$Pivot/Dust._trigger_event()

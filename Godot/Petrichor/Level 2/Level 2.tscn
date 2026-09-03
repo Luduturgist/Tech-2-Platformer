@@ -3,25 +3,25 @@
 [ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game.gd" id="1_io3v8"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_m0vpl"]
 [ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="3_c07hl"]
-[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Soil/Soil_Old.tscn" id="4_pb0tl"]
-[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/River/River_Old.tscn" id="5_j160l"]
+[ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="4_11hpx"]
+[ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="5_sboqp"]
 
-[node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("playerA", "playerB", "camera")]
+[node name="Level 2" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("soil", "river", "camera")]
 script = ExtResource("1_io3v8")
-playerA = NodePath("Player A")
-playerB = NodePath("Player B")
+soil = NodePath("Player_Soil")
+river = NodePath("Player_River")
 camera = NodePath("CameraFollow")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1221429451]
-tile_map_data = PackedByteArray("AAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAD7/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAD7/wAAAAAAAAAAAAD6/wAAAQAAAAAAAAD6////AQAAAAAAAAD6//7/AQAAAAAAAAD6//3/AQAAAAAAAAD6//z/AQAAAAAAAAD6//v/AQAAAAAAAAD6//r/AAAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAKAAAAAAAAAAAAAAALAAAAAAAAAAAAAAANAPn/AAAAAAAAAAAAAP3/AAAAAAAAAAAEAAAAAAAAAAAAAAADAAAAAAAAAAAAAAABAAEAAAAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAJAP7/AAAAAAAAAAAKAP7/AAAAAAAAAAAHAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAAGAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAHAAEAAQAAAAAAAAD//wEAAAAAAAAAAAA=")
 tile_set = ExtResource("2_m0vpl")
 physics_quadrant_size = 32
 
-[node name="CameraFollow" parent="." unique_id=728822637 node_paths=PackedStringArray("follow") instance=ExtResource("3_c07hl")]
-follow = NodePath("../Player A")
+[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("3_c07hl")]
+process_callback = 0
 
-[node name="Player A" parent="." unique_id=1254970227 instance=ExtResource("4_pb0tl")]
-position = Vector2(-109, -22)
+[node name="Player_River" parent="." unique_id=1254970227 instance=ExtResource("4_11hpx")]
+position = Vector2(-51, -42)
 
-[node name="Player B" parent="." unique_id=228450361 instance=ExtResource("5_j160l")]
-position = Vector2(-32, -22)
+[node name="Player_Soil" parent="." unique_id=1515514634 instance=ExtResource("5_sboqp")]
+position = Vector2(-106, -42)

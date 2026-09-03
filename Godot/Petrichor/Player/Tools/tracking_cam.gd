@@ -6,7 +6,7 @@ class_name TrackingCam
 func _ready() -> void:
 	if follow: global_position = follow.global_position
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not follow: return
 	var diff = follow.global_position - global_position
 	var dir = diff.normalized() * speed * delta * sqrt(diff.length())

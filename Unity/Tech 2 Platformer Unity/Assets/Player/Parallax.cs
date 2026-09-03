@@ -13,11 +13,10 @@ public class Parallax : MonoBehaviour
     {
         offset = transform.position.x;
         if (!track) track = Movement.instance.transform;
-        Update();
     }
 
     float last;
-    private void Update()
+    private void FixedUpdate()
     {
         if (last == X()) return;
 

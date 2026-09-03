@@ -7,7 +7,7 @@
 
 [node name="MainMenu" type="Node2D" unique_id=141468875]
 script = ExtResource("1_vf7q5")
-scene_to_load = "res://UI/Menus/Level Select.tscn"
+scene_to_load = "res://Level 2/Level 2.tscn"
 metadata/_edit_vertical_guides_ = [-250.0]
 
 [node name="Network Buttons" type="CanvasLayer" parent="." unique_id=666372241]

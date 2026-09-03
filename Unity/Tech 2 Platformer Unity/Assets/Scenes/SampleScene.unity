@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7016059bd8cc945baccf53bafb3822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
-  track: {fileID: 0}
+  track: {fileID: 109382556}
   scale: -3
 --- !u!212 &13936573
 SpriteRenderer:
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7016059bd8cc945baccf53bafb3822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
-  track: {fileID: 0}
+  track: {fileID: 109382556}
   scale: -2
 --- !u!212 &935971762
 SpriteRenderer:
@@ -9909,7 +9909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7016059bd8cc945baccf53bafb3822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
-  track: {fileID: 0}
+  track: {fileID: 109382556}
   scale: -1.2
 --- !u!212 &1368146250
 SpriteRenderer:
@@ -10265,7 +10265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f7016059bd8cc945baccf53bafb3822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Parallax
-  track: {fileID: 993982205}
+  track: {fileID: 109382556}
   scale: -0.2
 --- !u!1001 &2063710790
 PrefabInstance:

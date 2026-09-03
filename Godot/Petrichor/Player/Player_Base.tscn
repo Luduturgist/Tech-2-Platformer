@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_btxq5"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
+[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="5_j7rw5"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
@@ -62,6 +63,7 @@ visible = false
 autoplay = "default"
 
 [node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+texture = ExtResource("5_j7rw5")
 
 [node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573]
 visible = false
@@ -88,6 +90,25 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.65, 0.23746665, 0.20799999, 0.60784316)
 script = ExtResource("7_boe6u")
+
+[node name="Dust" type="ColorRect" parent="Pivot" unique_id=535895140]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = 12.0
+offset_right = 9.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.71, 0.5167617, 0.20590001, 0.30588236)
+script = ExtResource("7_boe6u")
+flash_time = 0.2
 
 [node name="Brace" type="Area2D" parent="Pivot" unique_id=1484055677]
 visible = false
