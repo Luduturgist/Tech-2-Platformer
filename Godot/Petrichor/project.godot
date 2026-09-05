@@ -43,6 +43,7 @@ folder_colors={
 "res://Player/": "orange",
 "res://Player/River/": "blue",
 "res://Player/Soil/": "yellow",
+"res://Player/Spawner/": "teal",
 "res://Player/Tools/": "green",
 "res://UI/": "blue",
 "res://World/": "pink"
