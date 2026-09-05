@@ -44,8 +44,8 @@ func aim():
 		if target == null: return
 	
 	var offset: Vector2
-	if (muzzle.global_position - target.global_position).length() > (global_position - muzzle.global_position).length():
-		offset = target.global_position - (muzzle.position.rotated(head.rotation))
+	if (muzzle.global_position - target.global_position).length() > (global_position - muzzle.global_position).length() + 30:
+		offset = target.global_position - (Vector2(0, muzzle.position.y).rotated(head.rotation))
 	else:
 		offset = target.global_position
 	head.look_at(offset)

@@ -69,8 +69,9 @@ texture = ExtResource("5_j7rw5")
 visible = false
 position = Vector2(0, -6)
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)
-energy = 1.7
+energy = 0.72
 texture = ExtResource("6_fpjr1")
+texture_scale = 2.0
 script = ExtResource("7_boe6u")
 
 [node name="Pain" type="ColorRect" parent="Pivot" unique_id=1026537008]
@@ -106,7 +107,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.71, 0.5167617, 0.20590001, 0.30588236)
+color = Color(0.5, 0.45591667, 0.385, 0.41568628)
 script = ExtResource("7_boe6u")
 flash_time = 0.2
 

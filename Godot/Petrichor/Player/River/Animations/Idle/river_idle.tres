@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://be2otx3acpdl8"]
+
+[ext_resource type="Texture2D" uid="uid://cmde3ukfoo2mq" path="res://Player/River/Animations/Idle/River Idle.png" id="1_eq12q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8645"]
+atlas = ExtResource("1_eq12q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8a5tp"]
+atlas = ExtResource("1_eq12q")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h254"]
+atlas = ExtResource("1_eq12q")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmcbs"]
+atlas = ExtResource("1_eq12q")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i8645")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8a5tp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h254")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmcbs")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 3.5
+}]
