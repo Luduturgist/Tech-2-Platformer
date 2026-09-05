@@ -3,75 +3,111 @@
 [ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/Menus/main_menu.gd" id="1_vf7q5"]
 [ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_e1hbh"]
 [ext_resource type="Script" uid="uid://bpwcnr5wvqh27" path="res://UI/Menus/quit_button.gd" id="2_tcef6"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="3_cqw8f"]
 [ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="3_tcef6"]
+[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="4_tcef6"]
 
-[node name="MainMenu" type="Node2D" unique_id=141468875]
+[node name="MainMenu" type="Node2D" unique_id=141468875 node_paths=PackedStringArray("host_button", "join_button", "disconnect_1", "disconnect_2", "ip_texts", "join_ip")]
 script = ExtResource("1_vf7q5")
-scene_to_load = "res://Level 2/Level 2.tscn"
+scene_to_load = "res://Level 1/Level 1.tscn"
+host_button = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/Host")
+join_button = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/Join")
+disconnect_1 = NodePath("Host Waiting/VBoxContainer/Disconnect")
+disconnect_2 = NodePath("Client Waiting/VBoxContainer/Disconnect")
+ip_texts = [NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/Local IP"), NodePath("Host Waiting/VBoxContainer/Local IP"), NodePath("Client Waiting/VBoxContainer/Local IP")]
+join_ip = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/Join IP")
 metadata/_edit_vertical_guides_ = [-250.0]
 
 [node name="Network Buttons" type="CanvasLayer" parent="." unique_id=666372241]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Network Buttons" unique_id=158323834]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Network Buttons" unique_id=1287551141]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -89.0
-offset_top = -49.0
-offset_right = 89.0
-offset_bottom = 49.0
+offset_left = -117.5
+offset_top = -86.5
+offset_right = 117.5
+offset_bottom = 86.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 81
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Network Buttons/VBoxContainer2" unique_id=158323834]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 28
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons/VBoxContainer" unique_id=1850283834]
+[node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons/VBoxContainer2/VBoxContainer" unique_id=1850283834]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 10
 
-[node name="Host" type="Button" parent="Network Buttons/VBoxContainer/HBoxContainer" unique_id=1170498499]
+[node name="TextureRect" type="TextureRect" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1113399546]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("2_e1hbh")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/TextureRect" unique_id=532604421]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_cqw8f")
+autoplay = "default"
+frame = 3
+frame_progress = 0.53331006
+offset = Vector2(16, 16)
+
+[node name="Host" type="Button" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1170498499]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Host"
 
-[node name="Local IP" type="Label" parent="Network Buttons/VBoxContainer/HBoxContainer" unique_id=2095598327]
+[node name="Local IP" type="Label" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=2095598327]
 layout_mode = 2
 text = "10.0.0.1"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Network Buttons/VBoxContainer" unique_id=1006879946]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Network Buttons/VBoxContainer2/VBoxContainer" unique_id=1006879946]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="Join" type="Button" parent="Network Buttons/VBoxContainer/HBoxContainer2" unique_id=271699989]
+[node name="TextureRect" type="TextureRect" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2" unique_id=242393591]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = ExtResource("3_tcef6")
+expand_mode = 2
+stretch_mode = 3
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/TextureRect" unique_id=383931260]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("4_tcef6")
+autoplay = "default"
+frame = 1
+frame_progress = 0.7926322
+offset = Vector2(16, 16)
+
+[node name="Join" type="Button" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2" unique_id=271699989]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Join"
 
-[node name="Join IP" type="LineEdit" parent="Network Buttons/VBoxContainer/HBoxContainer2" unique_id=1407063563]
+[node name="Join IP" type="LineEdit" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2" unique_id=1407063563]
 layout_mode = 2
 placeholder_text = "10.0.0.1"
 expand_to_text_length = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons" unique_id=515100057]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.5
-offset_top = -199.0
-offset_right = 32.5
-offset_bottom = -152.0
-grow_horizontal = 2
-grow_vertical = 0
+[node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons/VBoxContainer2" unique_id=515100057]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 46
 
-[node name="Controls" type="Button" parent="Network Buttons/HBoxContainer" unique_id=377714886]
+[node name="Controls" type="Button" parent="Network Buttons/VBoxContainer2/HBoxContainer" unique_id=377714886]
 layout_mode = 2
 text = "Controls"
 
-[node name="Quit" type="Button" parent="Network Buttons/HBoxContainer" unique_id=1413547334]
+[node name="Quit" type="Button" parent="Network Buttons/VBoxContainer2/HBoxContainer" unique_id=1413547334]
 layout_mode = 2
 text = "Quit"
 script = ExtResource("2_tcef6")
@@ -79,46 +115,43 @@ script = ExtResource("2_tcef6")
 [node name="Host Waiting" type="CanvasLayer" parent="." unique_id=1935970027]
 visible = false
 
-[node name="Waiting" type="Label" parent="Host Waiting" unique_id=369834226]
+[node name="Sprite2D" type="Sprite2D" parent="Host Waiting" unique_id=1175230349]
+position = Vector2(971, 808)
+scale = Vector2(8, 8)
+texture = ExtResource("2_e1hbh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Host Waiting" unique_id=305224051]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -88.0
-offset_top = -19.5
+offset_top = -66.5
 offset_right = 88.0
-offset_bottom = 19.5
+offset_bottom = 66.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Waiting" type="Label" parent="Host Waiting/VBoxContainer" unique_id=369834226]
+layout_mode = 2
+size_flags_horizontal = 4
 text = "Waiting for B"
 
-[node name="Local IP" type="Label" parent="Host Waiting" unique_id=1355077822]
-offset_left = 909.0
-offset_top = 568.0
-offset_right = 1012.0
-offset_bottom = 607.0
+[node name="Local IP" type="Label" parent="Host Waiting/VBoxContainer" unique_id=1355077822]
+layout_mode = 2
+size_flags_horizontal = 4
 text = "10.0.0.1"
 
-[node name="Disconnect" type="Button" parent="Host Waiting" unique_id=1942813283]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -558.0
-offset_top = -305.0
-offset_right = -400.0
-offset_bottom = -258.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="HSeparator" type="HSeparator" parent="Host Waiting/VBoxContainer" unique_id=755821207]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 66
+
+[node name="Disconnect" type="Button" parent="Host Waiting/VBoxContainer" unique_id=1942813283]
+layout_mode = 2
 size_flags_horizontal = 4
 text = "Disconnect"
-
-[node name="Sprite2D" type="Sprite2D" parent="Host Waiting" unique_id=1175230349]
-position = Vector2(971, 808)
-scale = Vector2(8, 8)
-texture = ExtResource("2_e1hbh")
 
 [node name="Client Waiting" type="CanvasLayer" parent="." unique_id=1698971818]
 visible = false
@@ -128,31 +161,34 @@ position = Vector2(971, 808)
 scale = Vector2(8, 8)
 texture = ExtResource("3_tcef6")
 
-[node name="Waiting" type="Label" parent="Client Waiting" unique_id=1790139185]
+[node name="VBoxContainer" type="VBoxContainer" parent="Client Waiting" unique_id=1784473270]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -88.0
-offset_top = -19.5
+offset_top = -80.0
 offset_right = 88.0
-offset_bottom = 19.5
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Waiting" type="Label" parent="Client Waiting/VBoxContainer" unique_id=1790139185]
+layout_mode = 2
 text = "Waiting for A"
 
-[node name="Disconnect" type="Button" parent="Client Waiting" unique_id=1839357968]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -558.0
-offset_top = -305.0
-offset_right = -400.0
-offset_bottom = -258.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Local IP" type="Label" parent="Client Waiting/VBoxContainer" unique_id=1604103680]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10.0.0.1"
+
+[node name="HSeparator" type="HSeparator" parent="Client Waiting/VBoxContainer" unique_id=841200171]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 66
+
+[node name="Disconnect" type="Button" parent="Client Waiting/VBoxContainer" unique_id=1839357968]
+layout_mode = 2
 size_flags_horizontal = 4
 text = "Disconnect"

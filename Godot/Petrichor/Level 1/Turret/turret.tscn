@@ -27,7 +27,7 @@ texture = ExtResource("3_4kw6q")
 flip_h = true
 
 [node name="Muzzle" type="Node2D" parent="Head" unique_id=865126738]
-position = Vector2(11.00472, -7.9870005)
+position = Vector2(11, -8)
 
 [node name="Muzzle Debug" type="Node2D" parent="Head" unique_id=1716474136]
 position = Vector2(129.0047, -7.91729)

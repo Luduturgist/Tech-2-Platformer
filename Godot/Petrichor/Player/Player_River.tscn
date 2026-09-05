@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_agh35"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_wfmxh"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_8voip"]
-[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="4_hq4ce"]
+[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_agh35"]
 
 [sub_resource type="Resource" id="Resource_otcxl"]
 script = ExtResource("2_agh35")
@@ -33,15 +33,21 @@ pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
 brace = SubResource("Resource_tua64")
 
-[node name="Static Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="1" unique_id=905952174]
-texture = ExtResource("4_hq4ce")
+[node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1245137744]
+visible = true
+sprite_frames = ExtResource("5_agh35")
+frame_progress = 0.9548172
 
-[node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="4" unique_id=1484055677]
+[node name="Static Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="1" unique_id=905952174]
+visible = false
+
+[node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="5" unique_id=1484055677]
 position = Vector2(6, -2)
 
 [node name="CollisionShape2D" parent="Pivot/Brace" index="0" unique_id=1081634292]
 disabled = true
 
 [node name="Collider" parent="." index="2" unique_id=1016117325]
+visible = false
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")

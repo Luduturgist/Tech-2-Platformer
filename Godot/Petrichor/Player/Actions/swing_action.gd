@@ -5,6 +5,7 @@ class_name Swing_Action
 @export var energy_drain: int = 2
 
 func _perform_action():
+	if not move.is_on_floor(): return
 	var energy: float = 1
 	if energy_drain:
 		energy = float(move.energy._drain_charge(energy_drain))/ float(energy_drain)
