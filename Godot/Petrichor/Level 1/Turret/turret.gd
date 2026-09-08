@@ -16,16 +16,31 @@ func _ready() -> void:
 	area_entered.connect(track_target)
 	body_exited.connect(untrack_target)
 	area_exited.connect(untrack_target)
+	Wrapper.scene_ready.connect(_sync_rot)
+	if target:
+		single_target = true
 
+func _sync_rot():
+	if multiplayer.is_server():
+		rpc("_set_rotation", head.rotation)
+
+@rpc("call_remote", "any_peer", "reliable")
+func _set_rotation(rot: float):
+	head.rotation = rot
+	print("synchronizing turret")
+
+var single_target: bool = false
 func track_target(body: Node2D):
+	if single_target: return
 	if body.get_script() == filter:
-		print("hello")
+		#print("hello")
 		targets.append(body)
 		aim()
 
 func untrack_target(body: Node2D):
+	if single_target: return
 	if body.get_script() == filter:
-		print("are you still there?")
+		#print("are you still there?")
 		targets.remove_at(targets.find(body))
 		if target == body:
 			target = null
@@ -37,9 +52,9 @@ func _physics_process(_delta: float) -> void:
 	queue_redraw()
 
 func aim():
-	if not active or not targets.size(): return
+	if (not active or not targets.size()) and not single_target: return
 	
-	if not target or targets.size() > 1:
+	if (not target or targets.size() > 1) and not single_target:
 		target = nearest_target(true)
 		if target == null: return
 	

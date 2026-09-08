@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerEnergy" format=3 uid="uid://bo84lq0j1mhln"]
+
+[ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="1_rgllu"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_rgllu")
+metadata/_custom_type_script = "uid://bqvte6fdqel8i"

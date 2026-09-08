@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://biuohvok1tef0"]
+
+[ext_resource type="Script" uid="uid://bnltd4ii0yuiv" path="res://UI/Sub Menus/shy_submenu.gd" id="1_6u3pa"]
+[ext_resource type="StyleBox" uid="uid://dgsmoid0ccwek" path="res://UI/Sub Menus/sub_menu_style.tres" id="1_8kusa"]
+[ext_resource type="PackedScene" uid="uid://xf7cbwnyhafr" path="res://UI/Sub Menus/menu_backing.tscn" id="2_6u3pa"]
+[ext_resource type="Script" uid="uid://c1lvitj7jrjel" path="res://UI/Sub Menus/submenu_button.gd" id="2_tulck"]
+
+[node name="Debug Popup A" type="CanvasLayer" unique_id=1788272482]
+script = ExtResource("1_6u3pa")
+
+[node name="ColorRect" parent="." unique_id=1854296153 instance=ExtResource("2_6u3pa")]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1622649256]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_8kusa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2008532033]
+layout_mode = 2
+theme_override_constants/separation = 26
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=238767237]
+layout_mode = 2
+text = "Debug A"
+
+[node name="Popup B" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1623033463]
+layout_mode = 2
+text = "Open B"
+script = ExtResource("2_tulck")
+submenu_path = "res://Debug/Debug UI/Debug Popup B.tscn"

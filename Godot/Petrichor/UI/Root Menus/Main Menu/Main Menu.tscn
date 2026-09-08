@@ -1,21 +1,25 @@
 [gd_scene format=3 uid="uid://c7db8e6o1sghv"]
 
-[ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/Menus/main_menu.gd" id="1_vf7q5"]
-[ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_e1hbh"]
-[ext_resource type="Script" uid="uid://bpwcnr5wvqh27" path="res://UI/Menus/quit_button.gd" id="2_tcef6"]
-[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="3_cqw8f"]
-[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="3_tcef6"]
-[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="4_tcef6"]
+[ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/Root Menus/Main Menu/main_menu.gd" id="1_j1vdm"]
+[ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_mcx74"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="3_lh1ru"]
+[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="4_lp8yn"]
+[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_kq1dw"]
+[ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="6_j1vdm"]
+[ext_resource type="Script" uid="uid://c1lvitj7jrjel" path="res://UI/Sub Menus/submenu_button.gd" id="6_lh1ru"]
+[ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls Menu.tscn" id="7_lh1ru"]
 
-[node name="MainMenu" type="Node2D" unique_id=141468875 node_paths=PackedStringArray("host_button", "join_button", "disconnect_1", "disconnect_2", "ip_texts", "join_ip")]
-script = ExtResource("1_vf7q5")
+[node name="MainMenu" type="Node2D" unique_id=141468875 node_paths=PackedStringArray("host_button", "join_button", "disconnect_1", "disconnect_2", "ip_texts", "join_ip", "failure_message", "join_wait_ip")]
+script = ExtResource("1_j1vdm")
 scene_to_load = "res://Level 1/Level 1.tscn"
 host_button = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/Host")
 join_button = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/Join")
 disconnect_1 = NodePath("Host Waiting/VBoxContainer/Disconnect")
 disconnect_2 = NodePath("Client Waiting/VBoxContainer/Disconnect")
-ip_texts = [NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/Local IP"), NodePath("Host Waiting/VBoxContainer/Local IP"), NodePath("Client Waiting/VBoxContainer/Local IP")]
+ip_texts = [NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/Local IP"), NodePath("Host Waiting/VBoxContainer/Host Waiting IP")]
 join_ip = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/Join IP")
+failure_message = NodePath("Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/Join IP/Game Full")
+join_wait_ip = NodePath("Client Waiting/VBoxContainer/Join Waiting IP")
 metadata/_edit_vertical_guides_ = [-250.0]
 
 [node name="Network Buttons" type="CanvasLayer" parent="." unique_id=666372241]
@@ -47,13 +51,13 @@ theme_override_constants/separation = 10
 [node name="TextureRect" type="TextureRect" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer" unique_id=1113399546]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("2_e1hbh")
+texture = ExtResource("2_mcx74")
 expand_mode = 2
 stretch_mode = 3
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer/TextureRect" unique_id=532604421]
 scale = Vector2(2, 2)
-sprite_frames = ExtResource("3_cqw8f")
+sprite_frames = ExtResource("3_lh1ru")
 autoplay = "default"
 frame = 3
 frame_progress = 0.53331006
@@ -76,13 +80,13 @@ theme_override_constants/separation = 16
 [node name="TextureRect" type="TextureRect" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2" unique_id=242393591]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-texture = ExtResource("3_tcef6")
+texture = ExtResource("4_lp8yn")
 expand_mode = 2
 stretch_mode = 3
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/TextureRect" unique_id=383931260]
 scale = Vector2(2, 2)
-sprite_frames = ExtResource("4_tcef6")
+sprite_frames = ExtResource("5_kq1dw")
 autoplay = "default"
 frame = 1
 frame_progress = 0.7926322
@@ -98,6 +102,19 @@ layout_mode = 2
 placeholder_text = "10.0.0.1"
 expand_to_text_length = true
 
+[node name="Game Full" type="Label" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/Join IP" unique_id=584414429]
+visible = false
+layout_mode = 0
+offset_left = 1.0
+offset_top = 51.0
+offset_right = 55.0
+offset_bottom = 67.0
+grow_vertical = 0
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.86, 0.25800002, 0.25800002, 1)
+theme_override_font_sizes/font_size = 11
+text = "Game Full"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Network Buttons/VBoxContainer2" unique_id=515100057]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -106,11 +123,13 @@ theme_override_constants/separation = 46
 [node name="Controls" type="Button" parent="Network Buttons/VBoxContainer2/HBoxContainer" unique_id=377714886]
 layout_mode = 2
 text = "Controls"
+script = ExtResource("6_lh1ru")
+submenu = ExtResource("7_lh1ru")
 
 [node name="Quit" type="Button" parent="Network Buttons/VBoxContainer2/HBoxContainer" unique_id=1413547334]
 layout_mode = 2
-text = "Quit"
-script = ExtResource("2_tcef6")
+text = "Quit Game"
+script = ExtResource("6_j1vdm")
 
 [node name="Host Waiting" type="CanvasLayer" parent="." unique_id=1935970027]
 visible = false
@@ -118,7 +137,7 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="Host Waiting" unique_id=1175230349]
 position = Vector2(971, 808)
 scale = Vector2(8, 8)
-texture = ExtResource("2_e1hbh")
+texture = ExtResource("2_mcx74")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Host Waiting" unique_id=305224051]
 anchors_preset = 8
@@ -138,7 +157,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Waiting for B"
 
-[node name="Local IP" type="Label" parent="Host Waiting/VBoxContainer" unique_id=1355077822]
+[node name="Host Waiting IP" type="Label" parent="Host Waiting/VBoxContainer" unique_id=1355077822]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10.0.0.1"
@@ -159,7 +178,7 @@ visible = false
 [node name="Sprite2D2" type="Sprite2D" parent="Client Waiting" unique_id=387641268]
 position = Vector2(971, 808)
 scale = Vector2(8, 8)
-texture = ExtResource("3_tcef6")
+texture = ExtResource("4_lp8yn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Client Waiting" unique_id=1784473270]
 anchors_preset = 8
@@ -178,7 +197,7 @@ grow_vertical = 2
 layout_mode = 2
 text = "Waiting for A"
 
-[node name="Local IP" type="Label" parent="Client Waiting/VBoxContainer" unique_id=1604103680]
+[node name="Join Waiting IP" type="Label" parent="Client Waiting/VBoxContainer" unique_id=1604103680]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "10.0.0.1"

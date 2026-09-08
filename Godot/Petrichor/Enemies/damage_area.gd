@@ -16,9 +16,8 @@ func try_damage_body(body: Node2D):
 				return
 	if body.is_multiplayer_authority():
 		_hit_obstacle()
-		if Game.check_combat(body):
+		if Game_Scene.check_combat(body):
 			await get_tree().process_frame
-			print(blocked)
 			if not blocked:
 				body._take_damage(damage)
 

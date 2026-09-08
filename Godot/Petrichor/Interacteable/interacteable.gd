@@ -14,6 +14,8 @@ func _ready() -> void:
 	player_area.body_exited.connect(try_player.bind(-1))
 
 func try_player(body: Node2D, i: int):
+	if not multiplayer.multiplayer_peer:
+		return
 	if not exhausted and body is PlayerMovement and body.local:
 		rpc("flip_light", i)
 		if i > 0:

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://kpl2oqblpuu"]
+
+[ext_resource type="PackedScene" uid="uid://d1rgccjfpggjf" path="res://UI/Sub Menus/Popup_Template.tscn" id="1_esgag"]
+[ext_resource type="Script" uid="uid://bc0c0qk1rc21" path="res://UI/Sub Menus/Quit/quit_submenu.gd" id="2_21k7y"]
+[ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="2_tf5y7"]
+
+[node name="Popup Menu" unique_id=2124056893 node_paths=PackedStringArray("quit_button") instance=ExtResource("1_esgag")]
+script = ExtResource("2_21k7y")
+quit_button = NodePath("PanelContainer/VBoxContainer/Quit")
+
+[node name="VBoxContainer" parent="PanelContainer" parent_id_path=PackedInt32Array(588097683) index="0" unique_id=1816718948]
+theme_override_constants/separation = 7
+
+[node name="Label" parent="PanelContainer/VBoxContainer" index="0" unique_id=717759489]
+text = "Quit the game?"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" index="1" unique_id=1014014403]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Close" parent="PanelContainer/VBoxContainer" index="2" unique_id=1450728526]
+text = "Cancel"
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" index="3" unique_id=1900503749]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+script = ExtResource("2_tf5y7")

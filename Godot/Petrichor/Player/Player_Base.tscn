@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://c5sn821thiii1"]
 
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="1_j7rw5"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_awm26"]
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_btxq5"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
 [ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="5_j7rw5"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
+[ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
 
-[sub_resource type="Resource" id="Resource_sln64"]
-script = ExtResource("2_btxq5")
-event_path = NodePath("Pivot/Cheer")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+[sub_resource type="Resource" id="Resource_j7rw5"]
+script = ExtResource("2_awm26")
+fade_path = NodePath("Pivot/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_ak3bm"]
 script = ExtResource("2_btxq5")
@@ -23,7 +25,8 @@ metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 script = ExtResource("3_awm26")
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
-[sub_resource type="Resource" id="Resource_8voip"]
+[sub_resource type="Resource" id="Resource_tbm4e"]
+resource_local_to_scene = true
 script = ExtResource("4_82fik")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
@@ -41,20 +44,24 @@ properties/2/replication_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
 size = Vector2(12, 23)
 
-[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider")]
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset")]
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7rw5")
-friendly = SubResource("Resource_sln64")
+friendly = SubResource("Resource_j7rw5")
 pain_feedback = SubResource("Resource_ak3bm")
 move_ability = SubResource("Resource_gkydo")
-brace = SubResource("Resource_8voip")
+brace = SubResource("Resource_tbm4e")
 pivot = NodePath("Pivot")
 collider = NodePath("Collider")
+network_sync = NodePath("MultiplayerSynchronizer")
+cam_offset = NodePath("Pivot/Offset")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
 replication_config = SubResource("SceneReplicationConfig_yifjq")
+visibility_update_mode = 1
+public_visibility = false
 
 [node name="Pivot" type="Node2D" parent="." unique_id=615041083]
 
@@ -63,16 +70,18 @@ visible = false
 autoplay = "default"
 
 [node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+visible = false
 texture = ExtResource("5_j7rw5")
 
 [node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573]
 visible = false
 position = Vector2(0, -6)
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)
-energy = 0.72
+energy = 1.5
 texture = ExtResource("6_fpjr1")
 texture_scale = 2.0
-script = ExtResource("7_boe6u")
+script = ExtResource("8_awm26")
+fade_time = 1.5
 
 [node name="Pain" type="ColorRect" parent="Pivot" unique_id=1026537008]
 visible = false
@@ -140,4 +149,8 @@ color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=762785518]
 visible = false
 
+[node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]
+position = Vector2(13, 0)
+
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]
+visible = false

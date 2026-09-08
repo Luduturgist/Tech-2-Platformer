@@ -7,25 +7,20 @@ class_name Brace_Action
 var fx: Brace_Object
 
 const VFX_ID := "Brace"
-const SLOW_ID := "Bracing"
+const SLOW_MOD_ID := "Bracing"
 
-func _start(m: PlayerMovement):
-	super._start(m)
+func _start(m: PlayerMovement, sig = null):
+	super._start(m, sig)
 	fx = move.find_child(VFX_ID, true)
+	fx.brace_released.connect(_release_action)
 
 func _perform_action():
 	#move.taking_action = true
-	if not move.is_on_floor(): return
-	rig_effects(true)
-	fx.rpc("set_brace")
+	if not move.is_on_floor() or move.taking_action: return
+	move.taking_action = true
+	fx.rpc("set_brace", time)
+	move.speed_mods.get_or_add(SLOW_MOD_ID, slow)
 
 func _release_action():
-	if not fx.visible: return
-	fx.rpc("set_brace", time)
-	await fx.brace_released
-	rig_effects(false)
-
-
-
-func rig_effects(value: bool):
-	move.taking_action = value
+	move.taking_action = false
+	move.speed_mods.erase(SLOW_MOD_ID)

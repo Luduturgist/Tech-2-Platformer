@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://dd7oq84mi70fe"]
+
+[ext_resource type="Script" uid="uid://d0ljvgr7vray6" path="res://UI/Root Menus/Pause Menu/pause.gd" id="1_h74dl"]
+[ext_resource type="StyleBox" uid="uid://dgsmoid0ccwek" path="res://UI/Sub Menus/sub_menu_style.tres" id="2_icvu6"]
+[ext_resource type="Script" uid="uid://c1lvitj7jrjel" path="res://UI/Sub Menus/submenu_button.gd" id="3_02f02"]
+[ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls Menu.tscn" id="4_vh2yl"]
+[ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="5_vh2yl"]
+
+[node name="Pause" type="CanvasLayer" unique_id=1036224902 node_paths=PackedStringArray("menu_button", "resume_button")]
+script = ExtResource("1_h74dl")
+menu_button = NodePath("PanelContainer/VBoxContainer/Main Menu")
+resume_button = NodePath("PanelContainer/VBoxContainer/Resume")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1614139644]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.17, 0.17, 0.17, 0.5019608)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1462895104]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.5
+offset_top = -153.0
+offset_right = 95.5
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_icvu6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=465517616]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Main Menu" type="Button" parent="PanelContainer/VBoxContainer" unique_id=731930614]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Main Menu"
+
+[node name="Controls" type="Button" parent="PanelContainer/VBoxContainer" unique_id=627923920]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Controls
+"
+script = ExtResource("3_02f02")
+submenu = ExtResource("4_vh2yl")
+
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" unique_id=346827232]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Quit"
+script = ExtResource("5_vh2yl")
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/VBoxContainer" unique_id=37968342]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 4
+offset_transform_enabled = true
+theme_override_constants/separation = 33
+
+[node name="Resume" type="Button" parent="PanelContainer/VBoxContainer" unique_id=692166996]
+layout_mode = 2
+size_flags_vertical = 4
+text = "Resume"

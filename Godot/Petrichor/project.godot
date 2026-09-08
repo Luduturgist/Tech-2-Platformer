@@ -16,7 +16,9 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 
 [autoload]
 
-Wrapper="*uid://njyi8dt2oh4h"
+Wrapper="*uid://1gqepxaabolw"
+PlayerInput="*uid://kiv42sogsc73"
+MenuHandler="*uid://cterp6e7xyxt6"
 
 [display]
 
@@ -45,6 +47,9 @@ folder_colors={
 "res://Player/Soil/": "yellow",
 "res://Player/Tools/": "green",
 "res://UI/": "blue",
+"res://UI/Menu Handler/": "green",
+"res://UI/Root Menus/": "teal",
+"res://UI/Sub Menus/": "yellow",
 "res://World/": "pink"
 }
 
@@ -106,6 +111,11 @@ Brace={
 Debug={
 "deadzone": 0.2,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":49,"key_label":0,"unicode":49,"location":0,"echo":false,"script":null)
+]
+}
+Back={
+"deadzone": 0.2,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194305,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 

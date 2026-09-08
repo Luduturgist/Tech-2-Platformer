@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://1gqepxaabolw"]
+
+[ext_resource type="Script" uid="uid://njyi8dt2oh4h" path="res://Game Logic/Wrapper.gd" id="1_phf4t"]
+
+[node name="Wrapper" type="Node" unique_id=1338487411]
+script = ExtResource("1_phf4t")
+
+[node name="Game Disconnected" type="CanvasLayer" parent="." unique_id=1980412157]
+
+[node name="ColorRect" type="ColorRect" parent="Game Disconnected" unique_id=1575789215]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18, 0.18, 0.18, 0.38431373)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game Disconnected" unique_id=2077531556]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -242.0
+offset_top = -83.5
+offset_right = 242.0
+offset_bottom = 83.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="Game Disconnected/VBoxContainer" unique_id=933356205]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Disconnected from client"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game Disconnected/VBoxContainer" unique_id=1050719822]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Game Disconnected/VBoxContainer/VBoxContainer" unique_id=462449960]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.84, 0.84, 1)
+theme_override_font_sizes/font_size = 24
+text = "You can resume with another 
+player if they join at:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="IP Address" type="Label" parent="Game Disconnected/VBoxContainer/VBoxContainer" unique_id=982315561]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.37254903)
+theme_override_constants/shadow_offset_x = -1
+theme_override_constants/shadow_offset_y = 1
+text = "[ERROR IP NOT FOUND]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Game Disconnected/VBoxContainer" unique_id=614600395]
+layout_mode = 2
+theme_override_constants/separation = 51
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game Disconnected/VBoxContainer" unique_id=2120917952]
+layout_mode = 2
+size_flags_horizontal = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -11.325)
+theme_override_constants/separation = 43
+
+[node name="Main Menu" type="Button" parent="Game Disconnected/VBoxContainer/HBoxContainer" unique_id=370357680]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Game Disconnected/VBoxContainer/HBoxContainer" unique_id=122879339]
+layout_mode = 2
+text = "Quit Game"

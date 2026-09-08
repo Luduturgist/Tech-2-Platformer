@@ -6,22 +6,29 @@ class_name PlayerEnergy
 @export var pain: int = 0
 @export var health: int = 10
 @export var maxHealth: int = 10
-@export var regen: float = 0
+@export var drain_interval: float = 4
+@export var movement_multiplier = 2
 signal depleted
 var move: PlayerMovement
-var gui: PlayerGUI
 
-func _init(m: PlayerMovement) -> void:
+func _start(m: PlayerMovement):
 	move = m
-	gui = Game.active.gui
 	if charge > maxCharge - pain:
 		charge = maxCharge - pain
+	_drain_timer = drain_interval
 	update_ui()
 
+var _drain_timer: float
+func _update(delta: float):
+	if move.velocity.x and PlayerInput.moving and PlayerInput.player_movement.x:
+		delta *= movement_multiplier
+	_drain_timer -= delta
+	while _drain_timer <= 0:
+		_drain_timer += drain_interval
+		_drain_charge(1, true)
+
 func _debug():
-	charge = maxCharge
-	pain = 0
-	health = maxHealth
+	_replenish_charge(maxCharge)
 	update_ui()
 
 func _replenish_charge(amount: int) -> int:
@@ -32,11 +39,14 @@ func _replenish_charge(amount: int) -> int:
 	update_ui()
 	return amount
 
-func _drain_charge(amount: int) -> int:
+func _drain_charge(amount: int, overdraw: bool = false) -> int:
 	var drain: int = amount
 	charge -= amount
 	if charge <= 0:
-		drain += charge
+		if overdraw:
+			_inflict_pain(-charge)
+		else:
+			drain += charge
 		charge = 0
 		depleted.emit()
 	update_ui()
@@ -80,6 +90,6 @@ func on_deplete():
 	Wrapper._end_session()
 
 func update_ui():
-	if gui:
-		gui.energyBar.value = float(charge) / float(maxCharge) * 100
-		gui.pain_bar.value = float(pain) / float(maxCharge) * 100
+	if Game_Scene.active.gui:
+		Game_Scene.active.gui.energyBar.value = float(charge) / float(maxCharge) * 100
+		Game_Scene.active.gui.pain_bar.value = float(pain) / float(maxCharge) * 100
