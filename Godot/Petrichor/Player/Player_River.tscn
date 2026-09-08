@@ -2,21 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_3funa"]
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_agh35"]
-[ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="2_wfmxh"]
-[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="3_8voip"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_wfmxh"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_8voip"]
-[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_agh35"]
-
-[sub_resource type="Resource" id="Resource_8voip"]
-resource_local_to_scene = true
-script = ExtResource("2_wfmxh")
-metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
 [sub_resource type="Resource" id="Resource_otcxl"]
-script = ExtResource("3_8voip")
-fade_path = NodePath("Pivot/Cheer")
-metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+script = ExtResource("2_agh35")
+event_path = NodePath("Pivot/Cheer")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_hq4ce"]
 script = ExtResource("2_agh35")
@@ -32,19 +24,13 @@ script = ExtResource("4_8voip")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
-size = Vector2(13, 29)
+size = Vector2(13, 30)
 
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
-energy = SubResource("Resource_8voip")
 friendly = SubResource("Resource_otcxl")
 pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
 brace = SubResource("Resource_tua64")
-
-[node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1245137744]
-visible = true
-sprite_frames = ExtResource("5_agh35")
-frame_progress = 0.91879004
 
 [node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="5" unique_id=1484055677]
 position = Vector2(6, -2)
@@ -53,5 +39,5 @@ position = Vector2(6, -2)
 disabled = true
 
 [node name="Collider" parent="." index="2" unique_id=1016117325]
-position = Vector2(-0.5, 1.5)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")
