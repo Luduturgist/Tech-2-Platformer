@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func try_player(area: Area2D):
 	if area is Damage_Area:
-		area._hit_obstacle(true)
+		area._hit_obstacle(self, true)
 
 @rpc("authority", "call_local", "reliable")
 func set_brace(time: float):
@@ -29,5 +29,5 @@ func _process(delta: float) -> void:
 func set_brace_variables(value: bool):
 	visible = value
 	if is_multiplayer_authority():
-		monitoring = value
-		monitorable = value
+		print("happened")
+		$CollisionShape2D.disabled = not value

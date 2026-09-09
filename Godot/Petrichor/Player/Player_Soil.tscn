@@ -5,17 +5,12 @@
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_fy1wm"]
 [ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="2_oq2wa"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_6xinh"]
-[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="3_nqwmv"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_nqwmv"]
 
 [sub_resource type="Resource" id="Resource_nqwmv"]
 resource_local_to_scene = true
 script = ExtResource("2_6xinh")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
-
-[sub_resource type="Resource" id="Resource_6xinh"]
-script = ExtResource("3_nqwmv")
-metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_rayeu"]
 script = ExtResource("2_fy1wm")
@@ -35,7 +30,6 @@ size = Vector2(15, 30)
 
 [node name="Player_Soil" unique_id=1254970227 instance=ExtResource("1_m25y2")]
 energy = SubResource("Resource_nqwmv")
-friendly = SubResource("Resource_6xinh")
 pain_feedback = SubResource("Resource_rayeu")
 move_ability = SubResource("Resource_wobsq")
 brace = SubResource("Resource_ijxfx")

@@ -16,7 +16,7 @@ func _start(m: PlayerMovement, sig = null):
 
 func _perform_action():
 	#move.taking_action = true
-	if not move.is_on_floor() or move.taking_action: return
+	if move.taking_action: return
 	move.taking_action = true
 	fx.rpc("set_brace", time)
 	move.speed_mods.get_or_add(SLOW_MOD_ID, slow)

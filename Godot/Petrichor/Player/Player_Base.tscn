@@ -41,7 +41,7 @@ properties/2/path = NodePath("Pivot:scale:x")
 properties/2/spawn = true
 properties/2/replication_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
 size = Vector2(12, 23)
 
 [node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset")]
@@ -120,19 +120,18 @@ color = Color(0.5, 0.45591667, 0.385, 0.41568628)
 script = ExtResource("7_boe6u")
 flash_time = 0.2
 
-[node name="Brace" type="Area2D" parent="Pivot" unique_id=1484055677]
+[node name="Brace" type="Area2D" parent="Pivot" unique_id=1493632730]
 visible = false
-monitoring = false
-monitorable = false
+position = Vector2(10, -8)
 script = ExtResource("8_tjj38")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Brace" unique_id=1081634292]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Brace" unique_id=331385000]
 position = Vector2(0, -1.5)
-shape = SubResource("RectangleShape2D_wfmxh")
+shape = SubResource("RectangleShape2D_awm26")
 debug_color = Color(0, 0.5950001, 0.7, 0)
 
-[node name="Debug" type="ColorRect" parent="Pivot/Brace" unique_id=21867081]
+[node name="Debug" type="ColorRect" parent="Pivot/Brace" unique_id=1037213798]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -146,7 +145,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 
-[node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=762785518]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=1834553025]
 visible = false
 
 [node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]

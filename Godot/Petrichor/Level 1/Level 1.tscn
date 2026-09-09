@@ -15,6 +15,17 @@
 [ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://Debug/Hazard/Hazard.tscn" id="13_20h5i"]
 [ext_resource type="PackedScene" uid="uid://beh68diy3i4dm" path="res://Level 1/Turret/turret.tscn" id="13_k6t00"]
 [ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://Debug/Hazard/Hazard.png" id="14_k6t00"]
+[ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="16_qsy6p"]
+
+[sub_resource type="Resource" id="Resource_3kkt0"]
+resource_local_to_scene = true
+script = ExtResource("12_tbm4e")
+metadata/_custom_type_script = "uid://bqvte6fdqel8i"
+
+[sub_resource type="Resource" id="Resource_7rej1"]
+resource_local_to_scene = true
+script = ExtResource("12_tbm4e")
+metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6t00"]
 size = Vector2(116, 31)
@@ -25,9 +36,6 @@ size = Vector2(34, 20)
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6t00"]
 atlas = ExtResource("8_k6t00")
 region = Rect2(0, 18, 32, 6)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_20h5i"]
-size = Vector2(214, 77)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20h5i"]
 atlas = ExtResource("8_k6t00")
@@ -50,52 +58,67 @@ region = Rect2(0, 18, 32, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju0ar"]
 size = Vector2(18, 4)
 
-[sub_resource type="Resource" id="Resource_tbm4e"]
-resource_local_to_scene = true
-script = ExtResource("12_tbm4e")
-metadata/_custom_type_script = "uid://bqvte6fdqel8i"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
+size = Vector2(29, 20)
 
-[sub_resource type="Resource" id="Resource_qsy6p"]
-resource_local_to_scene = true
-script = ExtResource("12_tbm4e")
-metadata/_custom_type_script = "uid://bqvte6fdqel8i"
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20h5i"]
+size = Vector2(214, 77)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(3209, 54)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
-size = Vector2(29, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
+size = Vector2(12, 23)
 
 [node name="Level 1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
 script = ExtResource("1_5yvi0")
-soil = NodePath("Player_Soil")
-river = NodePath("Player_River")
+soil = NodePath("Midgard/Players/Player_Soil")
+river = NodePath("Midgard/Players/Player_River")
 camera = NodePath("CameraFollow")
 gui = NodePath("Gui")
 
-[node name="Door_Object2" type="Node" parent="." unique_id=480936839 node_paths=PackedStringArray("door_block")]
+[node name="Midgard" type="Node2D" parent="." unique_id=2118269782]
+
+[node name="Players" type="Node2D" parent="Midgard" unique_id=1885024849]
+
+[node name="Player_River" parent="Midgard/Players" unique_id=1254970227 instance=ExtResource("5_moakd")]
+position = Vector2(-67, -28)
+energy = SubResource("Resource_3kkt0")
+
+[node name="Player_Soil" parent="Midgard/Players" unique_id=1847633799 instance=ExtResource("4_cgekv")]
+position = Vector2(-80, -304)
+energy = SubResource("Resource_7rej1")
+
+[node name="Terrain" type="TileMapLayer" parent="Midgard" unique_id=1221429451]
+tile_map_data = PackedByteArray("AAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAQAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAACAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD6/wIAAQAAAAAAAAD7/wIAAQAAAAAAAAD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAD6/wEAAQAAAAAAAAD7/wEAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAFAAEAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAEAAQAAAAAAAAALAAIAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAAMAAIAAQAAAAAAAAANAAIAAQAAAAAAAAAOAAIAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAD5////AQAAAAAAAAD5//7/AQAAAAAAAAD5//3/AQAAAAAAAAD5//z/AQAAAAAAAAD5//v/AQAAAAAAAAD5//r/AQAAAAAAAAD5//n/AQAAAAAAAAD5//j/AQAAAAAAAAD4/wIAAQAAAAAAAAD4/wEAAQAAAAAAAAD4/wAAAQAAAAAAAAD4////AQAAAAAAAAD4//7/AQAAAAAAAAD4//3/AQAAAAAAAAD4//z/AQAAAAAAAAD4//v/AQAAAAAAAAD4//r/AQAAAAAAAAD4//n/AQAAAAAAAAD4//j/AQAAAAAAAAD4//f/AQAAAAAAAAD3//j/AQAAAAAAAAD3//n/AQAAAAAAAAD3//r/AQAAAAAAAAD3//v/AQAAAAAAAAD3//z/AQAAAAAAAAD3//3/AQAAAAAAAAD3//7/AQAAAAAAAAD3////AQAAAAAAAAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD2/wIAAQAAAAAAAAD2/wEAAQAAAAAAAAD2/wAAAQAAAAAAAAD2////AQAAAAAAAAD2//7/AQAAAAAAAAD2//3/AQAAAAAAAAD2//z/AQAAAAAAAAD2//v/AQAAAAAAAAD2//r/AQAAAAAAAAD2//n/AQAAAAAAAAD1////AQAAAAAAAAD0////AQAAAAAAAADz////AQAAAAAAAAD0//7/AQAAAAAAAAD0//3/AQAAAAAAAAD0//z/AQAAAAAAAAD0//v/AQAAAAAAAAD0//r/AQAAAAAAAAD0//n/AQAAAAAAAAD0//j/AQAAAAAAAAD0//f/AQAAAAAAAADz//f/AQAAAAAAAADz//j/AQAAAAAAAADz//n/AQAAAAAAAADz//r/AQAAAAAAAADz//v/AQAAAAAAAADz//z/AQAAAAAAAADz//3/AQAAAAAAAADz//7/AQAAAAAAAAD1//f/AQAAAAAAAAD1//j/AQAAAAAAAAD1//n/AQAAAAAAAAD1//r/AQAAAAAAAAD1//v/AQAAAAAAAAD1//z/AQAAAAAAAAD1//3/AQAAAAAAAAD1//7/AQAAAAAAAAD2//j/AQAAAAAAAAD2//f/AQAAAAAAAAD3//f/AQAAAAAAAAD0/wEAAQAAAAAAAAD0/wAAAQAAAAAAAADz/wAAAQAAAAAAAADz/wEAAQAAAAAAAADz/wIAAQAAAAAAAAD0/wIAAQAAAAAAAAD1/wIAAQAAAAAAAAD1/wEAAQAAAAAAAAD1/wAAAQAAAAAAAAAFAP//AAAAAAAAAAD6//r/AQAAAAAAAAD7//n/AQAAAAAAAAD///j/AQAAAAAAAAABAP3/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///v/AQAAAAAAAAD///r/AQAAAAAAAAD6//n/AQAAAAAAAAD6//j/AQAAAAAAAAD7//j/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAACAPr/AQAAAAAAAAADAPr/AQAAAAAAAAADAPn/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPj/AQAAAAAAAAAFAPj/AQAAAAAAAAAFAPf/AQAAAAAAAAACAPn/AQAAAAAAAAABAPn/AQAAAAAAAAAAAPn/AQAAAAAAAAD///n/AQAAAAAAAAAAAPr/AQAAAAAAAAABAPr/AQAAAAAAAAABAPj/AQAAAAAAAAAAAPj/AQAAAAAAAAAAAPf/AQAAAAAAAAD7//f/AQAAAAAAAAD6//f/AQAAAAAAAAD5//f/AQAAAAAAAAABAPf/AQAAAAAAAAACAPf/AQAAAAAAAAACAPj/AQAAAAAAAAADAPj/AQAAAAAAAAADAPf/AQAAAAAAAAAFAPb/AQAAAAAAAAAGAPb/AQAAAAAAAAAHAPX/AQAAAAAAAAAHAPT/AQAAAAAAAAAIAPP/AQAAAAAAAAAIAPL/AQAAAAAAAAAIAPH/AQAAAAAAAAAIAPD/AQAAAAAAAAAIAO//AQAAAAAAAAAIAO7/AQAAAAAAAAAIAO3/AQAAAAAAAAAHAO7/AQAAAAAAAAAHAO//AQAAAAAAAAAHAPP/AQAAAAAAAAAGAPf/AQAAAAAAAAAFAPX/AQAAAAAAAAAGAPX/AQAAAAAAAAAGAPT/AQAAAAAAAAAGAPP/AQAAAAAAAAAGAPL/AQAAAAAAAAAHAPH/AQAAAAAAAAAHAPD/AQAAAAAAAAAEAPf/AQAAAAAAAAAEAPb/AQAAAAAAAAAEAPX/AQAAAAAAAAAEAPT/AQAAAAAAAAAEAPP/AQAAAAAAAAAEAPL/AQAAAAAAAAAFAPL/AQAAAAAAAAAFAPH/AQAAAAAAAAAFAPD/AQAAAAAAAAADAPT/AQAAAAAAAAADAPX/AQAAAAAAAAACAPX/AQAAAAAAAAABAPX/AQAAAAAAAAABAPb/AQAAAAAAAAACAPb/AQAAAAAAAAADAPb/AQAAAAAAAAAAAPX/AQAAAAAAAAD7//b/AQAAAAAAAAD6//b/AQAAAAAAAAD7//X/AQAAAAAAAAD///T/AQAAAAAAAAAAAPT/AQAAAAAAAAABAPP/AQAAAAAAAAABAPT/AQAAAAAAAAACAPT/AQAAAAAAAAAFAPP/AQAAAAAAAAAHAPL/AQAAAAAAAAAFAPT/AQAAAAAAAAAGAPH/AQAAAAAAAAAGAPD/AQAAAAAAAAACAPP/AQAAAAAAAAACAPL/AQAAAAAAAAADAPL/AQAAAAAAAAAEAPH/AQAAAAAAAAADAPP/AQAAAAAAAAD7//v/AQAAAAAAAAD6//v/AQAAAAAAAAD6//z/AQAAAAAAAAD7//r/AQAAAAAAAAAMAP//AAAAAAAAAAALAP//AQAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAYAAIAAQAAAAAAAAAZAAIAAQAAAAAAAAAaAAIAAQAAAAAAAAAbAAIAAQAAAAAAAAAcAAIAAQAAAAAAAAAdAAIAAQAAAAAAAAAeAAIAAQAAAAAAAAAfAAIAAQAAAAAAAAAgAAIAAQAAAAAAAAAhAAIAAQAAAAAAAAAiAAIAAQAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAATAAEAAAAAAAAAAAAUAAEAAAAAAAAAAAAIAP3/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAANAPn/AAAAAAAAAAAOAPn/AAAAAAAAAAAGAP3/AAAAAAAAAAALAP7/AAAAAAAAAAAAAPb/AQAAAAAAAAD///X/AQAAAAAAAAD///b/AQAAAAAAAAD///f/AQAAAAAAAAD7//T/AQAAAAAAAAD7//P/AQAAAAAAAAD///P/AQAAAAAAAAAEAP//AAAAAAAAAAA=")
+tile_set = ExtResource("2_f4qae")
+physics_quadrant_size = 32
+
+[node name="Interacteables" type="Node2D" parent="Midgard" unique_id=1760629244]
+
+[node name="Top Door" type="Node" parent="Midgard/Interacteables" unique_id=480936839 node_paths=PackedStringArray("door_block")]
 script = ExtResource("9_fp4rx")
 door_block = NodePath("Block")
 metadata/_custom_type_script = "uid://b27nvv6imn8gp"
 
-[node name="Block" type="StaticBody2D" parent="Door_Object2" unique_id=861107942]
+[node name="Block" type="StaticBody2D" parent="Midgard/Interacteables/Top Door" unique_id=861107942]
 position = Vector2(-82, -271)
 metadata/_edit_group_ = true
 
-[node name="Breakable_floor" type="TileMapLayer" parent="Door_Object2/Block" unique_id=955631665]
+[node name="Breakable_floor" type="TileMapLayer" parent="Midgard/Interacteables/Top Door/Block" unique_id=955631665]
 position = Vector2(82, 271)
 tile_map_data = PackedByteArray("AAD8//f/AAAAAAAAAAD9//f/AAAAAAAAAAD+//f/AAAAAAAAAAA=")
 tile_set = ExtResource("2_f4qae")
 collision_enabled = false
 physics_quadrant_size = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_Object2/Block" unique_id=926904158]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Top Door/Block" unique_id=926904158]
 position = Vector2(2, -1.5)
 shape = SubResource("RectangleShape2D_k6t00")
 
-[node name="Interacteable2" type="Node2D" parent="Door_Object2/Block" unique_id=1142837596 node_paths=PackedStringArray("highlights", "player_area", "event_objects")]
+[node name="Interacteable2" type="Node2D" parent="Midgard/Interacteables/Top Door/Block" unique_id=1142837596 node_paths=PackedStringArray("highlights", "player_area", "event_objects")]
 position = Vector2(41, -17)
 script = ExtResource("8_fp4rx")
 highlights = [NodePath("Panel On")]
@@ -104,7 +127,7 @@ event_objects = [NodePath("Panel Interact"), NodePath("../..")]
 single_use = false
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Door_Object2/Block/Interacteable2" unique_id=358959632]
+[node name="ColorRect" type="ColorRect" parent="Midgard/Interacteables/Top Door/Block/Interacteable2" unique_id=358959632]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -117,7 +140,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.66, 0.5335, 0.495, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="Door_Object2/Block/Interacteable2" unique_id=636845794]
+[node name="ColorRect3" type="ColorRect" parent="Midgard/Interacteables/Top Door/Block/Interacteable2" unique_id=636845794]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -131,7 +154,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.27, 0.21825, 0.20250002, 1)
 
-[node name="Panel On" type="ColorRect" parent="Door_Object2/Block/Interacteable2" unique_id=179672677]
+[node name="Panel On" type="ColorRect" parent="Midgard/Interacteables/Top Door/Block/Interacteable2" unique_id=179672677]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -147,7 +170,7 @@ grow_vertical = 0
 color = Color(1, 0.977, 0.97, 1)
 script = ExtResource("8_qoxgt")
 
-[node name="Panel Interact" type="ColorRect" parent="Door_Object2/Block/Interacteable2" unique_id=1809565709]
+[node name="Panel Interact" type="ColorRect" parent="Midgard/Interacteables/Top Door/Block/Interacteable2" unique_id=1809565709]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -165,13 +188,13 @@ script = ExtResource("8_qoxgt")
 flash_time = 0.125
 flash_repeat_delay = 0.5
 
-[node name="Area2D" type="Area2D" parent="Door_Object2/Block/Interacteable2" unique_id=193452332]
+[node name="Area2D" type="Area2D" parent="Midgard/Interacteables/Top Door/Block/Interacteable2" unique_id=193452332]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door_Object2/Block/Interacteable2/Area2D" unique_id=1322860204]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Top Door/Block/Interacteable2/Area2D" unique_id=1322860204]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_fp4rx")
 
-[node name="Sprite2D" type="Sprite2D" parent="Door_Object2/Block" unique_id=1011349978]
+[node name="Sprite2D" type="Sprite2D" parent="Midgard/Interacteables/Top Door/Block" unique_id=1011349978]
 z_index = -3
 position = Vector2(-1, -4)
 rotation = -1.5707964
@@ -179,27 +202,7 @@ scale = Vector2(2, 4)
 texture = SubResource("AtlasTexture_k6t00")
 offset = Vector2(1, 0)
 
-[node name="Turret2" parent="." unique_id=1059885196 node_paths=PackedStringArray("target") instance=ExtResource("13_k6t00")]
-position = Vector2(299, -50)
-target = NodePath("../Sprite2D2")
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Turret2" unique_id=1501938518]
-position = Vector2(0, -16)
-shape = SubResource("RectangleShape2D_20h5i")
-
-[node name="Gui" parent="." unique_id=1157994508 instance=ExtResource("2_8ghjs")]
-visible = false
-
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1221429451]
-tile_map_data = PackedByteArray("AAD7/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAQAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAACAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD6/wIAAQAAAAAAAAD7/wIAAQAAAAAAAAD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAD6/wEAAQAAAAAAAAD7/wEAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAAAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAEAAQAAAAAAAAALAAIAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAAMAAIAAQAAAAAAAAANAAIAAQAAAAAAAAAOAAIAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAD5////AQAAAAAAAAD5//7/AQAAAAAAAAD5//3/AQAAAAAAAAD5//z/AQAAAAAAAAD5//v/AQAAAAAAAAD5//r/AQAAAAAAAAD5//n/AQAAAAAAAAD5//j/AQAAAAAAAAD4/wIAAQAAAAAAAAD4/wEAAQAAAAAAAAD4/wAAAQAAAAAAAAD4////AQAAAAAAAAD4//7/AQAAAAAAAAD4//3/AQAAAAAAAAD4//z/AQAAAAAAAAD4//v/AQAAAAAAAAD4//r/AQAAAAAAAAD4//n/AQAAAAAAAAD4//j/AQAAAAAAAAD4//f/AQAAAAAAAAD3//j/AQAAAAAAAAD3//n/AQAAAAAAAAD3//r/AQAAAAAAAAD3//v/AQAAAAAAAAD3//z/AQAAAAAAAAD3//3/AQAAAAAAAAD3//7/AQAAAAAAAAD3////AQAAAAAAAAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD2/wIAAQAAAAAAAAD2/wEAAQAAAAAAAAD2/wAAAQAAAAAAAAD2////AQAAAAAAAAD2//7/AQAAAAAAAAD2//3/AQAAAAAAAAD2//z/AQAAAAAAAAD2//v/AQAAAAAAAAD2//r/AQAAAAAAAAD2//n/AQAAAAAAAAD1////AQAAAAAAAAD0////AQAAAAAAAADz////AQAAAAAAAAD0//7/AQAAAAAAAAD0//3/AQAAAAAAAAD0//z/AQAAAAAAAAD0//v/AQAAAAAAAAD0//r/AQAAAAAAAAD0//n/AQAAAAAAAAD0//j/AQAAAAAAAAD0//f/AQAAAAAAAADz//f/AQAAAAAAAADz//j/AQAAAAAAAADz//n/AQAAAAAAAADz//r/AQAAAAAAAADz//v/AQAAAAAAAADz//z/AQAAAAAAAADz//3/AQAAAAAAAADz//7/AQAAAAAAAAD1//f/AQAAAAAAAAD1//j/AQAAAAAAAAD1//n/AQAAAAAAAAD1//r/AQAAAAAAAAD1//v/AQAAAAAAAAD1//z/AQAAAAAAAAD1//3/AQAAAAAAAAD1//7/AQAAAAAAAAD2//j/AQAAAAAAAAD2//f/AQAAAAAAAAD3//f/AQAAAAAAAAD0/wEAAQAAAAAAAAD0/wAAAQAAAAAAAADz/wAAAQAAAAAAAADz/wEAAQAAAAAAAADz/wIAAQAAAAAAAAD0/wIAAQAAAAAAAAD1/wIAAQAAAAAAAAD1/wEAAQAAAAAAAAD1/wAAAQAAAAAAAAAFAP//AAAAAAAAAAD6//r/AQAAAAAAAAD7//n/AQAAAAAAAAD///j/AQAAAAAAAAABAP3/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///v/AQAAAAAAAAD///r/AQAAAAAAAAD6//n/AQAAAAAAAAD6//j/AQAAAAAAAAD7//j/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAACAPr/AQAAAAAAAAADAPr/AQAAAAAAAAADAPn/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPj/AQAAAAAAAAAFAPj/AQAAAAAAAAAFAPf/AQAAAAAAAAACAPn/AQAAAAAAAAABAPn/AQAAAAAAAAAAAPn/AQAAAAAAAAD///n/AQAAAAAAAAAAAPr/AQAAAAAAAAABAPr/AQAAAAAAAAABAPj/AQAAAAAAAAAAAPj/AQAAAAAAAAAAAPf/AQAAAAAAAAD7//f/AQAAAAAAAAD6//f/AQAAAAAAAAD5//f/AQAAAAAAAAABAPf/AQAAAAAAAAACAPf/AQAAAAAAAAACAPj/AQAAAAAAAAADAPj/AQAAAAAAAAADAPf/AQAAAAAAAAAFAPb/AQAAAAAAAAAGAPb/AQAAAAAAAAAHAPX/AQAAAAAAAAAHAPT/AQAAAAAAAAAIAPP/AQAAAAAAAAAIAPL/AQAAAAAAAAAIAPH/AQAAAAAAAAAIAPD/AQAAAAAAAAAIAO//AQAAAAAAAAAIAO7/AQAAAAAAAAAIAO3/AQAAAAAAAAAHAO7/AQAAAAAAAAAHAO//AQAAAAAAAAAHAPP/AQAAAAAAAAAGAPf/AQAAAAAAAAAFAPX/AQAAAAAAAAAGAPX/AQAAAAAAAAAGAPT/AQAAAAAAAAAGAPP/AQAAAAAAAAAGAPL/AQAAAAAAAAAHAPH/AQAAAAAAAAAHAPD/AQAAAAAAAAAEAPf/AQAAAAAAAAAEAPb/AQAAAAAAAAAEAPX/AQAAAAAAAAAEAPT/AQAAAAAAAAAEAPP/AQAAAAAAAAAEAPL/AQAAAAAAAAAFAPL/AQAAAAAAAAAFAPH/AQAAAAAAAAAFAPD/AQAAAAAAAAADAPT/AQAAAAAAAAADAPX/AQAAAAAAAAACAPX/AQAAAAAAAAABAPX/AQAAAAAAAAABAPb/AQAAAAAAAAACAPb/AQAAAAAAAAADAPb/AQAAAAAAAAAAAPX/AQAAAAAAAAD7//b/AQAAAAAAAAD6//b/AQAAAAAAAAD7//X/AQAAAAAAAAD///T/AQAAAAAAAAAAAPT/AQAAAAAAAAABAPP/AQAAAAAAAAABAPT/AQAAAAAAAAACAPT/AQAAAAAAAAAFAPP/AQAAAAAAAAAHAPL/AQAAAAAAAAAFAPT/AQAAAAAAAAAGAPH/AQAAAAAAAAAGAPD/AQAAAAAAAAACAPP/AQAAAAAAAAACAPL/AQAAAAAAAAADAPL/AQAAAAAAAAAEAPH/AQAAAAAAAAADAPP/AQAAAAAAAAD7//v/AQAAAAAAAAD6//v/AQAAAAAAAAD6//z/AQAAAAAAAAD7//r/AQAAAAAAAAAMAP//AAAAAAAAAAALAP//AQAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAYAAIAAQAAAAAAAAAZAAIAAQAAAAAAAAAaAAIAAQAAAAAAAAAbAAIAAQAAAAAAAAAcAAIAAQAAAAAAAAAdAAIAAQAAAAAAAAAeAAIAAQAAAAAAAAAfAAIAAQAAAAAAAAAgAAIAAQAAAAAAAAAhAAIAAQAAAAAAAAAiAAIAAQAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAATAAEAAAAAAAAAAAAUAAEAAAAAAAAAAAAIAP3/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAANAPn/AAAAAAAAAAAOAPn/AAAAAAAAAAAGAP3/AAAAAAAAAAALAP7/AAAAAAAAAAAAAPb/AQAAAAAAAAD///X/AQAAAAAAAAD///b/AQAAAAAAAAD///f/AQAAAAAAAAD7//T/AQAAAAAAAAD7//P/AQAAAAAAAAD///P/AQAAAAAAAAA=")
-tile_set = ExtResource("2_f4qae")
-physics_quadrant_size = 32
-
-[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("3_o7uj6")]
-position = Vector2(-49, -111)
-
-[node name="Interacteable" type="Node2D" parent="." unique_id=1954835801 node_paths=PackedStringArray("highlights", "player_area", "event_objects")]
+[node name="Interacteable" type="Node2D" parent="Midgard/Interacteables" unique_id=1954835801 node_paths=PackedStringArray("highlights", "player_area", "event_objects")]
 position = Vector2(-18, 0)
 script = ExtResource("8_fp4rx")
 highlights = [NodePath("Panel On")]
@@ -208,7 +211,7 @@ event_objects = [NodePath("Panel Interact"), NodePath("../Door")]
 single_use = false
 metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="Interacteable" unique_id=1453494778]
+[node name="ColorRect" type="ColorRect" parent="Midgard/Interacteables/Interacteable" unique_id=1453494778]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -221,7 +224,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.66, 0.5335, 0.495, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="Interacteable" unique_id=454921750]
+[node name="ColorRect3" type="ColorRect" parent="Midgard/Interacteables/Interacteable" unique_id=454921750]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -235,7 +238,7 @@ grow_horizontal = 2
 grow_vertical = 0
 color = Color(0.27, 0.21825, 0.20250002, 1)
 
-[node name="Panel On" type="ColorRect" parent="Interacteable" unique_id=621611035]
+[node name="Panel On" type="ColorRect" parent="Midgard/Interacteables/Interacteable" unique_id=621611035]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -251,7 +254,7 @@ grow_vertical = 0
 color = Color(1, 0.977, 0.97, 1)
 script = ExtResource("8_qoxgt")
 
-[node name="Panel Interact" type="ColorRect" parent="Interacteable" unique_id=1755460369]
+[node name="Panel Interact" type="ColorRect" parent="Midgard/Interacteables/Interacteable" unique_id=1755460369]
 visible = false
 anchors_preset = 7
 anchor_left = 0.5
@@ -269,40 +272,40 @@ script = ExtResource("8_qoxgt")
 flash_time = 0.125
 flash_repeat_delay = 0.5
 
-[node name="Area2D" type="Area2D" parent="Interacteable" unique_id=1641419204]
+[node name="Area2D" type="Area2D" parent="Midgard/Interacteables/Interacteable" unique_id=1641419204]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interacteable/Area2D" unique_id=1476173058]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Interacteable/Area2D" unique_id=1476173058]
 position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_fp4rx")
 
-[node name="Door" type="Node2D" parent="." unique_id=1095740491 node_paths=PackedStringArray("door_block")]
+[node name="Door" type="Node2D" parent="Midgard/Interacteables" unique_id=1095740491 node_paths=PackedStringArray("door_block")]
 position = Vector2(37, -3)
 script = ExtResource("9_fp4rx")
 door_block = NodePath("Block")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Door" unique_id=84205515]
+[node name="Sprite2D" type="Sprite2D" parent="Midgard/Interacteables/Door" unique_id=84205515]
 z_index = -1
 position = Vector2(0, -17)
 rotation = -1.5707964
 scale = Vector2(2, 4)
 texture = SubResource("AtlasTexture_20h5i")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Door" unique_id=1918853555]
+[node name="Sprite2D2" type="Sprite2D" parent="Midgard/Interacteables/Door" unique_id=1918853555]
 z_index = 2
 position = Vector2(16, -17)
 rotation = -1.5707964
 scale = Vector2(2, 4)
 texture = SubResource("AtlasTexture_tbm4e")
 
-[node name="Block" type="StaticBody2D" parent="Door" unique_id=1876634525]
+[node name="Block" type="StaticBody2D" parent="Midgard/Interacteables/Door" unique_id=1876634525]
 position = Vector2(9, -11)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Block" unique_id=314885130]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Door/Block" unique_id=314885130]
 position = Vector2(2, -11)
 shape = SubResource("RectangleShape2D_t3nu2")
 
-[node name="Sprite2D" type="Sprite2D" parent="Door/Block" unique_id=359817531]
+[node name="Sprite2D" type="Sprite2D" parent="Midgard/Interacteables/Door/Block" unique_id=359817531]
 z_index = -3
 position = Vector2(-1, -4)
 rotation = -1.5707964
@@ -310,53 +313,96 @@ scale = Vector2(2, 4)
 texture = SubResource("AtlasTexture_qsy6p")
 offset = Vector2(1, 0)
 
-[node name="Frame" type="StaticBody2D" parent="Door" unique_id=1473358788]
+[node name="Frame" type="StaticBody2D" parent="Midgard/Interacteables/Door" unique_id=1473358788]
 position = Vector2(0, -11)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Frame" unique_id=1244093388]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Door/Frame" unique_id=1244093388]
 position = Vector2(11, -36)
 shape = SubResource("RectangleShape2D_ju0ar")
 
-[node name="Hazard" parent="." unique_id=1082906915 instance=ExtResource("13_20h5i")]
-position = Vector2(-192, -17)
-rotation = 1.5707964
-damage = 2
-
-[node name="Player_River" parent="." unique_id=1254970227 instance=ExtResource("5_moakd")]
-position = Vector2(-67, -28)
-energy = SubResource("Resource_tbm4e")
-
-[node name="Player_Soil" parent="." unique_id=1847633799 instance=ExtResource("4_cgekv")]
-position = Vector2(-80, -304)
-energy = SubResource("Resource_qsy6p")
-
-[node name="Damage_Area" type="Area2D" parent="." unique_id=1473246612]
-position = Vector2(0, 161)
-script = ExtResource("12_klnrk")
-damage = 100
-metadata/_custom_type_script = "uid://o0mpm37m04yy"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage_Area" unique_id=256639191]
-position = Vector2(793.5, 0)
-shape = SubResource("RectangleShape2D_c1nht")
-
-[node name="Turret" parent="." unique_id=1014261088 instance=ExtResource("13_k6t00")]
-position = Vector2(-55, -107)
+[node name="Dead Plant" type="Area2D" parent="Midgard/Interacteables" unique_id=1137126244 node_paths=PackedStringArray("player_area", "event_objects")]
+position = Vector2(-129, -10)
+script = ExtResource("8_fp4rx")
+player_area = NodePath(".")
+event_objects = [NodePath("Plant"), NodePath("Plant2")]
+special_interaction = true
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Turret" unique_id=1157737426]
-position = Vector2(-19, 22.5)
-shape = SubResource("RectangleShape2D_20h5i")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Dead Plant" unique_id=784091910]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_oamku")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1645448606]
-position = Vector2(486, -137.75)
-scale = Vector2(0.5234375, 38.5)
+[node name="Plant" type="Node2D" parent="Midgard/Interacteables/Dead Plant" unique_id=1553527365]
+visible = false
+script = ExtResource("8_qoxgt")
+flash_time = 0.0
+metadata/_edit_group_ = true
 
-[node name="RiverEnergyBar" type="Sprite2D" parent="." unique_id=451346127]
-position = Vector2(86, -94)
-texture = ExtResource("8_k6t00")
+[node name="ColorRect2" type="ColorRect" parent="Midgard/Interacteables/Dead Plant/Plant" unique_id=329803203]
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 2.0
+offset_bottom = 9.700043
+color = Color(0.22666669, 0.68, 0.13599999, 1)
 
-[node name="Damage_Area2" type="Area2D" parent="." unique_id=769883578]
+[node name="ColorRect3" type="ColorRect" parent="Midgard/Interacteables/Dead Plant/Plant" unique_id=677435517]
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 1.0
+rotation = -0.800982
+color = Color(0.22666669, 0.68, 0.13599999, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Midgard/Interacteables/Dead Plant/Plant" unique_id=2041010964]
+offset_left = -5.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 4.0
+rotation = -0.800982
+color = Color(0.22666669, 0.68, 0.13599999, 1)
+
+[node name="Plant2" type="Node2D" parent="Midgard/Interacteables/Dead Plant" unique_id=1770455257]
+position = Vector2(3.0000005, -1.0000001)
+rotation = 0.29416773
+script = ExtResource("8_qoxgt")
+flash_time = -1.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Midgard/Interacteables/Dead Plant/Plant2" unique_id=2129647580]
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 2.0
+offset_bottom = 9.700043
+color = Color(0.61, 0.45353502, 0.2623, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Midgard/Interacteables/Dead Plant/Plant2" unique_id=1665399240]
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 1.0
+rotation = -0.16901547
+color = Color(0.61, 0.45353502, 0.2623, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Midgard/Interacteables/Dead Plant/Plant2" unique_id=784486144]
+offset_left = -4.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 4.0
+rotation = 0.18604308
+color = Color(0.61, 0.45353502, 0.2623, 1)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Midgard/Interacteables/Dead Plant/Plant2" unique_id=1613319982]
+
+[node name="ColorRect" type="ColorRect" parent="Midgard/Interacteables/Dead Plant" unique_id=944337250]
+offset_left = -8.458908
+offset_top = 4.566681
+offset_right = 8.623276
+offset_bottom = 9.700043
+color = Color(0.33, 0.16054502, 0.069299996, 1)
+
+[node name="Hazards" type="Node2D" parent="Midgard" unique_id=742212494]
+
+[node name="Damage_Area2" type="Area2D" parent="Midgard/Hazards" unique_id=769883578]
 position = Vector2(82, -63)
 script = ExtResource("12_klnrk")
 damage = -1
@@ -364,10 +410,10 @@ destroy_on_collision = false
 metadata/_custom_type_script = "uid://o0mpm37m04yy"
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage_Area2" unique_id=806027211]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Hazards/Damage_Area2" unique_id=806027211]
 shape = SubResource("RectangleShape2D_ejki1")
 
-[node name="ColorRect" type="ColorRect" parent="Damage_Area2" unique_id=178997085]
+[node name="ColorRect" type="ColorRect" parent="Midgard/Hazards/Damage_Area2" unique_id=178997085]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -380,89 +426,90 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=82342618]
+[node name="Turret2" parent="Midgard/Hazards" unique_id=1059885196 node_paths=PackedStringArray("target") instance=ExtResource("13_k6t00")]
+position = Vector2(299, -50)
+target = NodePath("Sprite2D2")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Hazards/Turret2" unique_id=1501938518]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_20h5i")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Midgard/Hazards/Turret2" unique_id=564072469]
+position = Vector2(163, -104)
+texture = ExtResource("14_k6t00")
+
+[node name="Turret3" parent="Midgard/Hazards" unique_id=210269724 node_paths=PackedStringArray("target") instance=ExtResource("13_k6t00")]
+position = Vector2(238, 7)
+target = NodePath("Node2D")
+metadata/_edit_group_ = true
+
+[node name="Node2D" type="Node2D" parent="Midgard/Hazards/Turret3" unique_id=357280009]
+position = Vector2(-142, 8)
+
+[node name="Hazard" parent="Midgard/Hazards" unique_id=1082906915 instance=ExtResource("13_20h5i")]
+position = Vector2(-192, -17)
+rotation = 1.5707964
+damage = 2
+
+[node name="Turret" parent="Midgard/Hazards" unique_id=1014261088 instance=ExtResource("13_k6t00")]
+position = Vector2(-55, -107)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Hazards/Turret" unique_id=1157737426]
+position = Vector2(-19, 22.5)
+shape = SubResource("RectangleShape2D_20h5i")
+
+[node name="Damage_Area" type="Area2D" parent="Midgard/Hazards" unique_id=1473246612]
+position = Vector2(0, 161)
+script = ExtResource("12_klnrk")
+damage = 100
+metadata/_custom_type_script = "uid://o0mpm37m04yy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Hazards/Damage_Area" unique_id=256639191]
+position = Vector2(793.5, 0)
+shape = SubResource("RectangleShape2D_c1nht")
+
+[node name="Messing Around" type="Node2D" parent="Midgard" unique_id=470148849]
+
+[node name="Polygon2D" type="Polygon2D" parent="Midgard/Messing Around" unique_id=82342618]
 position = Vector2(573, -109)
 polygon = PackedVector2Array(0, 0, 44, 8, 39, -32, -14, -42, -11, -13)
 vertex_colors = PackedColorArray(0, 0, 0, 1, 0.84254926, 0.33082622, 0.4162594, 1, 0.42350724, 0.7423136, 0.43485358, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=564072469]
-position = Vector2(462, -154)
-texture = ExtResource("14_k6t00")
+[node name="RiverEnergyBar" type="Sprite2D" parent="Midgard/Messing Around" unique_id=451346127]
+position = Vector2(86, -94)
+texture = ExtResource("8_k6t00")
 
-[node name="Debug Detector" type="Area2D" parent="." unique_id=1137126244 node_paths=PackedStringArray("player_area", "event_objects")]
-position = Vector2(-129, -10)
-script = ExtResource("8_fp4rx")
-player_area = NodePath(".")
-event_objects = [NodePath("Plant"), NodePath("Plant2")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Debug Detector" unique_id=784091910]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_oamku")
-
-[node name="Plant" type="Node2D" parent="Debug Detector" unique_id=1553527365]
+[node name="Gui" parent="." unique_id=1157994508 instance=ExtResource("2_8ghjs")]
 visible = false
-script = ExtResource("8_qoxgt")
-flash_time = 0.0
+
+[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("3_o7uj6")]
+position = Vector2(-49, -111)
+
+[node name="Brace" type="Area2D" parent="." unique_id=1470298066]
+position = Vector2(436, -138)
+script = ExtResource("16_qsy6p")
 metadata/_edit_group_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="Debug Detector/Plant" unique_id=329803203]
-offset_left = -1.0
-offset_top = -5.0
-offset_right = 2.0
-offset_bottom = 9.700043
-color = Color(0.22666669, 0.68, 0.13599999, 1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Brace" unique_id=1896225623]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_wfmxh")
+debug_color = Color(0, 0.5950001, 0.7, 0)
 
-[node name="ColorRect3" type="ColorRect" parent="Debug Detector/Plant" unique_id=677435517]
-offset_left = 2.0
-offset_top = -2.0
-offset_right = 5.0
-offset_bottom = 1.0
-rotation = -0.800982
-color = Color(0.22666669, 0.68, 0.13599999, 1)
+[node name="Debug" type="ColorRect" parent="Brace" unique_id=316586547]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -13.0
+offset_right = 6.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 
-[node name="ColorRect4" type="ColorRect" parent="Debug Detector/Plant" unique_id=2041010964]
-offset_left = -5.0
-offset_top = 1.0
-offset_right = -2.0
-offset_bottom = 4.0
-rotation = -0.800982
-color = Color(0.22666669, 0.68, 0.13599999, 1)
-
-[node name="Plant2" type="Node2D" parent="Debug Detector" unique_id=1770455257]
-position = Vector2(3.0000005, -1.0000001)
-rotation = 0.29416773
-script = ExtResource("8_qoxgt")
-flash_time = -1.0
-metadata/_edit_group_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="Debug Detector/Plant2" unique_id=2129647580]
-offset_left = -1.0
-offset_top = -5.0
-offset_right = 2.0
-offset_bottom = 9.700043
-color = Color(0.61, 0.45353502, 0.2623, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="Debug Detector/Plant2" unique_id=1665399240]
-offset_left = 2.0
-offset_top = -2.0
-offset_right = 5.0
-offset_bottom = 1.0
-rotation = -0.16901547
-color = Color(0.61, 0.45353502, 0.2623, 1)
-
-[node name="ColorRect4" type="ColorRect" parent="Debug Detector/Plant2" unique_id=784486144]
-offset_left = -4.0
-offset_top = 1.0
-offset_right = -1.0
-offset_bottom = 4.0
-rotation = 0.18604308
-color = Color(0.61, 0.45353502, 0.2623, 1)
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Debug Detector/Plant2" unique_id=1613319982]
-
-[node name="ColorRect" type="ColorRect" parent="Debug Detector" unique_id=944337250]
-offset_left = -8.458908
-offset_top = 4.566681
-offset_right = 8.623276
-offset_bottom = 9.700043
-color = Color(0.33, 0.16054502, 0.069299996, 1)
+[node name="Sprite2D" type="Sprite2D" parent="Brace" unique_id=2020574756]
+visible = false

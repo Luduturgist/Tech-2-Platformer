@@ -6,6 +6,7 @@ class_name Interacteable
 
 @export var event_objects: Array[Event_Object]
 @export var single_use := true
+@export var special_interaction: bool = false
 
 var local := true
 
@@ -19,9 +20,15 @@ func try_player(body: Node2D, i: int):
 	if not exhausted and body is PlayerMovement and body.local:
 		rpc("flip_light", i)
 		if i > 0:
-			body.interact.connect(interact)
+			if special_interaction:
+				body.special_interact.connect(interact)
+			else:
+				body.interact.connect(interact)
 		else:
-			body.interact.disconnect(interact)
+			if special_interaction:
+				body.special_interact.disconnect(interact)
+			else:
+				body.interact.disconnect(interact)
 
 var exhausted := false
 func interact():

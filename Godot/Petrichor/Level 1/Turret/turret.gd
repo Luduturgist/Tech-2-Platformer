@@ -7,6 +7,7 @@ class_name Turret
 @export var projectile: PackedScene
 @export var target: Node2D
 @export var filter: Script = PlayerMovement
+@export var fire_delay: float = 1.5
 
 var active: bool = true
 var targets: Array[Node2D]
@@ -47,9 +48,25 @@ func untrack_target(body: Node2D):
 			if targets.size():
 				target = targets[0]
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	aim()
 	queue_redraw()
+	process_fire(delta)
+
+var fire_timer: float = 0
+func process_fire(delta: float):
+	if fire_timer >= 0:
+		fire_timer -= delta
+		if fire_timer <= 0:
+			if active and (targets.size() or target):
+				fire_timer += fire_delay
+				var p = projectile.instantiate()
+				p.rotate(head.rotation)
+				add_child(p)
+				p.global_position = muzzle.global_position
+			else:
+				fire_timer = 0
+
 
 func aim():
 	if (not active or not targets.size()) and not single_target: return

@@ -2,18 +2,22 @@ extends Action
 class_name Flash_Interact_Action
 
 @export var fade_path: NodePath
+var fader
 
 func _start(m: PlayerMovement, sig = null):
 	super._start(m, sig)
+	await move.get_tree().process_frame
+	fader = move.get_node(fade_path)
 
 func _perform_action():
 	if move.taking_action or not PlayerInput.moving:
 		return
 	
 	move.interact.emit()
-	move.get_node(fade_path)._trigger_event()
-	move.taking_action = true
+	fader._trigger_event()
+	#move.taking_action = true
 	print("asdgfszhwerusad")
-	await move.get_node(fade_path).fade_ended
+	await fader.fade_ended
 	print("asdgfsad")
-	move.taking_action = false
+	move.special_interact.emit()
+	#move.taking_action = false
