@@ -29,12 +29,16 @@ brace = SubResource("Resource_tua64")
 
 [node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1245137744]
 visible = true
+z_index = 2
 sprite_frames = ExtResource("5_agh35")
 
-[node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="5" unique_id=1484055677]
+[node name="Static Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="1" unique_id=905952174]
+z_index = 2
+
+[node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="5" unique_id=1493632730]
 position = Vector2(6, -2)
 
-[node name="CollisionShape2D" parent="Pivot/Brace" index="0" unique_id=1081634292]
+[node name="CollisionShape2D" parent="Pivot/Brace" index="0" unique_id=331385000]
 disabled = true
 
 [node name="Collider" parent="." index="2" unique_id=1016117325]

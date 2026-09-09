@@ -17,6 +17,7 @@ projectile = ExtResource("2_wtn8i")
 texture = ExtResource("2_2evcd")
 
 [node name="Head" type="Sprite2D" parent="." unique_id=1280181304]
+light_mask = 2
 rotation = -0.0005907615
 texture = ExtResource("3_4kw6q")
 flip_h = true

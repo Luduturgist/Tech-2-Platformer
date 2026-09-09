@@ -16,8 +16,6 @@ func _perform_action():
 	move.interact.emit()
 	fader._trigger_event()
 	#move.taking_action = true
-	print("asdgfszhwerusad")
 	await fader.fade_ended
-	print("asdgfsad")
 	move.special_interact.emit()
 	#move.taking_action = false

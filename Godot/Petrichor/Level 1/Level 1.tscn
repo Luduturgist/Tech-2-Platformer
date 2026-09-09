@@ -16,6 +16,16 @@
 [ext_resource type="PackedScene" uid="uid://beh68diy3i4dm" path="res://Level 1/Turret/turret.tscn" id="13_k6t00"]
 [ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://Debug/Hazard/Hazard.png" id="14_k6t00"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="16_qsy6p"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="17_3kkt0"]
+
+[sub_resource type="Gradient" id="Gradient_oamku"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c1nht"]
+gradient = SubResource("Gradient_oamku")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Resource" id="Resource_3kkt0"]
 resource_local_to_scene = true
@@ -79,15 +89,32 @@ river = NodePath("Midgard/Players/Player_River")
 camera = NodePath("CameraFollow")
 gui = NodePath("Gui")
 
+[node name="Cheer" type="PointLight2D" parent="." unique_id=1430680087]
+position = Vector2(-187, -4)
+color = Color(0.12941177, 0.94509804, 0.75686276, 1)
+range_item_cull_mask = 3
+texture = ExtResource("17_3kkt0")
+texture_scale = 2.0
+
+[node name="Background Lighting" type="PointLight2D" parent="." unique_id=426303979]
+position = Vector2(106.5, -119.00002)
+scale = Vector2(17.546875, 9.8125)
+color = Color(0.48833424, 0.57539827, 0.51134884, 1)
+blend_mode = 2
+range_item_cull_mask = 5
+texture = SubResource("GradientTexture2D_c1nht")
+
 [node name="Midgard" type="Node2D" parent="." unique_id=2118269782]
 
 [node name="Players" type="Node2D" parent="Midgard" unique_id=1885024849]
 
 [node name="Player_River" parent="Midgard/Players" unique_id=1254970227 instance=ExtResource("5_moakd")]
-position = Vector2(-67, -28)
+z_index = 4
+position = Vector2(-49, -15)
 energy = SubResource("Resource_3kkt0")
 
 [node name="Player_Soil" parent="Midgard/Players" unique_id=1847633799 instance=ExtResource("4_cgekv")]
+light_mask = 1
 position = Vector2(-80, -304)
 energy = SubResource("Resource_7rej1")
 
@@ -292,7 +319,8 @@ scale = Vector2(2, 4)
 texture = SubResource("AtlasTexture_20h5i")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Midgard/Interacteables/Door" unique_id=1918853555]
-z_index = 2
+light_mask = 4
+z_index = 10
 position = Vector2(16, -17)
 rotation = -1.5707964
 scale = Vector2(2, 4)
@@ -448,6 +476,8 @@ metadata/_edit_group_ = true
 position = Vector2(-142, 8)
 
 [node name="Hazard" parent="Midgard/Hazards" unique_id=1082906915 instance=ExtResource("13_20h5i")]
+visibility_layer = 31
+z_index = 9
 position = Vector2(-192, -17)
 rotation = 1.5707964
 damage = 2

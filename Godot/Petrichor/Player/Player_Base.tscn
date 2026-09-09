@@ -45,6 +45,7 @@ properties/2/replication_mode = 1
 size = Vector2(12, 23)
 
 [node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset")]
+light_mask = 2
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
@@ -67,10 +68,12 @@ public_visibility = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1245137744]
 visible = false
+light_mask = 2
 autoplay = "default"
 
 [node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
 visible = false
+light_mask = 2
 texture = ExtResource("5_j7rw5")
 
 [node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573]
@@ -78,6 +81,7 @@ visible = false
 position = Vector2(0, -6)
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)
 energy = 1.5
+range_item_cull_mask = 3
 texture = ExtResource("6_fpjr1")
 texture_scale = 2.0
 script = ExtResource("8_awm26")
