@@ -44,6 +44,9 @@ properties/2/replication_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
 size = Vector2(12, 23)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ju0ar"]
+radius = 33.8
+
 [node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset")]
 light_mask = 2
 visibility_layer = 2
@@ -72,7 +75,6 @@ light_mask = 2
 autoplay = "default"
 
 [node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
-visible = false
 light_mask = 2
 texture = ExtResource("5_j7rw5")
 
@@ -161,6 +163,11 @@ visible = false
 
 [node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]
 position = Vector2(13, 0)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot" unique_id=1490990795]
+position = Vector2(-25, 0)
+shape = SubResource("CircleShape2D_ju0ar")
+target_position = Vector2(50, 0)
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]
 visible = false

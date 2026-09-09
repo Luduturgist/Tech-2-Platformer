@@ -84,7 +84,7 @@ func _debug():
 	var s: String = "local "
 	if not local:
 		s = "friend "
-	print(s + "golem owned by " + str(get_multiplayer_authority()))
+	#print(s + "golem owned by " + str(get_multiplayer_authority()))
 
 func _take_damage(amount: int = 1):
 	if not local: return

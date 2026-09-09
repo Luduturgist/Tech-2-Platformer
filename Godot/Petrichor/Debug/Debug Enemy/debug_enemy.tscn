@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://wdx2ukd6cahx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
+
+[node name="Debug Enemy" type="Area2D" unique_id=852204349]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123607045]
+shape = SubResource("RectangleShape2D_n7v4o")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1484596416]
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=581855474]
+z_index = 1
+offset_left = -6.0
+offset_top = -8.0
+offset_right = -2.0
+offset_bottom = -2.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1478533287]
+z_index = 1
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -2.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=668212285]
+z_index = 1
+offset_left = 4.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = -6.0
+
+[node name="ColorRect5" type="ColorRect" parent="." unique_id=936090901]
+z_index = 1
+offset_left = -4.0
+offset_top = -8.0
+offset_right = -2.0
+offset_bottom = -6.0
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=362272603]
+position = Vector2(2, -10)
+polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 6, 0)
+
+[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1921935124]
+position = Vector2(-1.9999999, -10)
+rotation = 3.1415927
+scale = Vector2(0.7999985, -1)
+polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 6, 0)
