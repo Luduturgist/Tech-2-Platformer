@@ -5,10 +5,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auhli"]
 size = Vector2(10, 10)
 
-[node name="DebugProjectile" type="Area2D" unique_id=1858985648 node_paths=PackedStringArray("vfx")]
+[node name="DebugProjectile" type="Area2D" unique_id=1858985648 node_paths=PackedStringArray("vfx", "raycast")]
 light_mask = 2
+collision_layer = 17
+collision_mask = 17
 script = ExtResource("1_j6as5")
 vfx = NodePath("VFX")
+raycast = NodePath("HitCast")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=218091293]
 shape = SubResource("RectangleShape2D_auhli")

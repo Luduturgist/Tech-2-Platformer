@@ -103,6 +103,7 @@ color = Color(0.48833424, 0.57539827, 0.51134884, 1)
 blend_mode = 2
 range_item_cull_mask = 5
 texture = SubResource("GradientTexture2D_c1nht")
+metadata/_edit_lock_ = true
 
 [node name="Midgard" type="Node2D" parent="." unique_id=2118269782]
 
@@ -418,8 +419,6 @@ offset_right = -1.0
 offset_bottom = 4.0
 rotation = 0.18604308
 color = Color(0.61, 0.45353502, 0.2623, 1)
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Midgard/Interacteables/Dead Plant/Plant2" unique_id=1613319982]
 
 [node name="ColorRect" type="ColorRect" parent="Midgard/Interacteables/Dead Plant" unique_id=944337250]
 offset_left = -8.458908

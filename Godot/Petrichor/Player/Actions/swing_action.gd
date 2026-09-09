@@ -12,16 +12,23 @@ var can_swing: bool = false
 func _perform_action():
 	if not can_swing and not move.is_on_floor():
 		return
-	if move.velocity.length() > 200:
-		return
+	
+	if Game_Scene.active.friend.cheering:
+		perform_pull()
+	else:
+		perform_push()
+	can_swing = false
+	move.taking_action = true
+
+func perform_pull():
+	#if move.velocity.length() > 200:
+		#return
 	
 	var energy: float = 1
 	if energy_drain:
 		energy = float(move.energy._drain_charge(energy_drain))/ float(energy_drain)
 		if not energy: return
 	
-	can_swing = false
-	move.taking_action = true
 	var friend:= Game_Scene.active.friend.position
 	var diff = friend - move.position
 	var dir = diff.normalized() * swing * energy
@@ -34,6 +41,15 @@ func _perform_action():
 	while move.velocity.length() > move.move_speed:
 		await move.get_tree().process_frame
 	move.taking_action = false
+
+func perform_push():
+	var energy: float = 1
+	if energy_drain:
+		energy = float(move.energy._drain_charge(energy_drain))/ float(energy_drain)
+		if not energy: return
+	
+	
+
 
 func _reset_swing():
 	can_swing = true

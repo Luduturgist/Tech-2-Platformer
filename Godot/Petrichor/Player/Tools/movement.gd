@@ -30,6 +30,7 @@ signal interact
 signal special_interact
 signal player_land
 var speed_mods: Dictionary[String, float]
+var cheering: bool = false
 
 func sum_speed_mods() -> float:
 	var sum: float = 0
@@ -58,10 +59,17 @@ func dress() -> void:
 	#print(name + " dressed by " + str(multiplayer.get_unique_id()))
 	active = self
 	local = true
-	collision_layer = 1
-	collision_mask = 1
+	
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(1, true)
+	set_collision_layer_value(5, true)
+	set_collision_mask_value(2, false)
+	set_collision_mask_value(1, true)
+	set_collision_mask_value(5, true)
 	visibility_layer = 1
 	z_index += 1
+	set_meta(Game_Scene.COMBAT_METADATA, true)
+	
 	if energy == null:
 		energy = PlayerEnergy.new()
 	energy._start(self)
@@ -69,7 +77,6 @@ func dress() -> void:
 	friendly._start(self)
 	PlayerInput.player_debug.connect(energy._debug)
 	brace._start(self, PlayerInput.player_brace)
-	set_meta(Game_Scene.COMBAT_METADATA, true)
 	PlayerInput.player_interact.connect(friendly._perform_action)
 	PlayerInput.player_jump.connect(processs_jump)
 

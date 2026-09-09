@@ -4,7 +4,8 @@ class_name Damage_Area
 @export var damage: int = 1
 @export var destroy_on_collision = true
 @export var ignore: Array[Node2D]
-signal impact()
+signal impact
+var impacted_body: Node2D
 
 func _ready() -> void:
 	body_entered.connect(try_damage_body)
@@ -25,6 +26,7 @@ func try_damage_body(body: Node2D):
 
 var blocked: bool = false
 func _hit_obstacle(body: Node2D, blocking: bool = false) -> int:
+	impacted_body = body
 	if blocking:
 		blocked = true
 	if destroy_on_collision:

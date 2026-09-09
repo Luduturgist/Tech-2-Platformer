@@ -18,11 +18,11 @@ text = "Quit the game?"
 layout_mode = 2
 theme_override_constants/separation = 32
 
-[node name="Close" parent="PanelContainer/VBoxContainer" index="2" unique_id=1450728526]
-text = "Cancel"
-
-[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" index="3" unique_id=1900503749]
+[node name="Quit" type="Button" parent="PanelContainer/VBoxContainer" index="2" unique_id=1900503749]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Quit"
 script = ExtResource("2_tf5y7")
+
+[node name="Close" parent="PanelContainer/VBoxContainer" index="3" unique_id=1450728526]
+text = "Cancel"

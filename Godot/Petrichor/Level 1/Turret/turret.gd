@@ -8,6 +8,7 @@ class_name Turret
 @export var target: Node2D
 @export var filter: Script = PlayerMovement
 @export var fire_delay: float = 1.5
+@export var spawner: MultiplayerSpawner
 
 var active: bool = true
 var targets: Array[Node2D]
@@ -20,6 +21,13 @@ func _ready() -> void:
 	Wrapper.scene_ready.connect(_sync_rot)
 	if target:
 		single_target = true
+	spawner.spawn_function = _spawn_projectile
+
+func _spawn_projectile(data: Vector3):
+	var p = projectile.instantiate()
+	p.rotate(data.z)
+	p.set_deferred("global_position", Vector2(data.x, data.y))
+	return p
 
 func _sync_rot():
 	if multiplayer.is_server():
@@ -51,19 +59,20 @@ func untrack_target(body: Node2D):
 func _physics_process(delta: float) -> void:
 	aim()
 	queue_redraw()
-	process_fire(delta)
+	if multiplayer.is_server():
+		process_fire(delta)
 
 var fire_timer: float = 0
 func process_fire(delta: float):
-	if fire_timer >= 0:
+	if fire_timer >= 0 and active:
 		fire_timer -= delta
 		if fire_timer <= 0:
 			if active and (targets.size() or target):
 				fire_timer += fire_delay
-				var p = projectile.instantiate()
-				p.rotate(head.rotation)
-				add_child(p)
-				p.global_position = muzzle.global_position
+				spawner.spawn(Vector3(
+					muzzle.global_position.x,
+					muzzle.global_position.y,
+					head.rotation))
 			else:
 				fire_timer = 0
 

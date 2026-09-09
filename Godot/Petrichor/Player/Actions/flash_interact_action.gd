@@ -14,8 +14,12 @@ func _perform_action():
 		return
 	
 	move.interact.emit()
+	
+	if move.cheering:
+		return
+	
 	fader._trigger_event()
 	#move.taking_action = true
-	await fader.fade_ended
 	move.special_interact.emit()
+	await fader.fade_ended
 	#move.taking_action = false

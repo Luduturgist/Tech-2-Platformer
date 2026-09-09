@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
 
-[sub_resource type="Resource" id="Resource_j7rw5"]
+[sub_resource type="Resource" id="Resource_82fik"]
 script = ExtResource("2_awm26")
 fade_path = NodePath("Pivot/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
@@ -50,7 +50,7 @@ visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7rw5")
-friendly = SubResource("Resource_j7rw5")
+friendly = SubResource("Resource_82fik")
 pain_feedback = SubResource("Resource_ak3bm")
 move_ability = SubResource("Resource_gkydo")
 brace = SubResource("Resource_tbm4e")
@@ -76,19 +76,23 @@ visible = false
 light_mask = 2
 texture = ExtResource("5_j7rw5")
 
-[node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573]
+[node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573 node_paths=PackedStringArray("player")]
 visible = false
+light_mask = 3
 position = Vector2(0, -6)
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)
-energy = 1.5
+energy = 2.0
 range_item_cull_mask = 3
 texture = ExtResource("6_fpjr1")
 texture_scale = 2.0
 script = ExtResource("8_awm26")
 fade_time = 1.5
+player = NodePath("../..")
 
 [node name="Pain" type="ColorRect" parent="Pivot" unique_id=1026537008]
 visible = false
+light_mask = 2
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -107,6 +111,8 @@ script = ExtResource("7_boe6u")
 
 [node name="Dust" type="ColorRect" parent="Pivot" unique_id=535895140]
 visible = false
+light_mask = 2
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -126,6 +132,7 @@ flash_time = 0.2
 
 [node name="Brace" type="Area2D" parent="Pivot" unique_id=1493632730]
 visible = false
+z_index = 2
 position = Vector2(10, -8)
 script = ExtResource("8_tjj38")
 metadata/_edit_group_ = true
