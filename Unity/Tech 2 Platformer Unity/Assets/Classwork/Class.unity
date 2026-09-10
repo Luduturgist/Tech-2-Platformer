@@ -8156,14 +8156,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2267901795514282387, guid: dd1e26edcea68644ba0849ff6651137f, type: 3}
-      propertyPath: m_Interpolate
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2267901795514282387, guid: dd1e26edcea68644ba0849ff6651137f, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3186999214137787060, guid: dd1e26edcea68644ba0849ff6651137f, type: 3}
       propertyPath: m_Name
       value: Classwork Player
