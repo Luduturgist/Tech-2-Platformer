@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_wfmxh"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_8voip"]
 [ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_agh35"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_8voip"]
 
 [sub_resource type="Resource" id="Resource_wfmxh"]
 script = ExtResource("2_wfmxh")
@@ -25,6 +26,10 @@ metadata/_custom_type_script = "uid://tv13wd5op1f0"
 script = ExtResource("4_8voip")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
+[sub_resource type="Resource" id="Resource_8voip"]
+script = ExtResource("6_8voip")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
 size = Vector2(13, 30)
 
@@ -33,6 +38,7 @@ friendly = SubResource("Resource_wfmxh")
 pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
 brace = SubResource("Resource_tua64")
+impact_action = SubResource("Resource_8voip")
 
 [node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1245137744]
 visible = true
@@ -48,3 +54,6 @@ disabled = true
 [node name="Collider" parent="." index="2" unique_id=1016117325]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")
+
+[node name="ShapeCast2D" parent="." index="3" unique_id=1490990795]
+visible = true

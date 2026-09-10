@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://wdx2ukd6cahx"]
 
+[ext_resource type="Script" uid="uid://duajjc5o0s0u" path="res://Enemies/enemy.gd" id="1_5fl5a"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
 [node name="Debug Enemy" type="Area2D" unique_id=852204349]
+script = ExtResource("1_5fl5a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123607045]
 shape = SubResource("RectangleShape2D_n7v4o")

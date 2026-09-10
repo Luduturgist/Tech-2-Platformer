@@ -1,31 +1,27 @@
-extends CharacterBody2D
+extends Area2D
+class_name Enemy
 
+@export var health: int = 5
+@export var damage: int = 1
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
-const tile_height = 32
+signal damage_taken
 
-@export var target: Node2D
+func _take_damage(amount: int):
+	process_damage(amount)
+	rpc("_network_damage", amount)
+	damage_taken.emit()
 
-func _physics_process(delta: float) -> void:
-	process_move(delta)
+func process_damage(amount: int):
+	if is_multiplayer_authority():
+		health -= damage
+		if health <= 0:
+			rpc("kill_enemy")
 
-func process_move(delta: float):
-		# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+@rpc("any_peer", "call_remote", "reliable")
+func _network_damage(amount: int):
+	damage_taken.emit()
+	process_damage(amount)
 
-		
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	move_and_slide()
-
-func process_jump():
-	velocity.y = JUMP_VELOCITY
+@rpc("authority", "call_local", "reliable")
+func kill_enemy():
+	queue_free()

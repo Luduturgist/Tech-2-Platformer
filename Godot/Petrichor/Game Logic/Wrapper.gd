@@ -111,6 +111,7 @@ var scene_tally: int = 0
 func scene_checkin(scene: String, id: int = 0):
 	#print("checking in")
 	await get_tree().process_frame
+	await get_tree().process_frame
 	if scene != get_tree().current_scene.scene_file_path:
 		if multiplayer.is_server():
 			rpc("scene_checkin", get_tree().current_scene.scene_file_path, 1)

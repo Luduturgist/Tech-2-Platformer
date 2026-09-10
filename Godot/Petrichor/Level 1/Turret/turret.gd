@@ -57,6 +57,9 @@ func untrack_target(body: Node2D):
 				target = targets[0]
 
 func _physics_process(delta: float) -> void:
+	if not multiplayer.get_peers().size():
+		return
+	
 	aim()
 	queue_redraw()
 	if multiplayer.is_server():

@@ -421,6 +421,84 @@ offset_right = 8.623276
 offset_bottom = 9.700043
 color = Color(0.33, 0.16054502, 0.069299996, 1)
 
+[node name="Dead Plant2" type="Area2D" parent="Midgard/Interacteables" unique_id=1022481676 node_paths=PackedStringArray("player_area", "event_objects")]
+position = Vector2(-97, -10)
+script = ExtResource("8_fp4rx")
+player_area = NodePath(".")
+event_objects = [NodePath("Plant"), NodePath("Plant2")]
+special_interaction = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Dead Plant2" unique_id=554406264]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_oamku")
+
+[node name="Plant" type="Node2D" parent="Midgard/Interacteables/Dead Plant2" unique_id=265995997]
+visible = false
+script = ExtResource("8_qoxgt")
+flash_time = 0.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2/Plant" unique_id=1029070861]
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 2.0
+offset_bottom = 9.700043
+color = Color(0.22666669, 0.68, 0.13599999, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2/Plant" unique_id=985129170]
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 1.0
+rotation = -0.800982
+color = Color(0.22666669, 0.68, 0.13599999, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2/Plant" unique_id=1145782417]
+offset_left = -5.0
+offset_top = 1.0
+offset_right = -2.0
+offset_bottom = 4.0
+rotation = -0.800982
+color = Color(0.22666669, 0.68, 0.13599999, 1)
+
+[node name="Plant2" type="Node2D" parent="Midgard/Interacteables/Dead Plant2" unique_id=498087338]
+position = Vector2(3.0000005, -1.0000001)
+rotation = 0.29416773
+script = ExtResource("8_qoxgt")
+flash_time = -1.0
+metadata/_edit_group_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2/Plant2" unique_id=1066949855]
+offset_left = -1.0
+offset_top = -5.0
+offset_right = 2.0
+offset_bottom = 9.700043
+color = Color(0.61, 0.45353502, 0.2623, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2/Plant2" unique_id=1862420917]
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 5.0
+offset_bottom = 1.0
+rotation = -0.16901547
+color = Color(0.61, 0.45353502, 0.2623, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2/Plant2" unique_id=943223460]
+offset_left = -4.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 4.0
+rotation = 0.18604308
+color = Color(0.61, 0.45353502, 0.2623, 1)
+
+[node name="ColorRect" type="ColorRect" parent="Midgard/Interacteables/Dead Plant2" unique_id=1172413159]
+offset_left = -8.458908
+offset_top = 4.566681
+offset_right = 8.623276
+offset_bottom = 9.700043
+color = Color(0.33, 0.16054502, 0.069299996, 1)
+
 [node name="Hazards" type="Node2D" parent="Midgard" unique_id=742212494]
 
 [node name="Damage_Area2" type="Area2D" parent="Midgard/Hazards" unique_id=769883578]
@@ -537,7 +615,7 @@ color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 visible = false
 
 [node name="Debug Enemy" parent="." unique_id=852204349 instance=ExtResource("17_3kkt0")]
-position = Vector2(-318, -10)
+position = Vector2(-353, -11)
 
-[node name="Debug Enemy2" parent="." unique_id=1262315015 instance=ExtResource("17_3kkt0")]
-position = Vector2(-355, -10)
+[node name="Debug Enemy2" parent="." unique_id=709409456 instance=ExtResource("17_3kkt0")]
+position = Vector2(-324, -14)

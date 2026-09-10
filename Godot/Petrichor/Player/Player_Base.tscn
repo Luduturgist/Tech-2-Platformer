@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
 [ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="5_j7rw5"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_82fik"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
 [ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
@@ -30,6 +31,10 @@ resource_local_to_scene = true
 script = ExtResource("4_82fik")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
+[sub_resource type="Resource" id="Resource_fpjr1"]
+script = ExtResource("6_82fik")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yifjq"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
@@ -44,10 +49,13 @@ properties/2/replication_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
 size = Vector2(12, 23)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ju0ar"]
-radius = 33.8
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82fik"]
+size = Vector2(12, 29)
 
-[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ju0ar"]
+radius = 7.0
+
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_cast")]
 light_mask = 2
 visibility_layer = 2
 collision_layer = 2
@@ -57,10 +65,12 @@ friendly = SubResource("Resource_82fik")
 pain_feedback = SubResource("Resource_ak3bm")
 move_ability = SubResource("Resource_gkydo")
 brace = SubResource("Resource_tbm4e")
+impact_action = SubResource("Resource_fpjr1")
 pivot = NodePath("Pivot")
 collider = NodePath("Collider")
 network_sync = NodePath("MultiplayerSynchronizer")
 cam_offset = NodePath("Pivot/Offset")
+impact_cast = NodePath("ShapeCast2D")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
 replication_config = SubResource("SceneReplicationConfig_yifjq")
@@ -75,6 +85,7 @@ light_mask = 2
 autoplay = "default"
 
 [node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+visible = false
 light_mask = 2
 texture = ExtResource("5_j7rw5")
 
@@ -164,10 +175,15 @@ visible = false
 [node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]
 position = Vector2(13, 0)
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot" unique_id=1490990795]
-position = Vector2(-25, 0)
-shape = SubResource("CircleShape2D_ju0ar")
-target_position = Vector2(50, 0)
-
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_82fik")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1490990795]
 visible = false
+position = Vector2(-8, 12)
+enabled = false
+shape = SubResource("CircleShape2D_ju0ar")
+target_position = Vector2(16, 0)
+max_results = 15
+collide_with_areas = true

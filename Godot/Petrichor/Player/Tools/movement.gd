@@ -14,6 +14,7 @@ class_name PlayerMovement
 @export var pain_feedback: Action
 @export var move_ability: Action
 @export var brace: Action
+@export var impact_action: Action
 var taking_action: bool = false
 
 @export_group("References")
@@ -21,6 +22,7 @@ var taking_action: bool = false
 @export var collider: CollisionShape2D
 @export var network_sync: MultiplayerSynchronizer
 @export var cam_offset: Node2D
+@export var impact_cast: ShapeCast2D
 
 static var active: PlayerMovement
 var local: bool
@@ -79,12 +81,13 @@ func dress() -> void:
 	brace._start(self, PlayerInput.player_brace)
 	PlayerInput.player_interact.connect(friendly._perform_action)
 	PlayerInput.player_jump.connect(processs_jump)
+	impact_action._start(self)
 
 func _debug():
-	var s: String = "local "
+	var _s: String = "local "
 	if not local:
-		s = "friend "
-	#print(s + "golem owned by " + str(get_multiplayer_authority()))
+		_s = "friend "
+	#print(_s + "golem owned by " + str(get_multiplayer_authority()))
 
 func _take_damage(amount: int = 1):
 	if not local: return
@@ -113,6 +116,7 @@ func _physics_process(delta: float) -> void:
 	process_camera_offset(delta)
 	energy._update(delta)
 
+var last_velocity: float = 0
 var can_move: bool = true
 func process_move(delta: float):	
 	if not is_on_floor():
@@ -137,11 +141,12 @@ func process_move(delta: float):
 		velocity.x = move_toward(velocity.x, 0, drag)
 		
 	var was_grounded = is_on_floor()
-	var last_vel:= velocity.length()
+	last_velocity = velocity.length()
 	move_and_slide()
 	if not was_grounded and is_on_floor():
 		player_land.emit()
-		if last_vel > 375:
+		impact_action._perform_action()
+		if last_velocity > 375:
 			$Pivot/Dust._trigger_event()
 
 func process_camera_offset(_delta: float):

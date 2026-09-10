@@ -39,7 +39,6 @@ func _trigger_impact():
 		var hit: Vector2 = $HitCast.get_collision_point()
 		if hit == Vector2.ZERO:
 			hit = global_position
-			print("not found")
 		#rpc("_explode", hit)
 		rpc("_explode")
 
