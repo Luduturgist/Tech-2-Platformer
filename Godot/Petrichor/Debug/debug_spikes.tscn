@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="4_vstgx"]
 [ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://Debug/Hazard/Hazard.tscn" id="4_yab24"]
 [ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="5_qhy05"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="5_vstgx"]
+[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Follow.tscn" id="5_vstgx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejki1"]
 

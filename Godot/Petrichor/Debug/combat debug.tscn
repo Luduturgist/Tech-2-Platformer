@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_nbhiy"]
 [ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="4_2c30o"]
 [ext_resource type="PackedScene" uid="uid://b7x1xel6pnfcx" path="res://UI/GUI/gui.tscn" id="5_giulk"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://Player/Tools/Camera Follow.tscn" id="6_dtrnm"]
+[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Follow.tscn" id="6_dtrnm"]
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="7_c132g"]
 [ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="8_t4nhv"]
 

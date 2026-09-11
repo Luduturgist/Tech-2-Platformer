@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b5i3bolpnpt0m" path="res://Debug/Debug Enemy/projectile.gd" id="1_j6as5"]
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_j6as5"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_auhli"]
 size = Vector2(10, 10)
 
@@ -12,6 +14,9 @@ collision_mask = 17
 script = ExtResource("1_j6as5")
 vfx = NodePath("VFX")
 raycast = NodePath("HitCast")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=201089476]
+replication_config = SubResource("SceneReplicationConfig_j6as5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=218091293]
 shape = SubResource("RectangleShape2D_auhli")

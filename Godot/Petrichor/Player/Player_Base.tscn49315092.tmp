@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://c5sn821thiii1"]
+
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="1_j7rw5"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_awm26"]
+[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_btxq5"]
+[ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
+[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="5_j7rw5"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_82fik"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
+[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
+[ext_resource type="Script" uid="uid://biqr47h3yc183" path="res://Game Logic/Networking/synchronizer_beholden.gd" id="7_k0ixv"]
+[ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
+[ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
+
+[sub_resource type="Resource" id="Resource_5fl5a"]
+script = ExtResource("2_awm26")
+fade_path = NodePath("Pivot/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_ak3bm"]
+script = ExtResource("2_btxq5")
+event_path = NodePath("Pivot/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_gkydo"]
+script = ExtResource("3_awm26")
+metadata/_custom_type_script = "uid://tv13wd5op1f0"
+
+[sub_resource type="Resource" id="Resource_tbm4e"]
+resource_local_to_scene = true
+script = ExtResource("4_82fik")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="Resource" id="Resource_fpjr1"]
+script = ExtResource("6_82fik")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yifjq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("Collider:position:x")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("Pivot:scale:x")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
+size = Vector2(12, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82fik"]
+size = Vector2(12, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ixv"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1nht"]
+
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_caster", "push_cast")]
+light_mask = 2
+visibility_layer = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_j7rw5")
+friendly = SubResource("Resource_5fl5a")
+pain_feedback = SubResource("Resource_ak3bm")
+move_ability = SubResource("Resource_gkydo")
+brace = SubResource("Resource_tbm4e")
+impact_action = SubResource("Resource_fpjr1")
+pivot = NodePath("Pivot")
+collider = NodePath("Collider")
+network_sync = NodePath("MultiplayerSynchronizer")
+cam_offset = NodePath("Pivot/Offset")
+impact_caster = NodePath("Smash Cast")
+push_cast = NodePath("Push Cast")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
+replication_config = SubResource("SceneReplicationConfig_yifjq")
+visibility_update_mode = 1
+public_visibility = false
+script = ExtResource("7_k0ixv")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=615041083]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1245137744]
+visible = false
+light_mask = 2
+autoplay = "default"
+
+[node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+visible = false
+light_mask = 2
+texture = ExtResource("5_j7rw5")
+
+[node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573 node_paths=PackedStringArray("player")]
+visible = false
+light_mask = 3
+position = Vector2(0, -6)
+color = Color(0.12941177, 0.94509804, 0.75686276, 1)
+energy = 2.0
+range_item_cull_mask = 3
+texture = ExtResource("6_fpjr1")
+texture_scale = 2.0
+script = ExtResource("8_awm26")
+fade_time = 1.5
+player = NodePath("../..")
+
+[node name="Pain" type="ColorRect" parent="Pivot" unique_id=1026537008]
+visible = false
+light_mask = 2
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -7.0
+offset_top = -7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.65, 0.23746665, 0.20799999, 0.60784316)
+script = ExtResource("7_boe6u")
+
+[node name="Dust" type="ColorRect" parent="Pivot" unique_id=535895140]
+visible = false
+light_mask = 2
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = 12.0
+offset_right = 9.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.5, 0.45591667, 0.385, 0.41568628)
+script = ExtResource("7_boe6u")
+flash_time = 0.2
+
+[node name="Brace" type="Area2D" parent="Pivot" unique_id=1493632730]
+visible = false
+z_index = 2
+position = Vector2(10, -8)
+script = ExtResource("8_tjj38")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Brace" unique_id=331385000]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_awm26")
+disabled = true
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="Debug" type="ColorRect" parent="Pivot/Brace" unique_id=1037213798]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -13.0
+offset_right = 6.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=1834553025]
+visible = false
+
+[node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]
+position = Vector2(13, 0)
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_82fik")
+
+[node name="Push Cast" type="ShapeCast2D" parent="." unique_id=1697370816]
+enabled = false
+shape = SubResource("CircleShape2D_k0ixv")
+target_position = Vector2(10, 0)
+collide_with_areas = true
+
+[node name="Smash Cast" type="ShapeCast2D" parent="." unique_id=328209519]
+position = Vector2(-10, 9)
+enabled = false
+shape = SubResource("CircleShape2D_c1nht")
+target_position = Vector2(20, 0)

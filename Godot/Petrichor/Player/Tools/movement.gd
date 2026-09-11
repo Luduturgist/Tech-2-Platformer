@@ -22,7 +22,8 @@ var taking_action: bool = false
 @export var collider: CollisionShape2D
 @export var network_sync: MultiplayerSynchronizer
 @export var cam_offset: Node2D
-@export var impact_cast: ShapeCast2D
+@export var impact_caster: ShapeCast2D
+@export var push_cast: ShapeCast2D
 
 static var active: PlayerMovement
 var local: bool
@@ -50,6 +51,7 @@ func _ready() -> void:
 	Wrapper.scene_ready.connect(_set_network_visibility.bind(0))
 	multiplayer.peer_disconnected.connect(_set_network_visibility)
 	PlayerInput.player_debug.connect(_debug)
+	
 
 func _set_network_visibility(i: int):
 	await get_tree().process_frame
@@ -76,11 +78,10 @@ func dress() -> void:
 		energy = PlayerEnergy.new()
 	energy._start(self)
 	move_ability._start(self, PlayerInput.player_special_movement)
-	friendly._start(self)
+	friendly._start(self, PlayerInput.player_interact)
 	PlayerInput.player_debug.connect(energy._debug)
 	brace._start(self, PlayerInput.player_brace)
-	PlayerInput.player_interact.connect(friendly._perform_action)
-	PlayerInput.player_jump.connect(processs_jump)
+	PlayerInput.player_jump.connect(process_jump)
 	impact_action._start(self)
 
 func _debug():
@@ -98,7 +99,7 @@ func player_die():
 	Wrapper._load_scene(get_tree().current_scene.scene_file_path)
 
 var can_jump: bool = true
-func processs_jump():
+func process_jump():
 	if is_on_floor() and can_jump:
 		velocity.y = -jump * sum_speed_mods()
 

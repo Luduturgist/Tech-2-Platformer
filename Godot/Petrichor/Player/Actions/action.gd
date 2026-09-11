@@ -6,8 +6,9 @@ var move: PlayerMovement
 
 func _start(m: PlayerMovement, sig = null):
 	move = m
-	if sig and not sig.is_connected(_perform_action):
+	if sig and sig:
 		sig.connect(_perform_action)
+		move.tree_exited.connect(func(): sig.disconnect(_perform_action))
 
 func _update(_delta: float): pass
 

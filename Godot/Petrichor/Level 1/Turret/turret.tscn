@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d1nhcq058p8ax" path="res://Level 1/Turret/turret_base.png" id="2_2evcd"]
 [ext_resource type="PackedScene" uid="uid://dtuonyxu5k0wb" path="res://Debug/Debug Enemy/Debug Projectile.tscn" id="2_wtn8i"]
 [ext_resource type="Texture2D" uid="uid://d0vemrdfi3ha" path="res://Level 1/Turret/turret_head.png" id="3_4kw6q"]
+[ext_resource type="Script" uid="uid://hhtqnwieq2so" path="res://Game Logic/network_spawner.gd" id="3_njykk"]
 
 [node name="Turret" type="Area2D" unique_id=210269724 node_paths=PackedStringArray("head", "muzzle", "spawner")]
 collision_layer = 3
@@ -11,12 +12,7 @@ collision_mask = 3
 script = ExtResource("1_5m6kd")
 head = NodePath("Head")
 muzzle = NodePath("Head/Muzzle")
-projectile = ExtResource("2_wtn8i")
-spawner = NodePath("MultiplayerSpawner")
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=987834621]
-_spawnable_scenes = PackedStringArray("uid://dtuonyxu5k0wb")
-spawn_path = NodePath("..")
+spawner = NodePath("Projectiles")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1097351179]
 texture = ExtResource("2_2evcd")
@@ -32,3 +28,7 @@ position = Vector2(11, -8)
 
 [node name="Muzzle Debug" type="Node2D" parent="Head" unique_id=1716474136]
 position = Vector2(129.0047, -7.91729)
+
+[node name="Projectiles" type="Node2D" parent="." unique_id=880966769]
+script = ExtResource("3_njykk")
+spawn_types = Array[PackedScene]([ExtResource("2_wtn8i")])

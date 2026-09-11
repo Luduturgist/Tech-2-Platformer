@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Petrichor"
+config/tags=PackedStringArray("assignment")
 run/main_scene="uid://c7db8e6o1sghv"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
@@ -51,6 +52,7 @@ folder_colors={
 "res://UI/Menu Handler/": "green",
 "res://UI/Root Menus/": "teal",
 "res://UI/Sub Menus/": "yellow",
+"res://VFX/": "purple",
 "res://World/": "pink"
 }
 

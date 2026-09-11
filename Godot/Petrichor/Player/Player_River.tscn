@@ -8,7 +8,7 @@
 [ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_agh35"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_8voip"]
 
-[sub_resource type="Resource" id="Resource_wfmxh"]
+[sub_resource type="Resource" id="Resource_otcxl"]
 script = ExtResource("2_wfmxh")
 fade_path = NodePath("Pivot/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
@@ -34,7 +34,7 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 size = Vector2(13, 30)
 
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
-friendly = SubResource("Resource_wfmxh")
+friendly = SubResource("Resource_otcxl")
 pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
 brace = SubResource("Resource_tua64")
@@ -48,12 +48,6 @@ frame_progress = 0.75295794
 [node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="5" unique_id=1493632730]
 position = Vector2(6, -2)
 
-[node name="CollisionShape2D" parent="Pivot/Brace" index="0" unique_id=331385000]
-disabled = true
-
 [node name="Collider" parent="." index="2" unique_id=1016117325]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")
-
-[node name="ShapeCast2D" parent="." index="3" unique_id=1490990795]
-visible = true

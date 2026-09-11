@@ -4,8 +4,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
-[node name="Debug Enemy" type="Area2D" unique_id=852204349]
+[node name="Debug Enemy" type="Area2D" unique_id=852204349 node_paths=PackedStringArray("damage_feedback")]
 script = ExtResource("1_5fl5a")
+damage_feedback = NodePath("Friwb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123607045]
 shape = SubResource("RectangleShape2D_n7v4o")
@@ -49,10 +50,26 @@ offset_bottom = -6.0
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=362272603]
 position = Vector2(2, -10)
-polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 6, 0)
+polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 5, 1)
 
 [node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1921935124]
 position = Vector2(-1.9999999, -10)
-rotation = 3.1415927
+rotation = -3.1415925
 scale = Vector2(0.7999985, -1)
-polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 6, 0)
+polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 5.0000086, 1.000001)
+
+[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1714062814]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 4, 3, 2, 0, 6, -3, 2)
+
+[node name="Friwb" type="Node2D" parent="." unique_id=1043039750]
+visible = false
+
+[node name="Polygon2D4" type="Polygon2D" parent="Friwb" unique_id=95536659]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3, 2, 5, 6, 3, 5, 0, 6)
+
+[node name="Polygon2D5" type="Polygon2D" parent="Friwb" unique_id=998178123]
+scale = Vector2(-1, 1)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(3, 2, 5, 6, 2, 5, 0, 6)

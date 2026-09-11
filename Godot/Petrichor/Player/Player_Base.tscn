@@ -9,10 +9,11 @@
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_82fik"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
+[ext_resource type="Script" uid="uid://biqr47h3yc183" path="res://Game Logic/Networking/synchronizer_beholden.gd" id="7_k0ixv"]
 [ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
 
-[sub_resource type="Resource" id="Resource_82fik"]
+[sub_resource type="Resource" id="Resource_5fl5a"]
 script = ExtResource("2_awm26")
 fade_path = NodePath("Pivot/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
@@ -52,16 +53,18 @@ size = Vector2(12, 23)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82fik"]
 size = Vector2(12, 29)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ju0ar"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ixv"]
+radius = 30.0
 
-[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_cast")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpjr1"]
+
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_caster", "push_cast")]
 light_mask = 2
 visibility_layer = 2
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_j7rw5")
-friendly = SubResource("Resource_82fik")
+friendly = SubResource("Resource_5fl5a")
 pain_feedback = SubResource("Resource_ak3bm")
 move_ability = SubResource("Resource_gkydo")
 brace = SubResource("Resource_tbm4e")
@@ -70,12 +73,14 @@ pivot = NodePath("Pivot")
 collider = NodePath("Collider")
 network_sync = NodePath("MultiplayerSynchronizer")
 cam_offset = NodePath("Pivot/Offset")
-impact_cast = NodePath("ShapeCast2D")
+impact_caster = NodePath("Smash Cast")
+push_cast = NodePath("Push Cast")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
 replication_config = SubResource("SceneReplicationConfig_yifjq")
 visibility_update_mode = 1
 public_visibility = false
+script = ExtResource("7_k0ixv")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=615041083]
 
@@ -153,6 +158,7 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Brace" unique_id=331385000]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_awm26")
+disabled = true
 debug_color = Color(0, 0.5950001, 0.7, 0)
 
 [node name="Debug" type="ColorRect" parent="Pivot/Brace" unique_id=1037213798]
@@ -179,11 +185,17 @@ position = Vector2(13, 0)
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_82fik")
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1490990795]
+[node name="Push Cast" type="ShapeCast2D" parent="." unique_id=1697370816]
 visible = false
-position = Vector2(-8, 12)
+position = Vector2(-5, 0)
 enabled = false
-shape = SubResource("CircleShape2D_ju0ar")
-target_position = Vector2(16, 0)
-max_results = 15
+shape = SubResource("CircleShape2D_k0ixv")
+target_position = Vector2(10, 0)
+collide_with_areas = true
+
+[node name="Smash Cast" type="ShapeCast2D" parent="." unique_id=328209519]
+position = Vector2(-5, 10)
+enabled = false
+shape = SubResource("CircleShape2D_fpjr1")
+target_position = Vector2(10, 0)
 collide_with_areas = true

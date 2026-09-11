@@ -11,6 +11,8 @@ var local_type: Golem = Golem.UNASSIGNED
 enum Golem {UNASSIGNED, GOLEM_SOIL, GOLEM_RIVER}
 
 signal scene_ready
+var scene_synchronized: bool = false
+signal begin_desync
 signal connection_failed
 const fallback_scene: String = "res://UI/Root Menus/Main Menu/Main Menu.tscn"
 
@@ -73,6 +75,7 @@ func _interrupt_session(id: int = -1):
 	peer.close()
 	PlayerInput.moving = false
 	await get_tree().process_frame
+	scene_synchronized = false
 	scene_tally = 0
 	
 	if get_tree().current_scene is Game_Scene:
@@ -90,6 +93,7 @@ func _buffer_disconnect():
 	Game_Scene.active.local.network_sync.public_visibility = false
 
 func _end_session(error: bool = false):
+	scene_synchronized = false
 	client_id = 0
 	friend_id = 0
 	peer.close()
@@ -126,12 +130,14 @@ func scene_checkin(scene: String, id: int = 0):
 		#print("everyone in")
 		scene_tally = 0
 		scene_ready.emit()
+		scene_synchronized = true
 
 func _load_scene(scene: String):
 	rpc("multiplayer_scene", scene)
 
 @rpc("call_local", "any_peer", "reliable")
 func multiplayer_scene(scene: String):
+	begin_desync.emit()
 	get_tree().call_deferred("change_scene_to_file", scene)
 	await get_tree().scene_changed
 	rpc("scene_checkin", scene, multiplayer.get_unique_id())

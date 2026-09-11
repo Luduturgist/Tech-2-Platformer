@@ -6,10 +6,12 @@ class_name Swing_Action
 @export var down_push: float = 250
 @export var energy_drain: int = 2
 @export var dash_delay: float = 0.5
+var cast: ShapeCast2D
 
 func _start(m: PlayerMovement, sig = null):
 	super._start(m, sig)
 	m.player_land.connect(_reset_swing)
+	cast = m.push_cast
 
 var can_swing: bool = false
 func _perform_action():
@@ -46,6 +48,15 @@ func perform_pull(energy: float):
 	move.taking_action = false
 
 func perform_push(energy: float):
+	cast.force_shapecast_update()
+	var objects: Array = cast.collision_result
+	if not objects.size():
+		return
+	for o in objects:
+		if o.get("collider").get_meta("Pushable"):
+			print("found")
+			pass
+	
 	if move.is_on_floor():
 		move.velocity.x -= sign(move.pivot.scale.x) * side_push * energy
 	else:
