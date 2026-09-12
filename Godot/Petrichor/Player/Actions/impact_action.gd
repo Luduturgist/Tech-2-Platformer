@@ -12,14 +12,8 @@ func _perform_action():
 	print(str(last_vel))
 	if 275 <= last_vel and last_vel < 395:
 		# 1 tile's worth of velocity, ~280 falling to ~320 jumped
-<<<<<<< Updated upstream
-		basic_damage()
-		PlayerInput.pause_time(0.1)
-	elif last_vel > 395:
-=======
 		basic_damage(1)
 	elif 395 <= last_vel and last_vel < 475:
->>>>>>> Stashed changes
 		# 2 tile's worth of velocity, ~400 falling to ~410 jumped
 		basic_damage(2)
 	elif 475 <= last_vel:
