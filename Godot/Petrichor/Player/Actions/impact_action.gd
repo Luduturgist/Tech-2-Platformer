@@ -10,22 +10,27 @@ func _start(m: PlayerMovement, sig = null):
 func _perform_action():
 	var last_vel := move.last_velocity
 	print(str(last_vel))
-	if last_vel > 275:
+	if 275 <= last_vel and last_vel < 395:
 		# 1 tile's worth of velocity, ~280 falling to ~320 jumped
+<<<<<<< Updated upstream
 		basic_damage()
 		PlayerInput.pause_time(0.1)
 	elif last_vel > 395:
+=======
+		basic_damage(1)
+	elif 395 <= last_vel and last_vel < 475:
+>>>>>>> Stashed changes
 		# 2 tile's worth of velocity, ~400 falling to ~410 jumped
-		pass
-	elif last_vel > 475:
+		basic_damage(2)
+	elif 475 <= last_vel:
 		# 3 tile's worth of velocity, ~482 falling to ~480 jumped
-		pass
+		basic_damage(3)
 
-func basic_damage():
+func basic_damage(amount: int):
 	move.impact_caster.force_shapecast_update()
 	var objects: Array = move.impact_caster.collision_result
-	if not objects.size():
+	if not objects or not objects.size():
 		return
 	for o in objects:
 		if o.get("collider").get_script() == Enemy:
-			o.get("collider")._take_damage(1)
+			o.get("collider")._take_damage(amount)
