@@ -93,7 +93,7 @@ func _debug():
 func _take_damage(amount: int = 1):
 	if not local: return
 	if amount > 0: pain_feedback._perform_action()
-	energy._take_damage(amount)
+	energy._inflict_pain(amount)
 
 func player_die():
 	Wrapper._load_scene(get_tree().current_scene.scene_file_path)

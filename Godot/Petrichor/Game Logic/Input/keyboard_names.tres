@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Input_Names" format=3 uid="uid://cklr7nip6iu65"]
+
+[ext_resource type="Script" uid="uid://c7l3l2alnslnr" path="res://Game Logic/Input/input_names.gd" id="1_l7v8v"]
+
+[resource]
+script = ExtResource("1_l7v8v")
+move_up = "Keyboard Move Up"
+move_down = "Keyboard Move Down"
+move_left = "Keyboard Move Left"
+move_right = "Keyboard Move Right"
+jump = "Keyboard Jump"
+interact = "Keyboard Interact"
+brace = "Keyboard Brace"
+swing = "Keyboard Swing"
+metadata/_custom_type_script = "uid://c7l3l2alnslnr"

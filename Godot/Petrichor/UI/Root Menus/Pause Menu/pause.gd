@@ -14,9 +14,11 @@ func _pause(value: bool = true):
 	if value and not visible:
 		visible = true
 		PlayerInput.moving = false
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	else:
 		visible = false
 		PlayerInput.moving = true
+		Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func _menu():
 	Wrapper._end_session()

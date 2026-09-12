@@ -22,6 +22,7 @@ func _ready() -> void:
 	Wrapper.scene_ready.connect(start_game)
 	pause = load(PAUSE_PATH).instantiate()
 	call_deferred("add_child", pause)
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _exit_tree():
 	pause.queue_free()

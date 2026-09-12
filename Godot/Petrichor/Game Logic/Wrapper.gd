@@ -77,6 +77,7 @@ func _interrupt_session(id: int = -1):
 	await get_tree().process_frame
 	scene_synchronized = false
 	scene_tally = 0
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
 	if get_tree().current_scene is Game_Scene:
 		_buffer_disconnect()

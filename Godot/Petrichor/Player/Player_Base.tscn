@@ -182,6 +182,7 @@ visible = false
 position = Vector2(13, 0)
 
 [node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]
+visible = false
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_82fik")
 
@@ -194,6 +195,7 @@ target_position = Vector2(10, 0)
 collide_with_areas = true
 
 [node name="Smash Cast" type="ShapeCast2D" parent="." unique_id=328209519]
+visible = false
 position = Vector2(-5, 10)
 enabled = false
 shape = SubResource("CircleShape2D_fpjr1")

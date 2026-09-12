@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Input_Names" format=3 uid="uid://bvmc34sxc70s8"]
+
+[ext_resource type="Script" uid="uid://c7l3l2alnslnr" path="res://Game Logic/Input/input_names.gd" id="1_b7yij"]
+
+[resource]
+script = ExtResource("1_b7yij")
+move_up = "Controller Move Up"
+move_down = "Controller Move Down"
+move_left = "Controller Move Left"
+move_right = "Controller Move Right"
+jump = "Controller Jump"
+interact = "Controller Interact"
+brace = "Controller Brace"
+swing = "Controller Swing"
+metadata/_custom_type_script = "uid://c7l3l2alnslnr"

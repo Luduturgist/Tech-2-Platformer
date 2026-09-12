@@ -4,11 +4,8 @@ class_name PlayerEnergy
 @export var charge: int = 10
 @export var maxCharge: int = 10
 @export var pain: int = 0
-@export var health: int = 10
-@export var maxHealth: int = 10
 @export var drain_interval: float = 4
 @export var movement_multiplier = 2
-signal depleted
 var move: PlayerMovement
 
 func _start(m: PlayerMovement):
@@ -42,34 +39,14 @@ func _replenish_charge(amount: int) -> int:
 func _drain_charge(amount: int, overdraw: bool = false) -> int:
 	var drain: int = amount
 	charge -= amount
-	if charge <= 0:
+	if charge < 0:
 		if overdraw:
-			_inflict_pain(-charge)
+			move._take_damage(-charge)
 		else:
 			drain += charge
 		charge = 0
-		depleted.emit()
 	update_ui()
 	return drain
-
-func _take_damage(amount: int, hurt: int = -99):
-	health -= amount
-	if health <= 0:
-		health = 0
-		move.player_die()
-	elif health > maxHealth:
-		health = maxHealth
-	if hurt == -99:
-		_inflict_pain(amount)
-	else:
-		_inflict_pain(hurt)
-	update_ui()
-
-func _heal_damage(amount: int):
-	health += amount
-	if health > maxHealth:
-		health = maxHealth
-	update_ui()
 
 func _inflict_pain(amount: int):
 	pain += amount

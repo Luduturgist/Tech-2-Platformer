@@ -4,9 +4,12 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
-[node name="Debug Enemy" type="Area2D" unique_id=852204349 node_paths=PackedStringArray("damage_feedback")]
+[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("damage_feedback", "collider")]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_5fl5a")
 damage_feedback = NodePath("Friwb")
+collider = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123607045]
 shape = SubResource("RectangleShape2D_n7v4o")
@@ -19,7 +22,6 @@ offset_bottom = 10.0
 color = Color(1, 0, 0, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="." unique_id=581855474]
-z_index = 1
 offset_left = -6.0
 offset_top = -8.0
 offset_right = -2.0
@@ -27,7 +29,6 @@ offset_bottom = -2.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="." unique_id=1478533287]
-z_index = 1
 offset_left = 2.0
 offset_top = -8.0
 offset_right = 6.0
@@ -35,14 +36,12 @@ offset_bottom = -2.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="." unique_id=668212285]
-z_index = 1
 offset_left = 4.0
 offset_top = -8.0
 offset_right = 6.0
 offset_bottom = -6.0
 
 [node name="ColorRect5" type="ColorRect" parent="." unique_id=936090901]
-z_index = 1
 offset_left = -4.0
 offset_top = -8.0
 offset_right = -2.0
@@ -73,3 +72,17 @@ polygon = PackedVector2Array(3, 2, 5, 6, 3, 5, 0, 6)
 scale = Vector2(-1, 1)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(3, 2, 5, 6, 2, 5, 0, 6)
+
+[node name="ColorRect8" type="ColorRect" parent="Friwb" unique_id=757277817]
+offset_left = -7.0
+offset_top = -3.0
+offset_right = -4.0
+offset_bottom = -2.0
+color = Color(0, 0.78431374, 1, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Friwb" unique_id=702788632]
+offset_left = 4.0
+offset_top = -3.0
+offset_right = 7.0
+offset_bottom = -2.0
+color = Color(0, 0.78431374, 1, 1)
