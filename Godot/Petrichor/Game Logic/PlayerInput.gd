@@ -14,7 +14,19 @@ signal close_root
 
 var moving: bool = false
 
+var pause_time: float = 0
+func _pause_movement(time: float):
+	if pause_time and time > pause_time:
+		pause_time = time
+	elif not pause_time:
+		pause_time  = time
+
 func _process(_delta: float) -> void:
+	if pause_time > 0:
+		pause_time -= _delta
+		if pause_time <= 0:
+			pause_time = 0
+	
 	if Input.is_action_just_pressed("Back"):
 		if not MenuHandler._try_close_menu():
 			close_root.emit()
@@ -23,7 +35,7 @@ func _process(_delta: float) -> void:
 	var y = Input.get_axis("Down", "Up")
 	movement_raw = Vector2(x, y)
 	
-	if not moving:
+	if not moving and not pause_time:
 		player_movement = Vector2.ZERO
 	else:
 		player_movement = movement_raw

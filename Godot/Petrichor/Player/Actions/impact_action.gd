@@ -13,6 +13,7 @@ func _perform_action():
 	if last_vel > 275:
 		# 1 tile's worth of velocity, ~280 falling to ~320 jumped
 		basic_damage()
+		PlayerInput.pause_time(0.1)
 	elif last_vel > 395:
 		# 2 tile's worth of velocity, ~400 falling to ~410 jumped
 		pass
