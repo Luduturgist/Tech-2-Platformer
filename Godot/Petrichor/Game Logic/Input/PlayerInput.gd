@@ -80,6 +80,8 @@ func _try_for_input_switch():
 func process_input(input: Input_Names):
 	var x = Input.get_axis(input.move_left, input.move_right)
 	var y = Input.get_axis(input.move_down, input.move_up)
+	x = sign(x)
+	y = sign(y)
 	movement_raw = Vector2(x, y)
 	
 	if not moving or pause_time > 0:

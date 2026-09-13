@@ -5,8 +5,8 @@
 [ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_wfmxh"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_wfmxh"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_8voip"]
-[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_agh35"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_8voip"]
+[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/river_sprite_frames.tres" id="7_8voip"]
 
 [sub_resource type="Resource" id="Resource_otcxl"]
 script = ExtResource("2_wfmxh")
@@ -34,23 +34,22 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 size = Vector2(13, 30)
 
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
+move_speed = 125.0
 friendly = SubResource("Resource_otcxl")
 pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
 brace = SubResource("Resource_tua64")
 impact_action = SubResource("Resource_8voip")
 
-[node name="AnimatedSprite2D" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1245137744]
-visible = true
-sprite_frames = ExtResource("5_agh35")
-frame_progress = 0.75295794
+[node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
+sprite_frames = ExtResource("7_8voip")
+animation = &"Jump"
+autoplay = "Idle"
+frame_progress = 0.0
 
-[node name="Brace" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="5" unique_id=1493632730]
+[node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="3" unique_id=1493632730]
 position = Vector2(6, -2)
 
 [node name="Collider" parent="." index="2" unique_id=1016117325]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")
-
-[node name="Smash Cast" parent="." index="4" unique_id=328209519]
-collision_mask = 4

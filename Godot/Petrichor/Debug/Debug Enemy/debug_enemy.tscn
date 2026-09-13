@@ -18,6 +18,7 @@ damage_feedback = NodePath("Pivot/Friwb")
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("PlayerDetectionArea")
 pivot = NodePath("Pivot")
+attack_range = 30.0
 metadata/Mortal = true
 
 [node name="PlayerDetectionArea" parent="." unique_id=549130071 instance=ExtResource("2_tliqh")]

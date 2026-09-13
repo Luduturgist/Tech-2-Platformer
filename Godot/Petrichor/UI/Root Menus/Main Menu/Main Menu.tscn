@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://14jgc32hj4re" path="res://UI/Root Menus/Main Menu/main_menu.gd" id="1_j1vdm"]
 [ext_resource type="Texture2D" uid="uid://cwa5o32jhrfpo" path="res://Player/Soil/Soil.png" id="2_mcx74"]
-[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/Idle/soil_idle.tres" id="3_lh1ru"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/soil_spriteframes.tres" id="3_lh1ru"]
 [ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="4_lp8yn"]
-[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_kq1dw"]
+[ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/river_sprite_frames.tres" id="5_kq1dw"]
 [ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="6_j1vdm"]
 [ext_resource type="Script" uid="uid://c1lvitj7jrjel" path="res://UI/Sub Menus/submenu_button.gd" id="6_lh1ru"]
 [ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls/Controls Menu.tscn" id="7_lh1ru"]
@@ -87,6 +87,7 @@ stretch_mode = 3
 [node name="Sprite2D" type="AnimatedSprite2D" parent="Network Buttons/VBoxContainer2/VBoxContainer/HBoxContainer2/TextureRect" unique_id=383931260]
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("5_kq1dw")
+animation = &"Idle"
 autoplay = "default"
 frame = 1
 frame_progress = 0.7926322

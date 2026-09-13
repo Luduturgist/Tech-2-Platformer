@@ -15,12 +15,12 @@
 
 [sub_resource type="Resource" id="Resource_5fl5a"]
 script = ExtResource("2_awm26")
-fade_path = NodePath("Pivot/Cheer")
+fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_ak3bm"]
 script = ExtResource("2_btxq5")
-event_path = NodePath("Pivot/Pain")
+event_path = NodePath("Pivot/VFX/Pain")
 metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_gkydo"]
@@ -58,7 +58,7 @@ radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpjr1"]
 
-[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_caster", "push_cast")]
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_caster", "push_cast", "animator")]
 light_mask = 2
 visibility_layer = 2
 collision_layer = 2
@@ -75,6 +75,7 @@ network_sync = NodePath("MultiplayerSynchronizer")
 cam_offset = NodePath("Pivot/Offset")
 impact_caster = NodePath("Smash Cast")
 push_cast = NodePath("Push Cast")
+animator = NodePath("Pivot/Animated Sprite")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
 replication_config = SubResource("SceneReplicationConfig_yifjq")
@@ -84,17 +85,14 @@ script = ExtResource("7_k0ixv")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=615041083]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1245137744]
-visible = false
+[node name="Animated Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1434542993]
 light_mask = 2
-autoplay = "default"
+animation = &""
+frame_progress = 0.6040647
 
-[node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
-visible = false
-light_mask = 2
-texture = ExtResource("5_j7rw5")
+[node name="VFX" type="Node2D" parent="Pivot" unique_id=1333519426]
 
-[node name="Cheer" type="PointLight2D" parent="Pivot" unique_id=1359862573 node_paths=PackedStringArray("player")]
+[node name="Cheer" type="PointLight2D" parent="Pivot/VFX" unique_id=1359862573 node_paths=PackedStringArray("player")]
 visible = false
 light_mask = 3
 position = Vector2(0, -6)
@@ -105,9 +103,9 @@ texture = ExtResource("6_fpjr1")
 texture_scale = 2.0
 script = ExtResource("8_awm26")
 fade_time = 1.5
-player = NodePath("../..")
+player = NodePath("../../..")
 
-[node name="Pain" type="ColorRect" parent="Pivot" unique_id=1026537008]
+[node name="Pain" type="ColorRect" parent="Pivot/VFX" unique_id=1026537008]
 visible = false
 light_mask = 2
 z_index = 1
@@ -127,7 +125,7 @@ size_flags_vertical = 4
 color = Color(0.65, 0.23746665, 0.20799999, 0.60784316)
 script = ExtResource("7_boe6u")
 
-[node name="Dust" type="ColorRect" parent="Pivot" unique_id=535895140]
+[node name="Dust" type="ColorRect" parent="Pivot/VFX" unique_id=535895140]
 visible = false
 light_mask = 2
 z_index = 1
@@ -148,20 +146,20 @@ color = Color(0.5, 0.45591667, 0.385, 0.41568628)
 script = ExtResource("7_boe6u")
 flash_time = 0.2
 
-[node name="Brace" type="Area2D" parent="Pivot" unique_id=1493632730]
+[node name="Brace" type="Area2D" parent="Pivot/VFX" unique_id=1493632730]
 visible = false
 z_index = 2
 position = Vector2(10, -8)
 script = ExtResource("8_tjj38")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Brace" unique_id=331385000]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/VFX/Brace" unique_id=331385000]
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_awm26")
 disabled = true
 debug_color = Color(0, 0.5950001, 0.7, 0)
 
-[node name="Debug" type="ColorRect" parent="Pivot/Brace" unique_id=1037213798]
+[node name="Debug" type="ColorRect" parent="Pivot/VFX/Brace" unique_id=1037213798]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -175,8 +173,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 
-[node name="Sprite2D" type="Sprite2D" parent="Pivot/Brace" unique_id=1834553025]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/VFX/Brace" unique_id=1834553025]
 visible = false
+
+[node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+visible = false
+light_mask = 2
+texture = ExtResource("5_j7rw5")
 
 [node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]
 position = Vector2(13, 0)

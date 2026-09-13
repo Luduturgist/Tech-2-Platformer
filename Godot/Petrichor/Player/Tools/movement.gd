@@ -24,6 +24,7 @@ var taking_action: bool = false
 @export var cam_offset: Node2D
 @export var impact_caster: ShapeCast2D
 @export var push_cast: ShapeCast2D
+@export var animator: AnimatedSprite2D
 
 static var active: PlayerMovement
 var local: bool
@@ -143,12 +144,25 @@ func process_move(delta: float):
 	var was_grounded = is_on_floor()
 	last_velocity = velocity.length()
 	move_and_slide()
+	
+	if not is_on_floor():
+		if was_grounded:
+			change_animation(&"Jump")
+	elif velocity.x == 0 and animator.animation:
+		change_animation(&"Idle")
+	elif PlayerInput.player_movement.x != 0:
+		change_animation(&"Run")
+	
 	if not was_grounded and is_on_floor():
 		player_land.emit()
 		impact_action._perform_action()
 		if last_velocity > 375:
-			$Pivot/Dust._trigger_event()
+			$Pivot/VFX/Dust._trigger_event()
 
 func process_camera_offset(_delta: float):
 	pass
 	#cam_offset.position.x = cam_offset_init.x * (0.5 + (PlayerInput.player_movement.x / 2))
+
+func change_animation(name: StringName):
+	if animator.animation != name:
+		animator.animation = name
