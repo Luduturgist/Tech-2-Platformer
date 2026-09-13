@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d0ljvgr7vray6" path="res://UI/Root Menus/Pause Menu/pause.gd" id="1_h74dl"]
 [ext_resource type="StyleBox" uid="uid://dgsmoid0ccwek" path="res://UI/Sub Menus/sub_menu_style.tres" id="2_icvu6"]
 [ext_resource type="Script" uid="uid://c1lvitj7jrjel" path="res://UI/Sub Menus/submenu_button.gd" id="3_02f02"]
-[ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls Menu.tscn" id="4_vh2yl"]
+[ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls/Controls Menu.tscn" id="4_vh2yl"]
 [ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="5_vh2yl"]
 
 [node name="Pause" type="CanvasLayer" unique_id=1036224902 node_paths=PackedStringArray("menu_button", "resume_button")]

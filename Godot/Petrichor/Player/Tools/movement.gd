@@ -66,7 +66,6 @@ func dress() -> void:
 	
 	set_collision_layer_value(2, false)
 	set_collision_layer_value(1, true)
-	set_collision_layer_value(5, true)
 	set_collision_mask_value(2, false)
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(5, true)

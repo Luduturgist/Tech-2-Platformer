@@ -7,7 +7,9 @@ func _ready():
 	pressed.connect(_open_submenu)
 
 func _open_submenu():
+	var menu
 	if submenu:
-		submenu.instantiate()
+		menu = submenu.instantiate()
 	else:
-		load(submenu_path).instantiate()
+		menu = load(submenu_path).instantiate()
+	add_child(menu)

@@ -29,5 +29,5 @@ func _process(delta: float) -> void:
 func set_brace_variables(value: bool):
 	visible = value
 	if is_multiplayer_authority():
-		print("happened")
+		#print("happened")
 		$CollisionShape2D.disabled = not value

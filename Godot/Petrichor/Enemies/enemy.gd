@@ -3,12 +3,16 @@ class_name Enemy
 
 @export var health: int = 5
 @export var damage: int = 1
-@export var speed: float = 100
+@export var speed: float = 50
+@export var accel: float = 250
 @export var damage_feedback: Node2D
 @export var collider: CollisionShape2D
 @export var detection_range: Area_Detector
+@export var pivot: Node2D
+@export var attack_range: float = 25
 
 signal damage_taken
+signal killed
 var tracking_enemy: bool
 
 func _ready() -> void:
@@ -34,15 +38,8 @@ func _show_damage():
 
 var last_pos: Vector2
 func _physics_process(_delta: float) -> void:
-	if not is_multiplayer_authority():
-		return
-	
-	if tracking_enemy:
-		velocity.x = move_toward(global_position.x, detection_range._nearest_target(global_position).global_position.x, speed * _delta)
-		move_and_slide()
-	
 	if last_pos != position and Wrapper.scene_synchronized:
-		_update_position.rpc(position)
+		_update_position.rpc(position, pivot.scale.x)
 		last_pos = position
 
 func _process(delta: float) -> void:
@@ -57,20 +54,23 @@ func _process(delta: float) -> void:
 			damage_vfx_timer = 0.5
 			damage_feedback.visible = true
 
-func _take_damage(amount: int):
-	process_damage(amount)
+func _take_damage(amount: int) -> int:
 	rpc("_network_damage", amount)
 	damage_taken.emit()
+	return process_damage(amount)
 
-func process_damage(amount: int):
-	if is_multiplayer_authority():
-		health -= amount
-		if health <= 0:
+func process_damage(amount: int) -> int:
+	health -= amount
+	if health <= 0:
+		if is_multiplayer_authority():
 			rpc("kill_enemy")
+		amount += health
+	return amount
 
 @rpc("authority", "call_remote", "unreliable_ordered")
-func _update_position(pos: Vector2):
+func _update_position(pos: Vector2, scale: int):
 	position = pos
+	pivot.scale.x = scale
 
 @rpc("any_peer", "call_remote", "reliable")
 func _network_damage(amount: int):
@@ -79,7 +79,9 @@ func _network_damage(amount: int):
 
 @rpc("authority", "call_local", "reliable")
 func kill_enemy():
+	killed.emit()
 	damage_feedback.visible = true
+	set_meta("Mortal", false)
 	damage_vfx_timer = 0
 	var t = get_tree().create_tween()
 	t.tween_property(self, "rotation_degrees", 90, 0.4)

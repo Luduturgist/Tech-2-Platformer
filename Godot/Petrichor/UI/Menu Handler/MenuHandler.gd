@@ -24,8 +24,6 @@ func _new_submenu(menu: Sub_Menu):
 	var backing = load("res://UI/Sub Menus/menu_backing.tscn").instantiate()
 	menu.add_child(backing)
 	menu.call_deferred("move_child", backing, 0)
-	if not PlayerInput.controller_input:
-		Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 
 func _try_close_menu() -> bool:
@@ -33,7 +31,5 @@ func _try_close_menu() -> bool:
 		sub_menus.pop_back()._close()
 		if sub_menus.size():
 			sub_menus.back()._refocus()
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 		return true
 	return false

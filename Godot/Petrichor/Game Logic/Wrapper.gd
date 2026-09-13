@@ -39,6 +39,7 @@ func _host():
 	multiplayer.multiplayer_peer = peer
 	if local_type == Golem.UNASSIGNED:
 		local_type = Golem.GOLEM_SOIL
+		PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
 
 func _join(ip: String = localIP):
 	peer.create_client(ip, 1027)
@@ -46,7 +47,7 @@ func _join(ip: String = localIP):
 	print("joining")
 
 func _register_client(id: int):
-	print("hello there")
+	#print("hello there")
 	
 	disconnect_screen.visible = false
 	if id != 1:
@@ -77,7 +78,7 @@ func _interrupt_session(id: int = -1):
 	await get_tree().process_frame
 	scene_synchronized = false
 	scene_tally = 0
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	#Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	
 	if get_tree().current_scene is Game_Scene:
 		_buffer_disconnect()
@@ -147,4 +148,8 @@ func multiplayer_scene(scene: String):
 func assign_golem(i: int):
 	local_type = i as Golem
 	#print("Golem " + str(i) + " loaded")
+	if local_type == Golem.GOLEM_SOIL:
+		PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
+	elif local_type == Golem.GOLEM_RIVER:
+		PlayerInput.input_override = PlayerInput.input_type.INPUT_CONTROLLER
 	scene_loaded()

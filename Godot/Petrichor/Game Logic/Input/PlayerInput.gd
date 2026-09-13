@@ -13,6 +13,9 @@ signal close_root
 
 var moving: bool = false
 var controller_input: bool = false
+var input_override: input_type = input_type.NONE
+
+enum input_type {NONE, INPUT_KEYBOARD, INPUT_CONTROLLER}
 
 @onready var controller_input_strings: Input_Names = preload("uid://bvmc34sxc70s8")
 @onready var keyboard_input_strings: Input_Names = preload("uid://cklr7nip6iu65")
@@ -36,20 +39,19 @@ func _process(_delta: float) -> void:
 		if pause_time <= 0:
 			pause_time = 0
 	
-	_try_for_input_switch()
+	if DisplayServer.window_is_focused() and input_override == input_type.NONE:
+		_try_for_input_switch()
 	
 	if Input.is_action_just_pressed("Debug"):
 		player_debug.emit()
 	
-	if controller_input and DisplayServer.window_is_focused():
+	if controller_input or input_override == input_type.INPUT_CONTROLLER:
+	#if controller_input and DisplayServer.window_is_focused():
 		if Input.is_action_just_pressed("Controller Menu") or (not moving and Input.is_action_just_pressed("Controller Brace")):
 			try_escape()
 		process_input(controller_input_strings)
-		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-			var new_mouse_pos: Vector2 = get_viewport().get_mouse_position()
-			print(str(new_mouse_pos) + ", " + str(get_global_mouse_position()))
-			Input.warp_mouse(new_mouse_pos)
-	else:
+		#do something to move the mouse with controller
+	elif input_override == input_type.INPUT_KEYBOARD:
 		if Input.is_action_just_pressed("Keyboard Menu"):
 			try_escape()
 		process_input(keyboard_input_strings)
@@ -80,7 +82,7 @@ func process_input(input: Input_Names):
 	var y = Input.get_axis(input.move_down, input.move_up)
 	movement_raw = Vector2(x, y)
 	
-	if not moving:
+	if not moving or pause_time > 0:
 		return
 	
 	if Input.is_action_just_pressed(input.jump):

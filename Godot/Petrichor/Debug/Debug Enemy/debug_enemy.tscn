@@ -1,86 +1,199 @@
 [gd_scene format=3 uid="uid://wdx2ukd6cahx"]
 
-[ext_resource type="Script" uid="uid://duajjc5o0s0u" path="res://Enemies/enemy.gd" id="1_5fl5a"]
+[ext_resource type="Script" uid="uid://opgpjmq4qtnj" path="res://Enemies/grounded_enemy.gd" id="1_tliqh"]
+[ext_resource type="PackedScene" uid="uid://bgnoriuweswe5" path="res://Enemies/Player Detection Area.tscn" id="2_tliqh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xrk5e"]
+size = Vector2(256, 182)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
-[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("damage_feedback", "collider")]
+[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("attack_feedback", "damage_feedback", "collider", "detection_range", "pivot")]
 collision_layer = 4
-collision_mask = 4
-script = ExtResource("1_5fl5a")
-damage_feedback = NodePath("Friwb")
+collision_mask = 16
+script = ExtResource("1_tliqh")
+attack_feedback = NodePath("Pivot/Grwbl")
+attack_interval = 0.5
+damage_feedback = NodePath("Pivot/Friwb")
 collider = NodePath("CollisionShape2D")
+detection_range = NodePath("PlayerDetectionArea")
+pivot = NodePath("Pivot")
+metadata/Mortal = true
+
+[node name="PlayerDetectionArea" parent="." unique_id=549130071 instance=ExtResource("2_tliqh")]
+visible = false
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1502300601]
+shape = SubResource("RectangleShape2D_xrk5e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123607045]
 shape = SubResource("RectangleShape2D_n7v4o")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1484596416]
+[node name="Pivot" type="Node2D" parent="." unique_id=742460231]
+
+[node name="Body" type="Node2D" parent="Pivot" unique_id=1676715221]
+
+[node name="ColorRect" type="ColorRect" parent="Pivot/Body" unique_id=1484596416]
 offset_left = -10.0
 offset_top = -10.0
 offset_right = 10.0
 offset_bottom = 10.0
-color = Color(1, 0, 0, 1)
+color = Color(1, 0.18, 0.18, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=581855474]
+[node name="ColorRect2" type="ColorRect" parent="Pivot/Body" unique_id=581855474]
 offset_left = -6.0
 offset_top = -8.0
 offset_right = -2.0
 offset_bottom = -2.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect3" type="ColorRect" parent="." unique_id=1478533287]
+[node name="ColorRect3" type="ColorRect" parent="Pivot/Body" unique_id=1478533287]
 offset_left = 2.0
 offset_top = -8.0
 offset_right = 6.0
 offset_bottom = -2.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect4" type="ColorRect" parent="." unique_id=668212285]
+[node name="ColorRect4" type="ColorRect" parent="Pivot/Body" unique_id=668212285]
 offset_left = 4.0
 offset_top = -8.0
 offset_right = 6.0
 offset_bottom = -6.0
 
-[node name="ColorRect5" type="ColorRect" parent="." unique_id=936090901]
+[node name="ColorRect5" type="ColorRect" parent="Pivot/Body" unique_id=936090901]
 offset_left = -4.0
 offset_top = -8.0
 offset_right = -2.0
 offset_bottom = -6.0
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=362272603]
+[node name="Polygon2D3" type="Polygon2D" parent="Pivot/Body" unique_id=1714062814]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(0, 4, 3, 2, 0, 6, -3, 2)
+
+[node name="Grwbl" type="Node2D" parent="Pivot" unique_id=2020552823]
+visible = false
+scale = Vector2(0.99999994, 0.99999994)
+
+[node name="ColorRect6" type="ColorRect" parent="Pivot/Grwbl" unique_id=1308077332]
+offset_left = -5.0
+offset_top = -10.0
+offset_right = -1.0
+offset_bottom = -9.0
+rotation = 0.25572386
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Pivot/Grwbl" unique_id=686168397]
+offset_left = 1.0000005
+offset_top = -9.000001
+offset_right = 5.0000005
+offset_bottom = -8.000001
+rotation = -0.2565634
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect14" type="ColorRect" parent="Pivot/Grwbl" unique_id=1641078710]
+offset_left = 11.4289665
+offset_top = -0.6907425
+offset_right = 32.351498
+offset_bottom = 2.2832627
+rotation = -0.2565634
+color = Color(0.40069774, 0.40069774, 0.40069768, 1)
+
+[node name="ColorRect17" type="ColorRect" parent="Pivot/Grwbl" unique_id=1309356655]
+offset_left = 6.000001
+offset_top = 1.2297353
+offset_right = 10.514613
+offset_bottom = 3.243794
+rotation = -0.2565634
+color = Color(0.51, 0.27591, 0.09689999, 1)
+
+[node name="ColorRect16" type="ColorRect" parent="Pivot/Grwbl" unique_id=1305332402]
+offset_left = 9.5674925
+offset_top = -2.1922727
+offset_right = 10.933743
+offset_bottom = 4.631224
+rotation = -0.2565634
+color = Color(0.45063305, 0.78389615, 0.8250908, 1)
+
+[node name="ColorRect15" type="ColorRect" parent="Pivot/Grwbl" unique_id=369675552]
+offset_left = 11.705
+offset_top = 0.36143398
+offset_right = 31.805107
+offset_bottom = 1.1598749
+rotation = -0.2565634
+color = Color(0.74978054, 0.7497798, 0.7497802, 1)
+
+[node name="ColorRect8" type="ColorRect" parent="Pivot/Grwbl" unique_id=1316870917]
+offset_left = -6.0
+offset_top = -4.0000005
+offset_right = -2.0
+offset_bottom = -2.0000005
+color = Color(0.62, 0.13950002, 0.043399997, 1)
+
+[node name="ColorRect12" type="ColorRect" parent="Pivot/Grwbl" unique_id=606110087]
+offset_left = 3.9999995
+offset_top = -7.0
+offset_right = 6.0
+offset_bottom = -5.0
+
+[node name="ColorRect13" type="ColorRect" parent="Pivot/Grwbl" unique_id=1748251122]
+offset_left = -3.9999998
+offset_top = -7.0
+offset_right = -1.9999998
+offset_bottom = -5.0
+
+[node name="ColorRect10" type="ColorRect" parent="Pivot/Grwbl" unique_id=418355177]
+offset_left = -6.0
+offset_top = -8.0
+offset_right = -2.0
+offset_bottom = -6.0
+color = Color(0.61960787, 0.14117648, 0.043137256, 1)
+
+[node name="ColorRect9" type="ColorRect" parent="Pivot/Grwbl" unique_id=1970597588]
+offset_left = 1.9999995
+offset_top = -4.0000005
+offset_right = 5.9999995
+offset_bottom = -2.0000005
+color = Color(0.61960787, 0.14117648, 0.043137256, 1)
+
+[node name="ColorRect11" type="ColorRect" parent="Pivot/Grwbl" unique_id=1226540788]
+offset_left = 2.0
+offset_top = -8.0
+offset_right = 5.9999995
+offset_bottom = -6.0
+color = Color(0.61960787, 0.14117648, 0.043137256, 1)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Pivot/Grwbl" unique_id=3919183]
 position = Vector2(2, -10)
 polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 5, 1)
 
-[node name="Polygon2D2" type="Polygon2D" parent="." unique_id=1921935124]
+[node name="Polygon2D5" type="Polygon2D" parent="Pivot/Grwbl" unique_id=1869381312]
 position = Vector2(-1.9999999, -10)
 rotation = -3.1415925
 scale = Vector2(0.7999985, -1)
 polygon = PackedVector2Array(0, 0, 4, -5, 2, -8, 8, -4, 5.0000086, 1.000001)
 
-[node name="Polygon2D3" type="Polygon2D" parent="." unique_id=1714062814]
-color = Color(0, 0, 0, 1)
-polygon = PackedVector2Array(0, 4, 3, 2, 0, 6, -3, 2)
-
-[node name="Friwb" type="Node2D" parent="." unique_id=1043039750]
+[node name="Friwb" type="Node2D" parent="Pivot" unique_id=1043039750]
 visible = false
 
-[node name="Polygon2D4" type="Polygon2D" parent="Friwb" unique_id=95536659]
+[node name="Polygon2D4" type="Polygon2D" parent="Pivot/Friwb" unique_id=95536659]
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(3, 2, 5, 6, 3, 5, 0, 6)
 
-[node name="Polygon2D5" type="Polygon2D" parent="Friwb" unique_id=998178123]
+[node name="Polygon2D5" type="Polygon2D" parent="Pivot/Friwb" unique_id=998178123]
 scale = Vector2(-1, 1)
 color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(3, 2, 5, 6, 2, 5, 0, 6)
 
-[node name="ColorRect8" type="ColorRect" parent="Friwb" unique_id=757277817]
+[node name="ColorRect8" type="ColorRect" parent="Pivot/Friwb" unique_id=757277817]
 offset_left = -7.0
 offset_top = -3.0
 offset_right = -4.0
 offset_bottom = -2.0
 color = Color(0, 0.78431374, 1, 1)
 
-[node name="ColorRect7" type="ColorRect" parent="Friwb" unique_id=702788632]
+[node name="ColorRect7" type="ColorRect" parent="Pivot/Friwb" unique_id=702788632]
 offset_left = 4.0
 offset_top = -3.0
 offset_right = 7.0

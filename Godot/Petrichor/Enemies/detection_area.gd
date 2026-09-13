@@ -15,6 +15,7 @@ func _try_find_target(body: Node2D):
 		targets.append(body)
 		if targets.size() == 1:
 			target_found.emit()
+			#print("found")
 
 func _try_lose_target(body: Node2D):
 	if targets.find(body) < 0:
@@ -22,6 +23,7 @@ func _try_lose_target(body: Node2D):
 	
 	targets.remove_at(targets.find(body))
 	if targets.size() == 0:
+			#print("lost")
 			field_clear.emit()
 
 func _nearest_target(pos: Vector2 = Vector2.INF) -> Node2D:

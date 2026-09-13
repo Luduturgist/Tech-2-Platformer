@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cl8rlnkey1ig4"]
+
+[ext_resource type="StyleBox" uid="uid://dgsmoid0ccwek" path="res://UI/Sub Menus/sub_menu_style.tres" id="1_fypqh"]
+[ext_resource type="Script" uid="uid://cu13uxt3y52ir" path="res://UI/Sub Menus/Controls/controls_menu.gd" id="1_r2y1g"]
+
+[node name="ControlsMenu" type="CanvasLayer" unique_id=2124056893 node_paths=PackedStringArray("auto_button", "keyboard_button", "controller_button", "close_button")]
+script = ExtResource("1_r2y1g")
+auto_button = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Auto")
+keyboard_button = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Key")
+controller_button = NodePath("PanelContainer/VBoxContainer/HBoxContainer/controler")
+close_button = NodePath("PanelContainer/VBoxContainer/Close")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=588097683]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -108.0
+offset_top = -100.5
+offset_right = 108.0
+offset_bottom = 100.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_fypqh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1816718948]
+layout_mode = 2
+theme_override_constants/separation = 23
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=717759489]
+layout_mode = 2
+text = "Press buttons
+dumbass"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1803468055]
+layout_mode = 2
+
+[node name="Auto" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=234784921]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Auto"
+
+[node name="Key" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1293342222]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Keyboard"
+
+[node name="controler" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1081807778]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Controller"
+
+[node name="Close" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1450728526]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Close"

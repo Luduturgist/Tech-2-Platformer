@@ -21,12 +21,13 @@ func _perform_action():
 	var energy: float = 1
 	if energy_drain:
 		energy = float(move.energy._drain_charge(energy_drain))/ float(energy_drain)
-		if not energy: return
+		if energy <= 0: return
 	
 	if Game_Scene.active.friend.cheering:
 		perform_pull(energy)
 	else:
 		perform_push(energy)
+	print("things occur")
 	can_swing = false
 	move.taking_action = true
 
@@ -50,20 +51,18 @@ func perform_pull(energy: float):
 func perform_push(energy: float):
 	cast.force_shapecast_update()
 	var objects: Array = cast.collision_result
-	if not objects.size():
-		return
-	for o in objects:
-		if o.get("collider").get_meta("Pushable"):
-			print("found")
-			pass
-	
+	if objects.size():
+		for o in objects:
+			if o.get("collider").get_meta("Pushable"):
+				print("found")
+				pass
+		
 	if move.is_on_floor():
 		move.velocity.x -= sign(move.pivot.scale.x) * side_push * energy
 	else:
-		move.velocity.y = -down_push  * energy
+		move.velocity.y += -down_push * energy
 	await move.get_tree().create_timer(dash_delay).timeout
 	move.taking_action = false
-	
 
 
 func _reset_swing():

@@ -12,6 +12,7 @@ func _perform_action():
 	print(str(last_vel))
 	var damage: int = 0
 	var pause: float = 0
+	#var charge: float = 0
 	
 	if last_vel >= 275:
 		# 1 tile's worth of velocity, ~280 falling to ~320 jumped
@@ -32,16 +33,20 @@ func _perform_action():
 		pause = 0.4
 	
 	if damage > 0:
-		basic_damage(damage)
+		damage = basic_damage(damage)
 	if pause > 0:
 		PlayerInput._pause_movement(pause)
 		move.velocity.x = move_toward(move.velocity.x, 0, move.move_speed)
+	if damage > 0:
+		move.energy._replenish_charge(damage)
 
-func basic_damage(amount: int):
+func basic_damage(amount: int) -> int:
+	var dmg: int = 0
 	move.impact_caster.force_shapecast_update()
 	var objects: Array = move.impact_caster.collision_result
 	if not objects or not objects.size():
-		return
+		return dmg
 	for o in objects:
-		if o.get("collider").get_script() == Enemy:
-			o.get("collider")._take_damage(amount)
+		if o.get("collider").get_meta("Mortal"):
+			dmg += o.get("collider")._take_damage(amount)
+	return dmg

@@ -7,7 +7,7 @@
 [ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/Idle/river_idle.tres" id="5_kq1dw"]
 [ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="6_j1vdm"]
 [ext_resource type="Script" uid="uid://c1lvitj7jrjel" path="res://UI/Sub Menus/submenu_button.gd" id="6_lh1ru"]
-[ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls Menu.tscn" id="7_lh1ru"]
+[ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls/Controls Menu.tscn" id="7_lh1ru"]
 
 [node name="MainMenu" type="Node2D" unique_id=141468875 node_paths=PackedStringArray("host_button", "join_button", "disconnect_1", "disconnect_2", "ip_texts", "join_ip", "failure_message", "join_wait_ip")]
 script = ExtResource("1_j1vdm")
