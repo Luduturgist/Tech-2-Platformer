@@ -1,22 +1,9 @@
 [gd_scene format=3 uid="uid://cng47udpw4m2a"]
 
 [ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_m25y2"]
-[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_fy1wm"]
-[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/soil_spriteframes.tres" id="2_oq2wa"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_6xinh"]
-[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="3_nqwmv"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_nqwmv"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="7_xre7c"]
-
-[sub_resource type="Resource" id="Resource_e7nig"]
-script = ExtResource("3_nqwmv")
-fade_path = NodePath("Pivot/Cheer")
-metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
-
-[sub_resource type="Resource" id="Resource_rayeu"]
-script = ExtResource("2_fy1wm")
-event_path = NodePath("Pivot/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_wobsq"]
 script = ExtResource("3_6xinh")
@@ -34,17 +21,13 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 size = Vector2(15, 30)
 
 [node name="Player_Soil" unique_id=1254970227 instance=ExtResource("1_m25y2")]
-friendly = SubResource("Resource_e7nig")
-pain_feedback = SubResource("Resource_rayeu")
+move_speed = 140.0
 move_ability = SubResource("Resource_wobsq")
 brace = SubResource("Resource_ijxfx")
 impact_action = SubResource("Resource_qf2ha")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
-sprite_frames = ExtResource("2_oq2wa")
-animation = &"Jump"
 autoplay = "Idle"
-frame_progress = 0.0
 
 [node name="Cheer" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="0" unique_id=1359862573]
 color = Color(1, 1, 0, 1)

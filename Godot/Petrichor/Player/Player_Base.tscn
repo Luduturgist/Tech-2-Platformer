@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
 [ext_resource type="Script" uid="uid://biqr47h3yc183" path="res://Game Logic/Networking/synchronizer_beholden.gd" id="7_k0ixv"]
 [ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/soil_spriteframes.tres" id="8_fpjr1"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
 
 [sub_resource type="Resource" id="Resource_5fl5a"]
@@ -87,8 +88,8 @@ script = ExtResource("7_k0ixv")
 
 [node name="Animated Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1434542993]
 light_mask = 2
-animation = &""
-frame_progress = 0.6040647
+sprite_frames = ExtResource("8_fpjr1")
+animation = &"Idle"
 
 [node name="VFX" type="Node2D" parent="Pivot" unique_id=1333519426]
 
@@ -152,6 +153,7 @@ z_index = 2
 position = Vector2(10, -8)
 script = ExtResource("8_tjj38")
 metadata/_edit_group_ = true
+metadata/Mortal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/VFX/Brace" unique_id=331385000]
 position = Vector2(0, -1.5)

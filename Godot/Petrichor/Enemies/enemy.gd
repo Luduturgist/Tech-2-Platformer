@@ -68,9 +68,9 @@ func process_damage(amount: int) -> int:
 	return amount
 
 @rpc("authority", "call_remote", "unreliable_ordered")
-func _update_position(pos: Vector2, scale: int):
+func _update_position(pos: Vector2, sca: int):
 	position = pos
-	pivot.scale.x = scale
+	pivot.scale.x = sca
 
 @rpc("any_peer", "call_remote", "reliable")
 func _network_damage(amount: int):

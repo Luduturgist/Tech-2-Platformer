@@ -9,10 +9,8 @@ var impacted_body: Node2D
 
 func _ready() -> void:
 	body_entered.connect(try_damage_body)
-	impact.connect(_trigger_impact)
 
 func try_damage_body(body: Node2D):
-	if blocked: return
 	if ignore.size():
 		for i in ignore:
 			if i == body:
@@ -23,18 +21,16 @@ func try_damage_body(body: Node2D):
 			await get_tree().process_frame
 			if not blocked:
 				body._take_damage(damage)
+			blocked = false
 
 var blocked: bool = false
 func _hit_obstacle(body: Node2D, blocking: bool = false) -> int:
 	impacted_body = body
-	if blocking:
-		blocked = true
+	impact.emit()
+	blocked = blocking
 	if destroy_on_collision:
-		impact.emit()
+		rpc("disappear")
 	return damage
-
-func _trigger_impact():
-	rpc("disappear")
 
 @rpc("any_peer", "call_local", "reliable")
 func disappear():

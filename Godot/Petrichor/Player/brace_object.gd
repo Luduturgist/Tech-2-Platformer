@@ -8,7 +8,9 @@ func _ready() -> void:
 
 func try_player(area: Area2D):
 	if area is Damage_Area:
-		area._hit_obstacle(self, true)
+		var blocked: bool = (area.global_position.x - global_position.x) * PlayerMovement.active.pivot.scale.x >= 0
+		print("block " + str(blocked))
+		area._hit_obstacle(self, blocked)
 
 @rpc("authority", "call_local", "reliable")
 func set_brace(time: float):

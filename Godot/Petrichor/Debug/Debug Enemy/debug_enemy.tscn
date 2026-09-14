@@ -8,17 +8,21 @@ size = Vector2(256, 182)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
-[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("attack_feedback", "damage_feedback", "collider", "detection_range", "pivot")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
+size = Vector2(16.73, 3)
+
+[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("attack_feedback", "damage_cast", "damage_feedback", "collider", "detection_range", "pivot")]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_tliqh")
-attack_feedback = NodePath("Pivot/Grwbl")
-attack_interval = 0.5
+attack_feedback = NodePath("Pivot/Polygon2D")
+attack_duration = 0.15
+attack_interval = 1.0
+damage_cast = NodePath("Pivot/ShapeCast2D")
 damage_feedback = NodePath("Pivot/Friwb")
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("PlayerDetectionArea")
 pivot = NodePath("Pivot")
-attack_range = 30.0
 metadata/Mortal = true
 
 [node name="PlayerDetectionArea" parent="." unique_id=549130071 instance=ExtResource("2_tliqh")]
@@ -200,3 +204,17 @@ offset_top = -3.0
 offset_right = 7.0
 offset_bottom = -2.0
 color = Color(0, 0.78431374, 1, 1)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot" unique_id=1980639843]
+position = Vector2(12, -1)
+rotation = -1.7560937
+enabled = false
+shape = SubResource("RectangleShape2D_oamku")
+target_position = Vector2(-0.25299215, 9.216072)
+max_results = 2
+collide_with_areas = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Pivot" unique_id=453620243]
+visible = false
+position = Vector2(15, 1)
+polygon = PackedVector2Array(-2, 2, 6, 7, 8, 0, 5, -8, -5, -12, -1, -6)

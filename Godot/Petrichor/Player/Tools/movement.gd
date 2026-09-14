@@ -148,7 +148,7 @@ func process_move(delta: float):
 	if not is_on_floor():
 		if was_grounded:
 			change_animation(&"Jump")
-	elif velocity.x == 0 and animator.animation:
+	elif velocity.x == 0:
 		change_animation(&"Idle")
 	elif PlayerInput.player_movement.x != 0:
 		change_animation(&"Run")
@@ -163,6 +163,11 @@ func process_camera_offset(_delta: float):
 	pass
 	#cam_offset.position.x = cam_offset_init.x * (0.5 + (PlayerInput.player_movement.x / 2))
 
-func change_animation(name: StringName):
-	if animator.animation != name:
-		animator.animation = name
+func change_animation(_name: StringName):
+	if animator.animation != _name:
+		animator.animation = _name
+		rpc("network_animation", _name)
+
+@rpc("authority", "call_remote", "reliable")
+func network_animation(_name: StringName):
+	animator.animation = _name

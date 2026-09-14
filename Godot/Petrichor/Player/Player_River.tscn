@@ -10,12 +10,12 @@
 
 [sub_resource type="Resource" id="Resource_otcxl"]
 script = ExtResource("2_wfmxh")
-fade_path = NodePath("Pivot/Cheer")
+fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_hq4ce"]
 script = ExtResource("2_agh35")
-event_path = NodePath("Pivot/Pain")
+event_path = NodePath("Pivot/VFX/Pain")
 metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_1w6pk"]
@@ -34,7 +34,8 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 size = Vector2(13, 30)
 
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
-move_speed = 125.0
+move_speed = 160.0
+accel = 1000.0
 friendly = SubResource("Resource_otcxl")
 pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
@@ -43,9 +44,7 @@ impact_action = SubResource("Resource_8voip")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
 sprite_frames = ExtResource("7_8voip")
-animation = &"Jump"
 autoplay = "Idle"
-frame_progress = 0.0
 
 [node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="3" unique_id=1493632730]
 position = Vector2(6, -2)
