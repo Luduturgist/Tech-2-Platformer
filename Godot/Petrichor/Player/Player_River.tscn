@@ -44,6 +44,7 @@ impact_action = SubResource("Resource_8voip")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
 sprite_frames = ExtResource("7_8voip")
+animation = &"Run"
 autoplay = "Idle"
 
 [node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="3" unique_id=1493632730]

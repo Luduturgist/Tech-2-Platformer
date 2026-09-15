@@ -3,6 +3,7 @@ extends Control
 var player_movement: Vector2 = Vector2.ZERO
 var movement_raw: Vector2 = Vector2.ZERO
 
+signal player_attack
 signal player_jump
 signal player_interact
 signal player_brace
@@ -25,8 +26,8 @@ enum input_type {NONE, INPUT_KEYBOARD, INPUT_CONTROLLER}
 
 var pause_time: float = 0
 func _pause_movement(time: float):
-	player_movement = Vector2.ZERO
 	if time > pause_time:
+		player_movement = Vector2.ZERO
 		pause_time = time
 
 func _process(_delta: float) -> void:
@@ -98,3 +99,6 @@ func process_input(input: Input_Names):
 	
 	if Input.is_action_just_pressed(input.brace) and not pressed_back:
 		player_brace.emit()
+	
+	if Input.is_action_just_pressed(input.attack):
+		player_attack.emit()

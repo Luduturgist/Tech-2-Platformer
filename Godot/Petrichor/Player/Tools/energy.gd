@@ -20,7 +20,7 @@ func _update(delta: float):
 	if move.velocity.x and PlayerInput.moving and PlayerInput.player_movement.x:
 		delta *= movement_multiplier
 	_drain_timer -= delta
-	while _drain_timer <= 0:
+	while drain_interval > 0 and _drain_timer <= 0:
 		_drain_timer += drain_interval
 		_drain_charge(1, true)
 

@@ -10,13 +10,18 @@ class_name Enemy
 @export var detection_range: Area_Detector
 @export var pivot: Node2D
 @export var attack_range: float = 25
+@export var attack_behavior: EnemyAttackBehavior
 
 signal damage_taken
 signal killed
+signal start_attack
+signal end_attack
+
 var tracking_enemy: bool
 
 func _ready() -> void:
 	damage_taken.connect(_show_damage)
+	attack_behavior._start(self)
 	
 	if multiplayer.is_server():
 		if not detection_range:

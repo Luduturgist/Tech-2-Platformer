@@ -9,27 +9,27 @@ func _start(m: PlayerMovement, sig = null):
 
 func _perform_action():
 	var last_vel := move.last_velocity
-	print(str(last_vel))
+	#print(str(last_vel))
 	var damage: int = 0
 	var pause: float = 0
 	#var charge: float = 0
 	
 	if last_vel >= 275:
 		# 1 tile's worth of velocity, ~280 falling to ~320 jumped
-		damage = 1
+		pass
 	
 	if last_vel >= 395:
 		# 2 tile's worth of velocity, ~400 falling to ~410 jumped
-		damage = 2
+		damage = 1
 		pause = 0.12
 	
 	if last_vel >= 475:
 		# 3 tile's worth of velocity, ~482 falling to ~480 jumped
-		damage = 4
+		damage = 2
 		pause = 0.2
 	
 	if last_vel >= 555:
-		damage = 6
+		damage = 4
 		pause = 0.4
 	
 	if damage > 0:

@@ -7,6 +7,7 @@ class_name PlayerMovement
 @export var accel: float = 800
 @export var jump: float = 280
 @export var fallSpeed: int = 1200
+@export var aerial_multiplier: float = 0.5
 @export var energy: PlayerEnergy
 
 @export_group("Actions")
@@ -15,6 +16,7 @@ class_name PlayerMovement
 @export var move_ability: Action
 @export var brace: Action
 @export var impact_action: Action
+@export var attack: Action
 var taking_action: bool = false
 
 @export_group("References")
@@ -83,6 +85,7 @@ func dress() -> void:
 	brace._start(self, PlayerInput.player_brace)
 	PlayerInput.player_jump.connect(process_jump)
 	impact_action._start(self)
+	attack._start(self, PlayerInput.player_attack)
 
 func _debug():
 	var _s: String = "local "
@@ -116,6 +119,7 @@ func _physics_process(delta: float) -> void:
 	process_move(delta)
 	process_camera_offset(delta)
 	energy._update(delta)
+	attack._update(delta)
 
 var last_velocity: float = 0
 var can_move: bool = true
@@ -133,8 +137,11 @@ func process_move(delta: float):
 			dir *= m
 	
 	if dir and can_move:
-		velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
-		if dir.x * pivot.scale.x < 0:
+		var accel_modified: float = accel
+		if not is_on_floor():
+			accel_modified *= aerial_multiplier
+		velocity.x = move_toward(velocity.x, dir.x * speed, accel_modified * delta)
+		if dir.x * pivot.scale.x < 0 and not brace.fx.visible:
 			pivot.scale.x *= -1
 			collider.position.x *= -1
 	elif is_on_floor():

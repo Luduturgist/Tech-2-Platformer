@@ -1,9 +1,10 @@
 extends Action
 class_name Brace_Action
 
-
 @export var slow: float = 0.5
 @export var time: float = 1
+@export var pound_velocity: int = 20
+@export var clamp_x: int = 30
 var fx: Brace_Object
 
 const VFX_ID := "Brace"
@@ -16,10 +17,19 @@ func _start(m: PlayerMovement, sig = null):
 
 func _perform_action():
 	#move.taking_action = true
-	if move.taking_action: return
-	move.taking_action = true
-	fx.rpc("set_brace", time)
-	move.speed_mods.get_or_add(SLOW_MOD_ID, slow)
+	if move.taking_action:
+		return
+	
+	if move.is_on_floor():
+		move.taking_action = true
+		fx.rpc("set_brace", time)
+		#move.speed_mods.get_or_add(SLOW_MOD_ID, slow)
+		PlayerInput._pause_movement(time)
+	else:
+		move.velocity.y += pound_velocity
+		move.velocity.x = clamp(move.velocity.x, -clamp_x, clamp_x)
+		await move.player_land
+		_release_action()
 
 func _release_action():
 	move.taking_action = false

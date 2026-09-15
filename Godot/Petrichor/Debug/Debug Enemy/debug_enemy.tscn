@@ -2,6 +2,14 @@
 
 [ext_resource type="Script" uid="uid://opgpjmq4qtnj" path="res://Enemies/grounded_enemy.gd" id="1_tliqh"]
 [ext_resource type="PackedScene" uid="uid://bgnoriuweswe5" path="res://Enemies/Player Detection Area.tscn" id="2_tliqh"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="2_xrk5e"]
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="4_07we1"]
+
+[sub_resource type="Resource" id="Resource_07we1"]
+resource_local_to_scene = true
+script = ExtResource("2_xrk5e")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xrk5e"]
 size = Vector2(256, 182)
@@ -9,26 +17,26 @@ size = Vector2(256, 182)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
-size = Vector2(16.73, 3)
+size = Vector2(16.73, 9.9)
 
 [node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("attack_feedback", "damage_cast", "damage_feedback", "collider", "detection_range", "pivot")]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_tliqh")
 attack_feedback = NodePath("Pivot/Polygon2D")
-attack_duration = 0.15
-attack_interval = 1.0
-damage_cast = NodePath("Pivot/ShapeCast2D")
+damage_cast = NodePath("Pivot/Polygon2D/ShapeCast2D")
 damage_feedback = NodePath("Pivot/Friwb")
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("PlayerDetectionArea")
 pivot = NodePath("Pivot")
+attack_behavior = SubResource("Resource_07we1")
 metadata/Mortal = true
 
 [node name="PlayerDetectionArea" parent="." unique_id=549130071 instance=ExtResource("2_tliqh")]
 visible = false
 collision_layer = 0
 collision_mask = 3
+target_script = ExtResource("4_07we1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=1502300601]
 shape = SubResource("RectangleShape2D_xrk5e")
@@ -205,16 +213,19 @@ offset_right = 7.0
 offset_bottom = -2.0
 color = Color(0, 0.78431374, 1, 1)
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot" unique_id=1980639843]
-position = Vector2(12, -1)
-rotation = -1.7560937
-enabled = false
-shape = SubResource("RectangleShape2D_oamku")
-target_position = Vector2(-0.25299215, 9.216072)
-max_results = 2
-collide_with_areas = true
-
 [node name="Polygon2D" type="Polygon2D" parent="Pivot" unique_id=453620243]
 visible = false
+z_index = 2
 position = Vector2(15, 1)
+color = Color(1, 0.45490196, 0.39607844, 1)
 polygon = PackedVector2Array(-2, 2, 6, 7, 8, 0, 5, -8, -5, -12, -1, -6)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot/Polygon2D" unique_id=1980639843]
+position = Vector2(-3.000001, -4)
+rotation = -1.7560937
+scale = Vector2(0.99999994, 0.99999994)
+enabled = false
+shape = SubResource("RectangleShape2D_oamku")
+target_position = Vector2(-6.019841, 4.976098)
+max_results = 2
+collide_with_areas = true
