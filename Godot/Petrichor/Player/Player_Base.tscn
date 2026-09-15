@@ -40,7 +40,7 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
 [sub_resource type="Resource" id="Resource_53tks"]
 script = ExtResource("7_tjj38")
-windup = 0.0
+windup = 0.05
 attack_duration = 0.1
 cooldown = 0.1
 vfx_path = NodePath("Pivot/VFX/Attack")
