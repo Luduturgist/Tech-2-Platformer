@@ -59,10 +59,13 @@ func _try_for_cast_damage():
 				player = obj
 			elif obj.get_script() == Brace_Object:
 				blocking = obj
+
 	
+	if blocking:
+		if (Game_Scene.active.local.global_position - enemy.global_position).length() > (blocking.global_position - enemy.global_position).length() or enemy.is_multiplayer_authority():
+			if enemy.is_multiplayer_authority():
+				enemy.rpc("_network_stun")
+			return
 	if player:
-		if blocking:
-			if (player.global_position - enemy.global_position) <= (blocking.global_position - enemy.global_position):
-				return
 		player._take_damage(damage)
 		already_hit = true

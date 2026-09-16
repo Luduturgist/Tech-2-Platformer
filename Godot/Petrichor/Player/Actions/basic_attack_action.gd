@@ -75,8 +75,6 @@ func try_damage():
 				print("damaging enemy")
 				ignore.append(obj)
 
-
-
 func set_visible(value: bool):
 	caster.enabled = value
 	if value:

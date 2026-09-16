@@ -9,12 +9,31 @@
 [ext_resource type="Script" uid="uid://o0mpm37m04yy" path="res://Enemies/damage_area.gd" id="9_5n1nb"]
 [ext_resource type="Script" uid="uid://dt6ltlb5kd5n5" path="res://Level 1/overstim_area.gd" id="9_aonor"]
 [ext_resource type="PackedScene" uid="uid://wdx2ukd6cahx" path="res://Debug/Debug Enemy/debug_enemy.tscn" id="9_tgpit"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="10_aonor"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aonor"]
 size = Vector2(3209, 54)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1nht"]
 radius = 99.18165
+
+[sub_resource type="Resource" id="Resource_tgpit"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_klnrk"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_20h5i"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [node name="Level1" type="Node2D" unique_id=786337047 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
 script = ExtResource("1_8u160")
@@ -72,9 +91,12 @@ polygon = PackedVector2Array(82, -53, 99, -5, 87, 48, 60, 78, 19, 97, -47, 88, -
 
 [node name="Debug Enemy" parent="." unique_id=1626915890 instance=ExtResource("9_tgpit")]
 position = Vector2(449, 150)
+attack_behavior = SubResource("Resource_tgpit")
 
 [node name="Debug Enemy2" parent="." unique_id=1080319627 instance=ExtResource("9_tgpit")]
 position = Vector2(540, 150)
+attack_behavior = SubResource("Resource_klnrk")
 
 [node name="Debug Enemy3" parent="." unique_id=1801522015 instance=ExtResource("9_tgpit")]
 position = Vector2(572, 150)
+attack_behavior = SubResource("Resource_20h5i")

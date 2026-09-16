@@ -20,12 +20,11 @@ func _perform_action():
 	if move.taking_action:
 		return
 	
-	if move.is_on_floor():
-		move.taking_action = true
-		fx.rpc("set_brace", time)
-		#move.speed_mods.get_or_add(SLOW_MOD_ID, slow)
-		PlayerInput._pause_movement(time)
-	else:
+	move.taking_action = true
+	fx.rpc("set_brace", time)
+	#move.speed_mods.get_or_add(SLOW_MOD_ID, slow)
+	PlayerInput._pause_movement(time)
+	if not move.is_on_floor():
 		move.velocity.y += pound_velocity
 		move.velocity.x = clamp(move.velocity.x, -clamp_x, clamp_x)
 		await move.player_land

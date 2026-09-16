@@ -19,7 +19,7 @@ size = Vector2(256, 182)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
 size = Vector2(16.73, 9.9)
 
-[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("attack_feedback", "damage_cast", "damage_feedback", "collider", "detection_range", "pivot")]
+[node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("attack_feedback", "damage_cast", "damage_feedback", "collider", "detection_range", "pivot", "stun_feedback")]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_tliqh")
@@ -30,6 +30,7 @@ collider = NodePath("CollisionShape2D")
 detection_range = NodePath("PlayerDetectionArea")
 pivot = NodePath("Pivot")
 attack_behavior = SubResource("Resource_07we1")
+stun_feedback = NodePath("Pivot/Knockback Feedback")
 metadata/Mortal = true
 
 [node name="PlayerDetectionArea" parent="." unique_id=549130071 instance=ExtResource("2_tliqh")]
@@ -229,3 +230,9 @@ shape = SubResource("RectangleShape2D_oamku")
 target_position = Vector2(-6.019841, 4.976098)
 max_results = 2
 collide_with_areas = true
+
+[node name="Knockback Feedback" type="Line2D" parent="Pivot" unique_id=201085531]
+visible = false
+position = Vector2(0, -11)
+points = PackedVector2Array(-1, -1, 3, -2, -1, -3, -6, -5, 0, -6, 4, -8)
+width = 0.635

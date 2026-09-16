@@ -1,16 +1,21 @@
 extends CharacterBody2D
 class_name Enemy
 
+@export_group("Stats")
 @export var health: int = 5
 @export var damage: int = 1
 @export var speed: float = 50
 @export var accel: float = 250
+@export var attack_range: float = 25
+@export var stun_time: float = 3
+
+@export_group("References")
 @export var damage_feedback: Node2D
 @export var collider: CollisionShape2D
 @export var detection_range: Area_Detector
 @export var pivot: Node2D
-@export var attack_range: float = 25
 @export var attack_behavior: EnemyAttackBehavior
+@export var stun_feedback: Node2D
 
 signal damage_taken
 signal killed
@@ -47,6 +52,7 @@ func _physics_process(_delta: float) -> void:
 		_update_position.rpc(position, pivot.scale.x)
 		last_pos = position
 
+var stun_timer: float
 func _process(delta: float) -> void:
 	if damage_vfx_timer > 0:
 		damage_vfx_timer -= delta
@@ -58,6 +64,12 @@ func _process(delta: float) -> void:
 		if damage_vfx_timer >= 0:
 			damage_vfx_timer = 0.5
 			damage_feedback.visible = true
+	
+	if stun_timer > 0:
+		stun_timer -= delta
+		if stun_timer <= 0:
+			stun_timer = 0
+			stun_feedback.visible = false
 
 func _take_damage(amount: int) -> int:
 	rpc("_network_damage", amount)
@@ -81,6 +93,11 @@ func _update_position(pos: Vector2, sca: int):
 func _network_damage(amount: int):
 	damage_taken.emit()
 	process_damage(amount)
+
+@rpc("authority", "call_local", "reliable")
+func _network_stun():
+	stun_timer = stun_time
+	stun_feedback.visible = true
 
 @rpc("authority", "call_local", "reliable")
 func kill_enemy():

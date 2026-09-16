@@ -14,10 +14,8 @@ func try_player(area: Area2D):
 
 @rpc("authority", "call_local", "reliable")
 func set_brace(time: float):
-	if time == 0:
-		set_brace_variables(true)
-	else:
-		set_brace_variables(true)
+	set_brace_variables(true)
+	if time != 0:
 		brace_timer = time
 
 var brace_timer: float = 0
@@ -30,6 +28,6 @@ func _process(delta: float) -> void:
 
 func set_brace_variables(value: bool):
 	visible = value
-	if is_multiplayer_authority():
+	#if is_multiplayer_authority():
 		#print("happened")
-		$CollisionShape2D.disabled = not value
+	$CollisionShape2D.disabled = not value

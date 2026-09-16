@@ -13,6 +13,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if not is_multiplayer_authority():
 		return
+	if stun_timer > 0:
+		return
+
 	
 	if tracking_enemy and health > 0:
 		var target: Vector2 = detection_range._nearest_target(global_position).global_position
