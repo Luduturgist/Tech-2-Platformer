@@ -32,14 +32,11 @@ pain_bar = NodePath("Control/Pain")
 
 [node name="Control" type="Control" parent="." unique_id=823972719]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
+anchors_preset = 0
 offset_left = 8.0
-offset_top = -44.0
+offset_top = 8.0
 offset_right = 40.0
-offset_bottom = -35.0
-grow_vertical = 0
+offset_bottom = 17.0
 scale = Vector2(4, 4)
 
 [node name="Energy" type="TextureProgressBar" parent="Control" unique_id=1836639928]

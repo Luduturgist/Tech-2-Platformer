@@ -13,9 +13,9 @@ func _ready() -> void:
 func _trigger_event(_value: int = 0):
 	if not obj.visible:
 		#var mod: float = fade_time * (float(Game_Scene.active.local.energy.charge) / float(Game_Scene.active.local.energy.maxCharge))
-		var mod: float = fade_time * ((float(Game_Scene.active.local.energy.maxCharge) - float(Game_Scene.active.local.energy.pain)) / float(Game_Scene.active.local.energy.maxCharge))
+		#var mod: float = fade_time * ((float(Game_Scene.active.local.energy.maxCharge) - float(Game_Scene.active.local.energy.pain)) / float(Game_Scene.active.local.energy.maxCharge))
 		#print(mod)
-		rpc("fade", mod)
+		rpc("fade", fade_time)
 
 var fade_mod: float = 1
 var fade_timer: float = 0

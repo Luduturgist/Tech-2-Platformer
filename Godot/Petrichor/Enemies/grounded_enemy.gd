@@ -13,13 +13,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if not is_multiplayer_authority():
 		return
-	if stun_timer > 0:
-		return
-
 	
-	if tracking_enemy and health > 0:
-		var target: Vector2 = detection_range._nearest_target(global_position).global_position
-		var diff: Vector2 = target - global_position
+	if tracking_enemy and health > 0 and stun_timer == 0:
+		var diff: Vector2 = target.global_position - global_position
 		if diff.length() <= attack_range and not attack_behavior.is_attacking():
 			if pivot.scale.x * diff.x < 0:
 				pivot.scale.x *= -1
@@ -29,7 +25,8 @@ func _physics_process(_delta: float) -> void:
 			follow_player(diff, _delta)
 		else:
 			velocity.x = move_toward(velocity.x, 0, accel * _delta)
-			move_and_slide()
+	else:
+		velocity.x = move_toward(velocity.x, 0, accel * _delta)
 	
 	super._physics_process(_delta)
 

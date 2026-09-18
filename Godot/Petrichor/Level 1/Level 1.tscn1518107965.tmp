@@ -1,0 +1,107 @@
+[gd_scene format=4 uid="uid://bws5kyd2s560n"]
+
+[ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="1_0l7rx"]
+[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game_scene.gd" id="1_8u160"]
+[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Follow.tscn" id="2_3r38k"]
+[ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="2_y1i4a"]
+[ext_resource type="PackedScene" uid="uid://b7x1xel6pnfcx" path="res://UI/GUI/gui.tscn" id="3_6equ3"]
+[ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="3_6ut4f"]
+[ext_resource type="Script" uid="uid://o0mpm37m04yy" path="res://Enemies/damage_area.gd" id="9_5n1nb"]
+[ext_resource type="Script" uid="uid://dt6ltlb5kd5n5" path="res://Level 1/overstim_area.gd" id="9_aonor"]
+[ext_resource type="PackedScene" uid="uid://wdx2ukd6cahx" path="res://Debug/Debug Enemy/debug_enemy.tscn" id="9_tgpit"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="10_aonor"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aonor"]
+size = Vector2(3209, 54)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1nht"]
+radius = 99.18165
+
+[sub_resource type="Resource" id="Resource_aonor"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_tgpit"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_klnrk"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_duration = 0.2
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[node name="Level1" type="Node2D" unique_id=786337047 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
+script = ExtResource("1_8u160")
+soil = NodePath("Midgard/Players/Player_Soil")
+river = NodePath("Midgard/Players/Player_River")
+camera = NodePath("CameraFollow")
+gui = NodePath("Gui")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1922314677]
+visible = false
+color = Color(0.6472075, 0.743933, 0.7819318, 1)
+
+[node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("2_3r38k")]
+
+[node name="Gui" parent="." unique_id=1157994508 instance=ExtResource("3_6equ3")]
+visible = false
+
+[node name="Midgard" type="Node2D" parent="." unique_id=431883485]
+
+[node name="Players" type="Node2D" parent="Midgard" unique_id=1877956589]
+
+[node name="Player_River" parent="Midgard/Players" unique_id=1254970227 instance=ExtResource("2_y1i4a")]
+position = Vector2(146, 16)
+
+[node name="Player_Soil" parent="Midgard/Players" unique_id=87480027 instance=ExtResource("3_6ut4f")]
+position = Vector2(112, -292)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Midgard" unique_id=1598625206]
+tile_map_data = PackedByteArray("AAAAAAEAAQAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAAEAAEAAAAAAAAAAAAFAAEAAAAAAAAAAAAGAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP7/AQAAAAAAAAAAAP3/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAHAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAALAP//AAAAAAAAAAAMAP//AAAAAAAAAAAQAAAAAQAAAAAAAAARAAAAAQAAAAAAAAASAP//AAAAAAAAAAAOAP3/AQAAAAAAAAANAPz/AAAAAAAAAAAMAPz/AQAAAAAAAAALAPz/AAAAAAAAAAAKAPz/AAAAAAAAAAAJAPz/AAAAAAAAAAAIAPz/AAAAAAAAAAAHAPz/AAAAAAAAAAAGAP3/AQAAAAAAAAAFAP7/AQAAAAAAAAAOAAAAAQAAAAAAAAAOAP//AQAAAAAAAAAOAP7/AQAAAAAAAAAPAAAAAQAAAAAAAAAKAAIAAQAAAAAAAAAUAP7/AQAAAAAAAAAVAP7/AQAAAAAAAAAWAP7/AQAAAAAAAAATAP//AAAAAAAAAAAXAP7/AQAAAAAAAAAYAP//AQAAAAAAAAAZAP//AQAAAAAAAAABAP3/AQAAAAAAAAACAPr/AQAAAAAAAAACAPv/AAAAAAAAAAACAPz/AQAAAAAAAAAEAPz/AQAAAAAAAAAEAPv/AAAAAAAAAAAEAPr/AQAAAAAAAAACAPn/AQAAAAAAAAACAPj/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPj/AQAAAAAAAAAEAPf/AAAAAAAAAAACAPf/AAAAAAAAAAAFAPf/AAAAAAAAAAAGAPf/AAAAAAAAAAABAPf/AAAAAAAAAAAAAPf/AAAAAAAAAAD//wAAAAAAAAAAAAD+/wAAAAAAAAAAAAAFAPv/AAAAAAAAAAAGAPz/AAAAAAAAAAABAPv/AAAAAAAAAAAAAPv/AAAAAAAAAAD///v/AAAAAAAAAAD+//v/AAAAAAAAAAD9//z/AAAAAAAAAAD8//z/AAAAAAAAAAD///7/AQAAAAAAAAD+/wEAAQAAAAAAAAAFAP3/AQAAAAAAAAAFAPz/AQAAAAAAAAAJAPv/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAAMAPv/AAAAAAAAAAANAPv/AQAAAAAAAAAPAP3/AAAAAAAAAAAQAP7/AAAAAAAAAAARAP7/AAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD7/wAAAAAAAAAAAAD6/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD4/wAAAAAAAAAAAAD3/wAAAAAAAAAAAAD2/wAAAAAAAAAAAAD1////AAAAAAAAAAD1//7/AAAAAAAAAAAMAAAAAQAAAAAAAAAMAAEAAQAAAAAAAAAIAAMAAQAAAAAAAAAKAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAIAAIAAQAAAAAAAAAIAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAHAAIAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAEAAMAAQAAAAAAAAADAAMAAQAAAAAAAAACAAMAAQAAAAAAAAABAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAD//wMAAQAAAAAAAAD+/wMAAQAAAAAAAAD9/wMAAQAAAAAAAAAFAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAADAAIAAQAAAAAAAAACAAIAAQAAAAAAAAABAAIAAQAAAAAAAAAAAAIAAQAAAAAAAAD//wIAAQAAAAAAAAD+/wIAAQAAAAAAAAAHAAMAAQAAAAAAAAD9/wIAAQAAAAAAAAD9/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAIAAQAAQAAAAAAAAAIAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAKAAUAAQAAAAAAAAALAAUAAQAAAAAAAAAMAAUAAQAAAAAAAAANAAUAAQAAAAAAAAAOAAUAAQAAAAAAAAAPAAUAAQAAAAAAAAAQAAUAAQAAAAAAAAARAAUAAQAAAAAAAAASAAUAAQAAAAAAAAATAAUAAQAAAAAAAAAUAAUAAQAAAAAAAAAVAAUAAQAAAAAAAAAWAAUAAQAAAAAAAAAXAAUAAQAAAAAAAAAYAAUAAQAAAAAAAAAZAAUAAQAAAAAAAAAaAAUAAQAAAAAAAAAbAAUAAQAAAAAAAAAcAAUAAQAAAAAAAAAdAAUAAQAAAAAAAAAHAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAADAAQAAQAAAAAAAAACAAQAAQAAAAAAAAABAAQAAQAAAAAAAAAHAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAADAAUAAQAAAAAAAAAKAAQAAQAAAAAAAAAMAAMAAQAAAAAAAAAMAAIAAQAAAAAAAAALAAIAAQAAAAAAAAALAAEAAQAAAAAAAAALAAAAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAJAAIAAQAAAAAAAAAOAAEAAQAAAAAAAAAPAAEAAQAAAAAAAAAQAAEAAQAAAAAAAAARAAEAAQAAAAAAAAASAAEAAQAAAAAAAAATAAEAAQAAAAAAAAAUAAEAAQAAAAAAAAAVAAEAAQAAAAAAAAAWAAEAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAATAAMAAQAAAAAAAAAUAAMAAQAAAAAAAAAVAAMAAQAAAAAAAAAWAAMAAQAAAAAAAAAXAAMAAQAAAAAAAAAYAAMAAQAAAAAAAAAZAAMAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAAYAAIAAQAAAAAAAAAUAAAAAQAAAAAAAAATAAAAAQAAAAAAAAASAAAAAQAAAAAAAAAPAP//AQAAAAAAAAAQAP//AQAAAAAAAAARAP//AQAAAAAAAAAPAP7/AQAAAAAAAAAUAP//AQAAAAAAAAAVAP//AQAAAAAAAAAWAP//AQAAAAAAAAAXAP//AQAAAAAAAAAWAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAXAAAAAQAAAAAAAAAYAAAAAQAAAAAAAAAXAAEAAQAAAAAAAAAYAAEAAQAAAAAAAAAZAAEAAQAAAAAAAAAZAAIAAQAAAAAAAAAZAAAAAQAAAAAAAAA=")
+tile_set = ExtResource("1_0l7rx")
+
+[node name="Enemies" type="Node2D" parent="Midgard" unique_id=1601328170]
+
+[node name="Damage_Area" type="Area2D" parent="." unique_id=454458912]
+position = Vector2(436, 296)
+script = ExtResource("9_5n1nb")
+damage = 100
+blockable = false
+metadata/_custom_type_script = "uid://o0mpm37m04yy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage_Area" unique_id=806685062]
+shape = SubResource("RectangleShape2D_aonor")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1576207059]
+position = Vector2(-158, -80)
+script = ExtResource("9_aonor")
+interval = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=260933425]
+visible = false
+shape = SubResource("CircleShape2D_c1nht")
+
+[node name="Polygon2D" type="Polygon2D" parent="Area2D" unique_id=540361244]
+z_index = 3
+color = Color(0.8156863, 0.8156863, 0, 0.2627451)
+polygon = PackedVector2Array(82, -53, 99, -5, 87, 48, 60, 78, 19, 97, -47, 88, -91, 43, -99, -18, -74, -69, -24, -96, 37, -93)
+
+[node name="Debug Enemy" parent="." unique_id=1626915890 instance=ExtResource("9_tgpit")]
+position = Vector2(92, -73)
+knockback = null
+attack_behavior = SubResource("Resource_aonor")
+
+[node name="Debug Enemy2" parent="." unique_id=1080319627 instance=ExtResource("9_tgpit")]
+position = Vector2(590, 150)
+knockback = null
+attack_behavior = SubResource("Resource_tgpit")
+
+[node name="Debug Enemy3" parent="." unique_id=1801522015 instance=ExtResource("9_tgpit")]
+position = Vector2(650, 150)
+knockback = null
+attack_behavior = SubResource("Resource_klnrk")

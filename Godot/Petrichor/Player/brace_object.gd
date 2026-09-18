@@ -13,10 +13,14 @@ func try_player(area: Area2D):
 		area._hit_obstacle(self, blocked)
 
 @rpc("authority", "call_local", "reliable")
-func set_brace(time: float):
+func set_brace(time: float = 0):
 	set_brace_variables(true)
-	if time != 0:
+	if time > 0:
 		brace_timer = time
+		return
+	elif time < 0:
+		set_brace_variables(false)
+		brace_released.emit()
 
 var brace_timer: float = 0
 func _process(delta: float) -> void:

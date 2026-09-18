@@ -4,6 +4,7 @@ class_name Damage_Area
 @export var damage: int = 1
 @export var destroy_on_collision = true
 @export var ignore: Array[Node2D]
+@export var blockable: bool = true
 signal impact
 var impacted_body: Node2D
 
@@ -19,7 +20,7 @@ func try_damage_body(body: Node2D):
 		_hit_obstacle(body)
 		if Game_Scene.check_combat(body):
 			await get_tree().process_frame
-			if not blocked:
+			if not blocked or not blockable:
 				body._take_damage(damage)
 			blocked = false
 
@@ -27,7 +28,7 @@ var blocked: bool = false
 func _hit_obstacle(body: Node2D, blocking: bool = false) -> int:
 	impacted_body = body
 	impact.emit()
-	blocked = blocking
+	if blockable: blocked = blocking
 	if destroy_on_collision:
 		rpc("disappear")
 	return damage

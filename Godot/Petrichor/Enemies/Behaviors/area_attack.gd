@@ -33,7 +33,7 @@ func _update(delta: float):
 			else:
 				attack_timer = 0
 			enemy.end_attack.emit()
-		elif not already_hit and enemy.health > 0:
+		elif not already_hit:
 			_try_for_cast_damage()
 	
 	if not enemy.is_multiplayer_authority():
@@ -46,6 +46,10 @@ func _update(delta: float):
 
 var already_hit: bool = false
 func _try_for_cast_damage():
+	if already_hit:
+		return
+	
+	enemy.damage_cast.force_shapecast_update()
 	var objects: Array = enemy.damage_cast.collision_result
 	if not objects or not objects.size():
 		return
@@ -54,18 +58,21 @@ func _try_for_cast_damage():
 	var blocking: Area2D
 	for o in objects:
 		var obj: Node2D = o.get("collider")
-		if obj.get_meta("Mortal"):
-			if obj.get_script() == PlayerMovement:
-				player = obj
-			elif obj.get_script() == Brace_Object:
-				blocking = obj
+		#if obj.get_meta("Mortal"):
+		if obj.get_script() == PlayerMovement:
+			player = obj
+		elif obj.get_script() == Brace_Object:
+			blocking = obj
 
 	
 	if blocking:
-		if (Game_Scene.active.local.global_position - enemy.global_position).length() > (blocking.global_position - enemy.global_position).length() or enemy.is_multiplayer_authority():
-			if enemy.is_multiplayer_authority():
-				enemy.rpc("_network_stun")
-			return
+		if player:
+			if (player.global_position - enemy.global_position).length() < (blocking.global_position - enemy.global_position).length():
+				return
+		if enemy.is_multiplayer_authority():
+			enemy.rpc("_network_stun")
+		already_hit = true
+		return
 	if player:
 		player._take_damage(damage)
 		already_hit = true

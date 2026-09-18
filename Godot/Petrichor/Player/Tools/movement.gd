@@ -7,6 +7,7 @@ class_name PlayerMovement
 @export var accel: float = 800
 @export var jump: float = 280
 @export var fallSpeed: int = 1200
+@onready var fall_truth = fallSpeed
 @export var aerial_multiplier: float = 0.5
 @export var energy: PlayerEnergy
 
@@ -37,6 +38,13 @@ signal special_interact
 signal player_land
 var speed_mods: Dictionary[String, float]
 var cheering: bool = false
+
+var gravity_delay_timer: float = 0
+func _delay_gravity(time: float):
+	if time > gravity_delay_timer:
+		gravity_delay_timer = time
+	fallSpeed = 0
+	
 
 func sum_speed_mods() -> float:
 	var sum: float = 0
@@ -85,7 +93,7 @@ func dress() -> void:
 	brace._start(self, PlayerInput.player_brace)
 	PlayerInput.player_jump.connect(process_jump)
 	impact_action._start(self)
-	attack._start(self, PlayerInput.player_attack)
+	attack._start(self, PlayerInput.player_attack_priveliged)
 
 func _debug():
 	var _s: String = "local "
@@ -120,6 +128,12 @@ func _physics_process(delta: float) -> void:
 	process_camera_offset(delta)
 	energy._update(delta)
 	attack._update(delta)
+	
+	if gravity_delay_timer > 0:
+		gravity_delay_timer -= delta
+		if gravity_delay_timer <= 0:
+			gravity_delay_timer = 0
+			fallSpeed = fall_truth
 
 var last_velocity: float = 0
 var can_move: bool = true
@@ -145,7 +159,7 @@ func process_move(delta: float):
 			pivot.scale.x *= -1
 			collider.position.x *= -1
 	elif is_on_floor():
-		var drag := (accel + velocity.x / move_speed) * delta
+		var drag: float = (accel + velocity.x / move_speed) * delta # * fallSpeed / fall_truth
 		velocity.x = move_toward(velocity.x, 0, drag)
 		
 	var was_grounded = is_on_floor()

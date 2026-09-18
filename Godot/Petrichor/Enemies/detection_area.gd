@@ -4,6 +4,7 @@ class_name Area_Detector
 var targets: Array[Node2D]
 @export var target_script: Script = PlayerMovement
 signal target_found
+signal target_lost
 signal field_clear
 
 func _ready():
@@ -22,6 +23,7 @@ func _try_lose_target(body: Node2D):
 		return
 	
 	targets.remove_at(targets.find(body))
+	target_lost.emit()
 	if targets.size() == 0:
 			#print("lost")
 			field_clear.emit()
