@@ -3,37 +3,40 @@ class_name Enemy
 
 @export_group("Stats")
 @export var health: int = 5
-@export var damage: int = 1
+@export var damage: int = 3
 @export var speed: float = 50
 @export var accel: float = 250
 @export var attack_range: float = 25
 @export var stun_time: float = 3
 @export var knockback: Vector2
 @export var fall_speed: float = 30
+@export var start_flipped: bool = false
 
 @export_group("References")
-@export var tracking_feedback: Node2D
-@export var damage_feedback: Node2D
 @export var collider: CollisionShape2D
 @export var detection_range: Area_Detector
 @export var chase_range: Area_Detector
 @export var override_detection_range: Area_Detector
 @export var pivot: Node2D
 @export var attack_behavior: EnemyAttackBehavior
-@export var stun_feedback: Node2D
 
 signal damage_taken
 signal stunned
 signal killed
 signal start_attack
 signal end_attack
+signal update_tracking(bool)
+signal update_stun(bool)
+
 
 var tracking_enemy: bool
 var target: Node2D
 
 func _ready() -> void:
-	damage_taken.connect(_show_damage)
 	attack_behavior._start(self)
+	
+	if start_flipped:
+		pivot.scale.x *= -1
 	
 	if multiplayer.is_server():
 		if not detection_range:
@@ -54,26 +57,22 @@ func track_target(value: bool):
 	
 	target = detection_range._nearest_target()
 	
+	print("happenings")
 	tracking_enemy = not not target
-	tracking_feedback.visible = true
+	rpc("_network_tracking", tracking_enemy)
 
 func override_target(new_target: Node2D = null):
+	tracking_enemy = true
+	
 	if new_target == null:
 		target = override_detection_range._nearest_target()
+		if target == null:
+			tracking_enemy = false
 	else:
 		target = new_target
 	
-	tracking_enemy = true
-	tracking_feedback.visible = true
+	rpc("_network_tracking", tracking_enemy)
 
-var damage_vfx_timer: float = 0
-func _show_damage():
-	if not damage_feedback.visible:
-		damage_feedback.visible = true
-		damage_vfx_timer = 0.5
-	else:
-		damage_vfx_timer = -0.1
-		damage_feedback.visible = false
 
 var last_pos: Vector2
 func _physics_process(_delta: float) -> void:
@@ -88,22 +87,12 @@ func _physics_process(_delta: float) -> void:
 
 var stun_timer: float
 func _process(delta: float) -> void:
-	if damage_vfx_timer > 0:
-		damage_vfx_timer -= delta
-		if damage_vfx_timer <= 0:
-			damage_vfx_timer = 0
-			damage_feedback.visible = false
-	elif damage_vfx_timer < 0:
-		damage_vfx_timer += delta
-		if damage_vfx_timer >= 0:
-			damage_vfx_timer = 0.5
-			damage_feedback.visible = true
 	
 	if stun_timer > 0:
 		stun_timer -= delta
 		if stun_timer <= 0:
 			stun_timer = 0
-			stun_feedback.visible = false
+			update_stun.emit(false)
 
 func _take_damage(amount: int) -> int:
 	rpc("_network_damage", amount, int(Wrapper.local_type))
@@ -119,10 +108,9 @@ func process_damage(amount: int, player: int) -> int:
 	
 	if is_multiplayer_authority():
 		if player == Wrapper.local_type:
-			target = Game_Scene.active.local
+			override_target(Game_Scene.active.local)
 		else:
-			target = Game_Scene.active.friend
-
+			override_target(Game_Scene.active.friend)
 	
 	return amount
 
@@ -130,6 +118,10 @@ func process_damage(amount: int, player: int) -> int:
 func _update_position(pos: Vector2, sca: int):
 	position = pos
 	pivot.scale.x = sca
+
+@rpc("authority", "call_local", "reliable")
+func _network_tracking(value: bool):
+	update_tracking.emit(value)
 
 @rpc("any_peer", "call_remote", "reliable")
 func _network_damage(amount: int, player: int):
@@ -139,16 +131,12 @@ func _network_damage(amount: int, player: int):
 @rpc("authority", "call_local", "reliable")
 func _network_stun():
 	stun_timer = stun_time
-	stun_feedback.visible = true
+	update_stun.emit(true)
 	stunned.emit()
 
 @rpc("authority", "call_local", "reliable")
 func kill_enemy():
 	killed.emit()
-	damage_feedback.visible = true
 	set_meta("Mortal", false)
-	damage_vfx_timer = 0
-	var t = get_tree().create_tween()
-	t.tween_property(self, "rotation_degrees", 90, 0.4)
-	await t.finished
-	queue_free()
+	
+	#queue_free()
