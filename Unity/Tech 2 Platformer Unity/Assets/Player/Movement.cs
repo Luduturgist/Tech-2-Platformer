@@ -1,5 +1,6 @@
 
 using NUnit.Framework.Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -14,7 +15,11 @@ public class Movement : MonoBehaviour
     [SerializeField] float jumpHeight = 50;
     [SerializeField] LayerMask rayMask;
 
+    [SerializeField] float climbSpeed = 5;
+    [SerializeField] float ladderJumpTime = 0.15f;
+
     [Header("References")]
+    [SerializeField] InputActionAsset inputMap;
     [SerializeField] Transform leftRaycast;
     [SerializeField] Transform rightRaycast;
     [SerializeField] Transform foot;
@@ -23,25 +28,41 @@ public class Movement : MonoBehaviour
     [Space]
     [SerializeField] GameObject debugObject;
 
-
     Rigidbody2D rb;
     InputAction move;
     InputAction jump;
+    float startingGravityScale;
     bool grounded = false;
     public static Movement instance;
+    LayerMask climbingLayer;
+    Vector2 PlayerMovement;
+    float ladderJumpTimer = 0;
+
+    void Awake()
+    {
+        climbingLayer = LayerMask.GetMask("Climbing");
+
+        InputActionMap playerInput = inputMap.FindActionMap("Player");
+
+        move = playerInput.FindAction("Move");
+        jump = playerInput.FindAction("Jump");
+
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        move = InputSystem.actions.FindAction("Move");
-        jump = InputSystem.actions.FindAction("Jump");
+        startingGravityScale = rb.gravityScale;
         grounded = CheckFloor();
         instance = this;
     }
 
     void FixedUpdate()
     {
+        PlayerMovement = move.ReadValue<Vector2>();
         ProcessMove();
+
+        Climb();
     }
 
     bool CheckFloor()
@@ -65,7 +86,7 @@ public class Movement : MonoBehaviour
     float vel;
     void ProcessMove()
     {
-        Vector2 dir = move.ReadValue<Vector2>();
+        Vector2 dir = PlayerMovement;
 
         if (dir != Vector2.zero)
         {
@@ -84,19 +105,44 @@ public class Movement : MonoBehaviour
             transform.position += new Vector3(vel, 0);
         }
 
-        if (jump.IsPressed() && grounded)
+        if (jump.IsPressed() && CheckFloor())
         {
-            if (!CheckFloor()) return;
             rb.linearVelocityY += jumpHeight;
             if (rb.linearVelocityY > jumpHeight) rb.linearVelocityY = jumpHeight;
             grounded = false;
             print("Jump");
+            ladderJumpTimer = ladderJumpTime;
         }
 
         if (dir.x * pivot.localScale.x < 0)
         {
             pivot.localScale = new Vector3(pivot.localScale.x * -1, 1);
         }
+    }
+
+    private void Climb()
+    {
+        Animator playerAnimator = new Animator();
+
+        ladderJumpTimer -= Time.fixedDeltaTime;
+
+        if(!rb.IsTouchingLayers(climbingLayer) || ladderJumpTimer > 0)
+        {
+            rb.gravityScale = startingGravityScale;
+            playerAnimator.SetBool("Climb", false);
+            return;
+        }
+
+        float vMovement = PlayerMovement.y;
+
+        Vector2 climbingVelocity = new Vector2(rb.linearVelocityX, vMovement * Time.fixedDeltaTime * climbSpeed);
+
+        rb.linearVelocity = climbingVelocity;
+
+
+        rb.gravityScale = 0;
+
+        playerAnimator.SetBool("Climb", true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
