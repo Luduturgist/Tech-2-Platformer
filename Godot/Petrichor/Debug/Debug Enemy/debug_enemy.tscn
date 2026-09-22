@@ -27,6 +27,7 @@ damage_feedback = NodePath("Pivot/Friwb")
 stun_feedback = NodePath("Knockback Feedback")
 attack_feedback = NodePath("Pivot/Attack")
 damage_cast = NodePath("Pivot/Attack/ShapeCast2D")
+health = 2
 start_flipped = true
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("Pivot/PlayerDetectionArea")

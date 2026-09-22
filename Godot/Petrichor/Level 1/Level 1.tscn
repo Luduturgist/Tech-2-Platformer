@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dt6ltlb5kd5n5" path="res://Level 1/overstim_area.gd" id="9_aonor"]
 [ext_resource type="PackedScene" uid="uid://wdx2ukd6cahx" path="res://Debug/Debug Enemy/debug_enemy.tscn" id="9_tgpit"]
 [ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="10_aonor"]
+[ext_resource type="Texture2D" uid="uid://dkcvhtsppqo20" path="res://Enemies/Filing Box/Filing Box.png" id="13_20h5i"]
 [ext_resource type="Texture2D" uid="uid://cpnlrnky8qg1o" path="res://Enemies/Basic Enemy/basic enemy.png" id="13_k6t00"]
 
 [sub_resource type="Resource" id="Resource_klnrk"]
@@ -210,5 +211,9 @@ color = Color(0.8156863, 0.8156863, 0, 0.2627451)
 polygon = PackedVector2Array(82, -53, 99, -5, 87, 48, 60, 78, 19, 97, -47, 88, -91, 43, -99, -18, -74, -69, -24, -96, 37, -93)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1869177510]
-position = Vector2(354, -48)
+position = Vector2(384, -48)
 texture = ExtResource("13_k6t00")
+
+[node name="FilingBox" type="Sprite2D" parent="." unique_id=2144746901]
+position = Vector2(332, -48)
+texture = ExtResource("13_20h5i")
