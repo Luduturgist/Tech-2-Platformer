@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @export_group("Stats")
-@export var health: int = 5
+@export var health: int = 3
 @export var damage: int = 3
 @export var speed: float = 50
 @export var accel: float = 250

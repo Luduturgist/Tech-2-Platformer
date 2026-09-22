@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_82fik"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
-[ext_resource type="Script" uid="uid://biqr47h3yc183" path="res://Game Logic/Networking/synchronizer_beholden.gd" id="7_k0ixv"]
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="7_tjj38"]
 [ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
 [ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/soil_spriteframes.tres" id="8_fpjr1"]
@@ -49,17 +48,6 @@ windupvfx_path = NodePath("Pivot/VFX/Windup")
 caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
 metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yifjq"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/replication_mode = 1
-properties/1/path = NodePath("Collider:position:x")
-properties/1/spawn = true
-properties/1/replication_mode = 1
-properties/2/path = NodePath("Pivot:scale:x")
-properties/2/spawn = true
-properties/2/replication_mode = 1
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tliqh"]
 blend_mode = 4
 
@@ -77,7 +65,7 @@ radius = 30.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpjr1"]
 
-[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "network_sync", "cam_offset", "impact_caster", "push_cast", "animator")]
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "cam_offset", "impact_caster", "push_cast", "animator")]
 light_mask = 2
 visibility_layer = 2
 collision_layer = 2
@@ -91,17 +79,10 @@ impact_action = SubResource("Resource_fpjr1")
 attack = SubResource("Resource_53tks")
 pivot = NodePath("Pivot")
 collider = NodePath("Collider")
-network_sync = NodePath("MultiplayerSynchronizer")
 cam_offset = NodePath("Pivot/Offset")
 impact_caster = NodePath("Smash Cast")
 push_cast = NodePath("Push Cast")
 animator = NodePath("Pivot/Animated Sprite")
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=1420099787]
-replication_config = SubResource("SceneReplicationConfig_yifjq")
-visibility_update_mode = 1
-public_visibility = false
-script = ExtResource("7_k0ixv")
 
 [node name="Pivot" type="Node2D" parent="." unique_id=615041083]
 

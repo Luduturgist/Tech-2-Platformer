@@ -5,4 +5,4 @@
 [node name="CameraFollow" type="Camera2D" unique_id=728822637]
 offset = Vector2(0, -50)
 script = ExtResource("1_kq5fe")
-speed = 40.0
+speed = 50.0

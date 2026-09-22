@@ -7,6 +7,13 @@ class_name Grounded_Enemy
 func _ready():
 	super._ready()
 	killed.connect(func(): attack_feedback.visible = false)
+	killed.connect(_show_death)
+
+func _show_death():
+	var t = get_tree().create_tween()
+	t.tween_property(self, "rotation_degrees", 90, 0.4)
+	await t.finished
+	queue_free()
 
 func _physics_process(_delta: float) -> void:
 	attack_behavior._update(_delta)

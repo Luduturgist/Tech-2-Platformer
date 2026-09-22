@@ -3,9 +3,9 @@ extends Resource
 class_name EnemyAttackBehavior
 
 @export var damage: int = 1
-@export var attack_delay: float = 0.5
-@export var attack_duration: float = 1
-@export var attack_interval: float = 0.5
+@export var attack_delay: float = 0.2
+@export var attack_duration: float = 0.2
+@export var attack_interval: float = 0.2
 var enemy: Enemy
 
 var windup: float

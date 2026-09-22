@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://q1s1lrj3736f"]
+
+[ext_resource type="Script" uid="uid://opgpjmq4qtnj" path="res://Enemies/grounded_enemy.gd" id="1_jxspg"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="2_am2n3"]
+[ext_resource type="Texture2D" uid="uid://d38us72l0y7lq" path="res://Enemies/Filing Box/Filing Box.png" id="3_2402i"]
+[ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="4_eb6li"]
+
+[sub_resource type="Resource" id="Resource_c1nht"]
+resource_local_to_scene = true
+script = ExtResource("2_am2n3")
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
+size = Vector2(98, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6t00"]
+size = Vector2(18, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbm4e"]
+size = Vector2(162, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wdi"]
+size = Vector2(9.27, 5.39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
+size = Vector2(19, 18)
+
+[node name="Filing Enemy" type="CharacterBody2D" unique_id=775520302 node_paths=PackedStringArray("attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot")]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_jxspg")
+attack_feedback = NodePath("Sprite/Attack")
+damage_cast = NodePath("Sprite/Attack/ShapeCast2D")
+attack_range = 29.0
+collider = NodePath("CollisionShape2D")
+detection_range = NodePath("Sprite/Area_Detector")
+chase_range = NodePath("Sprite/Chase Area")
+override_detection_range = NodePath("Sprite/Override Area")
+pivot = NodePath("Sprite")
+attack_behavior = SubResource("Resource_c1nht")
+metadata/_custom_type_script = "uid://opgpjmq4qtnj"
+metadata/Mortal = true
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=321499954]
+position = Vector2(0, -16)
+texture = ExtResource("3_2402i")
+
+[node name="Area_Detector" type="Area2D" parent="Sprite" unique_id=825986170]
+visible = false
+position = Vector2(0, 16)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("4_eb6li")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area_Detector" unique_id=2126628325]
+position = Vector2(47, -12.5)
+shape = SubResource("RectangleShape2D_oamku")
+
+[node name="Override Area" type="Area2D" parent="Sprite" unique_id=632476459]
+visible = false
+position = Vector2(0, 16)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("4_eb6li")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Override Area" unique_id=1364552042]
+position = Vector2(7, -13.5)
+shape = SubResource("RectangleShape2D_k6t00")
+
+[node name="Chase Area" type="Area2D" parent="Sprite" unique_id=12204867]
+visible = false
+position = Vector2(0, 16)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("4_eb6li")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Chase Area" unique_id=482212633]
+position = Vector2(33, -11.5)
+shape = SubResource("RectangleShape2D_tbm4e")
+
+[node name="Attack" type="Polygon2D" parent="Sprite" unique_id=1998725245]
+visible = false
+z_index = 2
+position = Vector2(11, 6)
+polygon = PackedVector2Array(-2, 2, 4, 6, 4, -2, 2, -7, -4, -10, -1, -4)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Sprite/Attack" unique_id=804755287]
+position = Vector2(-2.000001, -6)
+rotation = -1.7778863
+scale = Vector2(0.99999994, 0.99999994)
+enabled = false
+shape = SubResource("RectangleShape2D_j4wdi")
+target_position = Vector2(-8.65152, 2.269638)
+max_results = 2
+collision_mask = 3
+collide_with_areas = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=296294799]
+visible = false
+position = Vector2(0.5, -9)
+shape = SubResource("RectangleShape2D_c1nht")

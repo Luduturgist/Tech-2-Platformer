@@ -1,8 +1,14 @@
 [gd_scene format=3 uid="uid://wdx2ukd6cahx"]
 
 [ext_resource type="Script" uid="uid://blc50d8yg6rte" path="res://Debug/Debug Enemy/debug_enemy.gd" id="1_xrk5e"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="2_07we1"]
 [ext_resource type="PackedScene" uid="uid://bgnoriuweswe5" path="res://Enemies/Player Detection Area.tscn" id="2_tliqh"]
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="4_07we1"]
+
+[sub_resource type="Resource" id="Resource_na8de"]
+resource_local_to_scene = true
+script = ExtResource("2_07we1")
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
 
@@ -15,8 +21,8 @@ size = Vector2(341, 91)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07we1"]
 size = Vector2(12, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
-size = Vector2(16.73, 9.9)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wdi"]
+size = Vector2(9.27, 5.39)
 
 [node name="Debug Enemy" type="CharacterBody2D" unique_id=1626915890 node_paths=PackedStringArray("tracking_feedback", "damage_feedback", "stun_feedback", "attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot")]
 collision_layer = 4
@@ -34,6 +40,7 @@ detection_range = NodePath("Pivot/PlayerDetectionArea")
 chase_range = NodePath("Pivot/Player Chase Area")
 override_detection_range = NodePath("Pivot/Player_override_area")
 pivot = NodePath("Pivot")
+attack_behavior = SubResource("Resource_na8de")
 metadata/Mortal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=123607045]
@@ -245,7 +252,7 @@ position = Vector2(-3.000001, -4)
 rotation = -1.7560937
 scale = Vector2(0.99999994, 0.99999994)
 enabled = false
-shape = SubResource("RectangleShape2D_oamku")
+shape = SubResource("RectangleShape2D_j4wdi")
 target_position = Vector2(-6.019841, 4.976098)
 max_results = 2
 collision_mask = 3

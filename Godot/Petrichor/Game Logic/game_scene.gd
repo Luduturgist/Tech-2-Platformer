@@ -15,6 +15,7 @@ const PAUSE_PATH := "res://UI/Root Menus/Pause Menu/Pause.tscn"
 
 static var active: Game_Scene
 var pause: Pause_Menu
+var game_started: bool = false
 
 
 func _ready() -> void:
@@ -26,6 +27,7 @@ func _ready() -> void:
 
 func _exit_tree():
 	pause.queue_free()
+	active = null
 
 func host_setup():
 	if not multiplayer.is_server(): return
@@ -34,6 +36,7 @@ func host_setup():
 func start_game():
 	PlayerInput.moving = true
 	if gui: gui.visible = true
+	game_started = true
 	host_setup()
 
 static func check_combat(node: Node) -> bool:

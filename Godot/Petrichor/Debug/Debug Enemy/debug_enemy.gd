@@ -9,15 +9,12 @@ func _ready() -> void:
 	update_tracking.connect(_show_tracking)
 	update_stun.connect(_show_stun)
 	damage_taken.connect(_show_damage)
-	killed.connect(_show_death)
 
 func _show_death():
 	damage_feedback.visible = true
 	damage_vfx_timer = 0
-	var t = get_tree().create_tween()
-	t.tween_property(self, "rotation_degrees", 90, 0.4)
-	await t.finished
-	queue_free()
+	attack_feedback.visible = false
+	super._show_death()
 
 func _show_tracking(value: bool):
 	tracking_feedback.visible = value

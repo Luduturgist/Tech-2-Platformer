@@ -23,7 +23,6 @@ var taking_action: bool = false
 @export_group("References")
 @export var pivot: Node2D
 @export var collider: CollisionShape2D
-@export var network_sync: MultiplayerSynchronizer
 @export var cam_offset: Node2D
 @export var impact_caster: ShapeCast2D
 @export var push_cast: ShapeCast2D
@@ -59,14 +58,7 @@ var cam_offset_init: Vector2
 func _ready() -> void:
 	if friendly: friendly._start(self)
 	if pain_feedback: pain_feedback._start(self)
-	Wrapper.scene_ready.connect(_set_network_visibility.bind(0))
-	multiplayer.peer_disconnected.connect(_set_network_visibility)
 	PlayerInput.player_debug.connect(_debug)
-	
-
-func _set_network_visibility(i: int):
-	await get_tree().process_frame
-	network_sync.public_visibility = not i
 
 func dress() -> void:
 	cam_offset_init = cam_offset.position
@@ -120,7 +112,23 @@ func _physics_process(delta: float) -> void:
 	if pain_feedback:
 		pain_feedback._update(delta)
 	
-	if not local: return
+	if not local:
+		if network_position != Vector2.INF:
+			var diff = network_position - global_position
+			var dir = diff.normalized() * move_speed
+			
+			velocity.x = move_toward(velocity.x, dir.x, accel * delta)
+			velocity.y = move_toward(velocity.y, dir.y, accel * delta)
+			
+			if abs(velocity.x) > abs(diff.x):
+				velocity.x = 0
+				global_position.x = network_position.x
+			if abs(velocity.y) > abs(diff.y):
+				velocity.y = 0
+				global_position.y = network_position.y
+			
+			move_and_slide()
+		return
 	
 	move_ability._update(delta)
 	
@@ -166,6 +174,9 @@ func process_move(delta: float):
 	last_velocity = velocity.length()
 	move_and_slide()
 	
+	if Wrapper.scene_synchronized:
+		rpc("_network_position", global_position, pivot.scale.x == -1)
+	
 	if not is_on_floor():
 		if was_grounded:
 			change_animation(&"Jump")
@@ -192,3 +203,13 @@ func change_animation(_name: StringName):
 @rpc("authority", "call_remote", "reliable")
 func network_animation(_name: StringName):
 	animator.animation = _name
+
+var network_position: Vector2 = Vector2.INF
+@rpc("authority", "call_remote", "unreliable_ordered")
+func _network_position(pos: Vector2, flipped: bool):
+	network_position = pos
+	var flip = 1
+	if flipped:
+		flip = -1
+	pivot.scale.x = flip
+	#moving_networked = dir

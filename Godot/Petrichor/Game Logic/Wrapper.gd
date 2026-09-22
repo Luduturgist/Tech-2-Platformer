@@ -91,8 +91,6 @@ func _buffer_disconnect():
 	disconnect_screen.visible = true
 	_refresh_ip()
 	ip_reference.text = str(localIP)
-	Game_Scene.active.friend.network_sync.public_visibility = false
-	Game_Scene.active.local.network_sync.public_visibility = false
 
 func _end_session(error: bool = false):
 	scene_synchronized = false
@@ -119,6 +117,7 @@ func scene_checkin(scene: String, id: int = 0):
 	await get_tree().process_frame
 	await get_tree().process_frame
 	if scene != get_tree().current_scene.scene_file_path:
+		scene_synchronized = false
 		if multiplayer.is_server():
 			rpc("scene_checkin", get_tree().current_scene.scene_file_path, 1)
 		elif id == 1:
@@ -140,6 +139,7 @@ func _load_scene(scene: String):
 @rpc("call_local", "any_peer", "reliable")
 func multiplayer_scene(scene: String):
 	begin_desync.emit()
+	scene_synchronized = false
 	get_tree().call_deferred("change_scene_to_file", scene)
 	await get_tree().scene_changed
 	rpc("scene_checkin", scene, multiplayer.get_unique_id())
