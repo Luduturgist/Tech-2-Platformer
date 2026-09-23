@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dxx6ttd11ql7h"]
+
+[ext_resource type="SpriteFrames" uid="uid://eh070ro7e2vm" path="res://Enemies/Filing Box/filing_idle.tres" id="1_y5jfc"]
+
+[node name="AnimationZoo" type="Node2D" unique_id=1969463717]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=616629696]
+sprite_frames = ExtResource("1_y5jfc")
+frame_progress = 0.7526847

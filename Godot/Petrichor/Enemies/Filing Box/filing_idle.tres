@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://eh070ro7e2vm"]
+
+[ext_resource type="Texture2D" uid="uid://x2n8rmncrxoc" path="res://Enemies/Filing Box/Filing Box Idle.png" id="1_u4e5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ix4q6"]
+atlas = ExtResource("1_u4e5r")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6gup0"]
+atlas = ExtResource("1_u4e5r")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myc3e"]
+atlas = ExtResource("1_u4e5r")
+region = Rect2(64, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ix4q6")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_6gup0")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_myc3e")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
