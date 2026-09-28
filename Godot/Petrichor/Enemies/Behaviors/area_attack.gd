@@ -4,6 +4,7 @@ class_name Area_Attack
 var damage_feedback: Node2D
 var damage_cast: ShapeCast2D
 
+
 func _start(e: Enemy):
 	super._start(e)
 
@@ -24,6 +25,11 @@ func _update(delta: float):
 			enemy.start_attack.emit()
 			enemy.attack_feedback.visible = true
 			enemy.damage_cast.enabled = true
+			
+			var local_lunge := lunge
+			if enemy.pivot.scale.x < 0:
+				local_lunge.x *= -1
+			enemy.velocity += local_lunge
 	
 	if attack_timer > 0 and enemy.health > 0:
 		attack_timer -= delta
@@ -44,7 +50,6 @@ func _update(delta: float):
 		if attack_timer >= 0:
 			attack_timer = 0
 
-var already_hit: bool = false
 func _try_for_cast_damage():
 	if already_hit:
 		return
@@ -74,5 +79,4 @@ func _try_for_cast_damage():
 		already_hit = true
 		return
 	if player:
-		player._take_damage(damage)
-		already_hit = true
+		_damage_player(player)

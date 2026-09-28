@@ -49,7 +49,7 @@ caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
 metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tliqh"]
-blend_mode = 4
+blend_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
 size = Vector2(12, 23)
@@ -117,14 +117,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -4.0
-offset_top = -7.0
+offset_top = -8.0
 offset_right = 6.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.35, 0.023333332, 0, 0.40392157)
+color = Color(0, 4.851112, 4.8511105, 0.365)
 script = ExtResource("7_boe6u")
 
 [node name="Dust" type="ColorRect" parent="Pivot/VFX" unique_id=535895140]

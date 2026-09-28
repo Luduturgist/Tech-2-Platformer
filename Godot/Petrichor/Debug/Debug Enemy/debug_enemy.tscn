@@ -8,6 +8,7 @@
 [sub_resource type="Resource" id="Resource_na8de"]
 resource_local_to_scene = true
 script = ExtResource("2_07we1")
+lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n7v4o"]
