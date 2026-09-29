@@ -100,10 +100,10 @@ TextureImporter:
       name: enemy_01_0
       rect:
         serializedVersion: 2
-        x: 15
-        y: 7
-        width: 24
-        height: 20
+        x: 8
+        y: 0
+        width: 38
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,7 +112,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73cf812bf45ee4742aba46a55fe635b6
+      spriteID: fcbb70f0a1502ab4ba3cc54cf450bd8c
       internalID: -1724519573
       vertices: []
       indices: 
@@ -122,10 +122,10 @@ TextureImporter:
       name: enemy_01_1
       rect:
         serializedVersion: 2
-        x: 53
-        y: 7
-        width: 24
-        height: 18
+        x: 46
+        y: 0
+        width: 38
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,7 +134,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7507bafa60227a64e8e84ab7468f054e
+      spriteID: c18c24aa03a71ba489ec3c4f6a90f87c
       internalID: 928422847
       vertices: []
       indices: 
@@ -144,10 +144,10 @@ TextureImporter:
       name: enemy_01_2
       rect:
         serializedVersion: 2
-        x: 91
-        y: 7
-        width: 24
-        height: 16
+        x: 84
+        y: 0
+        width: 38
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,7 +156,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b808dc938783e274c81e56ae62c16d2a
+      spriteID: a185812f395d3b443b7b6ce5352abdf3
       internalID: 1905304701
       vertices: []
       indices: 
@@ -166,10 +166,10 @@ TextureImporter:
       name: enemy_01_3
       rect:
         serializedVersion: 2
-        x: 129
-        y: 9
-        width: 26
-        height: 24
+        x: 122
+        y: 0
+        width: 38
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,7 +178,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce45dced954bbfd46907ab81ba8e916e
+      spriteID: 516d08bfd62ce2242a19fe3c4802aa74
       internalID: -694206432
       vertices: []
       indices: 
@@ -188,10 +188,10 @@ TextureImporter:
       name: enemy_01_4
       rect:
         serializedVersion: 2
-        x: 167
-        y: 13
-        width: 26
-        height: 22
+        x: 160
+        y: 0
+        width: 38
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,7 +200,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 252eb2524caaf254bb248601d129b865
+      spriteID: 491c8199adbce3a4798222b5c0aa3019
       internalID: -1788674988
       vertices: []
       indices: 
@@ -210,10 +210,10 @@ TextureImporter:
       name: enemy_01_5
       rect:
         serializedVersion: 2
-        x: 203
-        y: 7
-        width: 24
-        height: 24
+        x: 198
+        y: 0
+        width: 38
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -222,7 +222,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8225db19efc4aab40ad60e65829b4fe3
+      spriteID: cfddb701c85ce4a4e85105a0242ba360
       internalID: -1001267858
       vertices: []
       indices: 
@@ -242,7 +242,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":9.0,"y":0.0},"gridSpritePadding":{"x":4.0,"y":6.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":38.0,"y":40.0},"gridSpriteOffset":{"x":8.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       enemy_01_0: -1724519573
       enemy_01_1: 928422847

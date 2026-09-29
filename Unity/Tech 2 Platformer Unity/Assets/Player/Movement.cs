@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask rayMask;
 
     [SerializeField] float climbSpeed = 5;
-    [SerializeField] float ladderJumpTime = 0.15f;
+    [SerializeField] float ladderJumpTime = 0.4f;
     [SerializeField] float friction = 10;
 
     [Header("References")]
@@ -28,6 +28,7 @@ public class Movement : MonoBehaviour
     [SerializeField] Transform pivot;
     [Space]
     [SerializeField] GameObject debugObject;
+    [SerializeField] Animator animator;
 
     Rigidbody2D rb;
     InputAction move;
@@ -104,6 +105,7 @@ public class Movement : MonoBehaviour
             if (Mathf.Abs(vel) > run_speed) vel = (vel / Mathf.Abs(vel)) * run_speed;
 
             transform.position += new Vector3(vel, 0);
+            animator.SetBool("Run", true);
         }
         else if (vel != 0)
         {
@@ -113,9 +115,15 @@ public class Movement : MonoBehaviour
 
             transform.position += new Vector3(vel, 0);
         }
+        else
+        {
+            animator.SetBool("Run", false);
+        }
 
         if (jump.IsPressed() && (CheckFloor() ||rb.IsTouchingLayers(climbingLayer)))
         {
+            if (ladderJumpTimer > 0 && rb.IsTouchingLayers(climbingLayer)) return;
+
             rb.linearVelocityY += jumpHeight;
             if (rb.linearVelocityY > jumpHeight) rb.linearVelocityY = jumpHeight;
             grounded = false;
@@ -131,8 +139,6 @@ public class Movement : MonoBehaviour
 
     private void Climb()
     {
-        Animator playerAnimator = new Animator();
-
         if (ladderJumpTimer > 0)
         {
             if(rb.IsTouchingLayers(climbingLayer))
@@ -149,9 +155,10 @@ public class Movement : MonoBehaviour
         if(!rb.IsTouchingLayers(climbingLayer) || ladderJumpTimer > 0)
         {
             rb.gravityScale = startingGravityScale;
-            // playerAnimator.SetBool("Climb", false);
+            animator.SetBool("Climb", false);
             return;
         }
+        
 
         float vMovement = PlayerMovement.y;
 
@@ -162,7 +169,7 @@ public class Movement : MonoBehaviour
 
         rb.gravityScale = 0;
 
-        // playerAnimator.SetBool("Climb", true);
+        animator.SetBool("Climb", true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
