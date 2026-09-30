@@ -23,7 +23,9 @@ class_name Enemy
 signal damage_taken
 signal stunned
 signal killed
+@warning_ignore("unused_signal")
 signal start_attack
+@warning_ignore("unused_signal")
 signal end_attack
 signal update_tracking(bool)
 signal update_stun(bool)

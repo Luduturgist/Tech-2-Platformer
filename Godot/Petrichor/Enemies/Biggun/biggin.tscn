@@ -9,25 +9,24 @@
 resource_local_to_scene = true
 script = ExtResource("2_5cofb")
 damage = 2
-attack_delay = 0.7
 attack_duration = 0.3
 attack_interval = 0.5
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
-size = Vector2(98, 17)
+size = Vector2(106, 57)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6t00"]
-size = Vector2(18, 7)
+size = Vector2(17, 23)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbm4e"]
-size = Vector2(162, 31)
+size = Vector2(227, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wdi"]
-size = Vector2(9.27, 5.39)
+size = Vector2(9.27, 7.575)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
-size = Vector2(19, 18)
+size = Vector2(21, 28)
 
 [node name="Biggin" type="CharacterBody2D" unique_id=1129633472 node_paths=PackedStringArray("attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot")]
 collision_layer = 4
@@ -35,7 +34,7 @@ collision_mask = 16
 script = ExtResource("1_j5ohd")
 attack_feedback = NodePath("Sprite/Attack")
 damage_cast = NodePath("Sprite/Attack/ShapeCast2D")
-attack_range = 29.0
+fall_speed = 35.0
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("Sprite/Area_Detector")
 chase_range = NodePath("Sprite/Chase Area")
@@ -44,6 +43,12 @@ pivot = NodePath("Sprite")
 attack_behavior = SubResource("Resource_wgrqi")
 metadata/_custom_type_script = "uid://opgpjmq4qtnj"
 metadata/Mortal = true
+
+[node name="Knockback Feedback" type="Line2D" parent="." unique_id=682203002]
+visible = false
+position = Vector2(1, -27)
+points = PackedVector2Array(-1, -1, 3, -2, -1, -3, -6, -5, 0, -6, 4, -8)
+width = 0.75
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1972433095]
 position = Vector2(0, -16)
@@ -58,7 +63,7 @@ script = ExtResource("4_dj6a8")
 metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area_Detector" unique_id=1798206676]
-position = Vector2(47, -12.5)
+position = Vector2(45, -6.5)
 shape = SubResource("RectangleShape2D_oamku")
 
 [node name="Override Area" type="Area2D" parent="Sprite" unique_id=449502541]
@@ -70,7 +75,7 @@ script = ExtResource("4_dj6a8")
 metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Override Area" unique_id=1552225801]
-position = Vector2(7, -13.5)
+position = Vector2(11.5, -14.5)
 shape = SubResource("RectangleShape2D_k6t00")
 
 [node name="Chase Area" type="Area2D" parent="Sprite" unique_id=1803194273]
@@ -82,33 +87,33 @@ script = ExtResource("4_dj6a8")
 metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Chase Area" unique_id=1716585680]
-position = Vector2(33, -11.5)
+position = Vector2(31.5, 5)
 shape = SubResource("RectangleShape2D_tbm4e")
 
 [node name="Attack" type="Polygon2D" parent="Sprite" unique_id=25472951]
 visible = false
 z_index = 2
 position = Vector2(13, 2)
-color = Color(0.35686275, 0.4392157, 0.21568628, 1)
+color = Color(0.19215687, 0.2901961, 0.20392157, 1)
 polygon = PackedVector2Array(-2, 4, 5, 8, 5, -3, 3, -8, -4, -12, -2, -4)
 
+[node name="Attack2" type="Polygon2D" parent="Sprite/Attack" unique_id=855942291]
+z_index = 2
+color = Color(0.35686275, 0.4392157, 0.21568628, 1)
+polygon = PackedVector2Array(0, 5, 3, 7, 4, -2, 2, -7, -4, -12, 1, -3)
+
 [node name="ShapeCast2D" type="ShapeCast2D" parent="Sprite/Attack" unique_id=848155601]
-position = Vector2(-2.000001, -6)
+position = Vector2(-2, -7)
 rotation = -1.7778863
 scale = Vector2(0.99999994, 0.99999994)
 enabled = false
 shape = SubResource("RectangleShape2D_j4wdi")
-target_position = Vector2(-8.65152, 2.269638)
+target_position = Vector2(-11.793032, 2.631425)
 max_results = 2
 collision_mask = 3
 collide_with_areas = true
 
-[node name="Attack2" type="Polygon2D" parent="Sprite/Attack" unique_id=855942291]
-z_index = 2
-color = Color(0.19215687, 0.2901961, 0.20392157, 1)
-polygon = PackedVector2Array(0, 5, 3, 7, 4, -2, 2, -7, -4, -12, 1, -3)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129784384]
 visible = false
-position = Vector2(0.5, -9)
+position = Vector2(0.5, -14)
 shape = SubResource("RectangleShape2D_c1nht")

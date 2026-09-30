@@ -31,6 +31,7 @@ func _perform_action():
 			print("no windup")
 		else:
 			windup_timer = windup
+		charge = 1
 		move.taking_action = true
 		windup_vfx._trigger_event()
 		PlayerInput._pause_movement(attack_duration + windup + buffer)

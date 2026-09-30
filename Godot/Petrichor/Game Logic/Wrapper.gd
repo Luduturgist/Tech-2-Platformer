@@ -91,6 +91,7 @@ func _buffer_disconnect():
 	disconnect_screen.visible = true
 	_refresh_ip()
 	ip_reference.text = str(localIP)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _end_session(error: bool = false):
 	scene_synchronized = false
