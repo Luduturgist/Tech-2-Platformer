@@ -18,15 +18,17 @@ public class Movement : MonoBehaviour
     [SerializeField] float climbSpeed = 5;
     [SerializeField] float ladderJumpTime = 0.4f;
     [SerializeField] float friction = 10;
+    [SerializeField] Vector2 death_knockback;
+    [SerializeField] float respawnDelay = 2;
+
+    [Space]
 
     [Header("References")]
     [SerializeField] InputActionAsset inputMap;
     [SerializeField] Transform leftRaycast;
     [SerializeField] Transform rightRaycast;
     [SerializeField] Transform foot;
-    [Space]
     [SerializeField] Transform pivot;
-    [Space]
     [SerializeField] GameObject debugObject;
     [SerializeField] Animator animator;
 
@@ -39,6 +41,7 @@ public class Movement : MonoBehaviour
     LayerMask climbingLayer;
     Vector2 PlayerMovement;
     float ladderJumpTimer = 0;
+    bool moving = true;
 
     void Awake()
     {
@@ -65,6 +68,34 @@ public class Movement : MonoBehaviour
         ProcessMove();
 
         Climb();
+
+        if (respawn_timer > 0)
+        {
+            respawn_timer -= Time.fixedDeltaTime;
+            if (respawn_timer <= 0)
+            {
+                respawn_timer = 0;
+                FinishDeath();
+            }
+        }
+    }
+
+    private float respawn_timer = 0;
+    public void Trigger_Death(Vector2 damage_source)
+    {
+        if (!moving) return;
+
+        respawn_timer = respawnDelay;
+        moving = false;
+
+        Vector2 knockback = death_knockback;
+        knockback.x = (rb.linearVelocityX > 0) ? 1 : -1;
+        rb.linearVelocity += knockback;
+    }
+
+    private void FinishDeath()
+    {
+        GameManager.ReloadScene();
     }
 
     bool CheckFloor()
@@ -88,7 +119,7 @@ public class Movement : MonoBehaviour
     float vel;
     void ProcessMove()
     {
-        Vector2 dir = PlayerMovement;
+        Vector2 dir = moving ? PlayerMovement : Vector2.zero;
         rb.linearVelocityX = Mathf.MoveTowards(rb.linearVelocityX, 0, friction * Time.fixedDeltaTime); 
 
         float run_speed = speed;
@@ -120,7 +151,7 @@ public class Movement : MonoBehaviour
             animator.SetBool("Run", false);
         }
 
-        if (jump.IsPressed() && (CheckFloor() ||rb.IsTouchingLayers(climbingLayer)))
+        if (moving && (jump.IsPressed() && (CheckFloor() ||rb.IsTouchingLayers(climbingLayer))))
         {
             if (ladderJumpTimer > 0 && rb.IsTouchingLayers(climbingLayer)) return;
 

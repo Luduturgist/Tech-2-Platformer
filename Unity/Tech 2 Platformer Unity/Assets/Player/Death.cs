@@ -7,7 +7,7 @@ public class Death : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            GameManager.ReloadScene();
+            collision.GetComponentInParent<Movement>().Trigger_Death(transform.position);
         }
 
     }

@@ -1393,8 +1393,20 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7396521145451222015, guid: 29c59b7863cd7ee4cb9d95ce0df5ea9b, type: 3}
+      propertyPath: respawnDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396521145451222015, guid: 29c59b7863cd7ee4cb9d95ce0df5ea9b, type: 3}
       propertyPath: rayMask.m_Bits
       value: 129
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396521145451222015, guid: 29c59b7863cd7ee4cb9d95ce0df5ea9b, type: 3}
+      propertyPath: death_knockback.x
+      value: -2500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396521145451222015, guid: 29c59b7863cd7ee4cb9d95ce0df5ea9b, type: 3}
+      propertyPath: death_knockback.y
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8933726591486831463, guid: 29c59b7863cd7ee4cb9d95ce0df5ea9b, type: 3}
       propertyPath: m_Enabled
