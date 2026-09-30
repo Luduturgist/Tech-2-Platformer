@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://opgpjmq4qtnj" path="res://Enemies/grounded_enemy.gd" id="1_jxspg"]
 [ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="2_am2n3"]
-[ext_resource type="Texture2D" uid="uid://d38us72l0y7lq" path="res://Enemies/Filing Box/Filing Box.png" id="3_2402i"]
 [ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="4_eb6li"]
+[ext_resource type="SpriteFrames" uid="uid://eh070ro7e2vm" path="res://Enemies/Filing Box/filing_idle.tres" id="4_jxspg"]
 
 [sub_resource type="Resource" id="Resource_c1nht"]
 resource_local_to_scene = true
@@ -41,9 +41,14 @@ attack_behavior = SubResource("Resource_c1nht")
 metadata/_custom_type_script = "uid://opgpjmq4qtnj"
 metadata/Mortal = true
 
+[node name="Knockback Feedback" type="Line2D" parent="." unique_id=249564654]
+visible = false
+position = Vector2(1, -17)
+points = PackedVector2Array(-1, -1, 3, -2, -1, -3, -6, -5, 0, -6, 4, -8)
+width = 0.75
+
 [node name="Sprite" type="Sprite2D" parent="." unique_id=321499954]
 position = Vector2(0, -16)
-texture = ExtResource("3_2402i")
 
 [node name="Area_Detector" type="Area2D" parent="Sprite" unique_id=825986170]
 visible = false
@@ -97,6 +102,10 @@ target_position = Vector2(-8.65152, 2.269638)
 max_results = 2
 collision_mask = 3
 collide_with_areas = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Sprite" unique_id=844284258]
+sprite_frames = ExtResource("4_jxspg")
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=296294799]
 visible = false

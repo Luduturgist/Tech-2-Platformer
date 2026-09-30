@@ -11,6 +11,8 @@ extends Node2D
 @export var join_wait_ip: Label
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	host_button.pressed.connect(host_pressed)
 	join_button.pressed.connect(join_pressed)
 	disconnect_1.pressed.connect(back_button)

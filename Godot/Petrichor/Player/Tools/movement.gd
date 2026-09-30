@@ -127,6 +127,11 @@ func _physics_process(delta: float) -> void:
 				velocity.y = 0
 				global_position.y = network_position.y
 			
+			var smoothing: float = 50
+			velocity.x = move_toward(velocity.x, 0, smoothing * delta)
+			velocity.y = move_toward(velocity.y, 0, smoothing * delta)
+			
+			
 			move_and_slide()
 		return
 	
@@ -205,7 +210,7 @@ func network_animation(_name: StringName):
 	animator.animation = _name
 
 var network_position: Vector2 = Vector2.INF
-@rpc("authority", "call_remote", "unreliable_ordered")
+@rpc("authority", "call_remote", "unreliable")
 func _network_position(pos: Vector2, flipped: bool):
 	network_position = pos
 	var flip = 1

@@ -1,10 +1,10 @@
 extends Resource
 class_name PlayerEnergy
 
-@export var charge: int = 10
-@export var maxCharge: int = 10
+@export var charge: int = 20
+@export var maxCharge: int = 20
 @export var pain: int = 0
-@export var drain_interval: float = 4
+@export var drain_interval: float = 8
 @export var movement_multiplier = 2
 var move: PlayerMovement
 

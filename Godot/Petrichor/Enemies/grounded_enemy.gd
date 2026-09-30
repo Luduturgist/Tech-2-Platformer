@@ -45,7 +45,7 @@ func follow_player(diff: Vector2, delta: float):
 	if abs(dir.x) > abs(diff.x):
 		dir.x = diff.x
 	velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
-	if velocity.x * pivot.scale.x < 0:
+	if dir.x * pivot.scale.x < 0:
 		pivot.scale.x *= -1
 	move_and_slide()
 

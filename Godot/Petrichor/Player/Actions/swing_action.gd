@@ -2,10 +2,11 @@ extends Action
 class_name Swing_Action
 
 @export var swing:= 400
-@export var side_push: float = 250
-@export var down_push: float = 250
+@export var ground_repel: Vector2 = Vector2(-175, -150)
+@export var air_repel: Vector2 = Vector2(-50, -250)
 @export var energy_drain: int = 2
-@export var dash_delay: float = 0.5
+@export var cooldown: float = 0.25
+@export var push_back: float = 30
 var cast: ShapeCast2D
 
 func _start(m: PlayerMovement, sig = null):
@@ -27,7 +28,6 @@ func _perform_action():
 		perform_pull(energy)
 	else:
 		perform_push(energy)
-	print("things occur")
 	can_swing = false
 	move.taking_action = true
 
@@ -49,21 +49,27 @@ func perform_pull(energy: float):
 	move.taking_action = false
 
 func perform_push(energy: float):
-	cast.force_shapecast_update()
-	var objects: Array = cast.collision_result
-	if objects.size():
-		for o in objects:
-			if o.get("collider").get_meta("Pushable"):
-				print("found")
-				pass
-		
+	print("???")
+	
+	cast.push_multiplier = energy / energy_drain
+	cast._trigger_event(move.multiplayer.get_unique_id())
+	
+	#var a: int = await cast.hits_calculated
+	
 	if move.is_on_floor():
-		move.velocity.x -= sign(move.pivot.scale.x) * side_push * energy
+		move.velocity.x += sign(move.pivot.scale.x) * ground_repel.x
+		move.velocity.y = ground_repel.y
 	else:
-		move.velocity.y += -down_push * energy
-	await move.get_tree().create_timer(dash_delay).timeout
+		move.velocity.x += sign(move.pivot.scale.x) * air_repel.x
+		move.velocity.y = air_repel.y
+	
+	#if move.is_on_floor():
+	#	move.velocity.x += sign(move.pivot.scale.x) * ground_repel.x * energy
+	#	move.velocity.y = 
+	#else:
+	#	move.velocity.y += -down_push * energy
+	await move.get_tree().create_timer(cooldown).timeout
 	move.taking_action = false
-
 
 func _reset_swing():
 	can_swing = true

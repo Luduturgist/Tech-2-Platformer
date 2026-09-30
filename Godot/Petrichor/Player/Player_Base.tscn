@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
 [ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/soil_spriteframes.tres" id="8_fpjr1"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
+[ext_resource type="Script" uid="uid://ccojqa1fadpey" path="res://Interacteable/Events/push_object.gd" id="14_boe6u"]
 
 [sub_resource type="Resource" id="Resource_5fl5a"]
 script = ExtResource("2_awm26")
@@ -61,7 +62,7 @@ size = Vector2(11.225, 12.82)
 size = Vector2(12, 29)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k0ixv"]
-radius = 30.0
+radius = 23.68
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fpjr1"]
 
@@ -219,13 +220,16 @@ visible = false
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_82fik")
 
-[node name="Push Cast" type="ShapeCast2D" parent="." unique_id=1697370816]
+[node name="Push Cast" type="ShapeCast2D" parent="." unique_id=1697370816 node_paths=PackedStringArray("cast")]
 visible = false
-position = Vector2(-5, 0)
+position = Vector2(0, 6)
 enabled = false
 shape = SubResource("CircleShape2D_k0ixv")
-target_position = Vector2(10, 0)
+target_position = Vector2(19, 0)
+collision_mask = 5
 collide_with_areas = true
+script = ExtResource("14_boe6u")
+cast = NodePath(".")
 
 [node name="Smash Cast" type="ShapeCast2D" parent="." unique_id=328209519]
 visible = false
