@@ -122,6 +122,7 @@ func _physics_process(delta: float) -> void:
 		friendly._update(delta)
 	if pain_feedback:
 		pain_feedback._update(delta)
+	brace._update(delta)
 	
 	if not local:
 		if network_position != Vector2.INF:

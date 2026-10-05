@@ -39,7 +39,8 @@ func _host():
 	multiplayer.multiplayer_peer = peer
 	if local_type == Golem.UNASSIGNED:
 		local_type = Golem.GOLEM_SOIL
-		PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
+		if PlayerInput.input_override <= 0:
+			PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
 
 func _join(ip: String = localIP):
 	AudioHandler._mute()

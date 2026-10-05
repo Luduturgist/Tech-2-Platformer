@@ -157,8 +157,8 @@ func _show_stun(value: bool):
 
 func play_sfx(stream: AudioStream):
 	var i: int = playback.play_stream(stream)
-	var range: float = 8
-	var rand: float = ((100 - (range / 2)) + (range * randf())) / 100
+	var pitch_range: float = 8
+	var rand: float = ((100 - (pitch_range / 2)) + (pitch_range * randf())) / 100
 	playback.set_stream_pitch_scale(i, rand)
 
 @rpc("authority", "call_remote", "unreliable_ordered")

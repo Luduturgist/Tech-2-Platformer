@@ -37,8 +37,6 @@ func _perform_action():
 	
 	_release_action()
 
-
-
 func _release_action():
 	move.taking_action = false
 	move.speed_mods.erase(SLOW_MOD_ID)

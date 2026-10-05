@@ -1,6 +1,7 @@
 extends Action
 class_name BasicAttack_Action
 
+@export var starting_charge: int = 1
 @export var windup: float = 0.7
 @export var attack_duration: float = 0.2
 @export var buffer: float = 0.3
@@ -31,7 +32,7 @@ func _perform_action():
 			print("no windup")
 		else:
 			windup_timer = windup
-		charge = 1
+		charge = starting_charge
 		move.taking_action = true
 		windup_vfx._trigger_event()
 		PlayerInput._pause_movement(attack_duration + windup + buffer)
@@ -82,7 +83,7 @@ func update_timers(delta: float):
 		cooldown_timer -= delta
 		if cooldown_timer <= 0:
 			cooldown_timer = 0
-			charge = 1
+			charge = starting_charge
 
 var ignore: Array[Node2D]
 func try_damage():

@@ -15,7 +15,7 @@ func _trigger_event(value: int = 0):
 
 
 @rpc("any_peer", "call_local", "reliable")
-func network_push(id: int, mult: float):
+func network_push(id: int, _mult: float):
 	cast.force_shapecast_update()
 	var objects: Array = cast.collision_result
 	if not objects or not objects.size():

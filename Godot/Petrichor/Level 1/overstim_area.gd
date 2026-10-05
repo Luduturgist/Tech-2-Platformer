@@ -1,9 +1,7 @@
 extends Area2D
 
 @export var drain_amount: int = 1
-@export var damage_amount: int = 1
-@export var drain_filter: Wrapper.Golem = Wrapper.Golem.GOLEM_SOIL
-@export var damage_filter: Wrapper.Golem = Wrapper.Golem.GOLEM_RIVER
+@export var overdraw: Wrapper.Golem = Wrapper.Golem.GOLEM_RIVER
 @export var interval: float = 1
 @export var enabled: bool = true
 
@@ -24,7 +22,9 @@ func stimulate_player():
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
 		if body is PlayerMovement:
-			if Wrapper.local_type == drain_filter or drain_filter == Wrapper.Golem.UNASSIGNED and drain_amount > 0:
-				body.energy._drain_charge(drain_amount)
-			if Wrapper.local_type == damage_filter or damage_filter == Wrapper.Golem.UNASSIGNED and damage_amount > 0:
-				body._take_damage(damage_amount)
+			if drain_amount > 0:
+				
+				if Wrapper.local_type == overdraw or overdraw == Wrapper.Golem.UNASSIGNED:
+					body.energy._drain_charge(drain_amount, true)
+				else:
+					body.energy._drain_charge(drain_amount, false)

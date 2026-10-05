@@ -54,13 +54,14 @@ stream = SubResource("AudioStreamPolyphonic_5xf8n")
 sprite_frames = ExtResource("7_8voip")
 autoplay = "Idle"
 
-[node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="3" unique_id=1493632730]
+[node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="5" unique_id=1493632730]
 position = Vector2(6, -2)
+drain_interval = 4.0
 
-[node name="Attack" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="4" unique_id=895463159]
+[node name="Attack" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="6" unique_id=895463159]
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)
 
-[node name="Windup" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="5" unique_id=2039542129]
+[node name="Windup" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="7" unique_id=2039542129]
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)
 
 [node name="Push" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="4" unique_id=1692544015]
