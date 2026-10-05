@@ -42,6 +42,8 @@ func _host():
 		PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
 
 func _join(ip: String = localIP):
+	AudioHandler._mute()
+	
 	peer.create_client(ip, 1027)
 	multiplayer.multiplayer_peer = peer
 	print("joining")
@@ -133,12 +135,16 @@ func scene_checkin(scene: String, id: int = 0):
 		scene_tally = 0
 		scene_ready.emit()
 		scene_synchronized = true
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _load_scene(scene: String):
 	rpc("multiplayer_scene", scene)
 
 @rpc("call_local", "any_peer", "reliable")
 func multiplayer_scene(scene: String):
+	await TransitionHandler._close_scene()
+	print("waiting over")
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 	begin_desync.emit()
 	scene_synchronized = false
 	get_tree().call_deferred("change_scene_to_file", scene)

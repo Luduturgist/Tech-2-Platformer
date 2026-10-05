@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game_scene.gd" id="1_io3v8"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_m0vpl"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Follow.tscn" id="3_c07hl"]
+[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Director.tscn" id="3_c07hl"]
 [ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="4_11hpx"]
 [ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="5_sboqp"]
 

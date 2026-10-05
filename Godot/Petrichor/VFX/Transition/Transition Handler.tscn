@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bb3cojug3uehx"]
+
+[ext_resource type="Script" uid="uid://1nl7drqdd4o7" path="res://VFX/Transition/transition_handler.gd" id="1_n8lr0"]
+
+[node name="TransitionHandler" type="CanvasLayer" unique_id=1739416810 node_paths=PackedStringArray("loading_screen")]
+script = ExtResource("1_n8lr0")
+loading_screen = NodePath("Loading Screen")
+
+[node name="Loading Screen" type="Control" parent="." unique_id=899625731]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Loading Screen" unique_id=375984941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Loading" type="Label" parent="Loading Screen" unique_id=1690332295]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -0.5
+offset_top = -19.5
+offset_right = 0.5
+offset_bottom = 19.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://xtyaj2ti3of7"]
+
+[ext_resource type="PackedScene" uid="uid://d1rgccjfpggjf" path="res://UI/Sub Menus/Popup_Template.tscn" id="1_megq1"]
+[ext_resource type="Script" uid="uid://brrlcyafbxgbl" path="res://UI/Sub Menus/Settings/mute_button.gd" id="2_n6kjj"]
+
+[node name="Settings Menu" unique_id=2124056893 instance=ExtResource("1_megq1")]
+
+[node name="VBoxContainer" parent="PanelContainer" parent_id_path=PackedInt32Array(588097683) index="0" unique_id=1816718948]
+theme_override_constants/separation = 33
+
+[node name="Label" parent="PanelContainer/VBoxContainer" index="0" unique_id=717759489]
+text = "Settings"
+
+[node name="Mute" type="Button" parent="PanelContainer/VBoxContainer" index="1" unique_id=1518109393]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mute
+"
+script = ExtResource("2_n6kjj")

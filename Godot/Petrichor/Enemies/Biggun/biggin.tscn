@@ -8,10 +8,13 @@
 [sub_resource type="Resource" id="Resource_wgrqi"]
 resource_local_to_scene = true
 script = ExtResource("2_5cofb")
-damage = 2
 attack_duration = 0.3
 attack_interval = 0.5
+lunge = Vector2(50, -10)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_j5ohd"]
+resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
 size = Vector2(106, 57)
@@ -28,12 +31,13 @@ size = Vector2(9.27, 7.575)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(21, 28)
 
-[node name="Biggin" type="CharacterBody2D" unique_id=1129633472 node_paths=PackedStringArray("attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot")]
+[node name="Biggin" type="CharacterBody2D" unique_id=1129633472 node_paths=PackedStringArray("attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot", "stun_feedback")]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_j5ohd")
 attack_feedback = NodePath("Sprite/Attack")
 damage_cast = NodePath("Sprite/Attack/ShapeCast2D")
+health = 5
 fall_speed = 35.0
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("Sprite/Area_Detector")
@@ -41,14 +45,13 @@ chase_range = NodePath("Sprite/Chase Area")
 override_detection_range = NodePath("Sprite/Override Area")
 pivot = NodePath("Sprite")
 attack_behavior = SubResource("Resource_wgrqi")
+stun_feedback = NodePath("Knockback Feedback")
 metadata/_custom_type_script = "uid://opgpjmq4qtnj"
 metadata/Mortal = true
 
-[node name="Knockback Feedback" type="Line2D" parent="." unique_id=682203002]
-visible = false
-position = Vector2(1, -27)
-points = PackedVector2Array(-1, -1, 3, -2, -1, -3, -6, -5, 0, -6, 4, -8)
-width = 0.75
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1046729528]
+stream = SubResource("AudioStreamPolyphonic_j5ohd")
+playback_type = 1
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1972433095]
 position = Vector2(0, -16)
@@ -109,9 +112,14 @@ scale = Vector2(0.99999994, 0.99999994)
 enabled = false
 shape = SubResource("RectangleShape2D_j4wdi")
 target_position = Vector2(-11.793032, 2.631425)
-max_results = 2
 collision_mask = 3
 collide_with_areas = true
+
+[node name="Knockback Feedback" type="Line2D" parent="." unique_id=682203002]
+visible = false
+position = Vector2(1, -28)
+points = PackedVector2Array(-1, -1, 3, -2, -1, -3, -6, -5, 0, -6, 4, -8)
+width = 0.75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1129784384]
 visible = false

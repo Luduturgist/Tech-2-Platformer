@@ -1,4 +1,4 @@
-extends Node2D
+extends CanvasLayer
 
 @export var scene_to_load: String
 @export var host_button: Button
@@ -52,6 +52,6 @@ func player_connected():
 		Wrapper._load_scene(scene_to_load)
 
 func switch(host: bool = false):
-	$"Network Buttons".visible = false
+	$"Connection Menu".visible = false
 	if host: $"Host Waiting".visible = true
 	else: $"Client Waiting".visible = true

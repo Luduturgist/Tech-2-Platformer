@@ -37,7 +37,7 @@ func _perform_action():
 		PlayerInput._pause_movement(attack_duration + windup + buffer)
 	elif windup_timer > 0:
 		charge += 1
-		print("charging")
+		#print("charging")
 
 var windup_timer: float = 0
 var attack_timer: float = 0
@@ -94,10 +94,10 @@ func try_damage():
 		var obj: Node2D = o.get("collider")
 		if obj:
 			if obj.get_meta("Mortal") and obj is Enemy and ignore.find(obj) == -1:
-				var damage_actual: int = obj._take_damage(damage)
-				if damage_actual:
+				var damage_actual: int = obj._take_damage(damage, move.global_position.x)
+				if damage_actual or true:
 					move.energy._replenish_charge(damage_actual)
-				print("damaging enemy")
+				#print("damaging enemy")
 				ignore.append(obj)
 
 func attack_visible(value: bool):

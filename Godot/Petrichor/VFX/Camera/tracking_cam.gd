@@ -3,20 +3,26 @@ class_name TrackingCam
 
 @export var speed: float = 45
 
-var subpixel_position: Vector2
 var velocity: Vector2
+var subpixel_position: Vector2
 
-func _ready() -> void:
-	if follow: global_position = follow.global_position
+func _camera_start(transfer: Vector2 = Vector2.INF):
+	super._camera_start()
+	velocity = Vector2.ZERO
+	if transfer != Vector2.INF:
+		global_position = transfer
 	subpixel_position = global_position
 
 func _physics_process(delta: float) -> void:
+	if not director:
+		return
+	
 	velocity_follow(delta)
 	
-	global_position = Vector2(subpixel_position)
+	global_position = subpixel_position + director.director_offset
 
 func velocity_follow(delta: float):
-	if not follow:
+	if not follow or not is_current():
 		return
 	
 	var diff = follow.global_position - subpixel_position
@@ -45,14 +51,14 @@ func soft_follow(delta: float):
 	if abs(diff.x) < abs(dir.x):
 	#	global_position.x += dir.x
 	#else:
-		global_position.x += diff.x
+		subpixel_position.x += diff.x
 		diff = follow.global_position - subpixel_position
 		dir = diff.normalized() * speed * delta * sqrt(diff.length())
 	
 	if abs(diff.y) < abs(dir.y):
 	#	global_position.y += dir.y
 	#else:
-		global_position.y += diff.y
+		subpixel_position.y += diff.y
 		diff = follow.global_position - subpixel_position
 		dir = diff.normalized() * speed * delta * sqrt(diff.length())
 

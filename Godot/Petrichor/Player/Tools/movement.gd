@@ -10,6 +10,7 @@ class_name PlayerMovement
 @onready var fall_truth = fallSpeed
 @export var aerial_multiplier: float = 0.5
 @export var energy: PlayerEnergy
+@export var knockback: Vector2 = Vector2(-50, -50)
 
 @export_group("Actions")
 @export var friendly: Action
@@ -27,6 +28,8 @@ var taking_action: bool = false
 @export var impact_caster: ShapeCast2D
 @export var push_cast: ShapeCast2D
 @export var animator: AnimatedSprite2D
+@export var audio_player: AudioStreamPlayer2D
+@export var impact_feedback: Array[Flash_Object]
 
 static var active: PlayerMovement
 var local: bool
@@ -37,13 +40,13 @@ signal special_interact
 signal player_land
 var speed_mods: Dictionary[String, float]
 var cheering: bool = false
+var playback: AudioStreamPlaybackPolyphonic
 
 var gravity_delay_timer: float = 0
 func _delay_gravity(time: float):
 	if time > gravity_delay_timer:
 		gravity_delay_timer = time
 	fallSpeed = 0
-	
 
 func sum_speed_mods() -> float:
 	var sum: float = 0
@@ -59,6 +62,8 @@ func _ready() -> void:
 	if friendly: friendly._start(self)
 	if pain_feedback: pain_feedback._start(self)
 	PlayerInput.player_debug.connect(_debug)
+	audio_player.play()
+	playback = audio_player.get_stream_playback()
 
 func dress() -> void:
 	cam_offset_init = cam_offset.position
@@ -93,10 +98,16 @@ func _debug():
 		_s = "friend "
 	#print(_s + "golem owned by " + str(get_multiplayer_authority()))
 
-func _take_damage(amount: int = 1):
-	if not local: return
+func _take_damage(amount: int = 1, source: float = INF):
+	if not local:
+		return
+	
 	if amount > 0: pain_feedback._perform_action()
 	energy._inflict_pain(amount)
+	if source != INF:
+		var dir = sign(source - global_position.x)
+		var knockback_local: Vector2 = Vector2(knockback.x * dir, knockback.y)
+		velocity += knockback_local
 
 func player_die():
 	Wrapper._load_scene(get_tree().current_scene.scene_file_path)
@@ -179,6 +190,9 @@ func process_move(delta: float):
 	last_velocity = velocity.length()
 	move_and_slide()
 	
+	if not is_multiplayer_authority():
+		return
+	
 	if Wrapper.scene_synchronized:
 		rpc("_network_position", global_position, pivot.scale.x == -1)
 	
@@ -193,8 +207,6 @@ func process_move(delta: float):
 	if not was_grounded and is_on_floor():
 		player_land.emit()
 		impact_action._perform_action()
-		if last_velocity > 375:
-			$Pivot/VFX/Dust._trigger_event()
 
 func process_camera_offset(_delta: float):
 	pass

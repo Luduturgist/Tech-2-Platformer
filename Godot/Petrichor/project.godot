@@ -20,6 +20,8 @@ config/features=PackedStringArray("4.7", "Forward Plus")
 Wrapper="*uid://1gqepxaabolw"
 PlayerInput="*uid://kiv42sogsc73"
 MenuHandler="*uid://cterp6e7xyxt6"
+TransitionHandler="*uid://bb3cojug3uehx"
+AudioHandler="*uid://22l5abb88dpn"
 
 [display]
 
@@ -36,6 +38,7 @@ folder_colors={
 "res://Debug/Hazard/": "red",
 "res://Enemies/": "orange",
 "res://Game Logic/": "green",
+"res://Graphical Themes/": "purple",
 "res://Interacteable/": "teal",
 "res://Interacteable/Events/": "purple",
 "res://Interacteable/Events/Flash/": "yellow",
@@ -43,6 +46,7 @@ folder_colors={
 "res://Level 2/": "red",
 "res://Level 3/": "red",
 "res://Level 4/": "red",
+"res://Music/": "yellow",
 "res://Player/": "orange",
 "res://Player/River/": "blue",
 "res://Player/Soil/": "yellow",

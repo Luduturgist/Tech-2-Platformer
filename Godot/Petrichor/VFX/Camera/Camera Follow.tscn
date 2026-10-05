@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://btvsqab4xkf0q"]
-
-[ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://VFX/Camera/tracking_cam.gd" id="1_kq5fe"]
-
-[node name="CameraFollow" type="Camera2D" unique_id=728822637]
-offset = Vector2(0, -50)
-script = ExtResource("1_kq5fe")
-speed = 50.0

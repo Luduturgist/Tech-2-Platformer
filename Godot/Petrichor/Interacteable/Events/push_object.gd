@@ -1,16 +1,19 @@
 extends Event_Object
 
-@export var push_back: float = 30
-@export var push_up: float = 15
+@export var push_back: float = 150
+@export var push_up: float = 50
 @export var cast: ShapeCast2D
 @export var attenuation_distance: float = 30
+@export var feedback: Flash_Object
 
 var push_multiplier: float = 1
 signal hits_calculated(int)
 
 func _trigger_event(value: int = 0):
 	rpc("network_push", value, push_multiplier)
-	
+	feedback._trigger_event()
+
+
 @rpc("any_peer", "call_local", "reliable")
 func network_push(id: int, mult: float):
 	cast.force_shapecast_update()
@@ -21,10 +24,10 @@ func network_push(id: int, mult: float):
 	for o in objects:
 		var hit = o.get("collider")
 		var knockback: Vector2 = hit.global_position - obj.global_position
-		knockback = knockback.normalized() * clamp(attenuation_distance - knockback.length(), 0, INF) * push_back * mult
+		#knockback = knockback.normalized() * clamp(attenuation_distance - knockback.length(), 0, INF) * push_back * mult
 		
-		knockback.x += sign(hit.global_position.x - obj.global_position.x) * push_back
-		knockback.y += push_up
+		knockback.x = sign(hit.global_position.x - obj.global_position.x) * push_back
+		knockback.y = push_up
 		
 		var hit_count: float = 0
 		

@@ -1,6 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://cjnx215g42g1c"]
 
-[ext_resource type="Texture2D" uid="uid://ryn4fu3prjqe" path="res://Level 1/Tiles/Earth Tiles.png" id="1_wanxc"]
+[ext_resource type="Texture2D" uid="uid://diwq12gxqgmsh" path="res://Level 1/Tiles/Earth Tiles.png" id="1_wanxc"]
+[ext_resource type="Texture2D" uid="uid://cle4okjbwtpsj" path="res://Level 1/Tiles/wall2.png" id="2_cgj2s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgj2s"]
 texture = ExtResource("1_wanxc")
@@ -70,6 +71,11 @@ texture_region_size = Vector2i(32, 32)
 3:2/0 = 0
 3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvd8i"]
+texture = ExtResource("2_cgj2s")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 16
@@ -78,3 +84,4 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_cgj2s")
+sources/1 = SubResource("TileSetAtlasSource_hvd8i")

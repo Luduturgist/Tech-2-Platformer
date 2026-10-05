@@ -2,22 +2,30 @@
 
 [ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_m25y2"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_6xinh"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="3_mci8t"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="7_xre7c"]
 
 [sub_resource type="Resource" id="Resource_wobsq"]
 script = ExtResource("3_6xinh")
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
+[sub_resource type="Resource" id="Resource_mci8t"]
+resource_local_to_scene = true
+script = ExtResource("3_mci8t")
+time = 0.6
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
 [sub_resource type="Resource" id="Resource_qf2ha"]
 script = ExtResource("7_xre7c")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq2wa"]
-size = Vector2(15, 30)
+size = Vector2(15, 29)
 
 [node name="Player_Soil" unique_id=1254970227 instance=ExtResource("1_m25y2")]
 move_speed = 140.0
 move_ability = SubResource("Resource_wobsq")
+brace = SubResource("Resource_mci8t")
 impact_action = SubResource("Resource_qf2ha")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
@@ -27,9 +35,11 @@ autoplay = "Idle"
 color = Color(1, 1, 0, 1)
 fade_time = 1.0
 
-[node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="3" unique_id=1493632730]
-position = Vector2(9, -3)
+[node name="Attack" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="4" unique_id=895463159]
+color = Color(0.9843137, 0.9490196, 0.21176471, 1)
 
-[node name="Collider" parent="." index="2" unique_id=1016117325]
-position = Vector2(1.5, 1)
+[node name="Windup" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="5" unique_id=2039542129]
+color = Color(0.9843137, 0.9490196, 0.21176471, 1)
+
+[node name="Collider" parent="." index="1" unique_id=1016117325]
 shape = SubResource("RectangleShape2D_oq2wa")

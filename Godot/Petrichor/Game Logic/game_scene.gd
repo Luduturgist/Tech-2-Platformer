@@ -3,7 +3,7 @@ class_name Game_Scene
 
 @export var soil: PlayerMovement
 @export var river: PlayerMovement
-@export var camera: Game_Cam
+@export var camera: Cam_Director
 @export var gui: PlayerGUI
 
 var local: PlayerMovement
@@ -20,10 +20,9 @@ var game_started: bool = false
 
 func _ready() -> void:
 	active = self
-	Wrapper.scene_ready.connect(start_game)
+	Wrapper.scene_ready.connect(host_setup)
 	pause = load(PAUSE_PATH).instantiate()
 	call_deferred("add_child", pause)
-	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func _exit_tree():
 	pause.queue_free()
@@ -37,11 +36,12 @@ func start_game():
 	PlayerInput.moving = true
 	if gui: gui.visible = true
 	game_started = true
-	host_setup()
+	TransitionHandler._open_scene()
 
 static func check_combat(node: Node) -> bool:
 	return node.get_meta(Game_Scene.COMBAT_METADATA, false)
 
+var rigs_loaded: int = 0
 @rpc("authority", "call_local", "reliable")
 func dress_rig(soil_pos: Vector2, river_pos: Vector2):
 	if Wrapper.local_type == Wrapper.Golem.GOLEM_SOIL:
@@ -55,6 +55,8 @@ func dress_rig(soil_pos: Vector2, river_pos: Vector2):
 	if not local.local:
 		local.dress()
 		camera.follow = local.cam_offset
+		camera._activate_camera()
+
 	
 	local.set_multiplayer_authority(multiplayer.get_unique_id(), true)
 	friend.set_multiplayer_authority(Wrapper.friend_id, true)
@@ -64,6 +66,16 @@ func dress_rig(soil_pos: Vector2, river_pos: Vector2):
 			soil.position = soil_pos
 		else:
 			river.position = river_pos
+	
+	rpc("_rig_checkin")
+
+@rpc("any_peer", "call_local", "reliable")
+func _rig_checkin():
+	rigs_loaded += 1
+	
+	if rigs_loaded == 2:
+		rigs_loaded = 0
+		start_game()
 	
 	#camera.global_position = local.global_position
 	

@@ -34,7 +34,6 @@ func _pause_movement(time: float):
 		pause_time = time
 
 func _process(_delta: float) -> void:
-	
 	if pressed_back:
 		pressed_back = false
 	
@@ -50,15 +49,17 @@ func _process(_delta: float) -> void:
 		player_debug.emit()
 	
 	if controller_input or input_override == input_type.INPUT_CONTROLLER:
-	#if controller_input and DisplayServer.window_is_focused():
-		if Input.is_action_just_pressed("Controller Menu") or (not moving and Input.is_action_just_pressed("Controller Brace")):
-			try_escape()
+	#	if Input.is_action_just_pressed("Controller Menu") or (not moving and Input.is_action_just_pressed("Controller Brace")):
+	#		try_escape()
 		process_input(controller_input_strings)
-		#do something to move the mouse with controller
+	#	#do something to move the mouse with controller
 	elif input_override == input_type.INPUT_KEYBOARD:
-		if Input.is_action_just_pressed("Keyboard Menu"):
-			try_escape()
+	#	if Input.is_action_just_pressed("Keyboard Menu"):
+	#		try_escape()
 		process_input(keyboard_input_strings)
+	
+	if DisplayServer.window_is_focused() and (Input.is_action_just_pressed("Controller Menu") or Input.is_action_just_pressed("Keyboard Menu")):
+		try_escape()
 	
 	if not moving or pause_time > 0:
 		player_movement = Vector2.ZERO

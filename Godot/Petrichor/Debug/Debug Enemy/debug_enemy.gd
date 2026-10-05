@@ -1,13 +1,12 @@
 extends Grounded_Enemy
+
 @export var tracking_feedback: Node2D
 @export var damage_feedback: Node2D
-@export var stun_feedback: Node2D
 
 
 func _ready() -> void:
 	super._ready()
 	update_tracking.connect(_show_tracking)
-	update_stun.connect(_show_stun)
 	damage_taken.connect(_show_damage)
 
 func _show_death():
@@ -18,9 +17,6 @@ func _show_death():
 
 func _show_tracking(value: bool):
 	tracking_feedback.visible = value
-
-func _show_stun(value: bool):
-	stun_feedback.visible = value
 
 var damage_vfx_timer: float = 0
 func _show_damage():

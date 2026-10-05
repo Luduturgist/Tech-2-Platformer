@@ -1,0 +1,284 @@
+[gd_scene format=3 uid="uid://c5sn821thiii1"]
+
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="1_j7rw5"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_awm26"]
+[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_btxq5"]
+[ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
+[ext_resource type="Texture2D" uid="uid://13tc3ugs71yv" path="res://Player/River/River.png" id="5_j7rw5"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_82fik"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="6_fpjr1"]
+[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="7_boe6u"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="7_tjj38"]
+[ext_resource type="AudioStream" uid="uid://dcjki3mxhhrjj" path="res://Player/SFX/Push.mp3" id="8_40jis"]
+[ext_resource type="Script" uid="uid://xo3nec2l67r1" path="res://Interacteable/Events/fade_object.gd" id="8_awm26"]
+[ext_resource type="SpriteFrames" uid="uid://biefndx62v67a" path="res://Player/Soil/Animations/soil_spriteframes.tres" id="8_fpjr1"]
+[ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
+[ext_resource type="AudioStream" uid="uid://dufo3ics6vhe5" path="res://Player/SFX/Slam1.wav" id="9_40jis"]
+[ext_resource type="Script" uid="uid://ccojqa1fadpey" path="res://Interacteable/Events/push_object.gd" id="14_boe6u"]
+
+[sub_resource type="Resource" id="Resource_5fl5a"]
+script = ExtResource("2_awm26")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_ak3bm"]
+script = ExtResource("2_btxq5")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_gkydo"]
+script = ExtResource("3_awm26")
+metadata/_custom_type_script = "uid://tv13wd5op1f0"
+
+[sub_resource type="Resource" id="Resource_tbm4e"]
+resource_local_to_scene = true
+script = ExtResource("4_82fik")
+time = 0.6
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="Resource" id="Resource_fpjr1"]
+script = ExtResource("6_82fik")
+height_buffer = null
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_53tks"]
+script = ExtResource("7_tjj38")
+windup = 0.8
+attack_duration = 0.3
+cooldown = 0.3
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_boe6u"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_boe6u"]
+blend_mode = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
+size = Vector2(12, 23)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
+size = Vector2(11.225, 12.82)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tliqh"]
+blend_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k0ixv"]
+radius = 23.68
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82fik"]
+size = Vector2(12, 29)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpjr1"]
+
+[node name="Player_Base" type="CharacterBody2D" unique_id=1254970227 node_paths=PackedStringArray("pivot", "collider", "cam_offset", "impact_caster", "push_cast", "animator", "audio_player")]
+light_mask = 2
+visibility_layer = 2
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_j7rw5")
+move_speed = null
+accel = null
+jump = null
+fallSpeed = null
+aerial_multiplier = null
+knockback = Vector2(-80, -15)
+friendly = SubResource("Resource_5fl5a")
+pain_feedback = SubResource("Resource_ak3bm")
+move_ability = SubResource("Resource_gkydo")
+brace = SubResource("Resource_tbm4e")
+impact_action = SubResource("Resource_fpjr1")
+attack = SubResource("Resource_53tks")
+pivot = NodePath("Pivot")
+collider = NodePath("Collider")
+cam_offset = NodePath("Pivot/Offset")
+impact_caster = NodePath("Smash Cast")
+push_cast = NodePath("Pivot/Push Cast")
+animator = NodePath("Pivot/Animated Sprite")
+audio_player = NodePath("AudioStreamPlayer")
+sfx_list = Array[AudioStream]([ExtResource("8_40jis"), ExtResource("9_40jis")])
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1403816157]
+stream = SubResource("AudioStreamPolyphonic_boe6u")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=615041083]
+
+[node name="Animated Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1434542993]
+light_mask = 2
+position = Vector2(0, -16)
+sprite_frames = ExtResource("8_fpjr1")
+animation = &"Idle"
+
+[node name="VFX" type="Node2D" parent="Pivot" unique_id=1333519426]
+
+[node name="Cheer" type="PointLight2D" parent="Pivot/VFX" unique_id=1359862573 node_paths=PackedStringArray("player")]
+visible = false
+light_mask = 3
+position = Vector2(0, -22)
+color = Color(0.12941177, 0.94509804, 0.75686276, 1)
+energy = 2.0
+range_item_cull_mask = 3
+texture = ExtResource("6_fpjr1")
+texture_scale = 2.0
+script = ExtResource("8_awm26")
+fade_time = 1.5
+player = NodePath("../../..")
+
+[node name="Pain" type="ColorRect" parent="Pivot/VFX" unique_id=1026537008]
+visible = false
+light_mask = 2
+z_index = 1
+material = SubResource("CanvasItemMaterial_boe6u")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -24.0
+offset_right = 6.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0, 1.8247963, 1.8247963, 0.3647059)
+script = ExtResource("7_boe6u")
+
+[node name="Dust" type="ColorRect" parent="Pivot/VFX" unique_id=535895140]
+visible = false
+light_mask = 2
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -4.0
+offset_right = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.5, 0.45591667, 0.385, 0.41568628)
+script = ExtResource("7_boe6u")
+flash_time = 0.2
+
+[node name="Brace" type="Area2D" parent="Pivot/VFX" unique_id=1493632730]
+visible = false
+z_index = 2
+position = Vector2(7, 0)
+script = ExtResource("8_tjj38")
+metadata/_edit_group_ = true
+metadata/Mortal = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/VFX/Brace" unique_id=331385000]
+visible = false
+position = Vector2(0, -25.5)
+shape = SubResource("RectangleShape2D_awm26")
+disabled = true
+debug_color = Color(0, 0.5950001, 0.7, 0)
+
+[node name="Debug" type="ColorRect" parent="Pivot/VFX/Brace" unique_id=1037213798]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -6.0
+offset_top = -30.0
+offset_right = 6.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/VFX/Brace" unique_id=1834553025]
+visible = false
+position = Vector2(0, -24)
+
+[node name="Attack" type="Polygon2D" parent="Pivot/VFX" unique_id=895463159]
+visible = false
+z_index = 10
+position = Vector2(12, -12)
+color = Color(0.10980392, 1, 0.3764706, 1)
+polygon = PackedVector2Array(-3, -13, 6, -16, 9, -7, 8, 0, -2, 8, 1, -3)
+script = ExtResource("7_boe6u")
+flash_time = 0.3
+flash_repeat_delay = 0.0
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot/VFX/Attack" unique_id=967877968]
+position = Vector2(4, -9)
+enabled = false
+shape = SubResource("RectangleShape2D_c1nht")
+target_position = Vector2(-2, 9.98)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="Windup" type="Polygon2D" parent="Pivot/VFX" unique_id=2039542129]
+visible = false
+position = Vector2(9, -11)
+color = Color(0.110000014, 1, 0.37699997, 1)
+polygon = PackedVector2Array(1, -4, 17, 2, 0, 2)
+script = ExtResource("7_boe6u")
+flash_time = 0.8
+flash_repeat_delay = 0.0
+
+[node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
+visible = false
+light_mask = 2
+texture = ExtResource("5_j7rw5")
+
+[node name="Offset" type="Node2D" parent="Pivot" unique_id=356293176]
+position = Vector2(13, -16)
+
+[node name="Push" type="ColorRect" parent="Pivot" unique_id=1692544015]
+visible = false
+light_mask = 2
+z_index = 1
+material = SubResource("CanvasItemMaterial_tliqh")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -27.0
+offset_right = 36.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.25993618, 0.24924125, 0.027146053, 1)
+script = ExtResource("7_boe6u")
+
+[node name="Push Cast" type="ShapeCast2D" parent="Pivot" unique_id=1697370816 node_paths=PackedStringArray("cast", "feedback")]
+visible = false
+position = Vector2(0, -9.5)
+enabled = false
+shape = SubResource("CircleShape2D_k0ixv")
+target_position = Vector2(19, 0)
+collision_mask = 5
+collide_with_areas = true
+script = ExtResource("14_boe6u")
+cast = NodePath(".")
+feedback = NodePath("../Push")
+
+[node name="Collider" type="CollisionShape2D" parent="." unique_id=1016117325]
+visible = false
+position = Vector2(0, -14.5)
+shape = SubResource("RectangleShape2D_82fik")
+
+[node name="Smash Cast" type="ShapeCast2D" parent="." unique_id=328209519]
+visible = false
+position = Vector2(-5, -5.5)
+enabled = false
+shape = SubResource("CircleShape2D_fpjr1")
+target_position = Vector2(10, 0)
+collision_mask = 4
+collide_with_areas = true

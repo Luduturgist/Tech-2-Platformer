@@ -11,7 +11,7 @@ func _ready():
 
 func _show_death():
 	var t = get_tree().create_tween()
-	t.tween_property(self, "rotation_degrees", 90, 0.4)
+	t.tween_property(self, "rotation_degrees", -90 * last_attack_dir, 0.4)
 	await t.finished
 	queue_free()
 
@@ -27,7 +27,8 @@ func _physics_process(_delta: float) -> void:
 			if pivot.scale.x * diff.x < 0:
 				pivot.scale.x *= -1
 			rpc("_update_position", position, pivot.scale.x)
-			rpc("perform_attack")
+			if attack_behavior.can_attack():
+				rpc("perform_attack")
 		elif diff.length() > attack_range and not attack_behavior.is_attacking():
 			follow_player(diff, _delta)
 		else:
@@ -48,12 +49,6 @@ func follow_player(diff: Vector2, delta: float):
 	if dir.x * pivot.scale.x < 0:
 		pivot.scale.x *= -1
 	move_and_slide()
-
-@rpc("authority", "call_local", "reliable")
-func perform_attack():
-	attack_behavior._attack_start()
-	await end_attack
-	attack_behavior._attack_end()
 
 func track_target(value: bool):
 	super.track_target(value)

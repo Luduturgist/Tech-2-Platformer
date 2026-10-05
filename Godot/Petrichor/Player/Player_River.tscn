@@ -32,8 +32,11 @@ metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 script = ExtResource("6_8voip")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_5xf8n"]
+resource_local_to_scene = true
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
-size = Vector2(13, 30)
+size = Vector2(13, 29)
 
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
 move_speed = 160.0
@@ -44,6 +47,9 @@ move_ability = SubResource("Resource_1w6pk")
 brace = SubResource("Resource_tua64")
 impact_action = SubResource("Resource_8voip")
 
+[node name="AudioStreamPlayer" parent="." index="0" unique_id=1403816157]
+stream = SubResource("AudioStreamPolyphonic_5xf8n")
+
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
 sprite_frames = ExtResource("7_8voip")
 autoplay = "Idle"
@@ -51,6 +57,14 @@ autoplay = "Idle"
 [node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="3" unique_id=1493632730]
 position = Vector2(6, -2)
 
+[node name="Attack" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="4" unique_id=895463159]
+color = Color(0.12941177, 0.94509804, 0.75686276, 1)
+
+[node name="Windup" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="5" unique_id=2039542129]
+color = Color(0.12941177, 0.94509804, 0.75686276, 1)
+
+[node name="Push" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="4" unique_id=1692544015]
+color = Color(0.0021218776, 0.09657022, 0.06804215, 1)
+
 [node name="Collider" parent="." index="2" unique_id=1016117325]
-position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_1d0tu")

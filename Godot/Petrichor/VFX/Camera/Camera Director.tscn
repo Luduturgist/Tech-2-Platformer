@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://btvsqab4xkf0q"]
+
+[ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://VFX/Camera/tracking_cam.gd" id="1_kq5fe"]
+[ext_resource type="Script" uid="uid://c75l2ya1bvbbp" path="res://VFX/Camera/cam_director.gd" id="1_nxylj"]
+
+[node name="CameraFollow" type="Node2D" unique_id=1372751982 node_paths=PackedStringArray("active_cam")]
+script = ExtResource("1_nxylj")
+active_cam = NodePath("Follow Cam")
+
+[node name="Follow Cam" type="Camera2D" parent="." unique_id=1773969312]
+offset = Vector2(0, -50)
+script = ExtResource("1_kq5fe")
+speed = 50.0
+metadata/_custom_type_script = "uid://bxfj03bkw5mfe"

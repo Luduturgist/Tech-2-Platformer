@@ -2,11 +2,10 @@ extends Action
 class_name Swing_Action
 
 @export var swing:= 400
-@export var ground_repel: Vector2 = Vector2(-175, -150)
-@export var air_repel: Vector2 = Vector2(-50, -250)
-@export var energy_drain: int = 2
-@export var cooldown: float = 0.25
-@export var push_back: float = 30
+@export var ground_repel: Vector2 = Vector2(-100, -50)
+@export var air_repel: Vector2 = Vector2(-50, -150)
+@export var energy_drain: int = 0
+@export var cooldown: float = 0.5
 var cast: ShapeCast2D
 
 func _start(m: PlayerMovement, sig = null):
@@ -20,7 +19,7 @@ func _perform_action():
 		return
 	
 	var energy: float = 1
-	if energy_drain:
+	if energy_drain > 0:
 		energy = float(move.energy._drain_charge(energy_drain))/ float(energy_drain)
 		if energy <= 0: return
 	
@@ -51,7 +50,7 @@ func perform_pull(energy: float):
 func perform_push(energy: float):
 	print("???")
 	
-	cast.push_multiplier = energy / energy_drain
+	cast.push_multiplier = energy
 	cast._trigger_event(move.multiplayer.get_unique_id())
 	
 	#var a: int = await cast.hits_calculated
@@ -69,7 +68,8 @@ func perform_push(energy: float):
 	#else:
 	#	move.velocity.y += -down_push * energy
 	await move.get_tree().create_timer(cooldown).timeout
-	move.taking_action = false
+	if move:
+		move.taking_action = false
 
 func _reset_swing():
 	can_swing = true

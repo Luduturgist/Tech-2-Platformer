@@ -8,7 +8,12 @@
 [sub_resource type="Resource" id="Resource_c1nht"]
 resource_local_to_scene = true
 script = ExtResource("2_am2n3")
+attack_interval = 2.0
+lunge = Vector2(60, -190)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_jxspg"]
+resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oamku"]
 size = Vector2(98, 17)
@@ -17,7 +22,7 @@ size = Vector2(98, 17)
 size = Vector2(18, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbm4e"]
-size = Vector2(162, 31)
+size = Vector2(172, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wdi"]
 size = Vector2(9.27, 5.39)
@@ -25,20 +30,29 @@ size = Vector2(9.27, 5.39)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(19, 18)
 
-[node name="Filing Enemy" type="CharacterBody2D" unique_id=775520302 node_paths=PackedStringArray("attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot")]
+[node name="Filing Enemy" type="CharacterBody2D" unique_id=775520302 node_paths=PackedStringArray("attack_feedback", "damage_cast", "collider", "detection_range", "chase_range", "override_detection_range", "pivot", "stun_feedback")]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_jxspg")
 attack_feedback = NodePath("Sprite/Attack")
 damage_cast = NodePath("Sprite/Attack/ShapeCast2D")
 attack_range = 29.0
+knockback = Vector2(-120, -50)
+fall_speed = 22.0
 collider = NodePath("CollisionShape2D")
 detection_range = NodePath("Sprite/Area_Detector")
 chase_range = NodePath("Sprite/Chase Area")
 override_detection_range = NodePath("Sprite/Override Area")
 pivot = NodePath("Sprite")
 attack_behavior = SubResource("Resource_c1nht")
+stun_feedback = NodePath("Knockback Feedback")
 metadata/_custom_type_script = "uid://opgpjmq4qtnj"
+metadata/Mortal = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=645970407]
+stream = SubResource("AudioStreamPolyphonic_jxspg")
+max_distance = 1000.0
+playback_type = 1
 metadata/Mortal = true
 
 [node name="Knockback Feedback" type="Line2D" parent="." unique_id=249564654]
@@ -83,7 +97,7 @@ script = ExtResource("4_eb6li")
 metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Chase Area" unique_id=482212633]
-position = Vector2(33, -11.5)
+position = Vector2(28, -5)
 shape = SubResource("RectangleShape2D_tbm4e")
 
 [node name="Attack" type="Polygon2D" parent="Sprite" unique_id=1998725245]
@@ -99,7 +113,6 @@ scale = Vector2(0.99999994, 0.99999994)
 enabled = false
 shape = SubResource("RectangleShape2D_j4wdi")
 target_position = Vector2(-8.65152, 2.269638)
-max_results = 2
 collision_mask = 3
 collide_with_areas = true
 

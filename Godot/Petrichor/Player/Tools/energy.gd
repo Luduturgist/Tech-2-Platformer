@@ -1,15 +1,18 @@
 extends Resource
 class_name PlayerEnergy
 
-@export var charge: int = 20
-@export var maxCharge: int = 20
+var charge
+
+@export var maxCharge: int = 15
 @export var pain: int = 0
 @export var drain_interval: float = 8
 @export var movement_multiplier = 2
+
 var move: PlayerMovement
 
 func _start(m: PlayerMovement):
 	move = m
+	charge = maxCharge
 	if charge > maxCharge - pain:
 		charge = maxCharge - pain
 	_drain_timer = drain_interval
