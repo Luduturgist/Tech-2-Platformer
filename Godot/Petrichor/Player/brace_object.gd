@@ -48,4 +48,13 @@ func set_brace_variables(value: bool):
 	drain_timer = drain_interval
 
 func _block_attack():
-	Game_Scene.active.local.energy._drain_charge(per_hit_drain)
+	print("blocking123")
+	
+	if is_multiplayer_authority():
+		network_block()
+	else:
+		rpc("network_block")
+
+@rpc("any_peer", "call_remote", "reliable")
+func network_block():
+	$"../../..".energy._drain_charge(per_hit_drain)

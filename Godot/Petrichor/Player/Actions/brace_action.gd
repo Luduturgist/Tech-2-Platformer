@@ -14,10 +14,11 @@ func _start(m: PlayerMovement, sig = null):
 	super._start(m, sig)
 	fx = move.find_child(VFX_ID, true)
 	fx.brace_released.connect(_release_action)
+	move.energy.charge_depleted.connect(PlayerInput.player_brace_release.emit)
 
 func _perform_action():
 	#move.taking_action = true
-	if move.taking_action:
+	if not move.can_action():
 		return
 	
 	move.taking_action = true

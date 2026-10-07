@@ -2,11 +2,18 @@
 
 [ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_3funa"]
 [ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_agh35"]
+[ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="2_hq4ce"]
 [ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_wfmxh"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_wfmxh"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="5_8voip"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="6_8voip"]
 [ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/river_sprite_frames.tres" id="7_8voip"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="7_otcxl"]
+
+[sub_resource type="Resource" id="Resource_tua64"]
+resource_local_to_scene = true
+script = ExtResource("2_hq4ce")
+metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
 [sub_resource type="Resource" id="Resource_otcxl"]
 script = ExtResource("2_wfmxh")
@@ -22,7 +29,7 @@ metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 script = ExtResource("3_wfmxh")
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
-[sub_resource type="Resource" id="Resource_tua64"]
+[sub_resource type="Resource" id="Resource_g73lx"]
 resource_local_to_scene = true
 script = ExtResource("5_8voip")
 time = 0.6
@@ -32,7 +39,18 @@ metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 script = ExtResource("6_8voip")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_5xf8n"]
+[sub_resource type="Resource" id="Resource_5xf8n"]
+script = ExtResource("7_otcxl")
+starting_charge = 0
+windup = 0.8
+attack_duration = 0.3
+cooldown = 0.3
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_05b10"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
@@ -41,14 +59,16 @@ size = Vector2(13, 29)
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
 move_speed = 160.0
 accel = 1000.0
+energy = SubResource("Resource_tua64")
 friendly = SubResource("Resource_otcxl")
 pain_feedback = SubResource("Resource_hq4ce")
 move_ability = SubResource("Resource_1w6pk")
-brace = SubResource("Resource_tua64")
+brace = SubResource("Resource_g73lx")
 impact_action = SubResource("Resource_8voip")
+attack = SubResource("Resource_5xf8n")
 
 [node name="AudioStreamPlayer" parent="." index="0" unique_id=1403816157]
-stream = SubResource("AudioStreamPolyphonic_5xf8n")
+stream = SubResource("AudioStreamPolyphonic_05b10")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
 sprite_frames = ExtResource("7_8voip")
@@ -56,6 +76,7 @@ autoplay = "Idle"
 
 [node name="Brace" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="5" unique_id=1493632730]
 position = Vector2(6, -2)
+per_hit_drain = 1
 drain_interval = 4.0
 
 [node name="Attack" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="6" unique_id=895463159]
@@ -67,5 +88,5 @@ color = Color(0.12941177, 0.94509804, 0.75686276, 1)
 [node name="Push" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="4" unique_id=1692544015]
 color = Color(0.0021218776, 0.09657022, 0.06804215, 1)
 
-[node name="Collider" parent="." index="2" unique_id=1016117325]
+[node name="Collider" parent="." index="3" unique_id=1016117325]
 shape = SubResource("RectangleShape2D_1d0tu")

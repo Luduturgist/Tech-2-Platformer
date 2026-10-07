@@ -25,6 +25,7 @@ class_name Enemy
 
 @export_group("SFX")
 @export var attack_sfx: AudioStream = preload("res://Enemies/SFX/Attack.wav")
+@export var damage_sfx: AudioStream = preload("res://Player/SFX/Player_AttackHit.wav")
 
 var audio_player: AudioStreamPlayer2D
 var playback: AudioStreamPlaybackPolyphonic
@@ -150,6 +151,7 @@ func process_damage(amount: int, player: int) -> int:
 			override_target(Game_Scene.active.friend)
 	
 	damage_taken.emit()
+	play_sfx(damage_sfx)
 	return amount
 
 func _show_stun(value: bool):

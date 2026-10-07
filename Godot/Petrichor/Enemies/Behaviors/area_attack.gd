@@ -88,6 +88,8 @@ func _try_for_cast_damage():
 		if enemy.is_multiplayer_authority():
 			if blocked >= 0 or players.size() == 0:
 				enemy.rpc("_network_stun")
+				if enemy.is_multiplayer_authority():
+					blocking._block_attack()
 		already_hit = true
 	if players.size():
 		for p in players:

@@ -56,7 +56,7 @@ func _process(delta: float) -> void:
 
 var lock_pos: Vector2
 func _physics_process(_delta: float) -> void:
-	if lock_position and flash_time > 0 and obj.visible:
+	if lock_position and obj.visible:
 		obj.global_position = lock_pos
 
 @rpc("any_peer", "call_local", "reliable")

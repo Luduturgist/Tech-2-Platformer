@@ -22,22 +22,24 @@ func _start(m: PlayerMovement, sig = null):
 	windup_vfx = m.get_node(windupvfx_path)
 	caster = m.get_node(caster_path)
 
-var charge: int = 1
+var charge: int = 0
 func _perform_action():
 	#print("attack")
 	
 	if not move.taking_action and windup_timer == 0 and attack_timer == 0 and cooldown_timer == 0 and PlayerInput.pause_time == 0:
+		charge = starting_charge
 		if windup <= 0:
 			windup_timer = -INF
 			print("no windup")
 		else:
 			windup_timer = windup
-		charge = starting_charge
+			move.rpc("network_charge_sfx", charge)
 		move.taking_action = true
 		windup_vfx._trigger_event()
 		PlayerInput._pause_movement(attack_duration + windup + buffer)
 	elif windup_timer > 0:
 		charge += 1
+		move.rpc("network_charge_sfx", charge)
 		#print("charging")
 
 var windup_timer: float = 0

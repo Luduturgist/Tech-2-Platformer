@@ -43,7 +43,11 @@ func _host():
 			PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
 
 func _join(ip: String = localIP):
-	AudioHandler._mute()
+	if ip == localIP:
+		AudioHandler._mute()
+		PlayerInput.input_override = PlayerInput.input_type.INPUT_CONTROLLER
+	
+	print(ip, ", " , localIP)
 	
 	peer.create_client(ip, 1027)
 	multiplayer.multiplayer_peer = peer
@@ -60,6 +64,8 @@ func _register_client(id: int):
 	
 	if multiplayer.is_server():
 		friend_id = id
+		if peer.get_peer(id).get_remote_address() == localIP:
+			PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
 	else:
 		friend_id = 1
 	
@@ -156,8 +162,4 @@ func multiplayer_scene(scene: String):
 func assign_golem(i: int):
 	local_type = i as Golem
 	#print("Golem " + str(i) + " loaded")
-	if local_type == Golem.GOLEM_SOIL:
-		PlayerInput.input_override = PlayerInput.input_type.INPUT_KEYBOARD
-	elif local_type == Golem.GOLEM_RIVER:
-		PlayerInput.input_override = PlayerInput.input_type.INPUT_CONTROLLER
 	scene_loaded()

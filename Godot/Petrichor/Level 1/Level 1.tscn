@@ -18,30 +18,20 @@
 [ext_resource type="Texture2D" uid="uid://cbx3b3lbuxb42" path="res://Enemies/Stepper/Stepper.png" id="15_tbm4e"]
 [ext_resource type="Texture2D" uid="uid://cf036xe7ksduc" path="res://Level 1/Environmentables/stalagtite1.png" id="17_7rej1"]
 [ext_resource type="Texture2D" uid="uid://dkvjqnjbli0e0" path="res://Level 1/Environmentables/stalagtite2.png" id="18_7rej1"]
-
-[sub_resource type="Resource" id="Resource_7rej1"]
-resource_local_to_scene = true
-script = ExtResource("6_tgpit")
-time = 0.6
-metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
-
-[sub_resource type="Resource" id="Resource_ooajt"]
-resource_local_to_scene = true
-script = ExtResource("6_tgpit")
-time = 0.6
-metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+[ext_resource type="Script" uid="uid://ccuur63n6earq" path="res://Debug/scene_change_area.gd" id="19_ooajt"]
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="20_a770q"]
 
 [sub_resource type="Resource" id="Resource_a770q"]
 resource_local_to_scene = true
-script = ExtResource("10_aonor")
-lunge = Vector2(52.895, -28.615)
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+script = ExtResource("6_tgpit")
+time = 0.6
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
 [sub_resource type="Resource" id="Resource_pdenk"]
 resource_local_to_scene = true
-script = ExtResource("10_aonor")
-lunge = Vector2(52.895, -28.615)
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+script = ExtResource("6_tgpit")
+time = 0.6
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
 [sub_resource type="Resource" id="Resource_6nrau"]
 resource_local_to_scene = true
@@ -85,26 +75,42 @@ script = ExtResource("10_aonor")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
+[sub_resource type="Resource" id="Resource_sv8rb"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+lunge = Vector2(52.895, -28.615)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aonor"]
 size = Vector2(3209, 54)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1nht"]
 radius = 99.18165
 
-[sub_resource type="Resource" id="Resource_sv8rb"]
+[sub_resource type="Resource" id="Resource_37wmk"]
 resource_local_to_scene = true
 script = ExtResource("10_aonor")
 attack_interval = 2.0
 lunge = Vector2(60, -190)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_37wmk"]
+[sub_resource type="Resource" id="Resource_707id"]
+resource_local_to_scene = true
+script = ExtResource("10_aonor")
+attack_interval = 2.0
+lunge = Vector2(60, -190)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_6eb3e"]
 resource_local_to_scene = true
 script = ExtResource("10_aonor")
 attack_duration = 0.3
 attack_interval = 0.5
 lunge = Vector2(50, -10)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq4ce"]
+size = Vector2(48, 102)
 
 [node name="Level1" type="Node2D" unique_id=786337047 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
 script = ExtResource("1_8u160")
@@ -141,13 +147,15 @@ metadata/_edit_lock_ = true
 
 [node name="Player_River" parent="Midgard/Players" unique_id=1254970227 instance=ExtResource("2_y1i4a")]
 position = Vector2(146, 32)
+energy = null
 knockback = Vector2(-50, -50)
-brace = SubResource("Resource_7rej1")
+brace = SubResource("Resource_a770q")
 
 [node name="Player_Soil" parent="Midgard/Players" unique_id=87480027 instance=ExtResource("3_6ut4f")]
 position = Vector2(112, -275)
+energy = null
 knockback = Vector2(-50, -50)
-brace = SubResource("Resource_ooajt")
+brace = SubResource("Resource_pdenk")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Midgard" unique_id=1598625206]
 z_index = -1
@@ -158,39 +166,35 @@ tile_set = ExtResource("7_tgpit")
 
 [node name="Debug Enemy4" parent="Midgard/Enemies" unique_id=1127782348 instance=ExtResource("9_tgpit")]
 position = Vector2(437, 150)
-attack_behavior = SubResource("Resource_a770q")
+attack_behavior = SubResource("Resource_6nrau")
 
 [node name="Debug Enemy2" parent="Midgard/Enemies" unique_id=1080319627 instance=ExtResource("9_tgpit")]
 position = Vector2(590, 150)
-attack_behavior = SubResource("Resource_pdenk")
+attack_behavior = SubResource("Resource_sdx0b")
 
 [node name="Debug Enemy3" parent="Midgard/Enemies" unique_id=1801522015 instance=ExtResource("9_tgpit")]
 position = Vector2(650, 150)
-attack_behavior = SubResource("Resource_6nrau")
+attack_behavior = SubResource("Resource_gflvv")
 
 [node name="Debug Enemy" parent="Midgard/Enemies" unique_id=1626915890 instance=ExtResource("9_tgpit")]
 position = Vector2(1075, 86)
-attack_behavior = SubResource("Resource_sdx0b")
+attack_behavior = SubResource("Resource_j4wdi")
 
 [node name="Debug Enemy5" parent="Midgard/Enemies" unique_id=1980751240 instance=ExtResource("9_tgpit")]
 position = Vector2(1007, 118)
-attack_behavior = SubResource("Resource_gflvv")
+attack_behavior = SubResource("Resource_lk4wb")
 
 [node name="Debug Enemy6" parent="Midgard/Enemies" unique_id=744078433 instance=ExtResource("9_tgpit")]
 position = Vector2(907, 150)
-attack_behavior = SubResource("Resource_j4wdi")
+attack_behavior = SubResource("Resource_surps")
 
 [node name="Debug Enemy7" parent="Midgard/Enemies" unique_id=171192178 instance=ExtResource("9_tgpit")]
 position = Vector2(1205, 150)
-attack_behavior = SubResource("Resource_lk4wb")
+attack_behavior = SubResource("Resource_e4144")
 
 [node name="Debug Enemy8" parent="Midgard/Enemies" unique_id=305958357 instance=ExtResource("9_tgpit")]
 position = Vector2(1289, 150)
-attack_behavior = SubResource("Resource_surps")
-
-[node name="Debug Enemy9" parent="Midgard/Enemies" unique_id=1266798505 instance=ExtResource("9_tgpit")]
-position = Vector2(1170, 22)
-attack_behavior = SubResource("Resource_e4144")
+attack_behavior = SubResource("Resource_sv8rb")
 
 [node name="Damage_Area" type="Area2D" parent="." unique_id=454458912]
 position = Vector2(436, 296)
@@ -226,11 +230,15 @@ polygon = PackedVector2Array(82, -53, 99, -5, 87, 48, 60, 78, 19, 97, -47, 88, -
 
 [node name="Filing Enemy" parent="." unique_id=775520302 instance=ExtResource("12_klnrk")]
 position = Vector2(235, 0)
-attack_behavior = SubResource("Resource_sv8rb")
+attack_behavior = SubResource("Resource_37wmk")
+
+[node name="Filing Enemy2" parent="." unique_id=364528105 instance=ExtResource("12_klnrk")]
+position = Vector2(1163, 32)
+attack_behavior = SubResource("Resource_707id")
 
 [node name="Biggin" parent="." unique_id=1129633472 instance=ExtResource("13_3kkt0")]
 position = Vector2(1184, 160)
-attack_behavior = SubResource("Resource_37wmk")
+attack_behavior = SubResource("Resource_6eb3e")
 
 [node name="Dragger" type="Sprite2D" parent="." unique_id=568788135]
 position = Vector2(334, -48)
@@ -256,3 +264,15 @@ texture = ExtResource("17_7rej1")
 [node name="Stalagmite2" type="Sprite2D" parent="SlightForeground" unique_id=256571901]
 position = Vector2(-122, -87)
 texture = ExtResource("18_7rej1")
+
+[node name="Sceneload_Detector" type="Area2D" parent="." unique_id=988691633]
+position = Vector2(1403, 119)
+collision_layer = 0
+script = ExtResource("19_ooajt")
+scene = "res://Level 2/Level 2.tscn"
+target_script = ExtResource("20_a770q")
+metadata/_custom_type_script = "uid://ccuur63n6earq"
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sceneload_Detector" unique_id=666677865]
+shape = SubResource("RectangleShape2D_hq4ce")

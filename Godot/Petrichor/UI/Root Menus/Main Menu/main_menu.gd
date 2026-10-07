@@ -39,7 +39,7 @@ func express_failure():
 func join_pressed(join: String = ":("):
 	last_try = join_ip.text
 	if join == ":(":
-		join = join_ip.text
+		join = join_ip.placeholder_text
 	Wrapper._join(join)
 	join_wait_ip.text = join
 	switch()

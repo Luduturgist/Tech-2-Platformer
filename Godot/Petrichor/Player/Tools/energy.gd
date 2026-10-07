@@ -9,6 +9,7 @@ var charge
 @export var movement_multiplier = 2
 
 var move: PlayerMovement
+signal charge_depleted
 
 func _start(m: PlayerMovement):
 	move = m
@@ -48,6 +49,7 @@ func _drain_charge(amount: int, overdraw: bool = false) -> int:
 		else:
 			drain += charge
 		charge = 0
+		charge_depleted.emit()
 	update_ui()
 	return drain
 

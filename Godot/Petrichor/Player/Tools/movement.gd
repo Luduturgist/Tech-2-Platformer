@@ -42,6 +42,9 @@ var speed_mods: Dictionary[String, float]
 var cheering: bool = false
 var playback: AudioStreamPlaybackPolyphonic
 
+func can_action() -> bool:
+	return not taking_action and energy.charge > 0
+
 var gravity_delay_timer: float = 0
 func _delay_gravity(time: float):
 	if time > gravity_delay_timer:
@@ -231,3 +234,10 @@ func _network_position(pos: Vector2, flipped: bool):
 		flip = -1
 	pivot.scale.x = flip
 	#moving_networked = dir
+
+@rpc("authority", "call_local", "reliable")
+func network_charge_sfx(value: int):
+	$"Charge SFX".play()
+	
+	var pitch_change: float = 0.5
+	$"Charge SFX".pitch_scale = 1 + (sqrt(value) * pitch_change)
