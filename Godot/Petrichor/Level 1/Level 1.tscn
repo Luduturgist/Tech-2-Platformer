@@ -241,14 +241,17 @@ position = Vector2(1184, 160)
 attack_behavior = SubResource("Resource_6eb3e")
 
 [node name="Dragger" type="Sprite2D" parent="." unique_id=568788135]
+visible = false
 position = Vector2(334, -48)
 texture = ExtResource("13_20h5i")
 
 [node name="BasicEnemy" type="Sprite2D" parent="." unique_id=1236264331]
+visible = false
 position = Vector2(303, -48)
 texture = ExtResource("14_k6t00")
 
 [node name="Stepper" type="Sprite2D" parent="." unique_id=469044143]
+visible = false
 position = Vector2(390, -48)
 texture = ExtResource("15_tbm4e")
 
