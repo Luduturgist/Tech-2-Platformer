@@ -10,47 +10,47 @@
 [ext_resource type="SpriteFrames" uid="uid://be2otx3acpdl8" path="res://Player/River/Animations/river_sprite_frames.tres" id="7_8voip"]
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="7_otcxl"]
 
-[sub_resource type="Resource" id="Resource_tua64"]
+[sub_resource type="Resource" id="Resource_hq4ce"]
 resource_local_to_scene = true
 script = ExtResource("2_hq4ce")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
-[sub_resource type="Resource" id="Resource_otcxl"]
+[sub_resource type="Resource" id="Resource_tua64"]
+resource_local_to_scene = true
 script = ExtResource("2_wfmxh")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[sub_resource type="Resource" id="Resource_hq4ce"]
+[sub_resource type="Resource" id="Resource_5xf8n"]
+resource_local_to_scene = true
 script = ExtResource("2_agh35")
 event_path = NodePath("Pivot/VFX/Pain")
 metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_1w6pk"]
 script = ExtResource("3_wfmxh")
+air_repel = Vector2(-80, -750)
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
-[sub_resource type="Resource" id="Resource_g73lx"]
+[sub_resource type="Resource" id="Resource_05b10"]
 resource_local_to_scene = true
 script = ExtResource("5_8voip")
-time = 0.6
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_8voip"]
+[sub_resource type="Resource" id="Resource_84swu"]
+resource_local_to_scene = true
 script = ExtResource("6_8voip")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_5xf8n"]
+[sub_resource type="Resource" id="Resource_g73lx"]
 script = ExtResource("7_otcxl")
 starting_charge = 0
-windup = 0.8
-attack_duration = 0.3
-cooldown = 0.3
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
 windupvfx_path = NodePath("Pivot/VFX/Windup")
 caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
 metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_05b10"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_l8a4u"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d0tu"]
@@ -59,16 +59,16 @@ size = Vector2(13, 29)
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
 move_speed = 160.0
 accel = 1000.0
-energy = SubResource("Resource_tua64")
-friendly = SubResource("Resource_otcxl")
-pain_feedback = SubResource("Resource_hq4ce")
+energy = SubResource("Resource_hq4ce")
+friendly = SubResource("Resource_tua64")
+pain_feedback = SubResource("Resource_5xf8n")
 move_ability = SubResource("Resource_1w6pk")
-brace = SubResource("Resource_g73lx")
-impact_action = SubResource("Resource_8voip")
-attack = SubResource("Resource_5xf8n")
+brace = SubResource("Resource_05b10")
+impact_action = SubResource("Resource_84swu")
+attack = SubResource("Resource_g73lx")
 
 [node name="AudioStreamPlayer" parent="." index="0" unique_id=1403816157]
-stream = SubResource("AudioStreamPolyphonic_05b10")
+stream = SubResource("AudioStreamPolyphonic_l8a4u")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
 sprite_frames = ExtResource("7_8voip")

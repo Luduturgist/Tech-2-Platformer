@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d0xtbecul2d0b"]
+
+[ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="1_ogvbt"]
+
+[resource]
+shader = ExtResource("1_ogvbt")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0

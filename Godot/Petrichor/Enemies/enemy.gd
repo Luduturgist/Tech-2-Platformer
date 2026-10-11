@@ -5,13 +5,14 @@ class_name Enemy
 @export var health: int = 2
 @export var damage: int = 1
 @export var drain: int = 0
-@export var speed: float = 50
-@export var accel: float = 250
+@export var speed: float = 75
+@export var accel: float = 350
 @export var attack_range: float = 25
 @export var stun_time: float = 1.3
 @export var knockback: Vector2 = Vector2(-75, -50)
 @export var fall_speed: float = 30
 @export var start_flipped: bool = false
+@export var knockback_stun: float = 0.5
 
 @export_group("References")
 @export var collider: CollisionShape2D
@@ -21,11 +22,29 @@ class_name Enemy
 @export var pivot: Node2D
 @export var attack_behavior: EnemyAttackBehavior
 @export var attack_source: Node2D
+@export var damage_cast: ShapeCast2D
+@export var animator: AnimatedSprite2D
+
+@export_group("VFX")
 @export var stun_feedback: Node2D
+@export var windup_feedback: Node2D
+@export var attack_feedback: Node2D
+
 
 @export_group("SFX")
 @export var attack_sfx: AudioStream = preload("res://Enemies/SFX/Attack.wav")
 @export var damage_sfx: AudioStream = preload("res://Player/SFX/Player_AttackHit.wav")
+
+@export_group("death")
+@export var live_sprite: Node2D
+@export var death_sprite: Node2D
+@export var growth_sprite: Sprite2D
+@export var death_events: Array[Event_Object]
+@export var fertilizer_events: Array[Event_Object]
+@export var redlight: Node2D
+@export var interactable: Hold_Interact
+@export var grown_color: Color = Color(0.482, 0.89, 0.494, 1.0)
+@export var last_flash_time: float = 2.7
 
 var audio_player: AudioStreamPlayer2D
 var playback: AudioStreamPlaybackPolyphonic
@@ -39,10 +58,14 @@ signal start_attack
 signal end_attack
 signal update_tracking(bool)
 signal update_stun(bool)
+signal fertilized
 
 
 var tracking_enemy: bool
 var target: Node2D
+
+func enemy_can_move() ->  bool:
+	return tracking_enemy and health > 0 and stun_timer == 0 and knockback_timer == 0
 
 func _ready() -> void:
 	audio_player = $"AudioStreamPlayer2D"
@@ -52,7 +75,9 @@ func _ready() -> void:
 	if not attack_source:
 		attack_source = self
 	
-	attack_behavior._start(self)
+	if attack_behavior:
+		attack_behavior._start(self)
+	
 	if start_flipped:
 		pivot.scale.x *= -1
 	
@@ -70,6 +95,9 @@ func _ready() -> void:
 var last_attack_dir: int = 1
 var air_knockback_mult: float = 0.5
 func knockback_enemy(source: float = -INF):
+	if health <= 0:
+		return
+	
 	var local_knockback: Vector2 = knockback
 	
 	if not is_on_floor():
@@ -84,6 +112,8 @@ func knockback_enemy(source: float = -INF):
 	local_knockback.x *= last_attack_dir
 	
 	velocity += local_knockback
+	
+	knockback_timer = knockback_stun
 
 func track_target(_value: bool):
 	#print("target " + str(value))
@@ -110,6 +140,9 @@ func override_target(new_target: Node2D = null):
 
 var last_pos: Vector2
 func _physics_process(_delta: float) -> void:
+	if not is_multiplayer_authority():
+		return
+	
 	if not is_on_floor():
 		velocity.y += fall_speed
 	
@@ -120,15 +153,31 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 var stun_timer: float
+var flash_timer: float
+var knockback_timer: float
 func _process(delta: float) -> void:
+	if last_flash > 0:
+		last_flash -= delta
+		if last_flash > 0:
+			redlight.color.a = last_flash / last_flash_time
+		else:
+			redlight.visible = false
+	
+	if knockback_timer > 0:
+		knockback_timer -= delta
+		if knockback_timer <= 0:
+			knockback_timer = 0
+			
 	
 	if stun_timer > 0:
 		stun_timer -= delta
 		if stun_timer <= 0:
 			stun_timer = 0
 			update_stun.emit(false)
+	
 
 func _take_damage(amount: int, source: float) -> int:
+	print("dmg")
 	rpc("_network_damage", amount, sign(source - global_position.x), int(Wrapper.local_type))
 	#await damage_taken
 	
@@ -152,6 +201,7 @@ func process_damage(amount: int, player: int) -> int:
 	
 	damage_taken.emit()
 	play_sfx(damage_sfx)
+	
 	return amount
 
 func _show_stun(value: bool):
@@ -175,7 +225,13 @@ func _network_tracking(value: bool):
 @rpc("any_peer", "call_local", "reliable")
 func _network_damage(amount: int, source: int, player: int):
 	last_attack_dir = source
-	process_damage(amount, player)
+
+	if health > 0:
+		process_damage(amount, player)
+	
+	elif interactable.pressed:
+		print("lol")
+		fertilizer_action()
 
 @rpc("authority", "call_local", "reliable")
 func _network_stun():
@@ -186,7 +242,8 @@ func _network_stun():
 @rpc("authority", "call_local", "reliable")
 func kill_enemy():
 	killed.emit()
-	set_meta("Mortal", false)
+	fertilizer_death()
+
 	
 	#queue_free()
 
@@ -195,3 +252,61 @@ func perform_attack():
 	attack_behavior._attack_start()
 	await end_attack
 	attack_behavior._attack_end()
+
+func fertilizer_death():
+	live_sprite.visible = false
+	death_sprite.visible = true
+	attack_feedback.visible = false
+	windup_feedback.visible = false
+	redlight.visible = true
+	interactable.enabled = true
+	
+	if death_events.size():
+		for event in death_events:
+			event._trigger_event()
+
+var last_flash: float
+func fertilizer_action():
+	fertilized.emit()
+	death_sprite.visible = false
+	growth_sprite.visible = true
+	set_meta("Mortal", false)
+	redlight.visible = false
+	interactable.enabled = false
+	interactable.pressed = false
+	interactable.rpc("button_interact", false)
+	redlight.color = grown_color
+	last_flash = last_flash_time
+	
+	if fertilizer_events.size():
+		for event in fertilizer_events:
+			event._trigger_event()
+
+var current_animation: int = 0
+func try_swap_animation(anim: int):
+	if anim == current_animation:
+		return
+	
+	current_animation = anim
+	rpc("network_anim", anim)
+
+@rpc("call_local", "authority", "reliable")
+func network_anim(anim: int):
+	current_animation = anim
+	var animation: StringName = &"Idle"
+	match anim:
+		0:
+			animation = &"Idle"
+		1:
+			animation = &"Run"
+		2:
+			animation = &"Attack"
+	
+	animator.animation = animation
+	animator.play()
+
+func debug_death():
+	var t = get_tree().create_tween()
+	t.tween_property(self, "rotation_degrees", -90 * last_attack_dir, 0.4)
+	await t.finished
+	queue_free()

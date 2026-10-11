@@ -1,0 +1,70 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://be4au5qirogif"]
+
+[ext_resource type="Texture2D" uid="uid://c6ovggbehyqlg" path="res://Enemies/Dragger/Dragger.png" id="1_ugiq0"]
+[ext_resource type="Texture2D" uid="uid://cymticpey7ot4" path="res://Enemies/Dragger/Dragger Idle-sheet.png" id="2_7wr1g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fmu31"]
+atlas = ExtResource("2_7wr1g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fc8k5"]
+atlas = ExtResource("2_7wr1g")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26cak"]
+atlas = ExtResource("2_7wr1g")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flw7t"]
+atlas = ExtResource("2_7wr1g")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk3u8"]
+atlas = ExtResource("2_7wr1g")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfma3"]
+atlas = ExtResource("2_7wr1g")
+region = Rect2(160, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ugiq0")
+}],
+"loop": 1,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ugiq0")
+}],
+"loop": 0,
+"name": &"Idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_fmu31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fc8k5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26cak")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_flw7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk3u8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfma3")
+}],
+"loop": 1,
+"name": &"Run",
+"speed": 5.0
+}]

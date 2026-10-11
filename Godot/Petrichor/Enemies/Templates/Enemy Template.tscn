@@ -1,0 +1,166 @@
+[gd_scene format=3 uid="uid://dtdwq2m8hevaw"]
+
+[ext_resource type="Script" uid="uid://duajjc5o0s0u" path="res://Enemies/enemy.gd" id="1_o2th3"]
+[ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="2_mudto"]
+[ext_resource type="Script" uid="uid://tkxccr2y7lnf" path="res://Enemies/Basic Enemy/enemy_flash.gd" id="4_r7n3h"]
+[ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="5_ngr18"]
+[ext_resource type="Script" uid="uid://c01iittkuqc" path="res://Interacteable/interacteable_hold.gd" id="6_wvibk"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="7_f465g"]
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="8_f465g"]
+[ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="9_25pf4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25pf4"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngr18")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f465g"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngr18")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kdatx"]
+resource_local_to_scene = true
+shader = ExtResource("5_ngr18")
+shader_parameter/flash_color = Color(0.37254903, 0.9098039, 0.44313726, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
+size = Vector2(18, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqlir"]
+size = Vector2(9.27, 5.39)
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_o2th3"]
+resource_local_to_scene = true
+
+[node name="EnemyTemplate" type="CharacterBody2D" unique_id=1690093432 node_paths=PackedStringArray("collider", "detection_range", "chase_range", "override_detection_range", "pivot", "damage_cast", "animator", "stun_feedback", "windup_feedback", "attack_feedback", "live_sprite", "death_sprite", "growth_sprite", "redlight", "interactable")]
+collision_layer = 4
+collision_mask = 16
+script = ExtResource("1_o2th3")
+collider = NodePath("CollisionShape2D")
+detection_range = NodePath("Pivot/Detection/Area_Detector")
+chase_range = NodePath("Pivot/Detection/Chase Area")
+override_detection_range = NodePath("Pivot/Detection/Override Area")
+pivot = NodePath("Pivot")
+damage_cast = NodePath("Pivot/Attack/ShapeCast2D")
+animator = NodePath("Pivot/Sprite2D")
+stun_feedback = NodePath("Knockback Feedback")
+windup_feedback = NodePath("Pivot/Windup")
+attack_feedback = NodePath("Pivot/Attack")
+live_sprite = NodePath("Pivot/Sprite2D")
+death_sprite = NodePath("Pivot/Dead")
+growth_sprite = NodePath("Pivot/Grown")
+redlight = NodePath("Pivot/Grow Interact/PointLight2D")
+interactable = NodePath("Pivot/Grow Interact")
+metadata/_custom_type_script = "uid://duajjc5o0s0u"
+metadata/Mortal = true
+
+[node name="Pivot" type="Node2D" parent="." unique_id=1211966545]
+
+[node name="Detection" type="Node2D" parent="Pivot" unique_id=424177330]
+
+[node name="Area_Detector" type="Area2D" parent="Pivot/Detection" unique_id=871215648]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("2_mudto")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Detection/Area_Detector" unique_id=2078418004]
+
+[node name="Chase Area" type="Area2D" parent="Pivot/Detection" unique_id=192584454]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("2_mudto")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Detection/Chase Area" unique_id=1402028660]
+
+[node name="Override Area" type="Area2D" parent="Pivot/Detection" unique_id=204225053]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("2_mudto")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Detection/Override Area" unique_id=1651493230]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=1309506720 node_paths=PackedStringArray("parent")]
+material = SubResource("ShaderMaterial_25pf4")
+position = Vector2(0, -16)
+script = ExtResource("4_r7n3h")
+parent = NodePath("../..")
+
+[node name="Dead" type="Sprite2D" parent="Pivot" unique_id=983881865 node_paths=PackedStringArray("parent")]
+visible = false
+material = SubResource("ShaderMaterial_f465g")
+position = Vector2(0, -16)
+script = ExtResource("4_r7n3h")
+parent = NodePath("../..")
+
+[node name="Grown" type="Sprite2D" parent="Pivot" unique_id=1222569319 node_paths=PackedStringArray("parent")]
+visible = false
+material = SubResource("ShaderMaterial_kdatx")
+position = Vector2(0, -16)
+script = ExtResource("4_r7n3h")
+parent = NodePath("../..")
+event = 1
+
+[node name="Grow Interact" type="Node2D" parent="Pivot" unique_id=1573788849 node_paths=PackedStringArray("detection_area", "redlight")]
+script = ExtResource("6_wvibk")
+detection_area = NodePath("Area_Detector")
+redlight = NodePath("PointLight2D")
+
+[node name="PointLight2D" type="PointLight2D" parent="Pivot/Grow Interact" unique_id=281996687]
+visible = false
+color = Color(1, 0, 0, 1)
+texture = ExtResource("7_f465g")
+
+[node name="Area_Detector" type="Area2D" parent="Pivot/Grow Interact" unique_id=802343227]
+visible = false
+script = ExtResource("2_mudto")
+target_script = ExtResource("8_f465g")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Grow Interact/Area_Detector" unique_id=140309380]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_c1nht")
+
+[node name="Windup" type="Polygon2D" parent="Pivot" unique_id=1983270390]
+visible = false
+position = Vector2(7, -5)
+polygon = PackedVector2Array(1, -2, 10, 1, 0, 2)
+script = ExtResource("9_25pf4")
+flash_time = 0.4
+flash_repeat_delay = 0.0
+
+[node name="Attack" type="Polygon2D" parent="Pivot" unique_id=1330077870]
+visible = false
+z_index = 2
+position = Vector2(9, -7)
+polygon = PackedVector2Array(-2, 2, 4, 6, 4, -2, 2, -7, -4, -10, -1, -4)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot/Attack" unique_id=2056092639]
+position = Vector2(-2.000001, -6)
+rotation = -1.7778863
+scale = Vector2(0.99999994, 0.99999994)
+enabled = false
+shape = SubResource("RectangleShape2D_xqlir")
+target_position = Vector2(-8.65152, 2.269638)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1612581139]
+stream = SubResource("AudioStreamPolyphonic_o2th3")
+volume_db = -3.955
+max_distance = 1000.0
+playback_type = 1
+
+[node name="Knockback Feedback" type="Line2D" parent="." unique_id=1804559143]
+visible = false
+position = Vector2(1, -28)
+points = PackedVector2Array(-1, -1, 3, -2, -1, -3, -6, -5, 0, -6, 4, -8)
+width = 0.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1937080905]

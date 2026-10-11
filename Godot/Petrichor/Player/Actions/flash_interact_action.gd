@@ -3,6 +3,7 @@ class_name Flash_Interact_Action
 
 @export var fade_path: NodePath
 var fader
+var flashing: bool = false
 
 func _start(m: PlayerMovement, sig = null):
 	super._start(m, sig)
@@ -21,5 +22,13 @@ func _perform_action():
 	fader._trigger_event()
 	#move.taking_action = true
 	move.special_interact.emit()
+	flashing = true
 	await fader.fade_ended
+	if flashing:
+		move.interact_end.emit()
 	#move.taking_action = false
+
+func _update(_delta: float):
+	if flashing and PlayerInput.player_movement.x != 0:
+		move.interact_end.emit()
+		flashing = false

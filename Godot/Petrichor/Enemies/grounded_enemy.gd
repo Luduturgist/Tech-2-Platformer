@@ -1,27 +1,18 @@
 extends Enemy
 class_name Grounded_Enemy
 
-@export var attack_feedback: Node2D
-@export var damage_cast: ShapeCast2D
 
 func _ready():
 	super._ready()
-	killed.connect(func(): attack_feedback.visible = false)
-	killed.connect(_show_death)
-
-func _show_death():
-	var t = get_tree().create_tween()
-	t.tween_property(self, "rotation_degrees", -90 * last_attack_dir, 0.4)
-	await t.finished
-	queue_free()
 
 func _physics_process(_delta: float) -> void:
-	attack_behavior._update(_delta)
+	if attack_behavior:
+		attack_behavior._update(_delta)
 	
 	if not is_multiplayer_authority():
 		return
 	
-	if tracking_enemy and health > 0 and stun_timer == 0:
+	if enemy_can_move() and attack_behavior.can_attack():
 		var diff: Vector2 = target.global_position - global_position
 		if diff.length() <= attack_range and not attack_behavior.is_attacking():
 			if pivot.scale.x * diff.x < 0:
@@ -34,6 +25,7 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, accel * _delta)
 	else:
+		try_swap_animation(0)
 		velocity.x = move_toward(velocity.x, 0, accel * _delta)
 	
 	super._physics_process(_delta)
@@ -48,7 +40,8 @@ func follow_player(diff: Vector2, delta: float):
 	velocity.x = move_toward(velocity.x, dir.x * speed, accel * delta)
 	if dir.x * pivot.scale.x < 0:
 		pivot.scale.x *= -1
-	move_and_slide()
+	
+	try_swap_animation(1)
 
 func track_target(value: bool):
 	super.track_target(value)

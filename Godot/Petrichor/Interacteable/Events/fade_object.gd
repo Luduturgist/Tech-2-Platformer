@@ -41,6 +41,6 @@ func fade(_time: float):
 	if not obj: return
 	
 	obj.visible = true
-	fade_timer = _time
-	fade_mod = _time
+	fade_timer = (1 + _time) / 2
+	fade_mod = (1 + _time) / 2
 	player.cheering = true

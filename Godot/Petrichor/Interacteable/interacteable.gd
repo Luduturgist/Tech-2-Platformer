@@ -6,13 +6,16 @@ class_name Interacteable
 
 @export var event_objects: Array[Event_Object]
 @export var single_use := true
-@export var special_interaction: bool = false
+@export var attackable: bool = false
 
 var local := true
 
 func _ready() -> void:
-	player_area.body_entered.connect(try_player.bind(1))
-	player_area.body_exited.connect(try_player.bind(-1))
+	if attackable:
+		set_meta("Mortal", true)
+	else:
+		player_area.body_entered.connect(try_player.bind(1))
+		player_area.body_exited.connect(try_player.bind(-1))
 
 func try_player(body: Node2D, i: int):
 	if not multiplayer.multiplayer_peer:
@@ -20,15 +23,9 @@ func try_player(body: Node2D, i: int):
 	if not exhausted and body is PlayerMovement and body.local:
 		rpc("flip_light", i)
 		if i > 0:
-			if special_interaction:
-				body.special_interact.connect(interact)
-			else:
-				body.interact.connect(interact)
+			body.special_interact.connect(interact)
 		else:
-			if special_interaction:
-				body.special_interact.disconnect(interact)
-			else:
-				body.interact.disconnect(interact)
+			body.special_interact.disconnect(interact)
 
 var exhausted := false
 func interact():

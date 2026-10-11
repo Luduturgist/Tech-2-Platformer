@@ -3,29 +3,52 @@
 [ext_resource type="PackedScene" uid="uid://c5sn821thiii1" path="res://Player/Player_Base.tscn" id="1_m25y2"]
 [ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="2_fy1wm"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_6xinh"]
-[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="3_mci8t"]
-[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="7_xre7c"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="3_xre7c"]
+[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="4_rayeu"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="6_wobsq"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="7_ijxfx"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="8_e7nig"]
 
-[sub_resource type="Resource" id="Resource_6xinh"]
+[sub_resource type="Resource" id="Resource_xre7c"]
 resource_local_to_scene = true
 script = ExtResource("2_fy1wm")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
+
+[sub_resource type="Resource" id="Resource_rayeu"]
+resource_local_to_scene = true
+script = ExtResource("3_xre7c")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_ijxfx"]
+resource_local_to_scene = true
+script = ExtResource("4_rayeu")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_wobsq"]
 script = ExtResource("3_6xinh")
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
-[sub_resource type="Resource" id="Resource_nqwmv"]
+[sub_resource type="Resource" id="Resource_e7nig"]
 resource_local_to_scene = true
-script = ExtResource("3_mci8t")
-time = 0.6
+script = ExtResource("6_wobsq")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
 [sub_resource type="Resource" id="Resource_qf2ha"]
-script = ExtResource("7_xre7c")
+resource_local_to_scene = true
+script = ExtResource("7_ijxfx")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_xre7c"]
+[sub_resource type="Resource" id="Resource_55tc3"]
+resource_local_to_scene = true
+script = ExtResource("8_e7nig")
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_tytgx"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oq2wa"]
@@ -33,13 +56,16 @@ size = Vector2(15, 29)
 
 [node name="Player_Soil" unique_id=1254970227 instance=ExtResource("1_m25y2")]
 move_speed = 140.0
-energy = SubResource("Resource_6xinh")
+energy = SubResource("Resource_xre7c")
+friendly = SubResource("Resource_rayeu")
+pain_feedback = SubResource("Resource_ijxfx")
 move_ability = SubResource("Resource_wobsq")
-brace = SubResource("Resource_nqwmv")
+brace = SubResource("Resource_e7nig")
 impact_action = SubResource("Resource_qf2ha")
+attack = SubResource("Resource_55tc3")
 
 [node name="AudioStreamPlayer" parent="." index="0" unique_id=1403816157]
-stream = SubResource("AudioStreamPolyphonic_xre7c")
+stream = SubResource("AudioStreamPolyphonic_tytgx")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
 autoplay = "Idle"

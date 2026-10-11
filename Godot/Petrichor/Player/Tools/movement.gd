@@ -36,6 +36,8 @@ var local: bool
 @warning_ignore("unused_signal")
 signal interact
 @warning_ignore("unused_signal")
+signal interact_end
+@warning_ignore("unused_signal")
 signal special_interact
 signal player_land
 var speed_mods: Dictionary[String, float]

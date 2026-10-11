@@ -1,0 +1,54 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bgyvgkpc1btq8"]
+
+[ext_resource type="Texture2D" uid="uid://codoevst6fbic" path="res://Level 1/Lever/Lever.png" id="1_ijxf5"]
+[ext_resource type="Texture2D" uid="uid://cfjr3mqtowb8i" path="res://Level 1/Lever/Lever_Turningoff-sheet.png" id="2_ptk17"]
+[ext_resource type="Texture2D" uid="uid://b23lgn2y8uchk" path="res://Level 1/Lever/Lever_Turningon-sheet.png" id="3_5027t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16hdu"]
+atlas = ExtResource("2_ptk17")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_opdae"]
+atlas = ExtResource("2_ptk17")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kf6ml"]
+atlas = ExtResource("3_5027t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_307uk"]
+atlas = ExtResource("3_5027t")
+region = Rect2(64, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ijxf5")
+}],
+"loop": 0,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16hdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_opdae")
+}],
+"loop": 0,
+"name": &"Turn Off",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kf6ml")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_307uk")
+}],
+"loop": 0,
+"name": &"Turn On",
+"speed": 8.0
+}]

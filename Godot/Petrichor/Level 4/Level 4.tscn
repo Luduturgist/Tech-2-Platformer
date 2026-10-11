@@ -1,27 +1,75 @@
-[gd_scene format=4 uid="uid://b0y6ne2qkgv8c"]
+[gd_scene format=3 uid="uid://bohhvfeyv2w7m"]
 
-[ext_resource type="Script" uid="uid://dvhyyra4goje3" path="res://Game Logic/game_scene.gd" id="1_7vuhl"]
-[ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="2_pely1"]
-[ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Director.tscn" id="3_nved4"]
-[ext_resource type="PackedScene" uid="uid://b815wdlnbej0k" path="res://Player/Soil/Soil_Old.tscn" id="4_7u2ms"]
-[ext_resource type="PackedScene" uid="uid://d11aymhapnwew" path="res://Player/River/River_Old.tscn" id="5_8ggph"]
+[ext_resource type="PackedScene" uid="uid://bws5kyd2s560n" path="res://World/Level Template.tscn" id="1_bly5b"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_la4ci"]
+[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="3_gy5bf"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_mkekj"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="5_0tx2n"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="6_kbdse"]
 
-[node name="Level1" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("playerA", "playerB", "camera")]
-script = ExtResource("1_7vuhl")
-playerA = NodePath("Player A")
-playerB = NodePath("Player B")
-camera = NodePath("CameraFollow")
+[sub_resource type="Resource" id="Resource_tu3f4"]
+resource_local_to_scene = true
+script = ExtResource("2_la4ci")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1221429451]
-tile_map_data = PackedByteArray("AAD8/wAAAQAAAAAAAAD9/wAAAQAAAAAAAAD+/wAAAQAAAAAAAAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAD7/wAAAQAAAAAAAAD6/wAAAQAAAAAAAAD5/wAAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAA=")
-tile_set = ExtResource("2_pely1")
-physics_quadrant_size = 32
+[sub_resource type="Resource" id="Resource_lqonm"]
+resource_local_to_scene = true
+script = ExtResource("3_gy5bf")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
-[node name="CameraFollow" parent="." unique_id=728822637 node_paths=PackedStringArray("follow") instance=ExtResource("3_nved4")]
-follow = NodePath("../Player A")
+[sub_resource type="Resource" id="Resource_06b77"]
+resource_local_to_scene = true
+script = ExtResource("4_mkekj")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[node name="Player A" parent="." unique_id=1254970227 instance=ExtResource("4_7u2ms")]
-position = Vector2(-109, -22)
+[sub_resource type="Resource" id="Resource_du3ih"]
+resource_local_to_scene = true
+script = ExtResource("5_0tx2n")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[node name="Player B" parent="." unique_id=228450361 instance=ExtResource("5_8ggph")]
-position = Vector2(-32, -22)
+[sub_resource type="Resource" id="Resource_de6y3"]
+resource_local_to_scene = true
+script = ExtResource("2_la4ci")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_cj7q5"]
+resource_local_to_scene = true
+script = ExtResource("3_gy5bf")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_wwdxn"]
+resource_local_to_scene = true
+script = ExtResource("4_mkekj")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="Resource" id="Resource_ji5jt"]
+resource_local_to_scene = true
+script = ExtResource("5_0tx2n")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_8qiow"]
+resource_local_to_scene = true
+script = ExtResource("6_kbdse")
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
+
+[node name="Level4" unique_id=786337047 instance=ExtResource("1_bly5b")]
+
+[node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
+friendly = SubResource("Resource_tu3f4")
+pain_feedback = SubResource("Resource_lqonm")
+brace = SubResource("Resource_06b77")
+impact_action = SubResource("Resource_du3ih")
+
+[node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
+friendly = SubResource("Resource_de6y3")
+pain_feedback = SubResource("Resource_cj7q5")
+brace = SubResource("Resource_wwdxn")
+impact_action = SubResource("Resource_ji5jt")
+attack = SubResource("Resource_8qiow")

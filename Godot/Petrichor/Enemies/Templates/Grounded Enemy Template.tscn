@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cjyohv1klm1r1"]
+
+[ext_resource type="PackedScene" uid="uid://dtdwq2m8hevaw" path="res://Enemies/Templates/Enemy Template.tscn" id="1_p4o6c"]
+[ext_resource type="Script" uid="uid://opgpjmq4qtnj" path="res://Enemies/grounded_enemy.gd" id="2_kdd41"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="3_s6bpd"]
+
+[sub_resource type="Resource" id="Resource_s6bpd"]
+script = ExtResource("3_s6bpd")
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ujc40"]
+resource_local_to_scene = true
+
+[node name="GroundedEnemyTemplate" unique_id=1690093432 instance=ExtResource("1_p4o6c")]
+script = ExtResource("2_kdd41")
+attack_behavior = SubResource("Resource_s6bpd")
+
+[node name="AudioStreamPlayer2D" parent="." index="1" unique_id=1612581139]
+stream = SubResource("AudioStreamPolyphonic_ujc40")

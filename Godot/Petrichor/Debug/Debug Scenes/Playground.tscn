@@ -4,11 +4,16 @@
 [ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="2_wr2cf"]
 [ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="3_sfs38"]
 [ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="4_ay6ps"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="4_dw5k6"]
+[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="5_pu8gd"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="5_wkfoo"]
+[ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="6_8dd8f"]
 [ext_resource type="Script" uid="uid://b27nvv6imn8gp" path="res://Interacteable/Door/door_object.gd" id="6_enva3"]
 [ext_resource type="Script" uid="uid://46d3ayd01ra7" path="res://Interacteable/interacteable.gd" id="7_2rgdy"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="7_jf577"]
 [ext_resource type="Script" uid="uid://bl6yd8ir0op6x" path="res://Interacteable/Events/Flash/flash_object.gd" id="8_n5yqr"]
 [ext_resource type="Texture2D" uid="uid://cwoqcmg7a8xeb" path="res://UI/GUI/River Energy Bar.png" id="9_4chyk"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="9_il7gk"]
 [ext_resource type="Script" uid="uid://o0mpm37m04yy" path="res://Enemies/damage_area.gd" id="10_1q7to"]
 [ext_resource type="PackedScene" uid="uid://beh68diy3i4dm" path="res://Level 1/Turret/turret.tscn" id="11_gh2xq"]
 [ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://Debug/Hazard/Hazard.png" id="12_uh378"]
@@ -17,6 +22,16 @@
 [ext_resource type="PackedScene" uid="uid://btvsqab4xkf0q" path="res://VFX/Camera/Camera Director.tscn" id="15_xdhjb"]
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="16_e2dcj"]
 [ext_resource type="PackedScene" uid="uid://wdx2ukd6cahx" path="res://Debug/Debug Enemy/debug_enemy.tscn" id="17_kfs2w"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="23_rxg2v"]
+[ext_resource type="SpriteFrames" uid="uid://cxftx1ys2b302" path="res://Level 1/Door/door_open.tres" id="24_qwf0f"]
+[ext_resource type="Script" uid="uid://p84ahu3olbuc" path="res://Level 1/attack_lever.gd" id="25_l5g02"]
+[ext_resource type="SpriteFrames" uid="uid://bgyvgkpc1btq8" path="res://Level 1/Lever/lever_anim.tres" id="26_mqg15"]
+[ext_resource type="AudioStream" uid="uid://vbhfpkr58uf4" path="res://Level 1/Lever/Lever.wav" id="27_ef03v"]
+[ext_resource type="Script" uid="uid://c01iittkuqc" path="res://Interacteable/interacteable_hold.gd" id="28_4d4pv"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="29_8q4eq"]
+[ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="30_flxn3"]
+[ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="31_77tnw"]
+[ext_resource type="Script" uid="uid://bfbgag7anvf5n" path="res://Interacteable/Events/event_accumulator.gd" id="32_xfwtc"]
 
 [sub_resource type="Gradient" id="Gradient_oamku"]
 offsets = PackedFloat32Array(0)
@@ -27,10 +42,67 @@ gradient = SubResource("Gradient_oamku")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Resource" id="Resource_roy4r"]
+[sub_resource type="Resource" id="Resource_e16l1"]
 resource_local_to_scene = true
 script = ExtResource("4_ay6ps")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
+
+[sub_resource type="Resource" id="Resource_4avch"]
+resource_local_to_scene = true
+script = ExtResource("4_dw5k6")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_6h8nk"]
+resource_local_to_scene = true
+script = ExtResource("5_pu8gd")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_61c7v"]
+resource_local_to_scene = true
+script = ExtResource("6_8dd8f")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="Resource" id="Resource_ait4m"]
+resource_local_to_scene = true
+script = ExtResource("7_jf577")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_t1qpi"]
+resource_local_to_scene = true
+script = ExtResource("4_ay6ps")
+metadata/_custom_type_script = "uid://bqvte6fdqel8i"
+
+[sub_resource type="Resource" id="Resource_x8vwl"]
+resource_local_to_scene = true
+script = ExtResource("4_dw5k6")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_4ckmp"]
+resource_local_to_scene = true
+script = ExtResource("5_pu8gd")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_a0paw"]
+resource_local_to_scene = true
+script = ExtResource("6_8dd8f")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="Resource" id="Resource_f6d12"]
+resource_local_to_scene = true
+script = ExtResource("7_jf577")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_t8uv5"]
+resource_local_to_scene = true
+script = ExtResource("9_il7gk")
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6t00"]
 size = Vector2(116, 31)
@@ -77,6 +149,27 @@ size = Vector2(3209, 54)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
 size = Vector2(12, 23)
 
+[sub_resource type="Resource" id="Resource_4bey3"]
+resource_local_to_scene = true
+script = ExtResource("23_rxg2v")
+lunge = Vector2(52.895, -28.615)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_5ncp7"]
+resource_local_to_scene = true
+script = ExtResource("23_rxg2v")
+lunge = Vector2(52.895, -28.615)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syrjk"]
+size = Vector2(17, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pi1hn"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05y8u"]
+size = Vector2(18, 13)
+
 [node name="Playground" type="Node2D" unique_id=1985103288 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
 script = ExtResource("1_wp85q")
 soil = NodePath("Midgard/Players/Player_Soil")
@@ -101,11 +194,21 @@ metadata/_edit_lock_ = true
 [node name="Player_River" parent="Midgard/Players" unique_id=1254970227 instance=ExtResource("2_wr2cf")]
 z_index = 4
 position = Vector2(-53, -61)
+energy = SubResource("Resource_e16l1")
+friendly = SubResource("Resource_4avch")
+pain_feedback = SubResource("Resource_6h8nk")
+brace = SubResource("Resource_61c7v")
+impact_action = SubResource("Resource_ait4m")
 
 [node name="Player_Soil" parent="Midgard/Players" unique_id=1847633799 instance=ExtResource("3_sfs38")]
 light_mask = 1
 position = Vector2(-80, -304)
-energy = SubResource("Resource_roy4r")
+energy = SubResource("Resource_t1qpi")
+friendly = SubResource("Resource_x8vwl")
+pain_feedback = SubResource("Resource_4ckmp")
+brace = SubResource("Resource_a0paw")
+impact_action = SubResource("Resource_f6d12")
+attack = SubResource("Resource_t8uv5")
 
 [node name="Terrain" type="TileMapLayer" parent="Midgard" unique_id=1221429451]
 tile_map_data = PackedByteArray("AAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAACAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD6/wIAAQAAAAAAAAD7/wIAAQAAAAAAAAD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAFAAEAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAEAAQAAAAAAAAALAAIAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAAMAAIAAQAAAAAAAAANAAIAAQAAAAAAAAAOAAIAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAD5//z/AQAAAAAAAAD5//v/AQAAAAAAAAD5//r/AQAAAAAAAAD5//n/AQAAAAAAAAD5//j/AQAAAAAAAAD4/wIAAQAAAAAAAAD4/wEAAQAAAAAAAAD4/wAAAQAAAAAAAAD4//z/AQAAAAAAAAD4//v/AQAAAAAAAAD4//r/AQAAAAAAAAD4//n/AQAAAAAAAAD4//j/AQAAAAAAAAD4//f/AQAAAAAAAAD3//j/AQAAAAAAAAD3//n/AQAAAAAAAAD3//r/AQAAAAAAAAD3//v/AQAAAAAAAAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD2/wIAAQAAAAAAAAD2/wEAAQAAAAAAAAD2/wAAAAAAAAAAAAD2//v/AQAAAAAAAAD2//r/AQAAAAAAAAD2//n/AQAAAAAAAADz////AQAAAAAAAAD0//z/AQAAAAAAAAD0//v/AQAAAAAAAAD0//r/AQAAAAAAAAD0//n/AQAAAAAAAAD0//j/AQAAAAAAAAD0//f/AQAAAAAAAADz//f/AQAAAAAAAADz//j/AQAAAAAAAADz//n/AQAAAAAAAADz//r/AQAAAAAAAADz//v/AQAAAAAAAADz//z/AQAAAAAAAADz//3/AQAAAAAAAADz//7/AQAAAAAAAAD1//f/AQAAAAAAAAD1//j/AQAAAAAAAAD1//n/AQAAAAAAAAD1//r/AQAAAAAAAAD1//v/AQAAAAAAAAD2//j/AQAAAAAAAAD2//f/AQAAAAAAAAD3//f/AQAAAAAAAAD0/wEAAQAAAAAAAAD0/wAAAAAAAAAAAADz/wAAAQAAAAAAAADz/wEAAQAAAAAAAADz/wIAAQAAAAAAAAD0/wIAAQAAAAAAAAD1/wIAAQAAAAAAAAD1/wEAAQAAAAAAAAD1/wAAAAAAAAAAAAAFAP//AAAAAAAAAAD6//r/AQAAAAAAAAD7//n/AQAAAAAAAAD///j/AQAAAAAAAAABAP3/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///v/AQAAAAAAAAD///r/AQAAAAAAAAD6//n/AQAAAAAAAAD6//j/AQAAAAAAAAD7//j/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAACAPr/AQAAAAAAAAADAPr/AQAAAAAAAAADAPn/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPj/AQAAAAAAAAAFAPj/AQAAAAAAAAAFAPf/AQAAAAAAAAACAPn/AQAAAAAAAAABAPn/AQAAAAAAAAAAAPn/AQAAAAAAAAD///n/AQAAAAAAAAAAAPr/AQAAAAAAAAABAPr/AQAAAAAAAAABAPj/AQAAAAAAAAAAAPj/AQAAAAAAAAAAAPf/AQAAAAAAAAD7//f/AQAAAAAAAAD6//f/AQAAAAAAAAD5//f/AQAAAAAAAAABAPf/AQAAAAAAAAACAPf/AQAAAAAAAAACAPj/AQAAAAAAAAADAPj/AQAAAAAAAAADAPf/AQAAAAAAAAAFAPb/AQAAAAAAAAAGAPb/AQAAAAAAAAAHAPX/AQAAAAAAAAAHAPT/AQAAAAAAAAAIAPP/AQAAAAAAAAAIAPL/AQAAAAAAAAAIAPH/AQAAAAAAAAAIAPD/AQAAAAAAAAAIAO//AQAAAAAAAAAIAO7/AQAAAAAAAAAIAO3/AQAAAAAAAAAHAO7/AQAAAAAAAAAHAO//AQAAAAAAAAAHAPP/AQAAAAAAAAAGAPf/AQAAAAAAAAAFAPX/AQAAAAAAAAAGAPX/AQAAAAAAAAAGAPT/AQAAAAAAAAAGAPP/AQAAAAAAAAAGAPL/AQAAAAAAAAAHAPH/AQAAAAAAAAAHAPD/AQAAAAAAAAAEAPf/AQAAAAAAAAAEAPb/AQAAAAAAAAAEAPX/AQAAAAAAAAAEAPT/AQAAAAAAAAAEAPP/AQAAAAAAAAAEAPL/AQAAAAAAAAAFAPL/AQAAAAAAAAAFAPH/AQAAAAAAAAAFAPD/AQAAAAAAAAADAPT/AQAAAAAAAAADAPX/AQAAAAAAAAACAPX/AQAAAAAAAAABAPX/AQAAAAAAAAABAPb/AQAAAAAAAAACAPb/AQAAAAAAAAADAPb/AQAAAAAAAAAAAPX/AQAAAAAAAAD7//b/AQAAAAAAAAD6//b/AQAAAAAAAAD7//X/AQAAAAAAAAD///T/AQAAAAAAAAAAAPT/AQAAAAAAAAABAPP/AQAAAAAAAAABAPT/AQAAAAAAAAACAPT/AQAAAAAAAAAFAPP/AQAAAAAAAAAHAPL/AQAAAAAAAAAFAPT/AQAAAAAAAAAGAPH/AQAAAAAAAAAGAPD/AQAAAAAAAAACAPP/AQAAAAAAAAACAPL/AQAAAAAAAAADAPL/AQAAAAAAAAAEAPH/AQAAAAAAAAADAPP/AQAAAAAAAAD7//v/AQAAAAAAAAD6//v/AQAAAAAAAAD6//z/AQAAAAAAAAD7//r/AQAAAAAAAAAMAP//AAAAAAAAAAALAP//AQAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAYAAIAAQAAAAAAAAAZAAIAAQAAAAAAAAAaAAIAAQAAAAAAAAAbAAIAAQAAAAAAAAAcAAIAAQAAAAAAAAAdAAIAAQAAAAAAAAAeAAIAAQAAAAAAAAAfAAIAAQAAAAAAAAAgAAIAAQAAAAAAAAAhAAIAAQAAAAAAAAAiAAIAAQAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAATAAEAAAAAAAAAAAAUAAEAAAAAAAAAAAAIAP3/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAANAPn/AAAAAAAAAAAOAPn/AAAAAAAAAAAGAP3/AAAAAAAAAAALAP7/AAAAAAAAAAAAAPb/AQAAAAAAAAD///X/AQAAAAAAAAD///b/AQAAAAAAAAD///f/AQAAAAAAAAD7//T/AQAAAAAAAAD7//P/AQAAAAAAAAD///P/AQAAAAAAAAAEAP//AAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD4////AAAAAAAAAAD3////AAAAAAAAAAD7/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD7/wEAAQAAAAAAAAA=")
@@ -342,7 +445,6 @@ position = Vector2(-129, -10)
 script = ExtResource("7_2rgdy")
 player_area = NodePath(".")
 event_objects = [NodePath("Plant"), NodePath("Plant2")]
-special_interaction = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Dead Plant" unique_id=784091910]
@@ -420,7 +522,6 @@ position = Vector2(-97, -10)
 script = ExtResource("7_2rgdy")
 player_area = NodePath(".")
 event_objects = [NodePath("Plant"), NodePath("Plant2")]
-special_interaction = true
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Midgard/Interacteables/Dead Plant2" unique_id=554406264]
@@ -611,7 +712,95 @@ visible = false
 
 [node name="Debug Enemy" parent="." unique_id=852204349 instance=ExtResource("17_kfs2w")]
 position = Vector2(-353, -11)
+attack_behavior = SubResource("Resource_4bey3")
 metadata/Pushable = true
 
 [node name="Debug Enemy2" parent="." unique_id=709409456 instance=ExtResource("17_kfs2w")]
 position = Vector2(-324, -14)
+attack_behavior = SubResource("Resource_5ncp7")
+
+[node name="Door2" type="Node2D" parent="." unique_id=18672653 node_paths=PackedStringArray("door_block", "animator")]
+z_index = -5
+position = Vector2(271, -32)
+script = ExtResource("6_enva3")
+door_block = NodePath("Door")
+animator = NodePath("AnimatedSprite2D")
+metadata/_edit_group_ = true
+
+[node name="Door" type="StaticBody2D" parent="Door2" unique_id=469939168]
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door2/Door" unique_id=1222777803]
+position = Vector2(2.5, -21.5)
+shape = SubResource("RectangleShape2D_syrjk")
+
+[node name="ColorRect" type="ColorRect" parent="Door2/Door" unique_id=950073220]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.0
+offset_top = -43.0
+offset_right = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Door2" unique_id=145114110]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("24_qwf0f")
+animation = &"Open"
+
+[node name="Attack Lever" type="Area2D" parent="." unique_id=1043457273 node_paths=PackedStringArray("dependency", "event_object", "animator")]
+z_index = -8
+position = Vector2(222, -32)
+collision_layer = 4
+script = ExtResource("25_l5g02")
+dependency = NodePath("")
+event_object = NodePath("")
+oneshot = false
+animator = NodePath("AnimatedSprite2D")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack Lever" unique_id=782243491]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_pi1hn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Attack Lever" unique_id=527830907]
+position = Vector2(0, -16)
+sprite_frames = ExtResource("26_mqg15")
+animation = &"Idle"
+autoplay = "Idle"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Attack Lever" unique_id=351887323]
+stream = ExtResource("27_ef03v")
+max_distance = 1000.0
+
+[node name="Hold_Interact" type="Node2D" parent="." unique_id=1476232606 node_paths=PackedStringArray("detection_area", "redlight")]
+position = Vector2(149, -32)
+script = ExtResource("28_4d4pv")
+detection_area = NodePath("Area_Detector")
+enabled = true
+redlight = NodePath("PointLight2D")
+metadata/_custom_type_script = "uid://c01iittkuqc"
+
+[node name="PointLight2D" type="PointLight2D" parent="Hold_Interact" unique_id=1656972709]
+color = Color(1, 0, 0, 1)
+texture = ExtResource("29_8q4eq")
+
+[node name="Area_Detector" type="Area2D" parent="Hold_Interact" unique_id=1520263191]
+visible = false
+script = ExtResource("30_flxn3")
+target_script = ExtResource("31_77tnw")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hold_Interact/Area_Detector" unique_id=741315807]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_05y8u")
+
+[node name="Event_Accumulator" type="Node" parent="." unique_id=1034959490 node_paths=PackedStringArray("event_objects")]
+script = ExtResource("32_xfwtc")
+event_objects = [NodePath("")]
+threshold = 2
+metadata/_custom_type_script = "uid://bfbgag7anvf5n"

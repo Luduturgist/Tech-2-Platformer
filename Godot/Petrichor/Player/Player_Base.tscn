@@ -28,34 +28,35 @@ script = ExtResource("2_elcmi")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
 [sub_resource type="Resource" id="Resource_5fl5a"]
+resource_local_to_scene = true
 script = ExtResource("2_awm26")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_ak3bm"]
+resource_local_to_scene = true
 script = ExtResource("2_btxq5")
 event_path = NodePath("Pivot/VFX/Pain")
 metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_gkydo"]
+resource_local_to_scene = true
 script = ExtResource("3_awm26")
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
 [sub_resource type="Resource" id="Resource_tbm4e"]
 resource_local_to_scene = true
 script = ExtResource("4_82fik")
-time = 0.6
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
 [sub_resource type="Resource" id="Resource_fpjr1"]
+resource_local_to_scene = true
 script = ExtResource("6_82fik")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
 [sub_resource type="Resource" id="Resource_53tks"]
+resource_local_to_scene = true
 script = ExtResource("7_tjj38")
-windup = 0.8
-attack_duration = 0.3
-cooldown = 0.3
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
 windupvfx_path = NodePath("Pivot/VFX/Windup")
 caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
@@ -68,10 +69,10 @@ resource_local_to_scene = true
 blend_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
-size = Vector2(12, 23)
+size = Vector2(15, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
-size = Vector2(11.225, 12.82)
+size = Vector2(15.175, 12.82)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tliqh"]
 blend_mode = 1
@@ -402,18 +403,20 @@ color = Color(0.5, 0.45591667, 0.385, 0.41568628)
 [node name="Brace" type="Area2D" parent="Pivot/VFX" unique_id=1493632730]
 visible = false
 z_index = 2
-position = Vector2(7, 0)
+position = Vector2(2, 0)
 script = ExtResource("8_tjj38")
 per_hit_drain = 10
 metadata/_edit_group_ = true
 metadata/Mortal = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/VFX/Brace" unique_id=331385000]
+[node name="Sprite2D" type="Sprite2D" parent="Pivot/VFX/Brace" unique_id=1834553025]
 visible = false
-position = Vector2(0, -25.5)
+position = Vector2(0, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/VFX/Brace" unique_id=331385000]
+position = Vector2(3.5, -17)
 shape = SubResource("RectangleShape2D_awm26")
 disabled = true
-debug_color = Color(0, 0.5950001, 0.7, 0)
 
 [node name="Debug" type="ColorRect" parent="Pivot/VFX/Brace" unique_id=1037213798]
 anchors_preset = 8
@@ -421,22 +424,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -6.0
+offset_left = -1.0
 offset_top = -30.0
-offset_right = 6.0
+offset_right = 11.0
 offset_bottom = -7.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 
-[node name="Sprite2D" type="Sprite2D" parent="Pivot/VFX/Brace" unique_id=1834553025]
-visible = false
-position = Vector2(0, -24)
-
 [node name="Attack" type="Polygon2D" parent="Pivot/VFX" unique_id=895463159]
 visible = false
 z_index = 10
-position = Vector2(12, -12)
+position = Vector2(11, -12)
 color = Color(0.10980392, 1, 0.3764706, 1)
 polygon = PackedVector2Array(-3, -13, 6, -16, 9, -7, 8, 0, -2, 8, 1, -3)
 script = ExtResource("7_boe6u")
@@ -445,10 +444,10 @@ flash_repeat_delay = 0.0
 sfx = ExtResource("16_6mt2j")
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="Pivot/VFX/Attack" unique_id=967877968]
-position = Vector2(4, -9)
+position = Vector2(3, -9)
 enabled = false
 shape = SubResource("RectangleShape2D_c1nht")
-target_position = Vector2(-2, 9.98)
+target_position = Vector2(-3, 11)
 collision_mask = 4
 collide_with_areas = true
 
@@ -458,7 +457,7 @@ position = Vector2(9, -11)
 color = Color(0.110000014, 1, 0.37699997, 1)
 polygon = PackedVector2Array(1, -4, 17, 2, 0, 2)
 script = ExtResource("7_boe6u")
-flash_time = 0.8
+flash_time = 0.4
 flash_repeat_delay = 0.0
 
 [node name="Static Sprite" type="Sprite2D" parent="Pivot" unique_id=905952174]
@@ -491,7 +490,7 @@ color = Color(0.25993618, 0.24924125, 0.027146053, 1)
 script = ExtResource("7_boe6u")
 sfx = ExtResource("8_40jis")
 
-[node name="Push Cast" type="ShapeCast2D" parent="Pivot" unique_id=1697370816 node_paths=PackedStringArray("cast", "feedback")]
+[node name="Push Cast" type="ShapeCast2D" parent="Pivot" unique_id=1697370816 node_paths=PackedStringArray("pivot", "cast", "feedback")]
 visible = false
 position = Vector2(0, -9.5)
 enabled = false
@@ -500,6 +499,7 @@ target_position = Vector2(19, 0)
 collision_mask = 5
 collide_with_areas = true
 script = ExtResource("14_boe6u")
+pivot = NodePath("..")
 cast = NodePath(".")
 feedback = NodePath("../Push")
 

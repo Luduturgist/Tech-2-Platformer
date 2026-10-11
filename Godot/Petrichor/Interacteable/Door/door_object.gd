@@ -4,6 +4,8 @@ class_name Door_Object
 @export var lock_open := false
 @export var door_block: Node2D
 
+@export var animator: AnimatedSprite2D
+
 func _ready() -> void:
 	super._ready()
 	Wrapper.scene_ready.connect(_sync_door)
@@ -20,4 +22,15 @@ func _sync_door():
 @rpc("any_peer", "call_local", "reliable")
 func open_door(value: int):
 	door_block.visible = value
+	
+	if animator:
+		var anim: StringName = &"Open"
+		if value:
+			anim = &"Close"
+
+		animator.animation = anim
+		animator.play()
+	
+	await get_tree().process_frame
+	
 	door_block.find_child("CollisionShape2D").disabled = not value

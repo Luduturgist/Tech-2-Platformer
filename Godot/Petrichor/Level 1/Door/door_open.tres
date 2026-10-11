@@ -1,0 +1,72 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://cxftx1ys2b302"]
+
+[ext_resource type="Texture2D" uid="uid://bun3cwdsc8v36" path="res://Level 1/Door/Door_Open-sheet.png" id="1_ue31w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5seym"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nge5t"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6kbl"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gcrq5"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue31w"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flejg"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfjxd"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iidhf"]
+atlas = ExtResource("1_ue31w")
+region = Rect2(96, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_5seym")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_nge5t")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_j6kbl")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_gcrq5")
+}],
+"loop": 0,
+"name": &"Close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ue31w")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_flejg")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_xfjxd")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_iidhf")
+}],
+"loop": 0,
+"name": &"Open",
+"speed": 5.0
+}]

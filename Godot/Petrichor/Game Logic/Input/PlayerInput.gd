@@ -8,6 +8,7 @@ signal player_attack
 signal player_attack_priveliged
 signal player_jump
 signal player_interact
+signal player_interact_release
 signal player_brace
 signal player_brace_release
 signal player_special_movement
@@ -106,6 +107,9 @@ func process_input(input: Input_Names):
 	
 	if Input.is_action_just_pressed(input.interact):
 		player_interact.emit()
+	
+	if Input.is_action_just_released(input.interact):
+		player_interact_release.emit()
 	
 	if Input.is_action_just_pressed(input.brace) and not pressed_back:
 		player_brace.emit()

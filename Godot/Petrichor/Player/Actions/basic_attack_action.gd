@@ -2,10 +2,10 @@ extends Action
 class_name BasicAttack_Action
 
 @export var starting_charge: int = 1
-@export var windup: float = 0.7
-@export var attack_duration: float = 0.2
+@export var windup: float = 0.4
+@export var attack_duration: float = 0.3
 @export var buffer: float = 0.3
-@export var cooldown: float = 0.2
+@export var cooldown: float = 0.3
 @export var attack_vfx_path: NodePath
 @export var windupvfx_path: NodePath
 @export var caster_path: NodePath
@@ -27,6 +27,7 @@ func _perform_action():
 	#print("attack")
 	
 	if not move.taking_action and windup_timer == 0 and attack_timer == 0 and cooldown_timer == 0 and PlayerInput.pause_time == 0:
+		move.interact_end.emit()
 		charge = starting_charge
 		if windup <= 0:
 			windup_timer = -INF
@@ -89,6 +90,7 @@ func update_timers(delta: float):
 
 var ignore: Array[Node2D]
 func try_damage():
+	caster.force_shapecast_update()
 	var objects: Array = caster.collision_result
 	if not objects or not objects.size():
 		return
@@ -96,7 +98,8 @@ func try_damage():
 	for o in objects:
 		var obj: Node2D = o.get("collider")
 		if obj:
-			if obj.get_meta("Mortal") and obj is Enemy and ignore.find(obj) == -1:
+			if obj.get_meta("Mortal") and ignore.find(obj) == -1:
+				print("attacking")
 				var damage_actual: int = obj._take_damage(damage, move.global_position.x)
 				if damage_actual or true:
 					move.energy._replenish_charge(damage_actual)

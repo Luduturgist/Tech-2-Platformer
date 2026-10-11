@@ -1,5 +1,6 @@
 extends Event_Object
 
+@export var pivot: Node2D
 @export var push_back: float = 150
 @export var push_up: float = 50
 @export var cast: ShapeCast2D
@@ -26,10 +27,21 @@ func network_push(id: int, _mult: float):
 		var knockback: Vector2 = hit.global_position - obj.global_position
 		#knockback = knockback.normalized() * clamp(attenuation_distance - knockback.length(), 0, INF) * push_back * mult
 		
-		knockback.x = sign(hit.global_position.x - obj.global_position.x) * push_back
+		var dir: int
+		if pivot:
+			dir = sign(pivot.scale.x)
+		else:
+			dir = sign(hit.global_position.x - obj.global_position.x)
+		
+		
+		knockback.x = dir * push_back
 		knockback.y = push_up
 		
 		var hit_count: float = 0
+		
+		if hit as Pushable and obj.is_multiplayer_authority():
+			hit_count += 1
+			hit._push_object(dir)
 		
 		if hit as PlayerMovement:
 			hit_count += 1
@@ -38,7 +50,7 @@ func network_push(id: int, _mult: float):
 				if id != multiplayer.get_unique_id() or id == 0:
 					Game_Scene.active.local.velocity += knockback
 		
-		if hit as Enemy:
+		if hit as Enemy and hit.health > 0:
 			hit_count += 1
 			if multiplayer.get_unique_id() == 1:
 				hit.velocity += knockback

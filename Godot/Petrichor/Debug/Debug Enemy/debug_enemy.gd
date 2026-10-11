@@ -9,12 +9,6 @@ func _ready() -> void:
 	update_tracking.connect(_show_tracking)
 	damage_taken.connect(_show_damage)
 
-func _show_death():
-	damage_feedback.visible = true
-	damage_vfx_timer = 0
-	attack_feedback.visible = false
-	super._show_death()
-
 func _show_tracking(value: bool):
 	tracking_feedback.visible = value
 

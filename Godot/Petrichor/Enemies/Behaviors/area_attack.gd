@@ -4,12 +4,12 @@ class_name Area_Attack
 var damage_feedback: Node2D
 var damage_cast: ShapeCast2D
 
-
 func _start(e: Enemy):
 	super._start(e)
 
 func _attack_start():
 	windup = attack_delay
+	enemy.windup_feedback.visible = true
 
 func _attack_end():
 	enemy.attack_feedback.visible = false
@@ -25,6 +25,7 @@ func _update(delta: float):
 			enemy.start_attack.emit()
 			enemy.attack_feedback.visible = true
 			enemy.damage_cast.enabled = true
+			enemy.windup_feedback.visible = false
 			
 			var local_lunge: Vector2 = lunge
 			if enemy.pivot.scale.x < 0:
@@ -48,7 +49,7 @@ func _update(delta: float):
 	
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
-		if cooldown_timer >= 0:
+		if cooldown_timer <= 0:
 			cooldown_timer = 0
 
 func _try_for_cast_damage():

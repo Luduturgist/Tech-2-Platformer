@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://cpeo3r12ueue5"]
+
+[ext_resource type="PackedScene" uid="uid://dtdwq2m8hevaw" path="res://Enemies/Templates/Enemy Template.tscn" id="1_ix0td"]
+[ext_resource type="SpriteFrames" uid="uid://be4au5qirogif" path="res://Enemies/Dragger/dragger_anim.tres" id="2_gkdv3"]
+[ext_resource type="Script" uid="uid://cpnknxmvwj6wg" path="res://Enemies/Dragger/dragger_enemy.gd" id="2_wn2iw"]
+[ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="3_afv8y"]
+[ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="4_kdy0p"]
+[ext_resource type="Texture2D" uid="uid://c0h4dowdh07ea" path="res://Enemies/Dragger/Dragger_Dead.png" id="5_6ox26"]
+[ext_resource type="Texture2D" uid="uid://daeoqbmmpkgl5" path="res://Enemies/Dragger/Dragger_Grown.png" id="6_kdy0p"]
+
+[sub_resource type="Resource" id="Resource_5g15y"]
+script = ExtResource("3_afv8y")
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_taupu"]
+size = Vector2(186, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wn2iw"]
+size = Vector2(270, 61)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ox26"]
+size = Vector2(12, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f56nh"]
+resource_local_to_scene = true
+shader = ExtResource("4_kdy0p")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8h41d"]
+resource_local_to_scene = true
+shader = ExtResource("4_kdy0p")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gdj7"]
+resource_local_to_scene = true
+shader = ExtResource("4_kdy0p")
+shader_parameter/flash_color = Color(0.37254903, 0.9098039, 0.44313726, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_d4e4t"]
+resource_local_to_scene = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_afv8y"]
+size = Vector2(30, 18)
+
+[node name="Dragger" unique_id=1690093432 instance=ExtResource("1_ix0td")]
+script = ExtResource("2_wn2iw")
+drag_duration = 0.25
+drag_interval = 0.25
+damage = 2
+speed = 50.0
+attack_range = 20.0
+attack_behavior = SubResource("Resource_5g15y")
+
+[node name="Pivot" parent="." index="0" unique_id=1211966545]
+position = Vector2(2, 0)
+
+[node name="Detection" parent="Pivot" index="0" unique_id=424177330]
+visible = false
+
+[node name="CollisionShape2D" parent="Pivot/Detection/Area_Detector" parent_id_path=PackedInt32Array(871215648) index="0" unique_id=2078418004]
+position = Vector2(48, -15.5)
+shape = SubResource("RectangleShape2D_taupu")
+
+[node name="CollisionShape2D" parent="Pivot/Detection/Chase Area" parent_id_path=PackedInt32Array(192584454) index="0" unique_id=1402028660]
+position = Vector2(44, -21.5)
+shape = SubResource("RectangleShape2D_wn2iw")
+
+[node name="CollisionShape2D" parent="Pivot/Detection/Override Area" parent_id_path=PackedInt32Array(204225053) index="0" unique_id=1651493230]
+position = Vector2(9, -10)
+shape = SubResource("RectangleShape2D_6ox26")
+
+[node name="Sprite2D" parent="Pivot" index="1" unique_id=1309506720]
+material = SubResource("ShaderMaterial_f56nh")
+sprite_frames = ExtResource("2_gkdv3")
+animation = &"Attack"
+autoplay = "Idle"
+
+[node name="Dead" parent="Pivot" index="2" unique_id=983881865]
+material = SubResource("ShaderMaterial_8h41d")
+texture = ExtResource("5_6ox26")
+
+[node name="Grown" parent="Pivot" index="3" unique_id=1222569319]
+material = SubResource("ShaderMaterial_0gdj7")
+texture = ExtResource("6_kdy0p")
+
+[node name="AudioStreamPlayer2D" parent="." index="1" unique_id=1612581139]
+stream = SubResource("AudioStreamPolyphonic_d4e4t")
+
+[node name="Knockback Feedback" parent="." index="2" unique_id=1804559143]
+position = Vector2(-8, -11)
+
+[node name="CollisionShape2D" parent="." index="3" unique_id=1937080905]
+visible = false
+position = Vector2(-2, -9)
+shape = SubResource("RectangleShape2D_afv8y")

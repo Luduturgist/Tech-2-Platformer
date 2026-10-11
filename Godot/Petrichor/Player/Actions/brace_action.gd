@@ -2,7 +2,7 @@ extends Action
 class_name Brace_Action
 
 @export var slow: float = 0
-@export var time: float = 1
+@export var time: float = 0.6
 @export var pound_velocity: int = 200
 @export var clamp_x: int = 30
 var fx: Brace_Object

@@ -3,10 +3,9 @@ class_name PlayerEnergy
 
 var charge
 
-@export var maxCharge: int = 15
+@export var maxCharge: int = 10
 @export var pain: int = 0
-@export var drain_interval: float = 8
-@export var movement_multiplier = 2
+@export var drain_interval: float = 5
 
 var move: PlayerMovement
 signal charge_depleted
@@ -21,9 +20,8 @@ func _start(m: PlayerMovement):
 
 var _drain_timer: float
 func _update(delta: float):
-	if move.velocity.x and PlayerInput.moving and PlayerInput.player_movement.x:
-		delta *= movement_multiplier
-	_drain_timer -= delta
+	if PlayerInput.player_movement.x != 0:
+		_drain_timer -= delta
 	while drain_interval > 0 and _drain_timer <= 0:
 		_drain_timer += drain_interval
 		_drain_charge(1, true)

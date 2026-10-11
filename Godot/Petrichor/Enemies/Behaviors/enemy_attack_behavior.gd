@@ -2,9 +2,9 @@
 extends Resource
 class_name EnemyAttackBehavior
 
-@export var attack_delay: float = 0.2
-@export var attack_duration: float = 0.2
-@export var attack_interval: float = 0.2
+@export var attack_delay: float = 0.3
+@export var attack_duration: float = 0.3
+@export var attack_interval: float = 0.5
 @export var lunge: Vector2
 
 var windup: float
@@ -25,7 +25,7 @@ func _update(_delta: float):
 	pass
 
 func is_attacking() -> bool:
-	return (attack_timer != 0 or windup != 0 and cooldown_timer == 0)
+	return (attack_timer != 0 or windup != 0)
 
 func can_attack() -> bool:
 	return (attack_timer == 0 and windup == 0 and cooldown_timer == 0)
