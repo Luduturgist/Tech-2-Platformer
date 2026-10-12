@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_ogvbt")
-shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
-shader_parameter/flash_modifier = 0.0
+shader_parameter/flash_color = Color(0.73, 0.53241336, 0.51830006, 1)
+shader_parameter/flash_modifier = 0.5490000260775

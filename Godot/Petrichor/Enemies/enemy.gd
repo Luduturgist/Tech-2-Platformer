@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @export_group("Stats")
-@export var health: int = 2
+@export var health: int = 3
 @export var damage: int = 1
 @export var drain: int = 0
 @export var speed: float = 75
@@ -153,7 +153,6 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 var stun_timer: float
-var flash_timer: float
 var knockback_timer: float
 func _process(delta: float) -> void:
 	if last_flash > 0:

@@ -49,9 +49,9 @@ func _process(delta: float) -> void:
 				flash_timer = flash_time
 				if sfx:
 					player.play()
-				if lock_position:
-					obj.position = start_pos
-					lock_pos = obj.global_position
+			if lock_position:
+				obj.position = start_pos
+				lock_pos = obj.global_position
 
 
 var lock_pos: Vector2
@@ -86,6 +86,6 @@ func flash(toggle: int = 0):
 		flash_timer = flash_time
 		if sfx:
 			player.play()
-		if lock_position:
-			obj.position = start_pos
-			lock_pos = obj.global_position
+	if lock_position:
+		obj.position = start_pos
+		lock_pos = obj.global_position

@@ -5,10 +5,13 @@ var charge
 
 @export var maxCharge: int = 10
 @export var pain: int = 0
-@export var drain_interval: float = 5
+@export var drain_interval: float = 2
 
 var move: PlayerMovement
 signal charge_depleted
+signal passive_drain_update(bool)
+signal drained(amount: int)
+signal update_ui(energy: int, pain: int)
 
 func _start(m: PlayerMovement):
 	move = m
@@ -16,26 +19,34 @@ func _start(m: PlayerMovement):
 	if charge > maxCharge - pain:
 		charge = maxCharge - pain
 	_drain_timer = drain_interval
-	update_ui()
+	update_ui.emit(charge, pain)
 
 var _drain_timer: float
+var draining: bool
 func _update(delta: float):
-	if PlayerInput.player_movement.x != 0:
+	if PlayerInput.player_movement.x != 0 or move.attack._is_attacking():
+		if not draining:
+			draining = true
+			passive_drain_update.emit(true)
 		_drain_timer -= delta
+	elif draining:
+		draining = false
+		passive_drain_update.emit(false)
+	
 	while drain_interval > 0 and _drain_timer <= 0:
 		_drain_timer += drain_interval
 		_drain_charge(1, true)
 
 func _debug():
 	_replenish_charge(maxCharge)
-	update_ui()
+	update_ui.emit(charge, pain)
 
 func _replenish_charge(amount: int) -> int:
 	charge += amount
 	if charge > maxCharge - pain:
 		amount += maxCharge - pain - amount
 		charge = maxCharge - pain
-	update_ui()
+	update_ui.emit(charge, pain)
 	return amount
 
 func _drain_charge(amount: int, overdraw: bool = false) -> int:
@@ -48,7 +59,8 @@ func _drain_charge(amount: int, overdraw: bool = false) -> int:
 			drain += charge
 		charge = 0
 		charge_depleted.emit()
-	update_ui()
+	update_ui.emit(charge, pain)
+	drained.emit(amount)
 	return drain
 
 func _inflict_pain(amount: int):
@@ -58,18 +70,13 @@ func _inflict_pain(amount: int):
 		move.player_die()
 	elif charge > maxCharge - pain:
 		charge = maxCharge - pain
-	update_ui()
+	update_ui.emit(charge, pain)
 
 func _relieve_pain(amount: int):
 	pain -= amount
 	if pain < 0:
 		pain = 0
-	update_ui()
+	update_ui.emit(charge, pain)
 
 func on_deplete():
 	Wrapper._end_session()
-
-func update_ui():
-	if Game_Scene.active.gui:
-		Game_Scene.active.gui.energyBar.value = float(charge) / float(maxCharge) * 100
-		Game_Scene.active.gui.pain_bar.value = float(pain) / float(maxCharge) * 100

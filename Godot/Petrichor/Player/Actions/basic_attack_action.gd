@@ -16,6 +16,9 @@ var attack_vfx: Flash_Object
 var windup_vfx: Flash_Object
 var caster: ShapeCast2D
 
+func _is_attacking() -> bool:
+	return windup_timer != 0 or attack_timer != 0
+
 func _start(m: PlayerMovement, sig = null):
 	super._start(m, sig)
 	attack_vfx = m.get_node(attack_vfx_path)

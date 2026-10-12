@@ -3,11 +3,14 @@ class_name Door_Object
 
 @export var lock_open := false
 @export var door_block: Node2D
+@export var start_open: bool = false
+
 
 @export var animator: AnimatedSprite2D
 
 func _ready() -> void:
 	super._ready()
+	open_door(not start_open)
 	Wrapper.scene_ready.connect(_sync_door)
 
 func _trigger_event(_toggle: int = 0):

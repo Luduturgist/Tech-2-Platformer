@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="1_j7rw5"]
 [ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_awm26"]
-[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="2_btxq5"]
 [ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="2_elcmi"]
 [ext_resource type="Script" uid="uid://tv13wd5op1f0" path="res://Player/Actions/swing_action.gd" id="3_awm26"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_82fik"]
@@ -18,8 +17,9 @@
 [ext_resource type="Script" uid="uid://djhxvko4v5nyh" path="res://Player/brace_object.gd" id="8_tjj38"]
 [ext_resource type="AudioStream" uid="uid://dufo3ics6vhe5" path="res://Player/SFX/Slam1.wav" id="9_40jis"]
 [ext_resource type="AudioStream" uid="uid://bn4uaqcn13mp4" path="res://Player/SFX/Slam2.wav" id="9_u76c4"]
+[ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="10_b7chj"]
+[ext_resource type="Script" uid="uid://tkxccr2y7lnf" path="res://Enemies/Basic Enemy/enemy_flash.gd" id="12_d1sot"]
 [ext_resource type="Script" uid="uid://ccojqa1fadpey" path="res://Interacteable/Events/push_object.gd" id="14_boe6u"]
-[ext_resource type="AudioStream" uid="uid://dq3w1r5vfvgwg" path="res://Enemies/SFX/AttackHit.wav" id="15_yqklh"]
 [ext_resource type="AudioStream" uid="uid://cfqyqi7a4vbjf" path="res://Player/SFX/Attack_Dash.wav" id="16_6mt2j"]
 
 [sub_resource type="Resource" id="Resource_mci8t"]
@@ -32,12 +32,6 @@ resource_local_to_scene = true
 script = ExtResource("2_awm26")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
-
-[sub_resource type="Resource" id="Resource_ak3bm"]
-resource_local_to_scene = true
-script = ExtResource("2_btxq5")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_gkydo"]
 resource_local_to_scene = true
@@ -65,8 +59,11 @@ metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 [sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_boe6u"]
 resource_local_to_scene = true
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_boe6u"]
-blend_mode = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d1sot"]
+resource_local_to_scene = true
+shader = ExtResource("10_b7chj")
+shader_parameter/flash_color = Color(0.9, 0.61439997, 0.594, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
 size = Vector2(15, 26)
@@ -94,7 +91,6 @@ script = ExtResource("1_j7rw5")
 energy = SubResource("Resource_mci8t")
 knockback = Vector2(-80, -15)
 friendly = SubResource("Resource_5fl5a")
-pain_feedback = SubResource("Resource_ak3bm")
 move_ability = SubResource("Resource_gkydo")
 brace = SubResource("Resource_tbm4e")
 impact_action = SubResource("Resource_fpjr1")
@@ -120,11 +116,15 @@ playback_type = 1
 
 [node name="Pivot" type="Node2D" parent="." unique_id=615041083]
 
-[node name="Animated Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1434542993]
+[node name="Animated Sprite" type="AnimatedSprite2D" parent="Pivot" unique_id=1434542993 node_paths=PackedStringArray("parent")]
 light_mask = 2
+material = SubResource("ShaderMaterial_d1sot")
 position = Vector2(0, -16)
 sprite_frames = ExtResource("8_fpjr1")
 animation = &"Idle"
+script = ExtResource("12_d1sot")
+parent = NodePath("../..")
+flash_duration = 0.2
 
 [node name="VFX" type="Node2D" parent="Pivot" unique_id=1333519426]
 
@@ -140,28 +140,6 @@ texture_scale = 2.0
 script = ExtResource("8_awm26")
 fade_time = 1.5
 player = NodePath("../../..")
-
-[node name="Pain" type="ColorRect" parent="Pivot/VFX" unique_id=1026537008]
-visible = false
-light_mask = 2
-z_index = 1
-material = SubResource("CanvasItemMaterial_boe6u")
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -4.0
-offset_top = -24.0
-offset_right = 6.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0, 1.8247963, 1.8247963, 0.3647059)
-script = ExtResource("7_boe6u")
-sfx = ExtResource("15_yqklh")
 
 [node name="Slam Dust 1" type="ColorRect" parent="Pivot/VFX" unique_id=535895140]
 visible = false

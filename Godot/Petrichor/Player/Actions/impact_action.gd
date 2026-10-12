@@ -2,7 +2,7 @@ extends Action
 class_name Impact_Action
 
 var cast: ShapeCast2D
-@export var height_buffer: float = 25
+@export var height_buffer: float = 10
 
 func _start(m: PlayerMovement, sig = null):
 	super._start(m, sig)

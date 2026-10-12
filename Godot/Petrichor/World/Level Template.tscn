@@ -15,6 +15,28 @@
 [ext_resource type="Script" uid="uid://ccuur63n6earq" path="res://Debug/scene_change_area.gd" id="19_ooajt"]
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="20_a770q"]
 
+[sub_resource type="Resource" id="Resource_o6xsj"]
+resource_local_to_scene = true
+script = ExtResource("6_o6xsj")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_ysyiv"]
+resource_local_to_scene = true
+script = ExtResource("7_ysyiv")
+event_path = NodePath("Pivot/VFX/Pain")
+metadata/_custom_type_script = "uid://dcx174ajy1vu8"
+
+[sub_resource type="Resource" id="Resource_8enga"]
+resource_local_to_scene = true
+script = ExtResource("6_tgpit")
+metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
+
+[sub_resource type="Resource" id="Resource_rr3w4"]
+resource_local_to_scene = true
+script = ExtResource("9_8enga")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
 [sub_resource type="Resource" id="Resource_qrhe5"]
 resource_local_to_scene = true
 script = ExtResource("6_o6xsj")
@@ -39,28 +61,6 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
 [sub_resource type="Resource" id="Resource_w163n"]
 resource_local_to_scene = true
-script = ExtResource("6_o6xsj")
-fade_path = NodePath("Pivot/VFX/Cheer")
-metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
-
-[sub_resource type="Resource" id="Resource_asxad"]
-resource_local_to_scene = true
-script = ExtResource("7_ysyiv")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
-
-[sub_resource type="Resource" id="Resource_b2mw6"]
-resource_local_to_scene = true
-script = ExtResource("6_tgpit")
-metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
-
-[sub_resource type="Resource" id="Resource_r4r0m"]
-resource_local_to_scene = true
-script = ExtResource("9_8enga")
-metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
-
-[sub_resource type="Resource" id="Resource_p48uo"]
-resource_local_to_scene = true
 script = ExtResource("11_rr3w4")
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
 windupvfx_path = NodePath("Pivot/VFX/Windup")
@@ -70,7 +70,7 @@ metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aonor"]
 size = Vector2(4272, 54)
 
-[node name="Level1" type="Node2D" unique_id=786337047 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
+[node name="Level" type="Node2D" unique_id=786337047 node_paths=PackedStringArray("soil", "river", "camera", "gui")]
 script = ExtResource("1_8u160")
 soil = NodePath("Midgard/Players/Player_Soil")
 river = NodePath("Midgard/Players/Player_River")
@@ -106,26 +106,28 @@ metadata/_edit_lock_ = true
 position = Vector2(32, 0)
 energy = null
 knockback = Vector2(-50, -50)
-friendly = SubResource("Resource_qrhe5")
-pain_feedback = SubResource("Resource_g4vec")
-brace = SubResource("Resource_u2voq")
-impact_action = SubResource("Resource_mgupu")
+friendly = SubResource("Resource_o6xsj")
+pain_feedback = SubResource("Resource_ysyiv")
+brace = SubResource("Resource_8enga")
+impact_action = SubResource("Resource_rr3w4")
 
 [node name="Player_Soil" parent="Midgard/Players" unique_id=87480027 instance=ExtResource("3_6ut4f")]
 position = Vector2(-37, 0)
 energy = null
 knockback = Vector2(-50, -50)
-friendly = SubResource("Resource_w163n")
-pain_feedback = SubResource("Resource_asxad")
-brace = SubResource("Resource_b2mw6")
-impact_action = SubResource("Resource_r4r0m")
-attack = SubResource("Resource_p48uo")
+friendly = SubResource("Resource_qrhe5")
+pain_feedback = SubResource("Resource_g4vec")
+brace = SubResource("Resource_u2voq")
+impact_action = SubResource("Resource_mgupu")
+attack = SubResource("Resource_w163n")
 
 [node name="Enemies" type="Node2D" parent="Midgard" unique_id=1601328170]
 
 [node name="Terrain" type="TileMapLayer" parent="Midgard" unique_id=391369680]
 tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=")
 tile_set = ExtResource("7_tgpit")
+
+[node name="Rooms" type="Node2D" parent="." unique_id=457399361]
 
 [node name="Damage_Area" type="Area2D" parent="." unique_id=454458912]
 position = Vector2(0, 400)
@@ -144,3 +146,6 @@ script = ExtResource("19_ooajt")
 target_script = ExtResource("20_a770q")
 metadata/_custom_type_script = "uid://ccuur63n6earq"
 metadata/_edit_group_ = true
+
+[node name="Camera Areas" type="Node2D" parent="." unique_id=1106833913]
+visible = false

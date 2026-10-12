@@ -2,7 +2,7 @@ extends Area2D
 class_name Attack_Lever
 
 @export var dependency: Hold_Interact
-@export var event_object: Event_Object
+@export var event_objects: Array[Event_Object]
 @export var oneshot: bool = true
 @export var animator: AnimatedSprite2D
 
@@ -17,7 +17,8 @@ func _take_damage(_amount: int, _pos: float) -> int:
 	
 	
 	if dependency.pressed:
-		event_object._trigger_event()
+		for ob in event_objects:
+			ob._trigger_event()
 		rpc("flip_lever")
 	return 0
 

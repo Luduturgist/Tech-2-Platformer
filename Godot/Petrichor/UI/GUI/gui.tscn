@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bhbc0tamalo1y" path="res://UI/GUI/player_gui.gd" id="1_7thrl"]
 [ext_resource type="Texture2D" uid="uid://cwoqcmg7a8xeb" path="res://UI/GUI/River Energy Bar.png" id="2_7thrl"]
+[ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="4_1a5em"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qyonj"]
+shader = ExtResource("4_1a5em")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7thrl"]
 atlas = ExtResource("2_7thrl")
@@ -25,10 +31,36 @@ region = Rect2(0, 0, 32, 9)
 atlas = ExtResource("2_7thrl")
 region = Rect2(0, 25, 30, 6)
 
-[node name="Gui" type="CanvasLayer" unique_id=1157994508 node_paths=PackedStringArray("energyBar", "pain_bar")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_808i8"]
+shader = ExtResource("4_1a5em")
+shader_parameter/flash_color = Color(0.8, 0, 0.0666668, 0.39215687)
+shader_parameter/flash_modifier = 0.9030000428925
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8awk3"]
+load_path = "res://.godot/imported/River Energy Bar.png-6e24b81751d8c23f171d54947148ae76.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm023"]
+atlas = SubResource("CompressedTexture2D_8awk3")
+region = Rect2(0, 9, 32, 9)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1a5em"]
+shader = ExtResource("4_1a5em")
+shader_parameter/flash_color = Color(0.8531634, 0.38723066, 1.92523e-07, 0.7490196)
+shader_parameter/flash_modifier = 0.4510000214225
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8awk3"]
+atlas = SubResource("CompressedTexture2D_8awk3")
+region = Rect2(0, 0, 32, 9)
+
+[node name="Gui" type="CanvasLayer" unique_id=1157994508 node_paths=PackedStringArray("energyBar", "pain_bar", "bar_flash", "frame_flash")]
 script = ExtResource("1_7thrl")
-energyBar = NodePath("Control/Energy")
-pain_bar = NodePath("Control/Pain")
+energyBar = NodePath("Control/Bars/Energy")
+pain_bar = NodePath("Control/Bars/Pain")
+bar_flash = NodePath("Control/Bar Flash")
+frame_flash = NodePath("Control/Frame Flash")
+bar_flash_time = 0.09
+bar_flash_interval = 0.05
+bar_flash_saturation = 0.3
 
 [node name="Control" type="Control" parent="." unique_id=823972719]
 layout_mode = 3
@@ -39,27 +71,55 @@ offset_right = 40.0
 offset_bottom = 17.0
 scale = Vector2(4, 4)
 
-[node name="Energy" type="TextureProgressBar" parent="Control" unique_id=1836639928]
-layout_mode = 0
-offset_right = 32.0
-offset_bottom = 9.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_under = SubResource("AtlasTexture_7thrl")
-texture_progress = SubResource("AtlasTexture_qyonj")
-texture_progress_offset = Vector2(1, 1)
-metadata/_edit_lock_ = true
+[node name="Bars" type="Control" parent="Control" unique_id=558799845]
+material = SubResource("ShaderMaterial_qyonj")
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Pain" type="TextureProgressBar" parent="Control" unique_id=119277808]
+[node name="Energy" type="TextureProgressBar" parent="Control/Bars" unique_id=1836639928]
+use_parent_material = true
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 9.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 step = 0.0
-value = 100.0
+value = 30.0
+texture_under = SubResource("AtlasTexture_7thrl")
+texture_progress = SubResource("AtlasTexture_qyonj")
+texture_progress_offset = Vector2(1, 1)
+metadata/_edit_lock_ = true
+
+[node name="Pain" type="TextureProgressBar" parent="Control/Bars" unique_id=119277808]
+use_parent_material = true
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 9.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+step = 0.0
+value = 22.29
 fill_mode = 1
 texture_over = SubResource("AtlasTexture_1a5em")
 texture_progress = SubResource("AtlasTexture_808i8")
 texture_progress_offset = Vector2(1, 1)
 metadata/_edit_lock_ = true
+
+[node name="Bar Flash" type="TextureRect" parent="Control" unique_id=1669473724]
+material = SubResource("ShaderMaterial_808i8")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_cm023")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="Frame Flash" type="TextureRect" parent="Control" unique_id=1197618635]
+material = SubResource("ShaderMaterial_1a5em")
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_8awk3")
+expand_mode = 2
+stretch_mode = 2

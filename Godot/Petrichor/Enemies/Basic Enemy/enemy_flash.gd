@@ -1,8 +1,9 @@
 extends Node2D
 
-@export var parent: Enemy
+@export var parent: Node2D
 @export var flash_duration: float = 0.15
 @export var event: event_type
+@export var flash_saturation: float = 0.9
 
 enum event_type {
 	Damaged,
@@ -19,7 +20,7 @@ func _ready() -> void:
 
 func _flash():
 	flash_timer = flash_duration
-	material.set_shader_parameter("flash_modifier", 0.8)
+	material.set_shader_parameter("flash_modifier", 0.9)
 
 var flash_timer: float
 func _process(delta: float) -> void:

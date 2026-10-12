@@ -14,7 +14,6 @@ class_name PlayerMovement
 
 @export_group("Actions")
 @export var friendly: Action
-@export var pain_feedback: Action
 @export var move_ability: Action
 @export var brace: Action
 @export var impact_action: Action
@@ -40,6 +39,7 @@ signal interact_end
 @warning_ignore("unused_signal")
 signal special_interact
 signal player_land
+signal damage_taken
 var speed_mods: Dictionary[String, float]
 var cheering: bool = false
 var playback: AudioStreamPlaybackPolyphonic
@@ -65,7 +65,6 @@ func sum_speed_mods() -> float:
 var cam_offset_init: Vector2
 func _ready() -> void:
 	if friendly: friendly._start(self)
-	if pain_feedback: pain_feedback._start(self)
 	PlayerInput.player_debug.connect(_debug)
 	audio_player.play()
 	playback = audio_player.get_stream_playback()
@@ -89,10 +88,12 @@ func dress() -> void:
 	if energy == null:
 		energy = PlayerEnergy.new()
 	energy._start(self)
-	move_ability._start(self, PlayerInput.player_special_movement)
+	if move_ability:
+		move_ability._start(self, PlayerInput.player_special_movement)
 	friendly._start(self, PlayerInput.player_interact)
 	PlayerInput.player_debug.connect(energy._debug)
-	brace._start(self, PlayerInput.player_brace)
+	if brace:
+		brace._start(self, PlayerInput.player_brace)
 	PlayerInput.player_jump.connect(process_jump)
 	impact_action._start(self)
 	attack._start(self, PlayerInput.player_attack_priveliged)
@@ -107,12 +108,14 @@ func _take_damage(amount: int = 1, source: float = INF):
 	if not local:
 		return
 	
-	if amount > 0: pain_feedback._perform_action()
 	energy._inflict_pain(amount)
 	if source != INF:
 		var dir = sign(source - global_position.x)
 		var knockback_local: Vector2 = Vector2(knockback.x * dir, knockback.y)
 		velocity += knockback_local
+	
+	if amount > 0:
+		rpc("network_damage")
 
 func player_die():
 	Wrapper._load_scene(get_tree().current_scene.scene_file_path)
@@ -125,9 +128,8 @@ func process_jump():
 func _physics_process(delta: float) -> void:
 	if friendly:
 		friendly._update(delta)
-	if pain_feedback:
-		pain_feedback._update(delta)
-	brace._update(delta)
+	if brace:
+		brace._update(delta)
 	
 	if not local:
 		if network_position != Vector2.INF:
@@ -152,7 +154,8 @@ func _physics_process(delta: float) -> void:
 			move_and_slide()
 		return
 	
-	move_ability._update(delta)
+	if move_ability:
+		move_ability._update(delta)
 	
 	process_move(delta)
 	process_camera_offset(delta)
@@ -185,7 +188,10 @@ func process_move(delta: float):
 		if not is_on_floor():
 			accel_modified *= aerial_multiplier
 		velocity.x = move_toward(velocity.x, dir.x * speed, accel_modified * delta)
-		if dir.x * pivot.scale.x < 0 and not brace.fx.visible:
+		var bracing: bool = false
+		if bracing and brace.fx.visible:
+			bracing = true
+		if dir.x * pivot.scale.x < 0 and not bracing:
 			pivot.scale.x *= -1
 			collider.position.x *= -1
 	elif is_on_floor():
@@ -243,3 +249,7 @@ func network_charge_sfx(value: int):
 	
 	var pitch_change: float = 0.5
 	$"Charge SFX".pitch_scale = 1 + (sqrt(value) * pitch_change)
+
+@rpc("authority", "call_local", "reliable")
+func network_damage():
+	damage_taken.emit()

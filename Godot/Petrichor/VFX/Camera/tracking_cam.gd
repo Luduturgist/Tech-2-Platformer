@@ -19,13 +19,13 @@ func _physics_process(delta: float) -> void:
 	
 	velocity_follow(delta)
 	
-	global_position = subpixel_position + director.director_offset
+	global_position = subpixel_position
 
 func velocity_follow(delta: float):
 	if not follow or not is_current():
 		return
 	
-	var diff = follow.global_position - subpixel_position
+	var diff = follow.global_position - subpixel_position + custom_offset + director.director_offset
 	var dir = diff.normalized() * speed * delta * sqrt(diff.length())
 	
 	if diff.length() < dir.length():
@@ -45,23 +45,18 @@ func soft_follow(delta: float):
 	if not follow:
 		return
 	
-	var diff = follow.global_position - subpixel_position
+	var diff = follow.global_position - subpixel_position + custom_offset + director.director_offset
 	var dir = diff.normalized() * speed * delta * sqrt(diff.length())
 	
 	if abs(diff.x) < abs(dir.x):
 	#	global_position.x += dir.x
 	#else:
 		subpixel_position.x += diff.x
-		diff = follow.global_position - subpixel_position
-		dir = diff.normalized() * speed * delta * sqrt(diff.length())
 	
 	if abs(diff.y) < abs(dir.y):
 	#	global_position.y += dir.y
 	#else:
 		subpixel_position.y += diff.y
-		diff = follow.global_position - subpixel_position
-		dir = diff.normalized() * speed * delta * sqrt(diff.length())
-
 	
 	if diff.y > 0:
 		dir.y *= dir.y / 3

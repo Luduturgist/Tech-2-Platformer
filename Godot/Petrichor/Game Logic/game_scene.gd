@@ -16,7 +16,7 @@ const PAUSE_PATH := "res://UI/Root Menus/Pause Menu/Pause.tscn"
 static var active: Game_Scene
 var pause: Pause_Menu
 var game_started: bool = false
-
+signal scene_ready
 
 func _ready() -> void:
 	active = self
@@ -37,6 +37,7 @@ func start_game():
 	if gui: gui.visible = true
 	game_started = true
 	TransitionHandler._open_scene()
+	scene_ready.emit()
 
 static func check_combat(node: Node) -> bool:
 	return node.get_meta(Game_Scene.COMBAT_METADATA, false)
@@ -55,7 +56,7 @@ func dress_rig(soil_pos: Vector2, river_pos: Vector2):
 	if not local.local:
 		local.dress()
 		camera.follow = local.cam_offset
-		camera._activate_camera()
+		camera._activate_camera(local)
 
 	
 	local.set_multiplayer_authority(multiplayer.get_unique_id(), true)

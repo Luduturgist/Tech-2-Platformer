@@ -2,13 +2,25 @@
 
 [ext_resource type="Script" uid="uid://bxfj03bkw5mfe" path="res://VFX/Camera/tracking_cam.gd" id="1_kq5fe"]
 [ext_resource type="Script" uid="uid://c75l2ya1bvbbp" path="res://VFX/Camera/cam_director.gd" id="1_nxylj"]
+[ext_resource type="Script" uid="uid://bvlk3sr3fmwov" path="res://VFX/Camera/framing_cam.gd" id="3_0d035"]
+[ext_resource type="Script" uid="uid://dprenhtmu4awn" path="res://VFX/Camera/locking_camera.gd" id="4_tumao"]
 
-[node name="CameraFollow" type="Node2D" unique_id=1372751982 node_paths=PackedStringArray("active_cam")]
+[node name="CameraFollow" type="Node2D" unique_id=1372751982 node_paths=PackedStringArray("follow_cam", "frame_cam", "locking_cam")]
 script = ExtResource("1_nxylj")
-active_cam = NodePath("Follow Cam")
+follow_cam = NodePath("Follow Cam")
+frame_cam = NodePath("Framing Cam")
+locking_cam = NodePath("Locking Cam")
 
 [node name="Follow Cam" type="Camera2D" parent="." unique_id=1773969312]
-offset = Vector2(0, -50)
 script = ExtResource("1_kq5fe")
-speed = 50.0
+speed = 40.0
+custom_offset = Vector2(0, -60)
 metadata/_custom_type_script = "uid://bxfj03bkw5mfe"
+
+[node name="Framing Cam" type="Camera2D" parent="." unique_id=724775104]
+script = ExtResource("3_0d035")
+
+[node name="Locking Cam" type="Camera2D" parent="." unique_id=1553732799]
+script = ExtResource("4_tumao")
+speed = 20.0
+custom_offset = Vector2(0, -60)
