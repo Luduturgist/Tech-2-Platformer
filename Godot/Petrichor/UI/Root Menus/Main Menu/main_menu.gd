@@ -7,7 +7,6 @@ extends CanvasLayer
 @export var disconnect_2: Button
 @export var ip_texts: Array[Control]
 @export var join_ip: LineEdit
-@export var failure_message: Label
 @export var join_wait_ip: Label
 
 func _ready() -> void:
@@ -19,7 +18,6 @@ func _ready() -> void:
 	disconnect_2.pressed.connect(back_button)
 	Wrapper.scene_ready.connect(player_connected)
 	join_ip.text_submitted.connect(join_pressed)
-	Wrapper.connection_failed.connect(express_failure)
 	PlayerInput.moving = false
 	
 	for i in ip_texts:
@@ -31,10 +29,6 @@ func host_pressed():
 	switch(true)
 
 static var last_try: String
-func express_failure():
-	failure_message.visible = true
-	if last_try:
-		join_ip.text = last_try
 
 func join_pressed(join: String = ":("):
 	last_try = join_ip.text
@@ -50,6 +44,11 @@ func back_button():
 func player_connected():
 	if multiplayer and multiplayer.is_server():
 		Wrapper._load_scene(scene_to_load)
+
+func lan_menu():
+	$"Connection Menu".visible = false
+	$"LAN Menu".visible = true
+	
 
 func switch(host: bool = false):
 	$"Connection Menu".visible = false

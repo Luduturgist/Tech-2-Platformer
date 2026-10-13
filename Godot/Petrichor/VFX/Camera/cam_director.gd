@@ -66,6 +66,7 @@ func _activate_camera(obj: Node2D):
 	follow = obj
 	active_cam = follow_cam
 	active_cam.follow = obj
+	await get_tree().process_frame
 	active_cam._camera_start()
 
 var cam_delay: float = 0.2

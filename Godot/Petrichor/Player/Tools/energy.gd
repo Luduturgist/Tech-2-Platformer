@@ -24,7 +24,9 @@ func _start(m: PlayerMovement):
 var _drain_timer: float
 var draining: bool
 func _update(delta: float):
-	if PlayerInput.player_movement.x != 0 or move.attack._is_attacking():
+	var climbing: bool = PlayerInput.player_movement.y != 0 and not move.using_gravity
+	
+	if PlayerInput.player_movement.x != 0 or move.attack._is_attacking() or climbing:
 		if not draining:
 			draining = true
 			passive_drain_update.emit(true)

@@ -10,16 +10,16 @@
 [ext_resource type="PackedScene" uid="uid://cl8rlnkey1ig4" path="res://UI/Sub Menus/Controls/Controls Menu.tscn" id="7_lh1ru"]
 [ext_resource type="Script" uid="uid://d1radiwtmych7" path="res://UI/Sub Menus/Settings/settings_button.gd" id="9_lp8yn"]
 
-[node name="MainMenu" type="CanvasLayer" unique_id=1263290596 node_paths=PackedStringArray("host_button", "join_button", "disconnect_1", "disconnect_2", "ip_texts", "join_ip", "failure_message", "join_wait_ip")]
+[node name="MainMenu" type="CanvasLayer" unique_id=1263290596 node_paths=PackedStringArray("host_button", "join_button", "disconnect_1", "disconnect_2", "ip_texts", "join_ip", "join_wait_ip")]
+layer = -1
 script = ExtResource("1_j1vdm")
 scene_to_load = "res://Level 1/Level 1.tscn"
-host_button = NodePath("Connection Menu/Connection Interface/HBoxContainer/Host")
-join_button = NodePath("Connection Menu/Connection Interface/HBoxContainer2/Join")
+host_button = NodePath("Connection Menu/Connection Interface/Hosting/Host")
+join_button = NodePath("Connection Menu/Connection Interface/Joining/Join")
 disconnect_1 = NodePath("Host Waiting/Disconnect")
 disconnect_2 = NodePath("Client Waiting/Disconnect")
-ip_texts = [NodePath("Connection Menu/Connection Interface/HBoxContainer/Local IP"), NodePath("Host Waiting/Host Waiting IP")]
-join_ip = NodePath("Connection Menu/Connection Interface/HBoxContainer2/Join IP")
-failure_message = NodePath("Connection Menu/Connection Interface/HBoxContainer2/Join IP/Game Full")
+ip_texts = [NodePath("Connection Menu/Connection Interface/Hosting/Local IP"), NodePath("Host Waiting/Host Waiting IP")]
+join_ip = NodePath("LAN Menu/Join Menu2/Join IP")
 join_wait_ip = NodePath("Client Waiting/Join Waiting IP")
 metadata/_edit_vertical_guides_ = [-250.0]
 
@@ -42,19 +42,19 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 28
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Connection Menu/Connection Interface" unique_id=1850283834]
+[node name="Hosting" type="HBoxContainer" parent="Connection Menu/Connection Interface" unique_id=1850283834]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 10
 
-[node name="TextureRect" type="TextureRect" parent="Connection Menu/Connection Interface/HBoxContainer" unique_id=1113399546]
+[node name="TextureRect" type="TextureRect" parent="Connection Menu/Connection Interface/Hosting" unique_id=1113399546]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("2_mcx74")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Connection Menu/Connection Interface/HBoxContainer/TextureRect" unique_id=532604421]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Connection Menu/Connection Interface/Hosting/TextureRect" unique_id=532604421]
 position = Vector2(0, -10)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("3_lh1ru")
@@ -64,28 +64,28 @@ frame = 3
 frame_progress = 0.53331006
 offset = Vector2(16, 16)
 
-[node name="Host" type="Button" parent="Connection Menu/Connection Interface/HBoxContainer" unique_id=1170498499]
+[node name="Host" type="Button" parent="Connection Menu/Connection Interface/Hosting" unique_id=1170498499]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Host"
 
-[node name="Local IP" type="Label" parent="Connection Menu/Connection Interface/HBoxContainer" unique_id=2095598327]
+[node name="Local IP" type="Label" parent="Connection Menu/Connection Interface/Hosting" unique_id=2095598327]
 layout_mode = 2
 text = "10.0.0.1"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="Connection Menu/Connection Interface" unique_id=1006879946]
+[node name="Joining" type="HBoxContainer" parent="Connection Menu/Connection Interface" unique_id=1006879946]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="Connection Menu/Connection Interface/HBoxContainer2" unique_id=242393591]
+[node name="TextureRect" type="TextureRect" parent="Connection Menu/Connection Interface/Joining" unique_id=242393591]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("4_lp8yn")
 expand_mode = 2
 stretch_mode = 3
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Connection Menu/Connection Interface/HBoxContainer2/TextureRect" unique_id=383931260]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Connection Menu/Connection Interface/Joining/TextureRect" unique_id=383931260]
 position = Vector2(0, -10)
 scale = Vector2(2, 2)
 sprite_frames = ExtResource("5_kq1dw")
@@ -95,28 +95,15 @@ frame = 1
 frame_progress = 0.7926322
 offset = Vector2(16, 16)
 
-[node name="Join" type="Button" parent="Connection Menu/Connection Interface/HBoxContainer2" unique_id=271699989]
+[node name="Join" type="Button" parent="Connection Menu/Connection Interface/Joining" unique_id=271699989]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Join"
 
-[node name="Join IP" type="LineEdit" parent="Connection Menu/Connection Interface/HBoxContainer2" unique_id=1407063563]
+[node name="Join IP" type="LineEdit" parent="Connection Menu/Connection Interface/Joining" unique_id=564029495]
 layout_mode = 2
 placeholder_text = "10.0.0.1"
 expand_to_text_length = true
-
-[node name="Game Full" type="Label" parent="Connection Menu/Connection Interface/HBoxContainer2/Join IP" unique_id=584414429]
-visible = false
-layout_mode = 0
-offset_left = 1.0
-offset_top = 51.0
-offset_right = 55.0
-offset_bottom = 67.0
-grow_vertical = 0
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.86, 0.25800002, 0.25800002, 1)
-theme_override_font_sizes/font_size = 11
-text = "Game Full"
 
 [node name="Game Interface" type="HBoxContainer" parent="Connection Menu" unique_id=515100057]
 layout_mode = 2
@@ -215,3 +202,47 @@ theme_override_constants/separation = 66
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Disconnect"
+
+[node name="LAN Menu" type="VBoxContainer" parent="." unique_id=1598122866]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -23.5
+offset_right = 56.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LAN Menu" unique_id=991198023]
+custom_minimum_size = Vector2(5.525, 250)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LAN Menu/ScrollContainer" unique_id=1798870674]
+layout_mode = 2
+
+[node name="Join IP" type="LineEdit" parent="LAN Menu/ScrollContainer/VBoxContainer" unique_id=723871322]
+layout_mode = 2
+placeholder_text = "10.0.0.1"
+expand_to_text_length = true
+
+[node name="Join IP2" type="LineEdit" parent="LAN Menu/ScrollContainer/VBoxContainer" unique_id=1057118163]
+layout_mode = 2
+placeholder_text = "10.0.0.1"
+expand_to_text_length = true
+
+[node name="Join Menu2" type="HBoxContainer" parent="LAN Menu" unique_id=337291271]
+layout_mode = 2
+
+[node name="Join IP" type="LineEdit" parent="LAN Menu/Join Menu2" unique_id=1245417885]
+layout_mode = 2
+placeholder_text = "10.0.0.1"
+expand_to_text_length = true
+
+[node name="Join" type="Button" parent="LAN Menu/Join Menu2" unique_id=1547558983]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Join"

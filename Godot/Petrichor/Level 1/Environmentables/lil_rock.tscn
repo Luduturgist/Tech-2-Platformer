@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://1hyljqaddonb"]
+
+[ext_resource type="Script" uid="uid://caw0alfysmpi5" path="res://Interacteable/Pushable/pushable_rock.gd" id="1_glnjt"]
+[ext_resource type="Texture2D" uid="uid://comco1uoaw4cf" path="res://Level 1/Environmentables/Lil Rock.png" id="2_ydqc8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
+size = Vector2(10, 6)
+
+[node name="LilRock" type="Area2D" unique_id=1740948252 node_paths=PackedStringArray("impact_vfx")]
+collision_mask = 5
+script = ExtResource("1_glnjt")
+speed = 500.0
+kickup = -12.0
+impact_vfx = NodePath("VFX")
+metadata/_edit_group_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=623351601]
+max_distance = 800.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=992462318]
+position = Vector2(0, -4)
+texture = ExtResource("2_ydqc8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2098741047]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_c1nht")
+
+[node name="VFX" type="Node2D" parent="." unique_id=1929447918]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VFX" unique_id=1221174133]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2

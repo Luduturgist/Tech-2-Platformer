@@ -51,7 +51,6 @@ func _process(delta: float) -> void:
 			frame_buffer = 0 
 
 func update_energy(charge: int, pain: int):
-	print(str(charge))
 	energyBar.value = charge
 	pain_bar.value = pain
 
@@ -60,7 +59,7 @@ func set_frame(value: bool):
 		set_shader_alpha(frame_flash, frame_flash_saturation)
 		frame_buffer = 0
 	else:
-		frame_buffer = 0.15
+		frame_buffer = 0.12
 
 func set_bar(amount: int):
 	if bar_timer == 0:

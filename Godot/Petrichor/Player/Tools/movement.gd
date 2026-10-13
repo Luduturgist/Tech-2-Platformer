@@ -43,6 +43,7 @@ signal damage_taken
 var speed_mods: Dictionary[String, float]
 var cheering: bool = false
 var playback: AudioStreamPlaybackPolyphonic
+var using_gravity: bool = true
 
 func can_action() -> bool:
 	return not taking_action and energy.charge > 0
@@ -121,8 +122,8 @@ func player_die():
 	Wrapper._load_scene(get_tree().current_scene.scene_file_path)
 
 var can_jump: bool = true
-func process_jump():
-	if is_on_floor() and can_jump:
+func process_jump(override: bool = false):
+	if (is_on_floor() and can_jump) or override:
 		velocity.y = -jump * sum_speed_mods()
 
 func _physics_process(delta: float) -> void:
@@ -170,7 +171,10 @@ func _physics_process(delta: float) -> void:
 
 var last_velocity: float = 0
 var can_move: bool = true
-func process_move(delta: float):	
+func process_move(delta: float):
+	if not using_gravity:
+		return
+	
 	if not is_on_floor():
 		velocity += fallSpeed * Vector2.DOWN * delta
 		if velocity.y > jump * 2:

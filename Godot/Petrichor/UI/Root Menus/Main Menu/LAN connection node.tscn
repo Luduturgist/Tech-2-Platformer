@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://5dc4c5m0bq2j"]
+
+[node name="LanConnectionNode" type="PanelContainer" unique_id=406837124]
+offset_right = 291.0
+offset_bottom = 47.0
+
+[node name="PanelContainer" type="HBoxContainer" parent="." unique_id=783681508]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 112
+
+[node name="Label" type="Label" parent="PanelContainer" unique_id=1212402417]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "10.0.0.1"
+
+[node name="Join" type="Button" parent="PanelContainer" unique_id=1480387151]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Join"

@@ -2,6 +2,8 @@ extends Action
 class_name Swing_Action
 
 @export var swing:= 400
+@export var swing_updraft: float = -50
+@export var can_push: bool = true
 @export var ground_repel: Vector2 = Vector2(-100, -50)
 @export var air_repel: Vector2 = Vector2(-50, -150)
 @export var energy_drain: int = 0
@@ -25,7 +27,7 @@ func _perform_action():
 	
 	if Game_Scene.active.friend.cheering:
 		perform_pull(energy)
-	else:
+	elif can_push:
 		perform_push(energy)
 	can_swing = false
 	move.taking_action = true
@@ -37,7 +39,7 @@ func perform_pull(energy: float):
 	var friend:= Game_Scene.active.friend.position
 	var diff = friend - move.position
 	var dir = diff.normalized() * swing * energy
-	move.velocity += dir
+	move.velocity += dir + swing_updraft
 	if dir.x * move.pivot.scale.x < 0: move.pivot.scale.x *= -1
 	if move.velocity.length() > swing:
 		move.velocity = move.velocity.normalized() * swing * energy

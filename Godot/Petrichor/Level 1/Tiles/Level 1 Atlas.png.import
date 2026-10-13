@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dxq08pi363w3n"
-path="res://.godot/imported/Brick Topmid.png-16743651b6c3b600826d3a14a5be8602.ctex"
+uid="uid://diwq12gxqgmsh"
+path="res://.godot/imported/Level 1 Atlas.png-7a23351292ee764f00659e77d6ffe00f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level 2/Brick Topmid.png"
-dest_files=["res://.godot/imported/Brick Topmid.png-16743651b6c3b600826d3a14a5be8602.ctex"]
+source_file="res://Level 1/Tiles/Level 1 Atlas.png"
+dest_files=["res://.godot/imported/Level 1 Atlas.png-7a23351292ee764f00659e77d6ffe00f.ctex"]
 
 [params]
 

@@ -1,23 +1,17 @@
-[gd_scene format=3 uid="uid://wdswbcplbatr"]
+[gd_scene format=4 uid="uid://wdswbcplbatr"]
 
 [ext_resource type="PackedScene" uid="uid://bws5kyd2s560n" path="res://World/Level Template.tscn" id="1_sboqp"]
 [ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_0q22f"]
-[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="3_0ysd6"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_6c42x"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="5_j55le"]
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="6_210q2"]
+[ext_resource type="TileSet" uid="uid://c5ojusrfs63cf" path="res://Level 2/Tiles/level2_tiles.tres" id="6_sboqp"]
 
-[sub_resource type="Resource" id="Resource_sboqp"]
+[sub_resource type="Resource" id="Resource_0q22f"]
 resource_local_to_scene = true
 script = ExtResource("2_0q22f")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
-
-[sub_resource type="Resource" id="Resource_0q22f"]
-resource_local_to_scene = true
-script = ExtResource("3_0ysd6")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
 
 [sub_resource type="Resource" id="Resource_0ysd6"]
 resource_local_to_scene = true
@@ -37,21 +31,15 @@ metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_210q2"]
 resource_local_to_scene = true
-script = ExtResource("3_0ysd6")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
-
-[sub_resource type="Resource" id="Resource_tu3f4"]
-resource_local_to_scene = true
 script = ExtResource("4_6c42x")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_lqonm"]
+[sub_resource type="Resource" id="Resource_tu3f4"]
 resource_local_to_scene = true
 script = ExtResource("5_j55le")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_06b77"]
+[sub_resource type="Resource" id="Resource_lqonm"]
 resource_local_to_scene = true
 script = ExtResource("6_210q2")
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
@@ -62,14 +50,16 @@ metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 [node name="Level2" unique_id=786337047 instance=ExtResource("1_sboqp")]
 
 [node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
-friendly = SubResource("Resource_sboqp")
-pain_feedback = SubResource("Resource_0q22f")
+friendly = SubResource("Resource_0q22f")
 brace = SubResource("Resource_0ysd6")
 impact_action = SubResource("Resource_6c42x")
 
 [node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
 friendly = SubResource("Resource_j55le")
-pain_feedback = SubResource("Resource_210q2")
-brace = SubResource("Resource_tu3f4")
-impact_action = SubResource("Resource_lqonm")
-attack = SubResource("Resource_06b77")
+brace = SubResource("Resource_210q2")
+impact_action = SubResource("Resource_tu3f4")
+attack = SubResource("Resource_lqonm")
+
+[node name="Terrain" parent="Midgard" parent_id_path=PackedInt32Array(431883485) index="2" unique_id=391369680]
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAAAAAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAFAAAAAAAAAAAAAAAGAAAAAAAAAAAAAAAHAAAAAAAAAAAAAAACAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=")
+tile_set = ExtResource("6_sboqp")

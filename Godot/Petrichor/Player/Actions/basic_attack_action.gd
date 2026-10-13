@@ -34,7 +34,6 @@ func _perform_action():
 		charge = starting_charge
 		if windup <= 0:
 			windup_timer = -INF
-			print("no windup")
 		else:
 			windup_timer = windup
 			move.rpc("network_charge_sfx", charge)
@@ -102,7 +101,7 @@ func try_damage():
 		var obj: Node2D = o.get("collider")
 		if obj:
 			if obj.get_meta("Mortal") and ignore.find(obj) == -1:
-				print("attacking")
+				#print("attacking")
 				var damage_actual: int = obj._take_damage(damage, move.global_position.x)
 				if damage_actual or true:
 					move.energy._replenish_charge(damage_actual)

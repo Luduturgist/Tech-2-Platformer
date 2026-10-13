@@ -2,56 +2,44 @@
 
 [ext_resource type="PackedScene" uid="uid://bws5kyd2s560n" path="res://World/Level Template.tscn" id="1_bly5b"]
 [ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="2_la4ci"]
-[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="3_gy5bf"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="4_mkekj"]
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="5_0tx2n"]
+[ext_resource type="TileSet" uid="uid://d2n31xd3ync0h" path="res://Level 4/Tiles/level4_tiles.tres" id="6_bly5b"]
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="6_kbdse"]
 
-[sub_resource type="Resource" id="Resource_tu3f4"]
+[sub_resource type="Resource" id="Resource_bly5b"]
 resource_local_to_scene = true
 script = ExtResource("2_la4ci")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[sub_resource type="Resource" id="Resource_lqonm"]
-resource_local_to_scene = true
-script = ExtResource("3_gy5bf")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
-
-[sub_resource type="Resource" id="Resource_06b77"]
+[sub_resource type="Resource" id="Resource_la4ci"]
 resource_local_to_scene = true
 script = ExtResource("4_mkekj")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_du3ih"]
+[sub_resource type="Resource" id="Resource_gy5bf"]
 resource_local_to_scene = true
 script = ExtResource("5_0tx2n")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_de6y3"]
+[sub_resource type="Resource" id="Resource_mkekj"]
 resource_local_to_scene = true
 script = ExtResource("2_la4ci")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[sub_resource type="Resource" id="Resource_cj7q5"]
-resource_local_to_scene = true
-script = ExtResource("3_gy5bf")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
-
-[sub_resource type="Resource" id="Resource_wwdxn"]
+[sub_resource type="Resource" id="Resource_0tx2n"]
 resource_local_to_scene = true
 script = ExtResource("4_mkekj")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_ji5jt"]
+[sub_resource type="Resource" id="Resource_kbdse"]
 resource_local_to_scene = true
 script = ExtResource("5_0tx2n")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_8qiow"]
+[sub_resource type="Resource" id="Resource_1wr68"]
 resource_local_to_scene = true
 script = ExtResource("6_kbdse")
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
@@ -62,14 +50,15 @@ metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 [node name="Level4" unique_id=786337047 instance=ExtResource("1_bly5b")]
 
 [node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
-friendly = SubResource("Resource_tu3f4")
-pain_feedback = SubResource("Resource_lqonm")
-brace = SubResource("Resource_06b77")
-impact_action = SubResource("Resource_du3ih")
+friendly = SubResource("Resource_bly5b")
+brace = SubResource("Resource_la4ci")
+impact_action = SubResource("Resource_gy5bf")
 
 [node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
-friendly = SubResource("Resource_de6y3")
-pain_feedback = SubResource("Resource_cj7q5")
-brace = SubResource("Resource_wwdxn")
-impact_action = SubResource("Resource_ji5jt")
-attack = SubResource("Resource_8qiow")
+friendly = SubResource("Resource_mkekj")
+brace = SubResource("Resource_0tx2n")
+impact_action = SubResource("Resource_kbdse")
+attack = SubResource("Resource_1wr68")
+
+[node name="Terrain" parent="Midgard" parent_id_path=PackedInt32Array(431883485) index="2" unique_id=391369680]
+tile_set = ExtResource("6_bly5b")

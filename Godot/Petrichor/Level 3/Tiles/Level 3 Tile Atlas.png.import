@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://diwq12gxqgmsh"
-path="res://.godot/imported/Earth Tiles.png-d616cff930a93533a1a3f90be1b4ef2e.ctex"
+uid="uid://dnbk53nc0236e"
+path="res://.godot/imported/Level 3 Tile Atlas.png-8e93f332e8a1a55295f057d4da512b7a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level 1/Tiles/Earth Tiles.png"
-dest_files=["res://.godot/imported/Earth Tiles.png-d616cff930a93533a1a3f90be1b4ef2e.ctex"]
+source_file="res://Level 3/Tiles/Level 3 Tile Atlas.png"
+dest_files=["res://.godot/imported/Level 3 Tile Atlas.png-8e93f332e8a1a55295f057d4da512b7a.ctex"]
 
 [params]
 

@@ -10,7 +10,10 @@ public class Coin : MonoBehaviour
         {
             Wallet.Instance.Collect();
             Destroy(gameObject);
-            AudioSource.PlayClipAtPoint(sfx, transform.position);
+            if (sfx != null)
+            {
+                AudioSource.PlayClipAtPoint(sfx, transform.position);
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ signal player_brace
 signal player_brace_release
 signal player_special_movement
 signal player_debug
+signal player_vertical_pressed
 
 signal close_root
 
@@ -98,6 +99,9 @@ func process_input(input: Input_Names):
 	
 	if pause_time > 0:
 		return
+	
+	if Input.is_action_just_pressed(input.move_down) or Input.is_action_just_pressed(input.move_up):
+		player_vertical_pressed.emit()
 	
 	if Input.is_action_just_pressed(input.jump):
 		player_jump.emit()
