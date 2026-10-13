@@ -1,8 +1,10 @@
 extends Area2D
 class_name Ladder_Area
 
-@export var climbing_speed: float = 4000
+@export var climbing_speed: float = 80
 @export var cooldown: float = 0.2
+@export var upper_limit: Node2D
+@export var lower_limit: Node2D
 
 var listening: bool
 var climbing: bool
@@ -26,12 +28,26 @@ func _physics_process(delta: float) -> void:
 	if not listening:
 		return
 	
-	print("laddering")
+	#print("laddering")
 	
-	if climbing:
-		player.using_gravity = false
-		player.velocity = Vector2(0, -PlayerInput.player_movement.y * delta * climbing_speed)
+	var within_limits: bool
+	within_limits = player.global_position.y <= lower_limit.global_position.y and player.global_position.y >= upper_limit.global_position.y
+	
+	if PlayerInput.player_movement.y != 0 and listening and not climbing and cooldown_timer == 0:
+		start_climb()
+	
+	if climbing and within_limits:
+		player.velocity = Vector2(0, -PlayerInput.player_movement.y * climbing_speed)
 		player.move_and_slide()
+		print("movvign")
+	
+	within_limits = player.global_position.y >= lower_limit.global_position.y and player.global_position.y <= upper_limit.global_position.y
+	
+	if climbing and not within_limits:
+		if player.global_position.y > lower_limit.global_position.y:
+			player.global_position.y = lower_limit.global_position.y
+		elif player.global_position.y < upper_limit.global_position.y:
+			player.global_position.y = upper_limit.global_position.y
 
 func listen_to_player(body: Node2D, value: bool):
 	if body is PlayerMovement and body.local:
@@ -43,6 +59,7 @@ func listen_to_player(body: Node2D, value: bool):
 var climb_started: bool = false
 func start_climb():
 	if listening and not climbing and cooldown_timer == 0:
+		player.using_gravity = false
 		climb_started = true
 		climbing = true
 		player.global_position.x = global_position.x

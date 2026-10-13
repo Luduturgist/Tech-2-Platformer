@@ -1,10 +1,12 @@
 extends Game_Cam
 class_name Framing_Cam
 
-var speed: float = 10
 @export var smoothing: float = 2
 
 var framing_target: Node2D
+
+func _ready() -> void:
+	speed = 10
 
 func _physics_process(delta: float) -> void:
 	if is_current():
