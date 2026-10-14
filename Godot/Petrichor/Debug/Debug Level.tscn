@@ -6,12 +6,15 @@
 [ext_resource type="TileSet" uid="uid://cjnx215g42g1c" path="res://Level 1/Tiles/level1_tiles.tres" id="4_3dt6t"]
 [ext_resource type="PackedScene" uid="uid://cyku6dkvqwqgq" path="res://Player/Player_River.tscn" id="5_c22gn"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="6_p5r1r"]
+[ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="6_vbm4y"]
 [ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="7_7pax1"]
+[ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="8_vswfi"]
 [ext_resource type="PackedScene" uid="uid://wdx2ukd6cahx" path="res://Debug/Debug Enemy/debug_enemy.tscn" id="8_xi6m7"]
 [ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="9_530p0"]
 [ext_resource type="Script" uid="uid://o0mpm37m04yy" path="res://Enemies/damage_area.gd" id="10_mfx1b"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="10_rmuir"]
 [ext_resource type="Script" uid="uid://dt6ltlb5kd5n5" path="res://Level 1/overstim_area.gd" id="11_op4pk"]
-[ext_resource type="PackedScene" uid="uid://q1s1lrj3736f" path="res://Enemies/Filing Box/filing_enemy.tscn" id="12_0kjhp"]
+[ext_resource type="PackedScene" uid="uid://bskij0kpqt8en" path="res://Enemies/Filing Box/filing_enemy.tscn" id="12_0kjhp"]
 [ext_resource type="PackedScene" uid="uid://chfdhp2lt3erd" path="res://Enemies/Biggun/biggin.tscn" id="13_kogye"]
 [ext_resource type="Texture2D" uid="uid://c6ovggbehyqlg" path="res://Enemies/Dragger/Dragger.png" id="14_7mcj8"]
 [ext_resource type="Texture2D" uid="uid://cpnlrnky8qg1o" path="res://Enemies/Basic Enemy/basic enemy.png" id="15_5yymd"]
@@ -21,61 +24,89 @@
 [ext_resource type="Script" uid="uid://ccuur63n6earq" path="res://Debug/scene_change_area.gd" id="19_owlla"]
 [ext_resource type="Script" uid="uid://kgmx640u8hqm" path="res://Player/Tools/movement.gd" id="20_jriqm"]
 
-[sub_resource type="Resource" id="Resource_a770q"]
+[sub_resource type="Resource" id="Resource_vbm4y"]
+resource_local_to_scene = true
+script = ExtResource("6_vbm4y")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_vswfi"]
 resource_local_to_scene = true
 script = ExtResource("6_p5r1r")
-time = 0.6
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_pdenk"]
+[sub_resource type="Resource" id="Resource_rmuir"]
+resource_local_to_scene = true
+script = ExtResource("8_vswfi")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_y4pm4"]
+resource_local_to_scene = true
+script = ExtResource("6_vbm4y")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_alj37"]
 resource_local_to_scene = true
 script = ExtResource("6_p5r1r")
-time = 0.6
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_6nrau"]
+[sub_resource type="Resource" id="Resource_b4cb4"]
+resource_local_to_scene = true
+script = ExtResource("8_vswfi")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_6kq3t"]
+resource_local_to_scene = true
+script = ExtResource("10_rmuir")
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
+
+[sub_resource type="Resource" id="Resource_1yy2m"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_sdx0b"]
+[sub_resource type="Resource" id="Resource_kv8kx"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_gflvv"]
+[sub_resource type="Resource" id="Resource_2naai"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_j4wdi"]
+[sub_resource type="Resource" id="Resource_i73ts"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_lk4wb"]
+[sub_resource type="Resource" id="Resource_i8a38"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_surps"]
+[sub_resource type="Resource" id="Resource_ufk2a"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_e4144"]
+[sub_resource type="Resource" id="Resource_18cyn"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_sv8rb"]
+[sub_resource type="Resource" id="Resource_kum1j"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 lunge = Vector2(52.895, -28.615)
@@ -87,25 +118,22 @@ size = Vector2(3209, 54)
 [sub_resource type="CircleShape2D" id="CircleShape2D_c1nht"]
 radius = 99.18165
 
-[sub_resource type="Resource" id="Resource_37wmk"]
+[sub_resource type="Resource" id="Resource_smqoj"]
+resource_local_to_scene = true
+script = ExtResource("9_530p0")
+lunge = Vector2(60, -190)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_moq84"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
 attack_interval = 2.0
 lunge = Vector2(60, -190)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_707id"]
+[sub_resource type="Resource" id="Resource_nhd8m"]
 resource_local_to_scene = true
 script = ExtResource("9_530p0")
-attack_interval = 2.0
-lunge = Vector2(60, -190)
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
-
-[sub_resource type="Resource" id="Resource_6eb3e"]
-resource_local_to_scene = true
-script = ExtResource("9_530p0")
-attack_duration = 0.3
-attack_interval = 0.5
 lunge = Vector2(50, -10)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
@@ -126,8 +154,9 @@ color = Color(0.6472075, 0.743933, 0.7819318, 1)
 [node name="Camera Director" parent="." unique_id=728822637 instance=ExtResource("2_3dbtd")]
 position = Vector2(-584, 687)
 
-[node name="Gui" parent="." unique_id=1157994508 instance=ExtResource("3_j28uy")]
+[node name="Gui" parent="." unique_id=1157994508 node_paths=PackedStringArray("game_scene") instance=ExtResource("3_j28uy")]
 visible = false
+game_scene = NodePath("..")
 
 [node name="Background" type="Parallax2D" parent="." unique_id=475421257]
 z_index = -10
@@ -149,13 +178,18 @@ metadata/_edit_lock_ = true
 position = Vector2(146, 32)
 energy = null
 knockback = Vector2(-50, -50)
-brace = SubResource("Resource_a770q")
+friendly = SubResource("Resource_vbm4y")
+brace = SubResource("Resource_vswfi")
+impact_action = SubResource("Resource_rmuir")
 
 [node name="Player_Soil" parent="Midgard/Players" unique_id=87480027 instance=ExtResource("7_7pax1")]
 position = Vector2(112, -275)
 energy = null
 knockback = Vector2(-50, -50)
-brace = SubResource("Resource_pdenk")
+friendly = SubResource("Resource_y4pm4")
+brace = SubResource("Resource_alj37")
+impact_action = SubResource("Resource_b4cb4")
+attack = SubResource("Resource_6kq3t")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Midgard" unique_id=1598625206]
 z_index = -1
@@ -166,35 +200,35 @@ tile_set = ExtResource("4_3dt6t")
 
 [node name="Debug Enemy4" parent="Midgard/Enemies" unique_id=1127782348 instance=ExtResource("8_xi6m7")]
 position = Vector2(437, 150)
-attack_behavior = SubResource("Resource_6nrau")
+attack_behavior = SubResource("Resource_1yy2m")
 
 [node name="Debug Enemy2" parent="Midgard/Enemies" unique_id=1080319627 instance=ExtResource("8_xi6m7")]
 position = Vector2(590, 150)
-attack_behavior = SubResource("Resource_sdx0b")
+attack_behavior = SubResource("Resource_kv8kx")
 
 [node name="Debug Enemy3" parent="Midgard/Enemies" unique_id=1801522015 instance=ExtResource("8_xi6m7")]
 position = Vector2(650, 150)
-attack_behavior = SubResource("Resource_gflvv")
+attack_behavior = SubResource("Resource_2naai")
 
 [node name="Debug Enemy" parent="Midgard/Enemies" unique_id=1626915890 instance=ExtResource("8_xi6m7")]
 position = Vector2(1075, 86)
-attack_behavior = SubResource("Resource_j4wdi")
+attack_behavior = SubResource("Resource_i73ts")
 
 [node name="Debug Enemy5" parent="Midgard/Enemies" unique_id=1980751240 instance=ExtResource("8_xi6m7")]
 position = Vector2(1007, 118)
-attack_behavior = SubResource("Resource_lk4wb")
+attack_behavior = SubResource("Resource_i8a38")
 
 [node name="Debug Enemy6" parent="Midgard/Enemies" unique_id=744078433 instance=ExtResource("8_xi6m7")]
 position = Vector2(907, 150)
-attack_behavior = SubResource("Resource_surps")
+attack_behavior = SubResource("Resource_ufk2a")
 
 [node name="Debug Enemy7" parent="Midgard/Enemies" unique_id=171192178 instance=ExtResource("8_xi6m7")]
 position = Vector2(1205, 150)
-attack_behavior = SubResource("Resource_e4144")
+attack_behavior = SubResource("Resource_18cyn")
 
 [node name="Debug Enemy8" parent="Midgard/Enemies" unique_id=305958357 instance=ExtResource("8_xi6m7")]
 position = Vector2(1289, 150)
-attack_behavior = SubResource("Resource_sv8rb")
+attack_behavior = SubResource("Resource_kum1j")
 
 [node name="Damage_Area" type="Area2D" parent="." unique_id=454458912]
 position = Vector2(436, 296)
@@ -230,15 +264,15 @@ polygon = PackedVector2Array(82, -53, 99, -5, 87, 48, 60, 78, 19, 97, -47, 88, -
 
 [node name="Filing Enemy" parent="." unique_id=775520302 instance=ExtResource("12_0kjhp")]
 position = Vector2(235, 0)
-attack_behavior = SubResource("Resource_37wmk")
+attack_behavior = SubResource("Resource_smqoj")
 
 [node name="Filing Enemy2" parent="." unique_id=364528105 instance=ExtResource("12_0kjhp")]
 position = Vector2(1163, 32)
-attack_behavior = SubResource("Resource_707id")
+attack_behavior = SubResource("Resource_moq84")
 
 [node name="Biggin" parent="." unique_id=1129633472 instance=ExtResource("13_kogye")]
 position = Vector2(1184, 160)
-attack_behavior = SubResource("Resource_6eb3e")
+attack_behavior = SubResource("Resource_nhd8m")
 
 [node name="Dragger" type="Sprite2D" parent="." unique_id=568788135]
 position = Vector2(334, -48)

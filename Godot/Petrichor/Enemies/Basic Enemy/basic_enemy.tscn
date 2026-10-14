@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://dtdwq2m8hevaw" path="res://Enemies/Templates/Enemy Template.tscn" id="1_o6f8y"]
 [ext_resource type="Script" uid="uid://opgpjmq4qtnj" path="res://Enemies/grounded_enemy.gd" id="2_cnb0i"]
-[ext_resource type="SpriteFrames" uid="uid://dnb0qqy1rri2" path="res://Enemies/Basic Enemy/Basic Idle/basic_idle.tres" id="3_xi2wp"]
+[ext_resource type="SpriteFrames" uid="uid://dnb0qqy1rri2" path="res://Enemies/Basic Enemy/basic_animator.tres" id="3_xi2wp"]
 [ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="3_yc733"]
 [ext_resource type="Texture2D" uid="uid://gikjfhqsetpd" path="res://Enemies/Basic Enemy/basic enemy_dead.png" id="4_ggsvp"]
 [ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="4_yc733"]
 [ext_resource type="Texture2D" uid="uid://dwnfmgdfh46t2" path="res://Enemies/Basic Enemy/basic enemy_grown.png" id="5_uvwqa"]
 
-[sub_resource type="Resource" id="Resource_pk1us"]
+[sub_resource type="Resource" id="Resource_yc733"]
 resource_local_to_scene = true
 script = ExtResource("3_yc733")
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
@@ -22,6 +22,12 @@ size = Vector2(389, 100)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnb0i"]
 size = Vector2(7, 15)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pk1us"]
+resource_local_to_scene = true
+shader = ExtResource("4_yc733")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_6gcj5"]
 resource_local_to_scene = true
 shader = ExtResource("4_yc733")
@@ -31,16 +37,10 @@ shader_parameter/flash_modifier = 0.0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l1tq2"]
 resource_local_to_scene = true
 shader = ExtResource("4_yc733")
-shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
-shader_parameter/flash_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f3tag"]
-resource_local_to_scene = true
-shader = ExtResource("4_yc733")
 shader_parameter/flash_color = Color(0.37254903, 0.9098039, 0.44313726, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_0kqbg"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_f3tag"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6f8y"]
@@ -49,7 +49,7 @@ size = Vector2(11, 20)
 [node name="Basic Enemy" unique_id=1690093432 instance=ExtResource("1_o6f8y")]
 script = ExtResource("2_cnb0i")
 attack_range = 20.0
-attack_behavior = SubResource("Resource_pk1us")
+attack_behavior = SubResource("Resource_yc733")
 
 [node name="Detection" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="0" unique_id=424177330]
 visible = false
@@ -67,21 +67,21 @@ position = Vector2(7, -9)
 shape = SubResource("RectangleShape2D_cnb0i")
 
 [node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="1" unique_id=1309506720]
-material = SubResource("ShaderMaterial_6gcj5")
+material = SubResource("ShaderMaterial_pk1us")
 sprite_frames = ExtResource("3_xi2wp")
-animation = &"Attack"
+animation = &"Idle"
 autoplay = "Idle"
 
 [node name="Dead" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="2" unique_id=983881865]
-material = SubResource("ShaderMaterial_l1tq2")
+material = SubResource("ShaderMaterial_6gcj5")
 texture = ExtResource("4_ggsvp")
 
 [node name="Grown" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="3" unique_id=1222569319]
-material = SubResource("ShaderMaterial_f3tag")
+material = SubResource("ShaderMaterial_l1tq2")
 texture = ExtResource("5_uvwqa")
 
 [node name="AudioStreamPlayer2D" parent="." index="1" unique_id=1612581139]
-stream = SubResource("AudioStreamPolyphonic_0kqbg")
+stream = SubResource("AudioStreamPolyphonic_f3tag")
 
 [node name="CollisionShape2D" parent="." index="3" unique_id=1937080905]
 visible = false

@@ -3,7 +3,7 @@
 extends Area2D
 class_name Camera_Area
 
-@export var track_speed: float = 550
+@export var track_speed: float = 30
 @export var can_peek: bool = false
 
 var director: Cam_Director

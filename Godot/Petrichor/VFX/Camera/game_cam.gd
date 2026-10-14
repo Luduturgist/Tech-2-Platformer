@@ -43,16 +43,6 @@ func soft_follow(delta: float, target_pos: Vector2) -> Vector2:
 	
 	var calc_position: Vector2 = global_position
 	
-	if abs(diff.x) < abs(dir.x):
-	#	global_position.x += dir.x
-	#else:
-		calc_position.x += diff.x
-	
-	if abs(diff.y) < abs(dir.y):
-	#	global_position.y += dir.y
-	#else:
-		calc_position.y += diff.y
-	
 	if diff.y > 0:
 		dir.y *= dir.y / 3
 	else: 
@@ -63,6 +53,16 @@ func soft_follow(delta: float, target_pos: Vector2) -> Vector2:
 		calc_position += dir
 	else:
 		calc_position += diff
+	
+	if abs(diff.x) < abs(dir.x):
+	#	global_position.x += dir.x
+	#else:
+		calc_position.x = target_pos.x
+	
+	if abs(diff.y) < abs(dir.y):
+	#	global_position.y += dir.y
+	#else:
+		calc_position.y = target_pos.y
 	
 	return calc_position
 	#30 in full 1920x1080, 50 in 640x360 or lower

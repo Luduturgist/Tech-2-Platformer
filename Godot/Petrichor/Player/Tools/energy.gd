@@ -43,12 +43,17 @@ func _debug():
 	_replenish_charge(maxCharge)
 	update_ui.emit(charge, pain)
 
-func _replenish_charge(amount: int) -> int:
+func _replenish_charge(amount: int, overfill: bool = false) -> int:
 	charge += amount
-	if charge > maxCharge - pain:
+	if overfill:
+		if maxCharge - pain > charge:
+			pain = maxCharge - charge
+	
+	elif charge > maxCharge - pain and not overfill:
 		amount += maxCharge - pain - amount
 		charge = maxCharge - pain
 	update_ui.emit(charge, pain)
+	move.rpc("network_damage", true)
 	return amount
 
 func _drain_charge(amount: int, overdraw: bool = false) -> int:

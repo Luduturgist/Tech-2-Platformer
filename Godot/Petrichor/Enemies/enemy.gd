@@ -11,7 +11,7 @@ class_name Enemy
 @export var stun_time: float = 1.3
 @export var knockback: Vector2 = Vector2(-75, -50)
 @export var fall_speed: float = 30
-@export var start_flipped: bool = false
+@export var start_flipped: bool = true
 @export var knockback_stun: float = 0.5
 
 @export_group("References")
@@ -56,6 +56,8 @@ signal killed
 signal start_attack
 @warning_ignore("unused_signal")
 signal end_attack
+@warning_ignore("unused_signal")
+signal replenished
 signal update_tracking(bool)
 signal update_stun(bool)
 signal fertilized
@@ -88,7 +90,6 @@ func _ready() -> void:
 			return
 		detection_range.target_found.connect(track_target.bind(true))
 		chase_range.target_lost.connect(track_target.bind(false))
-		stunned.connect(knockback_enemy)
 		damage_taken.connect(knockback_enemy)
 		override_detection_range.target_found.connect(override_target)
 
@@ -104,7 +105,7 @@ func knockback_enemy(source: float = -INF):
 		local_knockback.x *= air_knockback_mult
 	
 	if source != -INF:
-		last_attack_dir = -sign(source - global_position.x)
+		last_attack_dir = sign(source - global_position.x)
 		print('happy')
 	else:
 		print("saedd")
@@ -230,13 +231,14 @@ func _network_damage(amount: int, source: int, player: int):
 	
 	elif interactable.pressed:
 		print("lol")
-		fertilizer_action()
+		fertilizer_action(player)
 
 @rpc("authority", "call_local", "reliable")
-func _network_stun():
+func _network_stun(source: float):
 	stun_timer = stun_time
 	update_stun.emit(true)
 	stunned.emit()
+	knockback_enemy(source)
 
 @rpc("authority", "call_local", "reliable")
 func kill_enemy():
@@ -265,7 +267,7 @@ func fertilizer_death():
 			event._trigger_event()
 
 var last_flash: float
-func fertilizer_action():
+func fertilizer_action(player: int):
 	fertilized.emit()
 	death_sprite.visible = false
 	growth_sprite.visible = true
@@ -280,6 +282,9 @@ func fertilizer_action():
 	if fertilizer_events.size():
 		for event in fertilizer_events:
 			event._trigger_event()
+	
+	if player == Wrapper.local_type:
+		PlayerMovement.active.energy._replenish_charge(2, true)
 
 var current_animation: int = 0
 func try_swap_animation(anim: int):
@@ -309,3 +314,7 @@ func debug_death():
 	t.tween_property(self, "rotation_degrees", -90 * last_attack_dir, 0.4)
 	await t.finished
 	queue_free()
+
+@rpc("authority", "call_local", "reliable")
+func perform_network_attack_action(value):
+	attack_behavior._network_action(value)

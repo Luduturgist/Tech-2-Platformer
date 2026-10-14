@@ -124,7 +124,11 @@ sprite_frames = ExtResource("8_fpjr1")
 animation = &"Idle"
 script = ExtResource("12_d1sot")
 parent = NodePath("../..")
-flash_duration = 0.2
+flash_duration = 0.17
+flash_saturation = 0.8
+damage_color = Color(0.9019608, 0.6156863, 0.5921569, 1)
+charge_color = Color(0.45490196, 0.7921569, 0.47843137, 1)
+network_flash = false
 
 [node name="VFX" type="Node2D" parent="Pivot" unique_id=1333519426]
 

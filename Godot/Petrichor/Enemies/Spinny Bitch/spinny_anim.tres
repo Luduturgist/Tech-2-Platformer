@@ -1,0 +1,30 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bqoo2fmx0cnf7"]
+
+[ext_resource type="Texture2D" uid="uid://e3363ofjinkf" path="res://Enemies/Spinny Bitch/Spinny.png" id="1_cii0q"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cii0q")
+}],
+"loop": 1,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cii0q")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_cii0q")
+}],
+"loop": 1,
+"name": &"Run",
+"speed": 5.0
+}]

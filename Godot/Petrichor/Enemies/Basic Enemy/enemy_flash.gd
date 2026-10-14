@@ -4,6 +4,9 @@ extends Node2D
 @export var flash_duration: float = 0.15
 @export var event: event_type
 @export var flash_saturation: float = 0.9
+@export var damage_color: Color = Color("ba554e")
+@export var charge_color: Color
+@export var network_flash: bool = true
 
 enum event_type {
 	Damaged,
@@ -15,10 +18,19 @@ func _ready() -> void:
 	match event:
 		event_type.Damaged:
 			parent.damage_taken.connect(_flash)
+			parent.replenished.connect(_flash.bind(true))
 		event_type.Fertilized:
 			parent.fertilized.connect(_flash)
 
-func _flash():
+func _flash(healing: bool = false):
+	if not network_flash and not is_multiplayer_authority():
+		return
+	
+	if healing:
+		material.set_shader_parameter("flash_color", charge_color)
+	else:
+		material.set_shader_parameter("flash_color", damage_color)
+	
 	flash_timer = flash_duration
 	material.set_shader_parameter("flash_modifier", 0.9)
 

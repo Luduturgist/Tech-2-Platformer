@@ -21,7 +21,7 @@ var fade_mod: float = 1
 var fade_timer: float = 0
 func _process(delta: float) -> void:
 	if not obj: return
-	if fade_timer > 0:
+	if fade_timer > 0 and PlayerInput.moving:
 		fade_timer -= delta
 		if fade_timer <= 0:
 			obj.visible = false

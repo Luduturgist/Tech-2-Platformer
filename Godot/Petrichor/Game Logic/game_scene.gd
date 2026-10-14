@@ -18,6 +18,12 @@ var pause: Pause_Menu
 var game_started: bool = false
 signal scene_ready
 
+#func _process(delta: float) -> void:
+	#if Input.is_action_pressed("Keyboard Jump"):
+		#get_tree().root.content_scale_factor += delta * 0.1
+		#print("..")
+
+
 func _ready() -> void:
 	active = self
 	Wrapper.scene_ready.connect(host_setup)

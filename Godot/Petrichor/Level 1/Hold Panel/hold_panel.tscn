@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bqj57243x1h2n"]
+
+[ext_resource type="Script" uid="uid://c01iittkuqc" path="res://Interacteable/interacteable_hold.gd" id="1_wha0g"]
+[ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="2_oahxy"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="3_8saei"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16k65"]
+size = Vector2(26, 21)
+
+[node name="Hold Panel" type="Node2D" unique_id=1126037747 node_paths=PackedStringArray("detection_area", "redlight")]
+script = ExtResource("1_wha0g")
+detection_area = NodePath("Area_Detector")
+enabled = true
+redlight = NodePath("Light")
+
+[node name="Area_Detector" type="Area2D" parent="." unique_id=1874616976]
+script = ExtResource("2_oahxy")
+metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Detector" unique_id=62075601]
+position = Vector2(0, -10.5)
+shape = SubResource("RectangleShape2D_16k65")
+
+[node name="Light" type="PointLight2D" parent="." unique_id=1811608405]
+light_mask = 3
+position = Vector2(0, -7)
+color = Color(0.95, 0.2010833, 0.13299999, 1)
+energy = 1.86
+range_item_cull_mask = 3
+texture = ExtResource("3_8saei")

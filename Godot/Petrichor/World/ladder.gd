@@ -48,6 +48,9 @@ func _physics_process(delta: float) -> void:
 			player.global_position.y = lower_limit.global_position.y
 		elif player.global_position.y < upper_limit.global_position.y:
 			player.global_position.y = upper_limit.global_position.y
+	
+	if player.velocity.y != 0:
+		player.rpc("_network_position", player.global_position, player.pivot.scale.x == -1)
 
 func listen_to_player(body: Node2D, value: bool):
 	if body is PlayerMovement and body.local:
@@ -65,6 +68,8 @@ func start_climb():
 		player.global_position.x = global_position.x
 		player.velocity = Vector2.ZERO
 		player.taking_action = true
+		player.change_animation(&"Idle")
+		player.rpc("_network_position", player.global_position, player.pivot.scale.x)
 
 func bail():
 	if climb_started:

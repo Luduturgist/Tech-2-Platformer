@@ -4,9 +4,6 @@ class_name Area_Attack
 var damage_feedback: Node2D
 var damage_cast: ShapeCast2D
 
-func _start(e: Enemy):
-	super._start(e)
-
 func _attack_start():
 	windup = attack_delay
 	enemy.windup_feedback.visible = true
@@ -88,7 +85,7 @@ func _try_for_cast_damage():
 				print("why")
 		if enemy.is_multiplayer_authority():
 			if blocked >= 0 or players.size() == 0:
-				enemy.rpc("_network_stun")
+				enemy.rpc("_network_stun", blocking.global_position.x)
 				if enemy.is_multiplayer_authority():
 					blocking._block_attack()
 		already_hit = true

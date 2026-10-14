@@ -40,6 +40,7 @@ signal interact_end
 signal special_interact
 signal player_land
 signal damage_taken
+signal replenished
 var speed_mods: Dictionary[String, float]
 var cheering: bool = false
 var playback: AudioStreamPlaybackPolyphonic
@@ -255,5 +256,8 @@ func network_charge_sfx(value: int):
 	$"Charge SFX".pitch_scale = 1 + (sqrt(value) * pitch_change)
 
 @rpc("authority", "call_local", "reliable")
-func network_damage():
-	damage_taken.emit()
+func network_damage(healing: bool = false):
+	if healing:
+		replenished.emit()
+	else:
+		damage_taken.emit()

@@ -8,6 +8,8 @@ class_name Interacteable
 @export var single_use := true
 @export var attackable: bool = false
 
+signal interacted(id: float)
+
 var local := true
 
 func _ready() -> void:
@@ -21,7 +23,7 @@ func try_player(body: Node2D, i: int):
 	if not multiplayer.multiplayer_peer:
 		return
 	if not exhausted and body is PlayerMovement and body.local:
-		rpc("flip_light", i)
+		rpc("flip_light", i, )
 		if i > 0:
 			body.special_interact.connect(interact)
 		else:
@@ -31,10 +33,13 @@ var exhausted := false
 func interact():
 	if exhausted: return
 	
-	for e in event_objects:
-		e._trigger_event()
+	interacted.emit()
+	
+	if event_objects.size():
+		for e in event_objects:
+			e._trigger_event()
 	if single_use:
-		rpc("flip_light", -10)
+		rpc("flip_light", -10,)
 
 var contacts: int = 0
 @rpc("any_peer", "call_local", "reliable")

@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cng47udpw4m2a" path="res://Player/Player_Soil.tscn" id="3_sfs38"]
 [ext_resource type="Script" uid="uid://bqvte6fdqel8i" path="res://Player/Tools/energy.gd" id="4_ay6ps"]
 [ext_resource type="Script" uid="uid://dtfkkb4fwm6ye" path="res://Player/Actions/flash_interact_action.gd" id="4_dw5k6"]
-[ext_resource type="Script" uid="uid://dcx174ajy1vu8" path="res://Player/Actions/event_action.gd" id="5_pu8gd"]
 [ext_resource type="TileSet" uid="uid://bhk8j5h6576yv" path="res://World/Earth Tiles/ground_tiles.tres" id="5_wkfoo"]
 [ext_resource type="Script" uid="uid://dmdwl5u0qrn3a" path="res://Player/Actions/brace_action.gd" id="6_8dd8f"]
 [ext_resource type="Script" uid="uid://b27nvv6imn8gp" path="res://Interacteable/Door/door_object.gd" id="6_enva3"]
@@ -15,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cwoqcmg7a8xeb" path="res://UI/GUI/River Energy Bar.png" id="9_4chyk"]
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="9_il7gk"]
 [ext_resource type="Script" uid="uid://o0mpm37m04yy" path="res://Enemies/damage_area.gd" id="10_1q7to"]
-[ext_resource type="PackedScene" uid="uid://beh68diy3i4dm" path="res://Level 1/Turret/turret.tscn" id="11_gh2xq"]
+[ext_resource type="PackedScene" uid="uid://beh68diy3i4dm" path="res://Level 2/Turret/turret.tscn" id="11_gh2xq"]
 [ext_resource type="Texture2D" uid="uid://g75n6uebm35c" path="res://Debug/Hazard/Hazard.png" id="12_uh378"]
 [ext_resource type="PackedScene" uid="uid://t8gacvbucv5l" path="res://Debug/Hazard/Hazard.tscn" id="13_l60s1"]
 [ext_resource type="PackedScene" uid="uid://b7x1xel6pnfcx" path="res://UI/GUI/gui.tscn" id="14_d1n7c"]
@@ -55,48 +54,36 @@ metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
 [sub_resource type="Resource" id="Resource_pu8gd"]
 resource_local_to_scene = true
-script = ExtResource("5_pu8gd")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
-
-[sub_resource type="Resource" id="Resource_8dd8f"]
-resource_local_to_scene = true
 script = ExtResource("6_8dd8f")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_jf577"]
+[sub_resource type="Resource" id="Resource_8dd8f"]
 resource_local_to_scene = true
 script = ExtResource("7_jf577")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_il7gk"]
+[sub_resource type="Resource" id="Resource_jf577"]
 resource_local_to_scene = true
 script = ExtResource("4_ay6ps")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
-[sub_resource type="Resource" id="Resource_rxg2v"]
+[sub_resource type="Resource" id="Resource_il7gk"]
 resource_local_to_scene = true
 script = ExtResource("4_dw5k6")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[sub_resource type="Resource" id="Resource_qwf0f"]
-resource_local_to_scene = true
-script = ExtResource("5_pu8gd")
-event_path = NodePath("Pivot/VFX/Pain")
-metadata/_custom_type_script = "uid://dcx174ajy1vu8"
-
-[sub_resource type="Resource" id="Resource_l5g02"]
+[sub_resource type="Resource" id="Resource_rxg2v"]
 resource_local_to_scene = true
 script = ExtResource("6_8dd8f")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_mqg15"]
+[sub_resource type="Resource" id="Resource_qwf0f"]
 resource_local_to_scene = true
 script = ExtResource("7_jf577")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_ef03v"]
+[sub_resource type="Resource" id="Resource_l5g02"]
 resource_local_to_scene = true
 script = ExtResource("9_il7gk")
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
@@ -149,13 +136,13 @@ size = Vector2(3209, 54)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfmxh"]
 size = Vector2(12, 23)
 
-[sub_resource type="Resource" id="Resource_4d4pv"]
+[sub_resource type="Resource" id="Resource_mqg15"]
 resource_local_to_scene = true
 script = ExtResource("23_rxg2v")
 lunge = Vector2(52.895, -28.615)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_8q4eq"]
+[sub_resource type="Resource" id="Resource_ef03v"]
 resource_local_to_scene = true
 script = ExtResource("23_rxg2v")
 lunge = Vector2(52.895, -28.615)
@@ -196,19 +183,17 @@ z_index = 4
 position = Vector2(-53, -61)
 energy = SubResource("Resource_oirxf")
 friendly = SubResource("Resource_dw5k6")
-pain_feedback = SubResource("Resource_pu8gd")
-brace = SubResource("Resource_8dd8f")
-impact_action = SubResource("Resource_jf577")
+brace = SubResource("Resource_pu8gd")
+impact_action = SubResource("Resource_8dd8f")
 
 [node name="Player_Soil" parent="Midgard/Players" unique_id=1847633799 instance=ExtResource("3_sfs38")]
 light_mask = 1
 position = Vector2(-80, -304)
-energy = SubResource("Resource_il7gk")
-friendly = SubResource("Resource_rxg2v")
-pain_feedback = SubResource("Resource_qwf0f")
-brace = SubResource("Resource_l5g02")
-impact_action = SubResource("Resource_mqg15")
-attack = SubResource("Resource_ef03v")
+energy = SubResource("Resource_jf577")
+friendly = SubResource("Resource_il7gk")
+brace = SubResource("Resource_rxg2v")
+impact_action = SubResource("Resource_qwf0f")
+attack = SubResource("Resource_l5g02")
 
 [node name="Terrain" type="TileMapLayer" parent="Midgard" unique_id=1221429451]
 tile_map_data = PackedByteArray("AAD+/wAAAAAAAAAAAAD//wAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAGAP//AAAAAAAAAAAHAP//AAAAAAAAAAACAAAAAAAAAAAAAAAIAP//AAAAAAAAAAAJAP//AAAAAAAAAAAKAP//AAAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD6/wIAAQAAAAAAAAD7/wIAAQAAAAAAAAD8/wIAAQAAAAAAAAD9/wIAAQAAAAAAAAD+/wIAAQAAAAAAAAD//wIAAQAAAAAAAAAAAAIAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAADAAIAAQAAAAAAAAD8/wEAAQAAAAAAAAD9/wEAAQAAAAAAAAD+/wEAAQAAAAAAAAD//wEAAQAAAAAAAAAAAAEAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAFAAIAAQAAAAAAAAAFAAEAAQAAAAAAAAAIAAAAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAALAAAAAQAAAAAAAAAMAAAAAQAAAAAAAAALAAEAAQAAAAAAAAALAAIAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAIAAEAAQAAAAAAAAAHAAEAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAHAAIAAQAAAAAAAAAIAAIAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAAMAAIAAQAAAAAAAAANAAIAAQAAAAAAAAAOAAIAAQAAAAAAAAAPAAIAAQAAAAAAAAAQAAIAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAATAAIAAQAAAAAAAAAUAAIAAQAAAAAAAAAVAAIAAQAAAAAAAAAWAAIAAQAAAAAAAAAXAAIAAQAAAAAAAAD5//z/AQAAAAAAAAD5//v/AQAAAAAAAAD5//r/AQAAAAAAAAD5//n/AQAAAAAAAAD5//j/AQAAAAAAAAD4/wIAAQAAAAAAAAD4/wEAAQAAAAAAAAD4/wAAAQAAAAAAAAD4//z/AQAAAAAAAAD4//v/AQAAAAAAAAD4//r/AQAAAAAAAAD4//n/AQAAAAAAAAD4//j/AQAAAAAAAAD4//f/AQAAAAAAAAD3//j/AQAAAAAAAAD3//n/AQAAAAAAAAD3//r/AQAAAAAAAAD3//v/AQAAAAAAAAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD2/wIAAQAAAAAAAAD2/wEAAQAAAAAAAAD2/wAAAAAAAAAAAAD2//v/AQAAAAAAAAD2//r/AQAAAAAAAAD2//n/AQAAAAAAAADz////AQAAAAAAAAD0//z/AQAAAAAAAAD0//v/AQAAAAAAAAD0//r/AQAAAAAAAAD0//n/AQAAAAAAAAD0//j/AQAAAAAAAAD0//f/AQAAAAAAAADz//f/AQAAAAAAAADz//j/AQAAAAAAAADz//n/AQAAAAAAAADz//r/AQAAAAAAAADz//v/AQAAAAAAAADz//z/AQAAAAAAAADz//3/AQAAAAAAAADz//7/AQAAAAAAAAD1//f/AQAAAAAAAAD1//j/AQAAAAAAAAD1//n/AQAAAAAAAAD1//r/AQAAAAAAAAD1//v/AQAAAAAAAAD2//j/AQAAAAAAAAD2//f/AQAAAAAAAAD3//f/AQAAAAAAAAD0/wEAAQAAAAAAAAD0/wAAAAAAAAAAAADz/wAAAQAAAAAAAADz/wEAAQAAAAAAAADz/wIAAQAAAAAAAAD0/wIAAQAAAAAAAAD1/wIAAQAAAAAAAAD1/wEAAQAAAAAAAAD1/wAAAAAAAAAAAAAFAP//AAAAAAAAAAD6//r/AQAAAAAAAAD7//n/AQAAAAAAAAD///j/AQAAAAAAAAABAP3/AQAAAAAAAAABAPz/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAPv/AQAAAAAAAAD///v/AQAAAAAAAAD///r/AQAAAAAAAAD6//n/AQAAAAAAAAD6//j/AQAAAAAAAAD7//j/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAACAPr/AQAAAAAAAAADAPr/AQAAAAAAAAADAPn/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPj/AQAAAAAAAAAFAPj/AQAAAAAAAAAFAPf/AQAAAAAAAAACAPn/AQAAAAAAAAABAPn/AQAAAAAAAAAAAPn/AQAAAAAAAAD///n/AQAAAAAAAAAAAPr/AQAAAAAAAAABAPr/AQAAAAAAAAABAPj/AQAAAAAAAAAAAPj/AQAAAAAAAAAAAPf/AQAAAAAAAAD7//f/AQAAAAAAAAD6//f/AQAAAAAAAAD5//f/AQAAAAAAAAABAPf/AQAAAAAAAAACAPf/AQAAAAAAAAACAPj/AQAAAAAAAAADAPj/AQAAAAAAAAADAPf/AQAAAAAAAAAFAPb/AQAAAAAAAAAGAPb/AQAAAAAAAAAHAPX/AQAAAAAAAAAHAPT/AQAAAAAAAAAIAPP/AQAAAAAAAAAIAPL/AQAAAAAAAAAIAPH/AQAAAAAAAAAIAPD/AQAAAAAAAAAIAO//AQAAAAAAAAAIAO7/AQAAAAAAAAAIAO3/AQAAAAAAAAAHAO7/AQAAAAAAAAAHAO//AQAAAAAAAAAHAPP/AQAAAAAAAAAGAPf/AQAAAAAAAAAFAPX/AQAAAAAAAAAGAPX/AQAAAAAAAAAGAPT/AQAAAAAAAAAGAPP/AQAAAAAAAAAGAPL/AQAAAAAAAAAHAPH/AQAAAAAAAAAHAPD/AQAAAAAAAAAEAPf/AQAAAAAAAAAEAPb/AQAAAAAAAAAEAPX/AQAAAAAAAAAEAPT/AQAAAAAAAAAEAPP/AQAAAAAAAAAEAPL/AQAAAAAAAAAFAPL/AQAAAAAAAAAFAPH/AQAAAAAAAAAFAPD/AQAAAAAAAAADAPT/AQAAAAAAAAADAPX/AQAAAAAAAAACAPX/AQAAAAAAAAABAPX/AQAAAAAAAAABAPb/AQAAAAAAAAACAPb/AQAAAAAAAAADAPb/AQAAAAAAAAAAAPX/AQAAAAAAAAD7//b/AQAAAAAAAAD6//b/AQAAAAAAAAD7//X/AQAAAAAAAAD///T/AQAAAAAAAAAAAPT/AQAAAAAAAAABAPP/AQAAAAAAAAABAPT/AQAAAAAAAAACAPT/AQAAAAAAAAAFAPP/AQAAAAAAAAAHAPL/AQAAAAAAAAAFAPT/AQAAAAAAAAAGAPH/AQAAAAAAAAAGAPD/AQAAAAAAAAACAPP/AQAAAAAAAAACAPL/AQAAAAAAAAADAPL/AQAAAAAAAAAEAPH/AQAAAAAAAAADAPP/AQAAAAAAAAD7//v/AQAAAAAAAAD6//v/AQAAAAAAAAD6//z/AQAAAAAAAAD7//r/AQAAAAAAAAAMAP//AAAAAAAAAAALAP//AQAAAAAAAAANAP//AAAAAAAAAAAOAP//AAAAAAAAAAAYAAIAAQAAAAAAAAAZAAIAAQAAAAAAAAAaAAIAAQAAAAAAAAAbAAIAAQAAAAAAAAAcAAIAAQAAAAAAAAAdAAIAAQAAAAAAAAAeAAIAAQAAAAAAAAAfAAIAAQAAAAAAAAAgAAIAAQAAAAAAAAAhAAIAAQAAAAAAAAAiAAIAAQAAAAAAAAAQAAAAAAAAAAAAAAARAAAAAAAAAAAAAAATAAEAAAAAAAAAAAAUAAEAAAAAAAAAAAAIAP3/AAAAAAAAAAAKAPv/AAAAAAAAAAALAPv/AAAAAAAAAAANAPn/AAAAAAAAAAAOAPn/AAAAAAAAAAAGAP3/AAAAAAAAAAALAP7/AAAAAAAAAAAAAPb/AQAAAAAAAAD///X/AQAAAAAAAAD///b/AQAAAAAAAAD///f/AQAAAAAAAAD7//T/AQAAAAAAAAD7//P/AQAAAAAAAAD///P/AQAAAAAAAAAEAP//AAAAAAAAAAD9/wAAAAAAAAAAAAD8/wAAAAAAAAAAAAD5/wAAAAAAAAAAAAD4////AAAAAAAAAAD3////AAAAAAAAAAD7/wAAAAAAAAAAAAD6/wEAAAAAAAAAAAD7/wEAAQAAAAAAAAA=")
@@ -677,8 +662,9 @@ vertex_colors = PackedColorArray(0, 0, 0, 1, 0.84254926, 0.33082622, 0.4162594, 
 position = Vector2(86, -94)
 texture = ExtResource("9_4chyk")
 
-[node name="Gui" parent="." unique_id=1157994508 instance=ExtResource("14_d1n7c")]
+[node name="Gui" parent="." unique_id=1157994508 node_paths=PackedStringArray("game_scene") instance=ExtResource("14_d1n7c")]
 visible = false
+game_scene = NodePath("..")
 
 [node name="CameraFollow" parent="." unique_id=728822637 instance=ExtResource("15_xdhjb")]
 position = Vector2(-49, -111)
@@ -712,12 +698,12 @@ visible = false
 
 [node name="Debug Enemy" parent="." unique_id=852204349 instance=ExtResource("17_kfs2w")]
 position = Vector2(-353, -11)
-attack_behavior = SubResource("Resource_4d4pv")
+attack_behavior = SubResource("Resource_mqg15")
 metadata/Pushable = true
 
 [node name="Debug Enemy2" parent="." unique_id=709409456 instance=ExtResource("17_kfs2w")]
 position = Vector2(-324, -14)
-attack_behavior = SubResource("Resource_8q4eq")
+attack_behavior = SubResource("Resource_ef03v")
 
 [node name="Door2" type="Node2D" parent="." unique_id=18672653 node_paths=PackedStringArray("door_block", "animator")]
 z_index = -5

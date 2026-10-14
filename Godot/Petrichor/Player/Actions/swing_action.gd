@@ -39,7 +39,7 @@ func perform_pull(energy: float):
 	var friend:= Game_Scene.active.friend.position
 	var diff = friend - move.position
 	var dir = diff.normalized() * swing * energy
-	move.velocity += dir + swing_updraft
+	move.velocity += dir + Vector2(0, swing_updraft)
 	if dir.x * move.pivot.scale.x < 0: move.pivot.scale.x *= -1
 	if move.velocity.length() > swing:
 		move.velocity = move.velocity.normalized() * swing * energy

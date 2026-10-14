@@ -68,11 +68,9 @@ gui = NodePath("Gui")
 visible = false
 color = Color(0.6472075, 0.743933, 0.7819318, 1)
 
-[node name="Camera Director" parent="." unique_id=728822637 instance=ExtResource("2_3r38k")]
-position = Vector2(-584, 687)
-
-[node name="Gui" parent="." unique_id=1157994508 instance=ExtResource("3_6equ3")]
+[node name="Gui" parent="." unique_id=1157994508 node_paths=PackedStringArray("game_scene") instance=ExtResource("3_6equ3")]
 visible = false
+game_scene = NodePath("..")
 
 [node name="Background" type="Parallax2D" parent="." unique_id=475421257]
 z_index = -10
@@ -117,6 +115,12 @@ tile_set = ExtResource("7_tgpit")
 
 [node name="Rooms" type="Node2D" parent="." unique_id=457399361]
 
+[node name="Camera Director" parent="." unique_id=728822637 instance=ExtResource("2_3r38k")]
+position = Vector2(-584, 687)
+
+[node name="Camera Areas" type="Node2D" parent="." unique_id=1106833913]
+visible = false
+
 [node name="Damage_Area" type="Area2D" parent="." unique_id=454458912]
 position = Vector2(0, 400)
 script = ExtResource("9_5n1nb")
@@ -134,6 +138,3 @@ script = ExtResource("19_ooajt")
 target_script = ExtResource("20_a770q")
 metadata/_custom_type_script = "uid://ccuur63n6earq"
 metadata/_edit_group_ = true
-
-[node name="Camera Areas" type="Node2D" parent="." unique_id=1106833913]
-visible = false

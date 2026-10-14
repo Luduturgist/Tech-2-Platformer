@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://be4au5qirogif"]
 
 [ext_resource type="Texture2D" uid="uid://c6ovggbehyqlg" path="res://Enemies/Dragger/Dragger.png" id="1_ugiq0"]
-[ext_resource type="Texture2D" uid="uid://cymticpey7ot4" path="res://Enemies/Dragger/Dragger Idle-sheet.png" id="2_7wr1g"]
+[ext_resource type="Texture2D" uid="uid://cymticpey7ot4" path="res://Enemies/Dragger/Dragger Run/Dragger Idle-sheet.png" id="2_7wr1g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fmu31"]
 atlas = ExtResource("2_7wr1g")

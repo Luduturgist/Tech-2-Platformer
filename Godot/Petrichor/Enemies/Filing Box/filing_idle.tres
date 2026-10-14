@@ -27,6 +27,34 @@ animations = [{
 "texture": SubResource("AtlasTexture_myc3e")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ix4q6")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_6gup0")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_myc3e")
+}],
+"loop": 1,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_ix4q6")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_6gup0")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_myc3e")
+}],
+"loop": 1,
+"name": &"Run",
 "speed": 5.0
 }]

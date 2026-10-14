@@ -1,8 +1,6 @@
 extends Game_Cam
 class_name TrackingCam
 
-
-
 func _camera_start(transfer: Vector2 = Vector2.INF):
 	super._camera_start()
 	if transfer != Vector2.INF:

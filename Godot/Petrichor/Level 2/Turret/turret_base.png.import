@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b83pr6kufmsbe"
-path="res://.godot/imported/Dragger Idle4.png-1829f4904701c8496a508b053fbf3e56.ctex"
+uid="uid://d1nhcq058p8ax"
+path="res://.godot/imported/turret_base.png-7d5023b5fc7f08302bb66e9aed727661.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Dragger/Dragger Idle4.png"
-dest_files=["res://.godot/imported/Dragger Idle4.png-1829f4904701c8496a508b053fbf3e56.ctex"]
+source_file="res://Level 2/Turret/turret_base.png"
+dest_files=["res://.godot/imported/turret_base.png-7d5023b5fc7f08302bb66e9aed727661.ctex"]
 
 [params]
 

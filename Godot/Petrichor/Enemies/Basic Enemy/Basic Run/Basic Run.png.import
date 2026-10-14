@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cau5lp5ry55r3"
-path="res://.godot/imported/Dragger Idle2.png-c67816f58002f966e2a5874dc1168a0b.ctex"
+uid="uid://cj3mtbtu1aukp"
+path="res://.godot/imported/Basic Run.png-264a9565b039b748b651215639ff3b79.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Enemies/Dragger/Dragger Idle2.png"
-dest_files=["res://.godot/imported/Dragger Idle2.png-c67816f58002f966e2a5874dc1168a0b.ctex"]
+source_file="res://Enemies/Basic Enemy/Basic Run/Basic Run.png"
+dest_files=["res://.godot/imported/Basic Run.png-264a9565b039b748b651215639ff3b79.ctex"]
 
 [params]
 

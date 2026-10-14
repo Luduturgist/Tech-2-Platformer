@@ -11,3 +11,5 @@ func _ready():
 func change_scene():
 	if scene:
 		Wrapper._load_scene(scene)
+	else:
+		push_error("Bad Scene Name")
