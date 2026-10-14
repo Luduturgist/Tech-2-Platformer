@@ -2,6 +2,7 @@ extends Area2D
 class_name Brace_Object
 
 @export var per_hit_drain: int = 1
+@export var unconditional_block: bool = true
 
 signal brace_released
 
@@ -10,8 +11,10 @@ func _ready() -> void:
 
 func try_player(area: Area2D):
 	if area is Damage_Area:
-		var blocked: bool = (area.global_position.x - global_position.x) * PlayerMovement.active.pivot.scale.x >= 0
-		print("block " + str(blocked))
+		var blocked: bool = true
+		if not unconditional_block:
+			blocked = (area.global_position.x - global_position.x) * PlayerMovement.active.pivot.scale.x >= 0
+		print("blocked " + str(blocked))
 		area._hit_obstacle(self, blocked)
 
 @rpc("authority", "call_local", "reliable")

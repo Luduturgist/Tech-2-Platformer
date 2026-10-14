@@ -2,7 +2,7 @@ extends Action
 class_name BasicAttack_Action
 
 @export var starting_charge: int = 1
-@export var windup: float = 0.4
+@export var windup: float = 0.5
 @export var attack_duration: float = 0.3
 @export var buffer: float = 0.3
 @export var cooldown: float = 0.3
@@ -10,7 +10,7 @@ class_name BasicAttack_Action
 @export var windupvfx_path: NodePath
 @export var caster_path: NodePath
 @export var damage: int = 1
-@export var dash: float = 160
+@export var dash: float = 120
 
 var attack_vfx: Flash_Object
 var windup_vfx: Flash_Object
@@ -102,9 +102,9 @@ func try_damage():
 		if obj:
 			if obj.get_meta("Mortal") and ignore.find(obj) == -1:
 				#print("attacking")
-				var damage_actual: int = obj._take_damage(damage, move.global_position.x)
-				if damage_actual or true:
-					move.energy._replenish_charge(damage_actual)
+				if obj is Enemy and obj.health > 0:
+					move.energy._replenish_charge(1)
+				obj._take_damage(damage, move.global_position.x)
 				#print("damaging enemy")
 				ignore.append(obj)
 

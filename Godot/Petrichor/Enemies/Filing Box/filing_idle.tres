@@ -1,6 +1,7 @@
 [gd_resource type="SpriteFrames" format=3 uid="uid://eh070ro7e2vm"]
 
 [ext_resource type="Texture2D" uid="uid://x2n8rmncrxoc" path="res://Enemies/Filing Box/Filing Box Idle.png" id="1_u4e5r"]
+[ext_resource type="Texture2D" uid="uid://cl30hbtuggov5" path="res://Enemies/Filing Box/Filing Box_idle.png" id="2_ix4q6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ix4q6"]
 atlas = ExtResource("1_u4e5r")
@@ -31,14 +32,8 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_ix4q6")
-}, {
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_6gup0")
-}, {
-"duration": 0.6,
-"texture": SubResource("AtlasTexture_myc3e")
+"duration": 1.0,
+"texture": ExtResource("2_ix4q6")
 }],
 "loop": 1,
 "name": &"Idle",

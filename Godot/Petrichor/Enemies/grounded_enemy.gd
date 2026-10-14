@@ -25,7 +25,8 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, 0, accel * _delta)
 	else:
-		try_swap_animation(0)
+		if attack_behavior.can_attack():
+			try_swap_animation(0)
 		velocity.x = move_toward(velocity.x, 0, accel * _delta)
 	
 	super._physics_process(_delta)

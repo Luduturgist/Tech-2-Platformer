@@ -13,7 +13,6 @@ enum Golem {UNASSIGNED, GOLEM_SOIL, GOLEM_RIVER}
 signal scene_ready
 var scene_synchronized: bool = false
 signal begin_desync
-signal connection_failed
 const fallback_scene: String = "res://UI/Root Menus/Main Menu/Main Menu.tscn"
 
 func _ready() -> void:
@@ -102,19 +101,21 @@ func _buffer_disconnect():
 	ip_reference.text = str(localIP)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _end_session(error: bool = false):
+func _end_session(scene: String = fallback_scene):
 	scene_synchronized = false
 	client_id = 0
 	friend_id = 0
-	peer.close()
 	local_type = Golem.UNASSIGNED
 	scene_tally = 0
 	
 	disconnect_screen.visible = false
-	if get_tree().current_scene.scene_file_path != fallback_scene or not error:
-		get_tree().change_scene_to_file(fallback_scene)
-		await get_tree().scene_changed
-	if error: connection_failed.emit()
+	
+	rpc("quit_scene", scene)
+
+@rpc("authority", "call_local", "reliable")
+func quit_scene(scene: String):
+	get_tree().change_scene_to_file(scene)
+	peer.close()
 
 func scene_loaded():
 	if client_id != 0 and local_type != Golem.UNASSIGNED:

@@ -47,6 +47,8 @@ windupvfx_path = NodePath("Pivot/VFX/Windup")
 caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
 metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x2ae4"]
+
 [node name="Level4" unique_id=786337047 instance=ExtResource("1_bly5b")]
 
 [node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
@@ -62,3 +64,11 @@ attack = SubResource("Resource_1wr68")
 
 [node name="Terrain" parent="Midgard" parent_id_path=PackedInt32Array(431883485) index="2" unique_id=391369680]
 tile_set = ExtResource("6_bly5b")
+
+[node name="Sceneload_Detector" parent="." index="8" unique_id=988691633]
+scene = "res://UI/Root Menus/Credits/Credits Menu.tscn"
+disconnect = true
+
+[node name="CollisionShape2D" parent="Sceneload_Detector" index="0" unique_id=1652724451]
+position = Vector2(63, 0)
+shape = SubResource("RectangleShape2D_x2ae4")

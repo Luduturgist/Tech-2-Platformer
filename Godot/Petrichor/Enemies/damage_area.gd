@@ -13,12 +13,13 @@ signal damage_blocked(pos_x: float)
 
 func _ready() -> void:
 	body_entered.connect(try_damage_body)
+	body_exited.connect(reset_dmg)
 
 var dmg_timer: float
 func _process(delta: float) -> void:
 	if dmg_timer > 0:
 		if overlaps_body(impacted_body):
-			print("mebbie *v*")
+			#print("mebbie *v*")
 			dmg_timer -= delta
 			if dmg_timer <= 0:
 				dmg_timer += damage_interval
@@ -26,7 +27,12 @@ func _process(delta: float) -> void:
 		else:
 			impacted_body = null
 			dmg_timer = 0
-			print("sad ;-;")
+			#print("sad ;-;")
+
+func reset_dmg(body: Node2D):
+	if body == impacted_body:
+		dmg_timer = 0
+		blocked = false
 
 func try_damage_body(body: Node2D):
 	if ignore.size():
@@ -40,6 +46,9 @@ func try_damage_body(body: Node2D):
 			body._take_damage(damage, global_position.x)
 		blocked = false
 		dmg_timer += damage_interval
+	elif body is Brace_Object:
+		body.try_player(self)
+		print("tried")
 
 var blocked: bool = false
 func _hit_obstacle(body: Node2D, blocking: bool = false) -> int:

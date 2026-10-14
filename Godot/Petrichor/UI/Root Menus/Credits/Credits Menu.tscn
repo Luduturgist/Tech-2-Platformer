@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://vbbq26iuy323"]
+
+[ext_resource type="Script" uid="uid://dqhnye5mn8fn3" path="res://UI/Root Menus/Credits/credits.gd" id="1_shfxb"]
+[ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="2_hf8i6"]
+
+[node name="CreditsMenu" type="CanvasLayer" unique_id=1698591925 node_paths=PackedStringArray("menu_button")]
+script = ExtResource("1_shfxb")
+menu_button = NodePath("VBoxContainer/Menu Button")
+menu_scene = "res://UI/Root Menus/Main Menu/Main Menu.tscn"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=4010998]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.0
+offset_top = -23.5
+offset_right = 43.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 44
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1341857416]
+layout_mode = 2
+text = "Made by Luduturgist"
+
+[node name="Menu Button" type="Button" parent="VBoxContainer" unique_id=1133068022]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="Quit Button" type="Button" parent="VBoxContainer" unique_id=1878930688]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit"
+script = ExtResource("2_hf8i6")

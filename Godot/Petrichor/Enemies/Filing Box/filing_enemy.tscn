@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="2_am2n3"]
 [ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="3_am2n3"]
 [ext_resource type="SpriteFrames" uid="uid://eh070ro7e2vm" path="res://Enemies/Filing Box/filing_idle.tres" id="4_jxspg"]
+[ext_resource type="Texture2D" uid="uid://ct2qc7umwsaew" path="res://Enemies/Filing Box/Filing Box_dead.png" id="5_am2n3"]
+[ext_resource type="Texture2D" uid="uid://bappwy65dq7rr" path="res://Enemies/Filing Box/Filing Box_grown.png" id="6_2402i"]
 
-[sub_resource type="Resource" id="Resource_jxspg"]
+[sub_resource type="Resource" id="Resource_2402i"]
 resource_local_to_scene = true
 script = ExtResource("2_am2n3")
 lunge = Vector2(30, -190)
@@ -15,41 +17,41 @@ metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 size = Vector2(229, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_am2n3"]
-size = Vector2(398, 43)
+size = Vector2(584, 149)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2402i"]
 size = Vector2(12, 17)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_am2n3"]
-resource_local_to_scene = true
-shader = ExtResource("3_am2n3")
-shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
-shader_parameter/flash_modifier = 0.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2402i"]
-resource_local_to_scene = true
-shader = ExtResource("3_am2n3")
-shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
-shader_parameter/flash_modifier = 0.0
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eb6li"]
+resource_local_to_scene = true
+shader = ExtResource("3_am2n3")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0j3f"]
+resource_local_to_scene = true
+shader = ExtResource("3_am2n3")
+shader_parameter/flash_color = Color(0.73, 0.33482668, 0.30660003, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i6hub"]
 resource_local_to_scene = true
 shader = ExtResource("3_am2n3")
 shader_parameter/flash_color = Color(0.37254903, 0.9098039, 0.44313726, 1)
 shader_parameter/flash_modifier = 0.0
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_a0j3f"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_6hxuj"]
 resource_local_to_scene = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6li"]
 size = Vector2(22, 19)
 
 [node name="GroundedEnemyTemplate" unique_id=1690093432 instance=ExtResource("1_jxspg")]
-accel = 450.0
+accel = 550.0
 attack_range = 30.0
 knockback = Vector2(-180, 40)
 fall_speed = 22.0
-attack_behavior = SubResource("Resource_jxspg")
+attack_behavior = SubResource("Resource_2402i")
 
 [node name="Detection" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="0" unique_id=424177330]
 visible = false
@@ -59,7 +61,7 @@ position = Vector2(104.5, -9)
 shape = SubResource("RectangleShape2D_jxspg")
 
 [node name="CollisionShape2D" parent="Pivot/Detection/Chase Area" parent_id_path=PackedInt32Array(192584454) index="0" unique_id=1402028660]
-position = Vector2(172, -10.5)
+position = Vector2(66, 42.5)
 shape = SubResource("RectangleShape2D_am2n3")
 
 [node name="CollisionShape2D" parent="Pivot/Detection/Override Area" parent_id_path=PackedInt32Array(204225053) index="0" unique_id=1651493230]
@@ -67,18 +69,20 @@ position = Vector2(9, -8.5)
 shape = SubResource("RectangleShape2D_2402i")
 
 [node name="Sprite2D" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="1" unique_id=1309506720]
-material = SubResource("ShaderMaterial_am2n3")
+material = SubResource("ShaderMaterial_eb6li")
 sprite_frames = ExtResource("4_jxspg")
-animation = &"Idle"
+animation = &"Attack"
 
 [node name="Dead" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="2" unique_id=983881865]
-material = SubResource("ShaderMaterial_2402i")
+material = SubResource("ShaderMaterial_a0j3f")
+texture = ExtResource("5_am2n3")
 
 [node name="Grown" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="3" unique_id=1222569319]
-material = SubResource("ShaderMaterial_eb6li")
+material = SubResource("ShaderMaterial_i6hub")
+texture = ExtResource("6_2402i")
 
 [node name="AudioStreamPlayer2D" parent="." index="1" unique_id=1612581139]
-stream = SubResource("AudioStreamPolyphonic_a0j3f")
+stream = SubResource("AudioStreamPolyphonic_6hxuj")
 
 [node name="CollisionShape2D" parent="." index="3" unique_id=1937080905]
 position = Vector2(1, -9.5)

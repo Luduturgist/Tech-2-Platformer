@@ -37,5 +37,5 @@ func _damage_player(player: PlayerMovement):
 		player.energy._drain_charge(enemy.drain)
 	already_hit = true
 
-func _network_action(value):
+func _network_action(_value):
 	pass

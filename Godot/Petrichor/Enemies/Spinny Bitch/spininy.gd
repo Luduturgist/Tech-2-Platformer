@@ -3,6 +3,7 @@ class_name Kamikaze
 
 @export var damage_path: NodePath
 var damager: Damage_Area
+var move_lock: bool = false
 
 func _start(e: Enemy):
 	super._start(e)
@@ -12,7 +13,7 @@ func _start(e: Enemy):
 
 	if enemy.is_multiplayer_authority():
 		damager.damage_blocked.connect(trigger_stun)
-		damager.impact.connect(enemy.knockback_enemy)
+		#damager.impact.connect(enemy.knockback_enemy)
 	
 
 func _attack_start():

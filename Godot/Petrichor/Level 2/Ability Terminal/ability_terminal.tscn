@@ -6,11 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(20, 19)
 
-[node name="Ability Terminal" type="Node2D" unique_id=2053870276 node_paths=PackedStringArray("ability_sprite", "player_area")]
+[node name="Ability Terminal" type="Node2D" unique_id=2053870276 node_paths=PackedStringArray("ability_sprite", "helper_label", "player_area")]
 script = ExtResource("1_2syum")
 ability_sprite = NodePath("Sprite2D")
 type = 2
+helper_label = NodePath("Label")
+helper_text = "Keyboard\\nController"
 player_area = NodePath("Area_Detector")
+single_use = false
 metadata/_custom_type_script = "uid://46d3ayd01ra7"
 
 [node name="Area_Detector" type="Area2D" parent="." unique_id=1932174788]
@@ -50,3 +53,23 @@ offset_bottom = -7.5
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
+
+[node name="Label" type="Label" parent="." unique_id=5089784]
+visible = false
+z_index = 100
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -67.0
+offset_right = 40.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 11
+text = "Keyboard
+Controller"
+horizontal_alignment = 1
+vertical_alignment = 2

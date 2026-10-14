@@ -65,9 +65,11 @@ signal fertilized
 
 var tracking_enemy: bool
 var target: Node2D
+var move_lock: bool = false
 
 func enemy_can_move() ->  bool:
-	return tracking_enemy and health > 0 and stun_timer == 0 and knockback_timer == 0
+	var available: bool = tracking_enemy and health > 0 and stun_timer == 0 and knockback_timer == 0
+	return available or move_lock
 
 func _ready() -> void:
 	audio_player = $"AudioStreamPlayer2D"
@@ -250,6 +252,7 @@ func kill_enemy():
 
 @rpc("authority", "call_local", "reliable")
 func perform_attack():
+	network_anim(2)
 	attack_behavior._attack_start()
 	await end_attack
 	attack_behavior._attack_end()

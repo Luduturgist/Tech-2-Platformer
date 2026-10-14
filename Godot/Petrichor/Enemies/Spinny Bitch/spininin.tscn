@@ -10,12 +10,12 @@
 script = ExtResource("2_7ngcr")
 damage_path = NodePath("Pivot/Damage_Area")
 attack_delay = 0.0
-attack_duration = 0.0
+attack_duration = 3.0
 attack_interval = 0.0
 metadata/_custom_type_script = "uid://bw1gnoupaxfke"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
-size = Vector2(30, 30)
+size = Vector2(28, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c42x"]
 size = Vector2(298, 120)
@@ -53,11 +53,11 @@ size = Vector2(25, 31)
 [node name="Spinny Enemy" unique_id=1690093432 instance=ExtResource("1_5ltsd")]
 health = 5
 damage = 2
-speed = 95.0
+speed = 150.0
 accel = 150.0
 attack_range = 0.0
 stun_time = 1.6
-knockback = Vector2(-55, -50)
+knockback = Vector2(-50, -50)
 fall_speed = 50.0
 knockback_stun = 0.0
 attack_behavior = SubResource("Resource_32gik")
