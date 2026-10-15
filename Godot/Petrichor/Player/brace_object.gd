@@ -3,6 +3,7 @@ class_name Brace_Object
 
 @export var per_hit_drain: int = 1
 @export var unconditional_block: bool = true
+@export var drop_bar: TextureProgressBar
 
 signal brace_released
 
@@ -26,13 +27,14 @@ func set_brace(time: float = 0):
 	elif time < 0:
 		set_brace_variables(false)
 		brace_released.emit()
-
+	
 var brace_timer: float = 0
 @export var drain_interval: float = 0
 var drain_timer: float
 func _process(delta: float) -> void:
 	if brace_timer > 0:
 		brace_timer -= delta
+		drop_bar.value = brace_timer
 		if brace_timer <= 0:
 			set_brace_variables(false)
 			brace_released.emit()

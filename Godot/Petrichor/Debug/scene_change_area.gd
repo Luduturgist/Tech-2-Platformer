@@ -2,7 +2,7 @@ extends Area_Detector
 class_name Sceneload_Detector
 
 @export var scene: String
-@export var disconnect: bool = false
+@export var network_disconnect: bool = false
 
 func _ready():
 	super._ready()
@@ -11,7 +11,7 @@ func _ready():
 
 func change_scene():
 	if scene:
-		if disconnect:
+		if network_disconnect:
 			Wrapper._end_session(scene)
 		else:
 			Wrapper._load_scene(scene)

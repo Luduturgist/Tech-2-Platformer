@@ -15,6 +15,7 @@ func _start(m: PlayerMovement, sig = null):
 	fx = move.find_child(VFX_ID, true)
 	fx.brace_released.connect(_release_action)
 	move.energy.charge_depleted.connect(PlayerInput.player_brace_release.emit)
+	fx.drop_bar.visible = true
 
 func _perform_action():
 	#move.taking_action = true
@@ -23,6 +24,9 @@ func _perform_action():
 	
 	move.taking_action = true
 	fx.rpc("set_brace", 0)
+	fx.drop_bar.max_value = time
+	fx.drop_bar.value = time
+
 	move.speed_mods.get_or_add(SLOW_MOD_ID, slow)
 	move.velocity.x = clamp(move.velocity.x, -clamp_x, clamp_x)
 	if not move.is_on_floor():

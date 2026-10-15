@@ -21,6 +21,8 @@
 [ext_resource type="Script" uid="uid://tkxccr2y7lnf" path="res://Enemies/Basic Enemy/enemy_flash.gd" id="12_d1sot"]
 [ext_resource type="Script" uid="uid://ccojqa1fadpey" path="res://Interacteable/Events/push_object.gd" id="14_boe6u"]
 [ext_resource type="AudioStream" uid="uid://cfqyqi7a4vbjf" path="res://Player/SFX/Attack_Dash.wav" id="16_6mt2j"]
+[ext_resource type="Texture2D" uid="uid://dvsj3ehg7h748" path="res://Level 1/Tiles/ground midmid.png" id="18_23l0h"]
+[ext_resource type="Texture2D" uid="uid://dl2vm5eafyl21" path="res://Player/VFX/Shield.png" id="18_b7chj"]
 
 [sub_resource type="Resource" id="Resource_mci8t"]
 resource_local_to_scene = true
@@ -64,6 +66,12 @@ resource_local_to_scene = true
 shader = ExtResource("10_b7chj")
 shader_parameter/flash_color = Color(0.9, 0.61439997, 0.594, 1)
 shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d1sot"]
+blend_mode = 1
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_b7chj"]
+load_path = "res://.godot/imported/ground midmid.png-4fd35c9f907c3e0c8586928720ae9c07.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_awm26"]
 size = Vector2(15, 26)
@@ -382,37 +390,38 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.5, 0.45591667, 0.385, 0.41568628)
 
-[node name="Brace" type="Area2D" parent="Pivot/VFX" unique_id=1493632730]
+[node name="Brace" type="Area2D" parent="Pivot/VFX" unique_id=1493632730 node_paths=PackedStringArray("drop_bar")]
 visible = false
 z_index = 2
 position = Vector2(2, 0)
 script = ExtResource("8_tjj38")
 per_hit_drain = 10
+drop_bar = NodePath("Sprite2D/TextureProgressBar")
 metadata/_edit_group_ = true
 metadata/Mortal = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot/VFX/Brace" unique_id=1834553025]
+material = SubResource("CanvasItemMaterial_d1sot")
+position = Vector2(0, -17)
+texture = ExtResource("18_b7chj")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Pivot/VFX/Brace/Sprite2D" unique_id=241719989]
 visible = false
-position = Vector2(0, -24)
+offset_left = 1.0
+offset_top = 20.000002
+offset_right = 33.0
+offset_bottom = 52.0
+scale = Vector2(0.27089688, 0.08330009)
+step = 0.0
+value = 55.365
+texture_under = SubResource("CompressedTexture2D_b7chj")
+texture_progress = ExtResource("18_23l0h")
+tint_progress = Color(13.683935, 18.892157, 18.892157, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/VFX/Brace" unique_id=331385000]
 position = Vector2(3.5, -17)
 shape = SubResource("RectangleShape2D_awm26")
 disabled = true
-
-[node name="Debug" type="ColorRect" parent="Pivot/VFX/Brace" unique_id=1037213798]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1.0
-offset_top = -30.0
-offset_right = 11.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
 
 [node name="Attack" type="Polygon2D" parent="Pivot/VFX" unique_id=895463159]
 visible = false

@@ -1,4 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://b5dqm6b0upucg"]
 
+[ext_resource type="FontFile" uid="uid://yigdxnh6d6pg" path="res://UI/Fonts/depixel/DePixelHalbfett.ttf" id="1_3j4eq"]
+
 [resource]
-default_font_size = 28
+default_font = ExtResource("1_3j4eq")
+default_font_size = 18

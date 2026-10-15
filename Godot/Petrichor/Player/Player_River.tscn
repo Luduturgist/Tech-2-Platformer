@@ -10,12 +10,12 @@
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="7_otcxl"]
 [ext_resource type="Shader" uid="uid://b7ehpm6uxr42p" path="res://Enemies/flash_mat_shader.gdshader" id="8_hq4ce"]
 
-[sub_resource type="Resource" id="Resource_otcxl"]
+[sub_resource type="Resource" id="Resource_hq4ce"]
 resource_local_to_scene = true
 script = ExtResource("2_hq4ce")
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
-[sub_resource type="Resource" id="Resource_hq4ce"]
+[sub_resource type="Resource" id="Resource_tua64"]
 resource_local_to_scene = true
 script = ExtResource("2_wfmxh")
 fade_path = NodePath("Pivot/VFX/Cheer")
@@ -26,12 +26,12 @@ script = ExtResource("3_wfmxh")
 air_repel = Vector2(-80, -750)
 metadata/_custom_type_script = "uid://tv13wd5op1f0"
 
-[sub_resource type="Resource" id="Resource_tua64"]
+[sub_resource type="Resource" id="Resource_5xf8n"]
 resource_local_to_scene = true
 script = ExtResource("5_8voip")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_5xf8n"]
+[sub_resource type="Resource" id="Resource_05b10"]
 resource_local_to_scene = true
 script = ExtResource("6_8voip")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
@@ -44,10 +44,10 @@ windupvfx_path = NodePath("Pivot/VFX/Windup")
 caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
 metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_g73lx"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_84swu"]
 resource_local_to_scene = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_05b10"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l8a4u"]
 resource_local_to_scene = true
 shader = ExtResource("8_hq4ce")
 shader_parameter/flash_color = Color(0.45432645, 0.793986, 0.47905928, 1)
@@ -59,18 +59,18 @@ size = Vector2(13, 29)
 [node name="Player_River" unique_id=1254970227 instance=ExtResource("1_3funa")]
 move_speed = 160.0
 accel = 1000.0
-energy = SubResource("Resource_otcxl")
-friendly = SubResource("Resource_hq4ce")
+energy = SubResource("Resource_hq4ce")
+friendly = SubResource("Resource_tua64")
 move_ability = SubResource("Resource_1w6pk")
-brace = SubResource("Resource_tua64")
-impact_action = SubResource("Resource_5xf8n")
+brace = SubResource("Resource_5xf8n")
+impact_action = SubResource("Resource_05b10")
 attack = SubResource("Resource_g73lx")
 
 [node name="AudioStreamPlayer" parent="." index="0" unique_id=1403816157]
-stream = SubResource("AudioStreamPolyphonic_g73lx")
+stream = SubResource("AudioStreamPolyphonic_84swu")
 
 [node name="Animated Sprite" parent="Pivot" parent_id_path=PackedInt32Array(615041083) index="0" unique_id=1434542993]
-material = SubResource("ShaderMaterial_05b10")
+material = SubResource("ShaderMaterial_l8a4u")
 sprite_frames = ExtResource("7_8voip")
 autoplay = "Idle"
 
@@ -78,6 +78,9 @@ autoplay = "Idle"
 position = Vector2(6, -2)
 per_hit_drain = 1
 drain_interval = 4.0
+
+[node name="Sprite2D" parent="Pivot/VFX/Brace" index="0" unique_id=1834553025]
+position = Vector2(-5, -15)
 
 [node name="Attack" parent="Pivot/VFX" parent_id_path=PackedInt32Array(1333519426) index="5" unique_id=895463159]
 color = Color(0.12941177, 0.94509804, 0.75686276, 1)

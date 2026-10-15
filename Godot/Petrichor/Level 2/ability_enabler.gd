@@ -7,20 +7,35 @@ extends Interacteable
 @export var dependency: Hold_Interact
 @export var helper_label: Label
 @export var helper_text: String
+@export var signal_light: Node2D
+@export var available_sfx: AudioStream
+@export var unavailable_sfx: AudioStream
+
+@export var display_sprites: Array[Node2D]
 
 var tooken: bool = false
 
 enum ability_type {
-	Friendly,
-	Movement,
 	Brace,
-	Impact,
-	Attack
+	Swing,
+	Push
 }
 
 func _ready() -> void:
 	super._ready()
 	interacted.connect(try_add_ability)
+	display_sprites[type].visible = true
+	dependency.activated.connect(availability_feedback.bind(true))
+	dependency.deactivated.connect(availability_feedback.bind(false))
+
+func availability_feedback(value: bool):
+	signal_light.visible = value
+	if value:
+		if available_sfx:
+			$AudioStreamPlayer2D.play(available_sfx)
+	else:
+		if unavailable_sfx:
+			$AudioStreamPlayer2D.play(unavailable_sfx)
 
 func try_add_ability():
 	var depend: bool = not dependency or dependency.pressed
@@ -32,37 +47,17 @@ func try_add_ability():
 	var input: Signal
 	
 	match type:
-		ability_type.Friendly:
+		ability_type.Brace:
 			if not player.friendly:
 				player.friendly = ability
 				input = PlayerInput.player_interact
-			else:
-				return
-		ability_type.Movement:
+
+		ability_type.Swing:
 			if not player.move_ability:
 				player.move_ability = ability
 				input = PlayerInput.player_special_movement
-			elif not player.move_ability.can_push:
-				player.move_ability.can_push = true
-			else:
-				return
-		ability_type.Brace:
-			if not player.brace:
-				player.brace = ability
-				input = PlayerInput.player_brace
-			else:
-				return
-		ability_type.Impact:
-			if not player.impact_action:
-				player.impact_action = ability
-			else:
-				return
-		ability_type.Attack:
-			if not player.attack:
-				player.attack = ability
-				input = PlayerInput.player_attack
-			else:
-				return
+		ability_type.Push:
+			player.move_ability.can_push = true
 	
 	rpc("disable_bestowal")
 	
@@ -76,6 +71,7 @@ func try_add_ability():
 @rpc("call_local", "reliable", "any_peer")
 func disable_bestowal():
 	ability_sprite.visible = false
+	signal_light.visible = false
 	tooken = true
 	helper_label.visible = true
 	helper_label.text = helper_text

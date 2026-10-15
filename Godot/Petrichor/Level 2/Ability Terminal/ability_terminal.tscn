@@ -1,17 +1,22 @@
 [gd_scene format=3 uid="uid://cdkmks1f2b0jc"]
 
 [ext_resource type="Script" uid="uid://dfwukw8gvmllg" path="res://Level 2/ability_enabler.gd" id="1_2syum"]
+[ext_resource type="Texture2D" uid="uid://bkcjpa3rj7j3v" path="res://Level 2/Environment/Pedestal.png" id="3_2syum"]
 [ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="3_3v41d"]
+[ext_resource type="Texture2D" uid="uid://dl2vm5eafyl21" path="res://Player/VFX/Shield.png" id="4_t2ofs"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="5_3v41d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(20, 19)
 
-[node name="Ability Terminal" type="Node2D" unique_id=2053870276 node_paths=PackedStringArray("ability_sprite", "helper_label", "player_area")]
+[node name="Ability Terminal" type="Node2D" unique_id=2053870276 node_paths=PackedStringArray("ability_sprite", "helper_label", "signal_light", "display_sprites", "player_area")]
 script = ExtResource("1_2syum")
-ability_sprite = NodePath("Sprite2D")
+ability_sprite = NodePath("Shield Sprite")
 type = 2
 helper_label = NodePath("Label")
 helper_text = "Keyboard\\nController"
+signal_light = NodePath("Light")
+display_sprites = [NodePath("Shield Sprite"), NodePath("Swing"), NodePath("Push")]
 player_area = NodePath("Area_Detector")
 single_use = false
 metadata/_custom_type_script = "uid://46d3ayd01ra7"
@@ -21,38 +26,38 @@ script = ExtResource("3_3v41d")
 metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Detector" unique_id=1411317654]
+visible = false
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_c1nht")
 
-[node name="Pedestal" type="ColorRect" parent="." unique_id=810741180]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -9.0
-offset_top = -3.0
-offset_right = 9.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.7749491, 0.6568706, 0.5024602, 1)
+[node name="Pedestal" type="Sprite2D" parent="." unique_id=16026614]
+position = Vector2(0, -16)
+texture = ExtResource("3_2syum")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=16026614]
+[node name="Light" type="PointLight2D" parent="." unique_id=1802228142]
+visible = false
+light_mask = 3
+position = Vector2(0, -15)
+color = Color(0.53999996, 1, 0.9233333, 1)
+energy = 0.87
+range_item_cull_mask = 3
+texture = ExtResource("5_3v41d")
+texture_scale = 2.0
 
-[node name="Debug" type="ColorRect" parent="Sprite2D" unique_id=843048776]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -6.5
-offset_top = -30.5
-offset_right = 5.5
-offset_bottom = -7.5
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.40313193, 1.1573894, 1.3459541, 0.52156866)
+[node name="Shield Sprite" type="Sprite2D" parent="." unique_id=2104453087]
+visible = false
+position = Vector2(-9, -19)
+texture = ExtResource("4_t2ofs")
+
+[node name="Swing" type="Sprite2D" parent="." unique_id=1374015106]
+visible = false
+position = Vector2(-9, -19)
+texture = ExtResource("4_t2ofs")
+
+[node name="Push" type="Sprite2D" parent="." unique_id=664657933]
+visible = false
+position = Vector2(-9, -19)
+texture = ExtResource("4_t2ofs")
 
 [node name="Label" type="Label" parent="." unique_id=5089784]
 visible = false
@@ -73,3 +78,5 @@ text = "Keyboard
 Controller"
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=722576062]

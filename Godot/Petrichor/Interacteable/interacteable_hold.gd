@@ -10,6 +10,9 @@ var exhausted: bool = false
 var detected_players: Array[PlayerMovement]
 var interacting_player: PlayerMovement
 
+signal activated
+signal deactivated
+
 
 func _ready():
 	detection_area.target_found.connect(track)
@@ -53,6 +56,10 @@ func _exhaust():
 func button_interact(value: bool):
 	pressed = value
 	redlight.visible = not value
+	if value:
+		activated.emit()
+	else:
+		deactivated.emit()
 
 @rpc("any_peer", "call_local", "reliable")
 func exhaust_button():
@@ -62,3 +69,4 @@ func exhaust_button():
 	for p in detected_players:
 		p.special_interact.disconnect(activate)
 	detected_players.clear()
+	deactivated.emit()

@@ -95,7 +95,7 @@ public class Movement : MonoBehaviour
 
     private void FinishDeath()
     {
-        GameManager.ReloadScene();
+        GameSession.ProcessPlayerDeath();
     }
 
     bool CheckFloor()

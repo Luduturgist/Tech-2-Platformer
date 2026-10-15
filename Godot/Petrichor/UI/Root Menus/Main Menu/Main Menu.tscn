@@ -45,7 +45,7 @@ theme_override_constants/separation = 28
 [node name="Hosting" type="HBoxContainer" parent="Connection Menu/Connection Interface" unique_id=1850283834]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 10
+theme_override_constants/separation = 28
 
 [node name="TextureRect" type="TextureRect" parent="Connection Menu/Connection Interface/Hosting" unique_id=1113399546]
 self_modulate = Color(1, 1, 1, 0)
@@ -76,7 +76,7 @@ text = "10.0.0.1"
 [node name="Joining" type="HBoxContainer" parent="Connection Menu/Connection Interface" unique_id=1006879946]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 16
+theme_override_constants/separation = 33
 
 [node name="TextureRect" type="TextureRect" parent="Connection Menu/Connection Interface/Joining" unique_id=242393591]
 self_modulate = Color(1, 1, 1, 0)
@@ -108,7 +108,7 @@ expand_to_text_length = true
 [node name="Game Interface" type="HBoxContainer" parent="Connection Menu" unique_id=515100057]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 46
+theme_override_constants/separation = 26
 
 [node name="Controls" type="Button" parent="Connection Menu/Game Interface" unique_id=377714886]
 layout_mode = 2
