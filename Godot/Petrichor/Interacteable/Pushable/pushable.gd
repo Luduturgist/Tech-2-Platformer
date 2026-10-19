@@ -1,7 +1,5 @@
 @abstract
-
 extends Area2D
-
 class_name Pushable
 
 var pushed: bool

@@ -1,7 +1,30 @@
 [gd_resource type="Theme" format=3 uid="uid://b5dqm6b0upucg"]
 
-[ext_resource type="FontFile" uid="uid://yigdxnh6d6pg" path="res://UI/Fonts/depixel/DePixelHalbfett.ttf" id="1_3j4eq"]
+[ext_resource type="FontFile" uid="uid://bsly53t3nnkh4" path="res://UI/Fonts/yoster.ttf" id="1_3j4eq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j4eq"]
+content_margin_left = 15.0
+content_margin_top = 10.0
+content_margin_right = 15.0
+content_margin_bottom = 10.0
+bg_color = Color(0.25437155, 0.49763367, 0.27652958, 0.7882353)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 3
+shadow_size = 3
+shadow_offset = Vector2(-3, 3)
+
+[sub_resource type="FontVariation" id="FontVariation_e2rs4"]
+base_font = ExtResource("1_3j4eq")
+spacing_glyph = -1
+spacing_space = 1
 
 [resource]
-default_font = ExtResource("1_3j4eq")
-default_font_size = 18
+default_font = SubResource("FontVariation_e2rs4")
+default_font_size = 24
+Button/constants/outline_size = 3
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 3
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_3j4eq")

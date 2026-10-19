@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://d2n31xd3ync0h"]
 
-[ext_resource type="Texture2D" uid="uid://clygs5landtpc" path="res://Level 4/Tiles/Level 4 Tile Atlas.png" id="1_n7wdr"]
+[ext_resource type="Texture2D" uid="uid://b6buifnr2ored" path="res://Level 3/Tiles/Level 4 Tile Atlas.png" id="1_n7wdr"]
 [ext_resource type="Texture2D" uid="uid://cle4okjbwtpsj" path="res://Level 1/Tiles/wall2.png" id="2_nrdek"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgj2s"]

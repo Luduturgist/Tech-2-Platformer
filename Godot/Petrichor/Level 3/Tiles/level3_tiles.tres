@@ -1,7 +1,7 @@
 [gd_resource type="TileSet" format=3 uid="uid://bjne0cyg4oymd"]
 
 [ext_resource type="Texture2D" uid="uid://dnbk53nc0236e" path="res://Level 3/Tiles/Level 3 Tile Atlas.png" id="1_en4xp"]
-[ext_resource type="Texture2D" uid="uid://cle4okjbwtpsj" path="res://Level 1/Tiles/wall2.png" id="2_ua7y2"]
+[ext_resource type="Texture2D" uid="uid://exok88nn3a0h" path="res://Level 3/Tiles/Brick Background.png" id="2_fwaok"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgj2s"]
 texture = ExtResource("1_en4xp")
@@ -128,7 +128,7 @@ texture_region_size = Vector2i(32, 32)
 3:2/0/terrains_peering_bit/left_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvd8i"]
-texture = ExtResource("2_ua7y2")
+texture = ExtResource("2_fwaok")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 

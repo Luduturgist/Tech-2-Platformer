@@ -46,7 +46,7 @@ resource_local_to_scene = true
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6li"]
 size = Vector2(22, 19)
 
-[node name="GroundedEnemyTemplate" unique_id=1690093432 instance=ExtResource("1_jxspg")]
+[node name="Filing Enemy" unique_id=1690093432 instance=ExtResource("1_jxspg")]
 accel = 550.0
 attack_range = 30.0
 knockback = Vector2(-180, 40)

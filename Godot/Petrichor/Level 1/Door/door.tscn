@@ -6,13 +6,16 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6t00"]
 size = Vector2(16, 32)
 
-[node name="Door" type="Node2D" unique_id=1339426610 node_paths=PackedStringArray("door_block", "animator")]
+[node name="Door" type="Node2D" unique_id=1339426610 node_paths=PackedStringArray("door_block", "player", "animator")]
 z_index = -5
 script = ExtResource("1_4sdl6")
 lock_open = true
 door_block = NodePath("Door")
+player = NodePath("AudioStreamPlayer2D")
 animator = NodePath("AnimatedSprite2D")
 metadata/_edit_group_ = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=179632381]
 
 [node name="Door" type="StaticBody2D" parent="." unique_id=1837409862]
 collision_layer = 16

@@ -5,11 +5,28 @@ class_name Attack_Lever
 @export var event_objects: Array[Event_Object]
 @export var oneshot: bool = true
 @export var animator: AnimatedSprite2D
+@export var light: Node2D
+@export var enable_sound: AudioStream
+@export var trigger_sound: AudioStream
 
 var activated: bool = false
 
 func _ready():
 	set_meta("Mortal", true)
+	if dependency:
+		dependency.activated.connect(_indicate_availability.bind(true))
+		dependency.deactivated.connect(_indicate_availability.bind(false))
+	else:
+		light.visible = true
+
+func _indicate_availability(value: bool):
+	if activated and oneshot:
+		return
+	
+	light.visible = value
+	if enable_sound:
+		$AudioStreamPlayer2D.stream = enable_sound
+		$AudioStreamPlayer2D.play()
 
 func _take_damage(_amount: int, _pos: float) -> int:
 	if oneshot and activated:
@@ -27,8 +44,11 @@ func flip_lever():
 	if oneshot:
 		dependency._exhaust()
 		set_meta("Mortal", false)
+		light.visible = false
 	
-	$AudioStreamPlayer2D.play()
+	if trigger_sound:
+		$AudioStreamPlayer2D.stream = trigger_sound
+		$AudioStreamPlayer2D.play()
 	activated = not activated
 	var anim: StringName = &"Turn On"
 	if not activated:

@@ -6,40 +6,41 @@
 [ext_resource type="Script" uid="uid://ccxfnquj6nwlc" path="res://Player/Actions/impact_action.gd" id="5_0tx2n"]
 [ext_resource type="TileSet" uid="uid://d2n31xd3ync0h" path="res://Level 4/Tiles/level4_tiles.tres" id="6_bly5b"]
 [ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="6_kbdse"]
-
-[sub_resource type="Resource" id="Resource_bly5b"]
-resource_local_to_scene = true
-script = ExtResource("2_la4ci")
-fade_path = NodePath("Pivot/VFX/Cheer")
-metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+[ext_resource type="PackedScene" uid="uid://8mjyj73nbkvn" path="res://Level 4/Breakable Wall/pushable_wall.tscn" id="7_la4ci"]
 
 [sub_resource type="Resource" id="Resource_la4ci"]
 resource_local_to_scene = true
+script = ExtResource("2_la4ci")
+fade_path = NodePath("Pivot/VFX/Cheer")
+metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_gy5bf"]
+resource_local_to_scene = true
 script = ExtResource("4_mkekj")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_gy5bf"]
+[sub_resource type="Resource" id="Resource_mkekj"]
 resource_local_to_scene = true
 script = ExtResource("5_0tx2n")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_mkekj"]
+[sub_resource type="Resource" id="Resource_0tx2n"]
 resource_local_to_scene = true
 script = ExtResource("2_la4ci")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[sub_resource type="Resource" id="Resource_0tx2n"]
+[sub_resource type="Resource" id="Resource_kbdse"]
 resource_local_to_scene = true
 script = ExtResource("4_mkekj")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_kbdse"]
+[sub_resource type="Resource" id="Resource_1wr68"]
 resource_local_to_scene = true
 script = ExtResource("5_0tx2n")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_1wr68"]
+[sub_resource type="Resource" id="Resource_x2ae4"]
 resource_local_to_scene = true
 script = ExtResource("6_kbdse")
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
@@ -52,23 +53,24 @@ metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 [node name="Level4" unique_id=786337047 instance=ExtResource("1_bly5b")]
 
 [node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
-friendly = SubResource("Resource_bly5b")
-brace = SubResource("Resource_la4ci")
-impact_action = SubResource("Resource_gy5bf")
+friendly = SubResource("Resource_la4ci")
+brace = SubResource("Resource_gy5bf")
+impact_action = SubResource("Resource_mkekj")
 
 [node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
-friendly = SubResource("Resource_mkekj")
-brace = SubResource("Resource_0tx2n")
-impact_action = SubResource("Resource_kbdse")
-attack = SubResource("Resource_1wr68")
+friendly = SubResource("Resource_0tx2n")
+brace = SubResource("Resource_kbdse")
+impact_action = SubResource("Resource_1wr68")
+attack = SubResource("Resource_x2ae4")
 
 [node name="Terrain" parent="Midgard" parent_id_path=PackedInt32Array(431883485) index="2" unique_id=391369680]
 tile_set = ExtResource("6_bly5b")
 
 [node name="Sceneload_Detector" parent="." index="8" unique_id=988691633]
 scene = "res://UI/Root Menus/Credits/Credits Menu.tscn"
-disconnect = true
 
 [node name="CollisionShape2D" parent="Sceneload_Detector" index="0" unique_id=1652724451]
 position = Vector2(63, 0)
 shape = SubResource("RectangleShape2D_x2ae4")
+
+[node name="Pushable_Wall" parent="." index="9" unique_id=1177164774 instance=ExtResource("7_la4ci")]

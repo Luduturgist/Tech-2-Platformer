@@ -4,7 +4,9 @@ class_name Door_Object
 @export var lock_open := false
 @export var door_block: Node2D
 @export var start_open: bool = false
-
+@export var player: AudioStreamPlayer2D
+@export var door_open_sfx: AudioStream
+@export var door_close_sfx: AudioStream
 
 @export var animator: AnimatedSprite2D
 
@@ -25,6 +27,13 @@ func _sync_door():
 @rpc("any_peer", "call_local", "reliable")
 func open_door(value: int):
 	door_block.visible = value
+	
+	if value and door_open_sfx:
+		player.stream = door_open_sfx
+		player.play()
+	elif not value and door_close_sfx:
+		player.stream = door_close_sfx
+		player.play()
 	
 	if animator:
 		var anim: StringName = &"Open"
