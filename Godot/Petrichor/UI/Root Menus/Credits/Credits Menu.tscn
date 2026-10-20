@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bgmya234d1l0b" path="res://UI/Sub Menus/Quit/quit_button.gd" id="2_hf8i6"]
 
 [node name="CreditsMenu" type="CanvasLayer" unique_id=1698591925 node_paths=PackedStringArray("menu_button")]
+layer = -1
 script = ExtResource("1_shfxb")
 menu_button = NodePath("VBoxContainer/Menu Button")
 menu_scene = "res://UI/Root Menus/Main Menu/Main Menu.tscn"

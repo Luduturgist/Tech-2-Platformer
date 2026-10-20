@@ -8,6 +8,7 @@ func _ready():
 	super._ready()
 	if is_multiplayer_authority():
 		target_found.connect(change_scene)
+	PlayerInput.player_debug.connect(change_scene)
 
 func change_scene():
 	if scene:

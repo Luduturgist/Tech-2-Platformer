@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dnbk53nc0236e" path="res://Level 3/Tiles/Level 3 Tile Atlas.png" id="1_en4xp"]
 [ext_resource type="Texture2D" uid="uid://exok88nn3a0h" path="res://Level 3/Tiles/Brick Background.png" id="2_fwaok"]
+[ext_resource type="Texture2D" uid="uid://frv2prl72ysk" path="res://Level 3/Platform.png" id="3_86v7m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgj2s"]
 texture = ExtResource("1_en4xp")
@@ -132,6 +133,13 @@ texture = ExtResource("2_fwaok")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vu26h"]
+texture = ExtResource("3_86v7m")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -8, -16, -8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 16
@@ -141,3 +149,4 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_cgj2s")
 sources/1 = SubResource("TileSetAtlasSource_hvd8i")
+sources/2 = SubResource("TileSetAtlasSource_vu26h")
