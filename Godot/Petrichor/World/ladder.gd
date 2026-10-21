@@ -14,7 +14,7 @@ func _ready():
 	body_entered.connect(listen_to_player.bind(true))
 	body_exited.connect(listen_to_player.bind(false))
 	PlayerInput.player_vertical_pressed.connect(start_climb)
-	PlayerInput.player_jump.connect(start_climb)
+	PlayerInput.player_jump.connect(start_climb.bind(false))
 	PlayerInput.player_jump.connect(bail)
 
 var cooldown_timer: float
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if climbing and within_limits:
 		player.velocity = Vector2(0, -PlayerInput.player_movement.y * climbing_speed)
 		player.move_and_slide()
-		print("movvign")
+		#print("movvign")
 	
 	within_limits = player.global_position.y >= lower_limit.global_position.y and player.global_position.y <= upper_limit.global_position.y
 	
@@ -60,8 +60,11 @@ func listen_to_player(body: Node2D, value: bool):
 			bail()
 
 var climb_started: bool = false
-func start_climb():
-	if listening and not climbing and cooldown_timer == 0:
+func start_climb(automatic: bool = true):
+	if not automatic:
+		automatic = not PlayerMovement.active.is_on_floor()
+	
+	if listening and not climbing and cooldown_timer == 0 and automatic:
 		player.using_gravity = false
 		climb_started = true
 		climbing = true

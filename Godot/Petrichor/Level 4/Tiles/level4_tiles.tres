@@ -1,7 +1,8 @@
 [gd_resource type="TileSet" format=3 uid="uid://d2n31xd3ync0h"]
 
-[ext_resource type="Texture2D" uid="uid://b6buifnr2ored" path="res://Level 3/Tiles/Level 4 Tile Atlas.png" id="1_n7wdr"]
-[ext_resource type="Texture2D" uid="uid://cle4okjbwtpsj" path="res://Level 1/Tiles/wall2.png" id="2_nrdek"]
+[ext_resource type="Texture2D" uid="uid://clygs5landtpc" path="res://Level 4/Tiles/Level 4 Tile Atlas.png" id="1_n7wdr"]
+[ext_resource type="Texture2D" uid="uid://bmjj2fx0hvppf" path="res://Level 4/Tiles/lab Wall.png" id="2_sc4g7"]
+[ext_resource type="Texture2D" uid="uid://ddoi6dpj8bv5i" path="res://Level 4/Lab Platform.png" id="3_sc4g7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cgj2s"]
 texture = ExtResource("1_n7wdr")
@@ -128,9 +129,16 @@ texture_region_size = Vector2i(32, 32)
 3:2/0/terrains_peering_bit/left_side = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hvd8i"]
-texture = ExtResource("2_nrdek")
+texture = ExtResource("2_sc4g7")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26pas"]
+texture = ExtResource("3_sc4g7")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, -12, -16, -12)
+0:0/0/physics_layer_0/polygon_0/one_way = true
 
 [resource]
 tile_size = Vector2i(32, 32)
@@ -141,3 +149,4 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_cgj2s")
 sources/1 = SubResource("TileSetAtlasSource_hvd8i")
+sources/2 = SubResource("TileSetAtlasSource_26pas")

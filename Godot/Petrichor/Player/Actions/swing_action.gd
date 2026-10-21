@@ -8,6 +8,7 @@ class_name Swing_Action
 @export var air_repel: Vector2 = Vector2(-50, -150)
 @export var energy_drain: int = 0
 @export var cooldown: float = 0.5
+@export var double_jump_buffer: float = 0.2
 var cast: ShapeCast2D
 
 func _start(m: PlayerMovement, sig = null):
@@ -15,7 +16,10 @@ func _start(m: PlayerMovement, sig = null):
 	m.player_land.connect(_reset_swing)
 	cast = m.push_cast
 
+
+
 var can_swing: bool = false
+
 func _perform_action():
 	if not can_swing and not move.is_on_floor() or move.taking_action:
 		return
@@ -25,7 +29,7 @@ func _perform_action():
 		energy = float(move.energy._drain_charge(energy_drain))/ float(energy_drain)
 		if energy <= 0: return
 	
-	if Game_Scene.active.friend.cheering:
+	if Game_Scene.active.friend.cheering and false:
 		perform_pull(energy)
 	elif can_push:
 		perform_push(energy)

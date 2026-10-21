@@ -1,0 +1,23 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://b4u2tuvsx0gxx"]
+
+[ext_resource type="Texture2D" uid="uid://cgm1en66t5jaw" path="res://Level 3/Pain Node/Pain Node Intact.png" id="1_5hlu7"]
+[ext_resource type="Texture2D" uid="uid://f4f1cd25kpvr" path="res://Level 3/Pain Node/Pain Node Broken.png" id="2_fkqr1"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5hlu7")
+}],
+"loop": 1,
+"name": &"Turn Off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fkqr1")
+}],
+"loop": 1,
+"name": &"Turn On",
+"speed": 5.0
+}]

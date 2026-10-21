@@ -23,12 +23,14 @@ func _perform_action():
 	#move.taking_action = true
 	move.special_interact.emit()
 	flashing = true
-	await fader.fade_ended
+	await fader.fade_ended 
 	if flashing:
 		move.interact_end.emit()
+		flashing = false
 	#move.taking_action = false
 
 func _update(_delta: float):
+	return
 	if flashing and PlayerInput.player_movement.x != 0:
 		move.interact_end.emit()
 		flashing = false

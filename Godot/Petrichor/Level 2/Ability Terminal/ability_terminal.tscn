@@ -2,31 +2,26 @@
 
 [ext_resource type="Script" uid="uid://dfwukw8gvmllg" path="res://Level 2/ability_enabler.gd" id="1_2syum"]
 [ext_resource type="Texture2D" uid="uid://bkcjpa3rj7j3v" path="res://Level 2/Environment/Pedestal.png" id="3_2syum"]
-[ext_resource type="Script" uid="uid://c8jut5pl2g0l5" path="res://Enemies/detection_area.gd" id="3_3v41d"]
 [ext_resource type="Texture2D" uid="uid://dl2vm5eafyl21" path="res://Player/VFX/Shield.png" id="4_t2ofs"]
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="5_3v41d"]
+[ext_resource type="Texture2D" uid="uid://bptb4m0038tal" path="res://Level 3/Swing Graphic.png" id="5_21keq"]
+[ext_resource type="Texture2D" uid="uid://birq2e0oh16j3" path="res://Level 4/Push Graphic.png" id="6_ru8s6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
 size = Vector2(20, 19)
 
-[node name="Ability Terminal" type="Node2D" unique_id=2053870276 node_paths=PackedStringArray("ability_sprite", "helper_label", "signal_light", "display_sprites", "player_area")]
+[node name="Ability Terminal" type="Area2D" unique_id=2099992946 node_paths=PackedStringArray("helper_label", "display_sprites", "light")]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_2syum")
-ability_sprite = NodePath("Shield Sprite")
-type = 2
 helper_label = NodePath("Label")
 helper_text = "Keyboard\\nController"
-signal_light = NodePath("Light")
 display_sprites = [NodePath("Shield Sprite"), NodePath("Swing"), NodePath("Push")]
-player_area = NodePath("Area_Detector")
-single_use = false
-metadata/_custom_type_script = "uid://46d3ayd01ra7"
+oneshot = false
+light = NodePath("Light")
+metadata/Mortal = true
 
-[node name="Area_Detector" type="Area2D" parent="." unique_id=1932174788]
-script = ExtResource("3_3v41d")
-metadata/_custom_type_script = "uid://c8jut5pl2g0l5"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area_Detector" unique_id=1411317654]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=342047875]
 position = Vector2(0, -9.5)
 shape = SubResource("RectangleShape2D_c1nht")
 
@@ -51,13 +46,13 @@ texture = ExtResource("4_t2ofs")
 
 [node name="Swing" type="Sprite2D" parent="." unique_id=1374015106]
 visible = false
-position = Vector2(-9, -19)
-texture = ExtResource("4_t2ofs")
+position = Vector2(1, -18)
+texture = ExtResource("5_21keq")
 
 [node name="Push" type="Sprite2D" parent="." unique_id=664657933]
 visible = false
-position = Vector2(-9, -19)
-texture = ExtResource("4_t2ofs")
+position = Vector2(-1, -18)
+texture = ExtResource("6_ru8s6")
 
 [node name="Label" type="Label" parent="." unique_id=5089784]
 visible = false

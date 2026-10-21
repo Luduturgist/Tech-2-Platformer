@@ -54,9 +54,9 @@ size = Vector2(25, 31)
 health = 5
 damage = 2
 speed = 250.0
-accel = 150.0
+accel = 175.0
 attack_range = 0.0
-stun_time = 1.6
+stun_time = 2.0
 knockback = Vector2(-50, -50)
 fall_speed = 50.0
 knockback_stun = 0.0
@@ -72,6 +72,9 @@ metadata/_custom_type_script = "uid://o0mpm37m04yy"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Damage_Area" index="0" unique_id=1013239408]
 position = Vector2(1, -15)
 shape = SubResource("RectangleShape2D_c1nht")
+
+[node name="Detection" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="1" unique_id=424177330]
+visible = false
 
 [node name="CollisionShape2D" parent="Pivot/Detection/Area_Detector" parent_id_path=PackedInt32Array(871215648) index="0" unique_id=2078418004]
 position = Vector2(13, 14)

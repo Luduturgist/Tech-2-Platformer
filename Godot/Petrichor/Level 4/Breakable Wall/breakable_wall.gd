@@ -5,6 +5,7 @@ class_name Pushable_Wall
 @export var wall_graphic: Node2D
 @export var wall_collider: CollisionShape2D
 @export var destruction_sfx: AudioStream
+@export var events: Event_Object
 
 var player: AudioStreamPlayer2D
 
@@ -30,3 +31,7 @@ func destroy_wall(dir: int):
 	if destruction_sfx:
 		player.stream = destruction_sfx
 		player.play()
+	
+	if is_multiplayer_authority():
+		for e in events:
+			e._trigger_event()

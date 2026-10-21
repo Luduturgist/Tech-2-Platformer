@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cdkmks1f2b0jc"]
+
+[ext_resource type="Script" uid="uid://dfwukw8gvmllg" path="res://Level 2/ability_enabler.gd" id="1_2syum"]
+[ext_resource type="Texture2D" uid="uid://bkcjpa3rj7j3v" path="res://Level 2/Environment/Pedestal.png" id="3_2syum"]
+[ext_resource type="Texture2D" uid="uid://dl2vm5eafyl21" path="res://Player/VFX/Shield.png" id="4_t2ofs"]
+[ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="5_3v41d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
+size = Vector2(20, 19)
+
+[node name="Ability Terminal" type="Area2D" unique_id=2099992946 node_paths=PackedStringArray("ability_sprite", "helper_label", "display_sprites", "light")]
+script = ExtResource("1_2syum")
+ability_sprite = NodePath("Shield Sprite")
+type = 2
+helper_label = NodePath("Label")
+helper_text = "Keyboard\\nController"
+display_sprites = [NodePath("Shield Sprite"), NodePath("Swing"), NodePath("Push")]
+light = NodePath("Light")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=342047875]
+position = Vector2(0, -9.5)
+shape = SubResource("RectangleShape2D_c1nht")
+
+[node name="Pedestal" type="Sprite2D" parent="." unique_id=16026614]
+position = Vector2(0, -16)
+texture = ExtResource("3_2syum")
+
+[node name="Light" type="PointLight2D" parent="." unique_id=1802228142]
+visible = false
+light_mask = 3
+position = Vector2(0, -15)
+color = Color(0.53999996, 1, 0.9233333, 1)
+energy = 0.87
+range_item_cull_mask = 3
+texture = ExtResource("5_3v41d")
+texture_scale = 2.0
+
+[node name="Shield Sprite" type="Sprite2D" parent="." unique_id=2104453087]
+visible = false
+position = Vector2(-9, -19)
+texture = ExtResource("4_t2ofs")
+
+[node name="Swing" type="Sprite2D" parent="." unique_id=1374015106]
+visible = false
+position = Vector2(-9, -19)
+texture = ExtResource("4_t2ofs")
+
+[node name="Push" type="Sprite2D" parent="." unique_id=664657933]
+visible = false
+position = Vector2(-9, -19)
+texture = ExtResource("4_t2ofs")
+
+[node name="Label" type="Label" parent="." unique_id=5089784]
+visible = false
+z_index = 100
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -67.0
+offset_right = 40.0
+offset_bottom = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 11
+text = "Keyboard
+Controller"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=722576062]

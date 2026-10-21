@@ -27,6 +27,7 @@
 [sub_resource type="Resource" id="Resource_mci8t"]
 resource_local_to_scene = true
 script = ExtResource("2_elcmi")
+drain_interval = 6.0
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
 [sub_resource type="Resource" id="Resource_5fl5a"]
@@ -53,6 +54,7 @@ metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 [sub_resource type="Resource" id="Resource_53tks"]
 resource_local_to_scene = true
 script = ExtResource("7_tjj38")
+windup = 0.3
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
 windupvfx_path = NodePath("Pivot/VFX/Windup")
 caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
@@ -476,7 +478,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0.25993618, 0.24924125, 0.027146053, 1)
+color = Color(0.37454548, 0.15473175, 0.25279352, 1)
 script = ExtResource("7_boe6u")
 sfx = ExtResource("8_40jis")
 

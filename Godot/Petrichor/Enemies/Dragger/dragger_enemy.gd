@@ -25,6 +25,7 @@ func _physics_process(_delta: float) -> void:
 			rpc("_update_position", position, pivot.scale.x)
 			if attack_behavior.can_attack():
 				rpc("perform_attack")
+				print("attacking")
 				try_swap_animation(2)
 		elif diff.length() > attack_range and not attack_behavior.is_attacking():
 			follow_player(diff, _delta)

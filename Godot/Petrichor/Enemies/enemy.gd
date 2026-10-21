@@ -246,7 +246,6 @@ func _network_stun(source: float):
 func kill_enemy():
 	killed.emit()
 	fertilizer_death()
-
 	
 	#queue_free()
 

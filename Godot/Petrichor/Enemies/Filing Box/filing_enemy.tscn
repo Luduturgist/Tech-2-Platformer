@@ -85,5 +85,6 @@ texture = ExtResource("6_2402i")
 stream = SubResource("AudioStreamPolyphonic_6hxuj")
 
 [node name="CollisionShape2D" parent="." index="3" unique_id=1937080905]
+visible = false
 position = Vector2(1, -9.5)
 shape = SubResource("RectangleShape2D_eb6li")

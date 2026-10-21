@@ -55,7 +55,11 @@ func _exhaust():
 @rpc("any_peer", "call_local", "reliable")
 func button_interact(value: bool):
 	pressed = value
-	redlight.visible = not value
+	#redlight.visible = not value
+	if pressed:
+		redlight.scale = Vector2.ONE * 2
+	else:
+		redlight.scale = Vector2.ONE
 	if value:
 		activated.emit()
 	else:

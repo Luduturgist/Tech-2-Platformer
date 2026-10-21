@@ -10,6 +10,7 @@ class_name Attack_Lever
 @export var trigger_sound: AudioStream
 
 var activated: bool = false
+signal flipped(id: int)
 
 func _ready():
 	set_meta("Mortal", true)
@@ -36,11 +37,11 @@ func _take_damage(_amount: int, _pos: float) -> int:
 	if dependency.pressed:
 		for ob in event_objects:
 			ob._trigger_event()
-		rpc("flip_lever")
+		rpc("flip_lever", multiplayer.get_unique_id())
 	return 0
 
 @rpc("call_local", "reliable", "any_peer")
-func flip_lever():
+func flip_lever(id: int):
 	if oneshot:
 		dependency._exhaust()
 		set_meta("Mortal", false)
@@ -53,6 +54,8 @@ func flip_lever():
 	var anim: StringName = &"Turn On"
 	if not activated:
 		anim = &"Turn Off"
-	animator.animation = anim
-	animator.play()
-	print("Animation")
+	if animator:
+		animator.animation = anim
+		animator.play()
+	#print("Animation")
+	flipped.emit(id)

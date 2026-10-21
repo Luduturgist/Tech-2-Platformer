@@ -126,12 +126,18 @@ var can_jump: bool = true
 func process_jump(override: bool = false):
 	if (is_on_floor() and can_jump) or override:
 		velocity.y = -jump * sum_speed_mods()
+	if not is_on_floor() and not taking_action and move_ability and Game_Scene.active.friend.cheering:
+		move_ability.perform_pull(1)
+		print("pull")
 
 func _physics_process(delta: float) -> void:
 	if friendly:
 		friendly._update(delta)
 	if brace:
 		brace._update(delta)
+	
+	if friendly.flashing:
+		return
 	
 	if not local:
 		if network_position != Vector2.INF:

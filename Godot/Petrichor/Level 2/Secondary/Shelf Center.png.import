@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6buifnr2ored"
-path="res://.godot/imported/Level 4 Tile Atlas.png-14de311ad29489c840ce59929a261653.ctex"
+uid="uid://xkv2vtcxrf2a"
+path="res://.godot/imported/Shelf Center.png-269b35ea4fc8861eced04b40c1c24617.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level 3/Tiles/Level 4 Tile Atlas.png"
-dest_files=["res://.godot/imported/Level 4 Tile Atlas.png-14de311ad29489c840ce59929a261653.ctex"]
+source_file="res://Level 2/Secondary/Shelf Center.png"
+dest_files=["res://.godot/imported/Shelf Center.png-269b35ea4fc8861eced04b40c1c24617.ctex"]
 
 [params]
 

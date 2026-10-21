@@ -80,6 +80,12 @@ texture = ExtResource("4_ggsvp")
 material = SubResource("ShaderMaterial_l1tq2")
 texture = ExtResource("5_uvwqa")
 
+[node name="Windup" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="5" unique_id=1983270390]
+color = Color(0.5623199, 0.15620002, 0.71, 1)
+
+[node name="Attack" parent="Pivot" parent_id_path=PackedInt32Array(1211966545) index="6" unique_id=1330077870]
+color = Color(0.56078434, 0.15294118, 0.70980394, 1)
+
 [node name="AudioStreamPlayer2D" parent="." index="1" unique_id=1612581139]
 stream = SubResource("AudioStreamPolyphonic_f3tag")
 

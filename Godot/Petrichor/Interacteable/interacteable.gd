@@ -12,6 +12,9 @@ signal interacted(id: float)
 
 var local := true
 
+func _take_damage(amount: int):
+	interact()
+
 func _ready() -> void:
 	if attackable:
 		set_meta("Mortal", true)

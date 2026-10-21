@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhdk64im2b1xx"
-path="res://.godot/imported/Shelf Left.png-94b2f9dcbdc32e61e48fc702b9ff59d7.ctex"
+uid="uid://ddtooirbocg5p"
+path="res://.godot/imported/lab_horizontalleft.png-2a38272a8b663cca339035850ce5af03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level 2/Environment/Shelf Left.png"
-dest_files=["res://.godot/imported/Shelf Left.png-94b2f9dcbdc32e61e48fc702b9ff59d7.ctex"]
+source_file="res://Level 4/Tiles/lab_horizontalleft.png"
+dest_files=["res://.godot/imported/lab_horizontalleft.png-2a38272a8b663cca339035850ce5af03.ctex"]
 
 [params]
 
