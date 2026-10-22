@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dbdgqdgklcc2" path="res://World/Basic Light.png" id="4_nwxwh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdx0b"]
-size = Vector2(24, 24)
+size = Vector2(42, 24)
 
 [node name="Attack Lever" type="Area2D" unique_id=1240659569 node_paths=PackedStringArray("animator", "light")]
 z_index = -8

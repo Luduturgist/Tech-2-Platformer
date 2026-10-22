@@ -28,7 +28,7 @@ shader_parameter/flash_color = Color(0.37254903, 0.9098039, 0.44313726, 1)
 shader_parameter/flash_modifier = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1nht"]
-size = Vector2(18, 13)
+size = Vector2(54, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xqlir"]
 size = Vector2(9.27, 5.39)
@@ -108,6 +108,7 @@ parent = NodePath("../..")
 event = 1
 
 [node name="Grow Interact" type="Node2D" parent="Pivot" unique_id=1573788849 node_paths=PackedStringArray("detection_area", "redlight")]
+visible = false
 script = ExtResource("6_wvibk")
 detection_area = NodePath("Area_Detector")
 redlight = NodePath("PointLight2D")
@@ -118,7 +119,6 @@ color = Color(1, 0, 0, 1)
 texture = ExtResource("7_f465g")
 
 [node name="Area_Detector" type="Area2D" parent="Pivot/Grow Interact" unique_id=802343227]
-visible = false
 script = ExtResource("2_mudto")
 target_script = ExtResource("8_f465g")
 metadata/_custom_type_script = "uid://c8jut5pl2g0l5"

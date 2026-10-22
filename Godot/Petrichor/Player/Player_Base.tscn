@@ -27,7 +27,8 @@
 [sub_resource type="Resource" id="Resource_mci8t"]
 resource_local_to_scene = true
 script = ExtResource("2_elcmi")
-drain_interval = 6.0
+maxCharge = 20
+drain_interval = 4.0
 metadata/_custom_type_script = "uid://bqvte6fdqel8i"
 
 [sub_resource type="Resource" id="Resource_5fl5a"]
