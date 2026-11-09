@@ -250,14 +250,14 @@ shape = SubResource("RectangleShape2D_xmf82")
 position = Vector2(-297, -93)
 
 [node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
-position = Vector2(-52, -4)
+position = Vector2(2672, -197)
 friendly = SubResource("Resource_u2ecc")
 move_ability = SubResource("Resource_lk1kq")
 brace = SubResource("Resource_xmf82")
 impact_action = SubResource("Resource_3h31o")
 
 [node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
-position = Vector2(9, -8)
+position = Vector2(2859, -130)
 friendly = SubResource("Resource_kfuun")
 move_ability = SubResource("Resource_2kngp")
 brace = SubResource("Resource_7vjhd")

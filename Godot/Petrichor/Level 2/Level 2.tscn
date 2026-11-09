@@ -33,29 +33,29 @@ size = Vector2(1239, 292)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_np4lv"]
 size = Vector2(282, 136)
 
-[sub_resource type="Resource" id="Resource_np4lv"]
+[sub_resource type="Resource" id="Resource_8qiow"]
 resource_local_to_scene = true
 script = ExtResource("2_0q22f")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
+
+[sub_resource type="Resource" id="Resource_np4lv"]
+resource_local_to_scene = true
+script = ExtResource("5_j55le")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
 [sub_resource type="Resource" id="Resource_preqf"]
 resource_local_to_scene = true
-script = ExtResource("5_j55le")
-metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
-
-[sub_resource type="Resource" id="Resource_1k78n"]
-resource_local_to_scene = true
 script = ExtResource("2_0q22f")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
-[sub_resource type="Resource" id="Resource_nvoaq"]
+[sub_resource type="Resource" id="Resource_1k78n"]
 resource_local_to_scene = true
 script = ExtResource("5_j55le")
 metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
 
-[sub_resource type="Resource" id="Resource_m0ai0"]
+[sub_resource type="Resource" id="Resource_nvoaq"]
 resource_local_to_scene = true
 script = ExtResource("6_210q2")
 attack_vfx_path = NodePath("Pivot/VFX/Attack")
@@ -79,7 +79,7 @@ metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 script = ExtResource("4_6c42x")
 metadata/_custom_type_script = "uid://dmdwl5u0qrn3a"
 
-[sub_resource type="Resource" id="Resource_6p2q2"]
+[sub_resource type="Resource" id="Resource_m0ai0"]
 resource_local_to_scene = true
 script = ExtResource("12_06b77")
 attack_delay = 0.1
@@ -93,6 +93,11 @@ size = Vector2(20, 185)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_preqf"]
 size = Vector2(20, 81.5)
+
+[sub_resource type="Resource" id="Resource_6p2q2"]
+resource_local_to_scene = true
+script = ExtResource("12_06b77")
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_gjwuk"]
 resource_local_to_scene = true
@@ -114,16 +119,20 @@ resource_local_to_scene = true
 script = ExtResource("12_06b77")
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_otl6k"]
-resource_local_to_scene = true
-script = ExtResource("12_06b77")
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cj7q5"]
 size = Vector2(20, 99)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1k78n"]
 size = Vector2(20, 49)
+
+[sub_resource type="Resource" id="Resource_otl6k"]
+resource_local_to_scene = true
+script = ExtResource("12_06b77")
+attack_delay = 0.1
+attack_duration = 0.4
+attack_interval = 0.8
+lunge = Vector2(50, 0)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_tbmb3"]
 resource_local_to_scene = true
@@ -143,18 +152,9 @@ attack_interval = 0.8
 lunge = Vector2(50, 0)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
-[sub_resource type="Resource" id="Resource_14gla"]
-resource_local_to_scene = true
-script = ExtResource("12_06b77")
-attack_delay = 0.1
-attack_duration = 0.4
-attack_interval = 0.8
-lunge = Vector2(50, 0)
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_du3ih"]
 
-[sub_resource type="Resource" id="Resource_8qiow"]
+[sub_resource type="Resource" id="Resource_14gla"]
 resource_local_to_scene = true
 script = ExtResource("12_06b77")
 attack_delay = 0.1
@@ -276,19 +276,19 @@ shape = SubResource("RectangleShape2D_np4lv")
 position = Vector2(-164, 42)
 
 [node name="Player_River" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="0" unique_id=1254970227]
-position = Vector2(3, -19)
-friendly = SubResource("Resource_np4lv")
+position = Vector2(1678, -129)
+friendly = SubResource("Resource_8qiow")
 move_ability = null
 brace = null
-impact_action = SubResource("Resource_preqf")
+impact_action = SubResource("Resource_np4lv")
 
 [node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
-position = Vector2(75, -13)
-friendly = SubResource("Resource_1k78n")
+position = Vector2(1562, -163)
+friendly = SubResource("Resource_preqf")
 move_ability = null
 brace = null
-impact_action = SubResource("Resource_nvoaq")
-attack = SubResource("Resource_m0ai0")
+impact_action = SubResource("Resource_1k78n")
+attack = SubResource("Resource_nvoaq")
 
 [node name="Shield Get" type="Node2D" parent="Rooms" parent_id_path=PackedInt32Array(457399361) index="0" unique_id=1564589690]
 
@@ -349,7 +349,7 @@ position = Vector2(884, 0)
 [node name="Dragger2" parent="Rooms/e" index="0" unique_id=300830809 instance=ExtResource("9_tu3f4")]
 position = Vector2(1082, -192)
 start_flipped = false
-attack_behavior = SubResource("Resource_6p2q2")
+attack_behavior = SubResource("Resource_m0ai0")
 
 [node name="Door5" parent="Rooms/e" index="1" unique_id=1965918958 instance=ExtResource("9_6c42x")]
 position = Vector2(1037, 0)
@@ -438,7 +438,7 @@ axis_stretch_vertical = 2
 
 [node name="Attack Lever" parent="Rooms/e" index="4" unique_id=1240659569 node_paths=PackedStringArray("event_objects") instance=ExtResource("17_cj7q5")]
 position = Vector2(1085, -64)
-event_objects = [NodePath("../Door5")]
+event_objects = [NodePath("../../Shield Get/Door5")]
 
 [node name="Attack Lever2" parent="Rooms/e" index="5" unique_id=11862748 node_paths=PackedStringArray("event_objects") instance=ExtResource("17_cj7q5")]
 position = Vector2(1085, 0)
@@ -449,25 +449,25 @@ event_objects = [NodePath("../Door5")]
 [node name="Basic Enemy" parent="Rooms/Big CLimb" index="0" unique_id=151072521 instance=ExtResource("11_lqonm")]
 position = Vector2(1262, -64)
 start_flipped = false
-attack_behavior = SubResource("Resource_gjwuk")
+attack_behavior = SubResource("Resource_6p2q2")
 
 [node name="Basic Enemy2" parent="Rooms/Big CLimb" index="1" unique_id=2059211176 instance=ExtResource("11_lqonm")]
 position = Vector2(1427, -192)
 start_flipped = false
-attack_behavior = SubResource("Resource_807i3")
+attack_behavior = SubResource("Resource_gjwuk")
 
 [node name="Basic Enemy3" parent="Rooms/Big CLimb" index="2" unique_id=1952235721 instance=ExtResource("11_lqonm")]
 position = Vector2(1641, -96)
-attack_behavior = SubResource("Resource_erac2")
+attack_behavior = SubResource("Resource_807i3")
 
 [node name="Basic Enemy5" parent="Rooms/Big CLimb" index="3" unique_id=484590516 instance=ExtResource("11_lqonm")]
 position = Vector2(2224, -128)
 start_flipped = false
-attack_behavior = SubResource("Resource_3bl5d")
+attack_behavior = SubResource("Resource_erac2")
 
 [node name="Basic Enemy4" parent="Rooms/Big CLimb" index="4" unique_id=1849058453 instance=ExtResource("11_lqonm")]
 position = Vector2(1927, -160)
-attack_behavior = SubResource("Resource_otl6k")
+attack_behavior = SubResource("Resource_3bl5d")
 
 [node name="Ladder_Area4" type="Area2D" parent="Rooms/Big CLimb" index="5" unique_id=1931539523 node_paths=PackedStringArray("upper_limit", "lower_limit")]
 z_index = -10
@@ -636,16 +636,16 @@ shape = SubResource("RectangleShape2D_1k78n")
 [node name="Dragger2" parent="Rooms/Big CLimb" index="9" unique_id=2048066891 instance=ExtResource("9_tu3f4")]
 position = Vector2(1766, -96)
 start_flipped = false
-attack_behavior = SubResource("Resource_tbmb3")
+attack_behavior = SubResource("Resource_otl6k")
 
 [node name="Dragger4" parent="Rooms/Big CLimb" index="10" unique_id=973904274 instance=ExtResource("9_tu3f4")]
 position = Vector2(1766, -96)
 start_flipped = false
-attack_behavior = SubResource("Resource_xs7sl")
+attack_behavior = SubResource("Resource_tbmb3")
 
 [node name="Dragger3" parent="Rooms/Big CLimb" index="11" unique_id=999779055 node_paths=PackedStringArray("fertilizer_events") instance=ExtResource("9_tu3f4")]
 position = Vector2(2221, -64)
-attack_behavior = SubResource("Resource_14gla")
+attack_behavior = SubResource("Resource_xs7sl")
 fertilizer_events = [NodePath("../Door5")]
 
 [node name="Hold Panel2" parent="Rooms/Big CLimb" index="12" unique_id=683485561 instance=ExtResource("7_0ysd6")]
@@ -676,8 +676,8 @@ scene = "res://Level 3/Level 3.tscn"
 shape = SubResource("RectangleShape2D_du3ih")
 
 [node name="Dragger" parent="." index="14" unique_id=1690093432 node_paths=PackedStringArray("death_events") instance=ExtResource("9_tu3f4")]
-position = Vector2(470, -14)
-attack_behavior = SubResource("Resource_8qiow")
+position = Vector2(457, -6)
+attack_behavior = SubResource("Resource_14gla")
 death_events = [NodePath("../Rooms/Shield Get/Door3")]
 
 [node name="Dragger2" parent="." index="15" unique_id=493191280 instance=ExtResource("9_tu3f4")]

@@ -63,15 +63,6 @@ metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_atcbx"]
 size = Vector2(20, 43)
 
-[sub_resource type="Resource" id="Resource_i3fb4"]
-resource_local_to_scene = true
-script = ExtResource("16_wbsgc")
-attack_delay = 0.1
-attack_duration = 0.4
-attack_interval = 0.4
-lunge = Vector2(50, 0)
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
-
 [sub_resource type="Resource" id="Resource_orgsu"]
 resource_local_to_scene = true
 script = ExtResource("16_wbsgc")
@@ -82,6 +73,15 @@ lunge = Vector2(50, 0)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_gq3no"]
+resource_local_to_scene = true
+script = ExtResource("16_wbsgc")
+attack_delay = 0.1
+attack_duration = 0.4
+attack_interval = 0.4
+lunge = Vector2(50, 0)
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
+
+[sub_resource type="Resource" id="Resource_i3fb4"]
 resource_local_to_scene = true
 script = ExtResource("16_wbsgc")
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
@@ -113,7 +113,7 @@ brace = SubResource("Resource_te243")
 impact_action = SubResource("Resource_hq0q4")
 
 [node name="Player_Soil" parent="Midgard/Players" parent_id_path=PackedInt32Array(1877956589) index="1" unique_id=87480027]
-position = Vector2(74, -2)
+position = Vector2(715, 60)
 friendly = SubResource("Resource_3fa2f")
 brace = SubResource("Resource_mmvga")
 impact_action = SubResource("Resource_u5v4c")
@@ -281,21 +281,21 @@ start_flipped = false
 
 [node name="Dragger2" parent="Rooms/Room 2" index="6" unique_id=1639820055 instance=ExtResource("15_l7psn")]
 position = Vector2(842, -160)
-attack_behavior = SubResource("Resource_i3fb4")
+attack_behavior = SubResource("Resource_orgsu")
 
 [node name="Hold Panel2" parent="Rooms/Room 2" index="7" unique_id=2106559774 instance=ExtResource("13_atcbx")]
 position = Vector2(634, -160)
 
 [node name="Dragger" parent="Rooms/Room 2" index="8" unique_id=1690093432 instance=ExtResource("15_l7psn")]
 position = Vector2(385, 128)
-attack_behavior = SubResource("Resource_orgsu")
+attack_behavior = SubResource("Resource_gq3no")
 
 [node name="Hold Panel" parent="Rooms/Room 2" index="9" unique_id=1141401691 instance=ExtResource("13_atcbx")]
 position = Vector2(465, 128)
 
 [node name="Basic Enemy" parent="Rooms/Room 2" index="10" unique_id=1439750653 instance=ExtResource("17_wbsgc")]
 position = Vector2(351, -192)
-attack_behavior = SubResource("Resource_gq3no")
+attack_behavior = SubResource("Resource_i3fb4")
 
 [node name="Room 3" type="Node2D" parent="Rooms" parent_id_path=PackedInt32Array(457399361) index="3" unique_id=2142747475]
 

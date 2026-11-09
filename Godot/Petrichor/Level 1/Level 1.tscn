@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c2um2mbits14e" path="res://Level 1/Door/door.tscn" id="5_ooajt"]
 [ext_resource type="TileSet" uid="uid://cjnx215g42g1c" path="res://Level 1/Tiles/level1_tiles.tres" id="6_pdenk"]
 [ext_resource type="Script" uid="uid://ctsq1buvlw4qc" path="res://Enemies/Behaviors/area_attack.gd" id="8_6equ3"]
+[ext_resource type="Script" uid="uid://c0g8pwd6jfd5t" path="res://Player/Actions/basic_attack_action.gd" id="8_a770q"]
 [ext_resource type="Script" uid="uid://b1m5xh2to8j2f" path="res://VFX/Camera/locking_cam_area.gd" id="10_aonor"]
 [ext_resource type="Script" uid="uid://b27nvv6imn8gp" path="res://Interacteable/Door/door_object.gd" id="11_klnrk"]
 [ext_resource type="PackedScene" uid="uid://bqj57243x1h2n" path="res://Level 1/Hold Panel/hold_panel.tscn" id="11_ooajt"]
@@ -49,16 +50,34 @@ script = ExtResource("2_6equ3")
 fade_path = NodePath("Pivot/VFX/Cheer")
 metadata/_custom_type_script = "uid://dtfkkb4fwm6ye"
 
+[sub_resource type="Resource" id="Resource_gflvv"]
+resource_local_to_scene = true
+script = ExtResource("5_aonor")
+metadata/_custom_type_script = "uid://ccxfnquj6nwlc"
+
+[sub_resource type="Resource" id="Resource_j4wdi"]
+resource_local_to_scene = true
+script = ExtResource("8_a770q")
+attack_vfx_path = NodePath("Pivot/VFX/Attack")
+windupvfx_path = NodePath("Pivot/VFX/Windup")
+caster_path = NodePath("Pivot/VFX/Attack/ShapeCast2D")
+metadata/_custom_type_script = "uid://c0g8pwd6jfd5t"
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6t00"]
 size = Vector2(17, 43)
 
-[sub_resource type="Resource" id="Resource_surps"]
+[sub_resource type="Resource" id="Resource_lk4wb"]
 resource_local_to_scene = true
 script = ExtResource("8_6equ3")
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j4wdi"]
 size = Vector2(20, 132)
+
+[sub_resource type="Resource" id="Resource_surps"]
+resource_local_to_scene = true
+script = ExtResource("8_6equ3")
+metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_e4144"]
 resource_local_to_scene = true
@@ -73,6 +92,10 @@ metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 [sub_resource type="Resource" id="Resource_37wmk"]
 resource_local_to_scene = true
 script = ExtResource("8_6equ3")
+attack_delay = 0.1
+attack_duration = 0.4
+attack_interval = 0.8
+lunge = Vector2(50, 0)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_707id"]
@@ -105,10 +128,6 @@ metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 [sub_resource type="Resource" id="Resource_xx8wq"]
 resource_local_to_scene = true
 script = ExtResource("8_6equ3")
-attack_delay = 0.1
-attack_duration = 0.4
-attack_interval = 0.8
-lunge = Vector2(50, 0)
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_nua8a"]
@@ -122,11 +141,6 @@ script = ExtResource("8_6equ3")
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
 
 [sub_resource type="Resource" id="Resource_kh35f"]
-resource_local_to_scene = true
-script = ExtResource("8_6equ3")
-metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
-
-[sub_resource type="Resource" id="Resource_yak5i"]
 resource_local_to_scene = true
 script = ExtResource("8_6equ3")
 metadata/_custom_type_script = "uid://ctsq1buvlw4qc"
@@ -221,16 +235,18 @@ position = Vector2(-116, -58)
 z_index = 5
 
 [node name="Player_River" parent="Midgard/Players" index="0" unique_id=1254970227]
-position = Vector2(-403, -21)
+position = Vector2(1047, -166)
 friendly = SubResource("Resource_pdenk")
 move_ability = null
 brace = null
 impact_action = SubResource("Resource_6nrau")
 
 [node name="Player_Soil" parent="Midgard/Players" index="1" unique_id=87480027]
-position = Vector2(-287, -809)
+position = Vector2(1139, -165)
 friendly = SubResource("Resource_sdx0b")
 brace = null
+impact_action = SubResource("Resource_gflvv")
+attack = SubResource("Resource_j4wdi")
 
 [node name="Fall Hall" type="Node2D" parent="Rooms" parent_id_path=PackedInt32Array(457399361) index="0" unique_id=386788558]
 
@@ -321,7 +337,7 @@ animation = &"Open"
 
 [node name="Basic Enemy2" parent="Rooms/First Fight" index="1" unique_id=1489682966 node_paths=PackedStringArray("death_events") instance=ExtResource("3_y1i4a")]
 position = Vector2(576, 0)
-attack_behavior = SubResource("Resource_surps")
+attack_behavior = SubResource("Resource_lk4wb")
 death_events = [NodePath("../Door2")]
 
 [node name="First Ladder" type="Node2D" parent="Rooms" parent_id_path=PackedInt32Array(457399361) index="2" unique_id=956727422]
@@ -369,15 +385,15 @@ axis_stretch_vertical = 2
 
 [node name="Basic Enemy" parent="Rooms/First Ladder" index="1" unique_id=844304562 instance=ExtResource("3_y1i4a")]
 position = Vector2(951, -128)
-attack_behavior = SubResource("Resource_e4144")
+attack_behavior = SubResource("Resource_surps")
 
 [node name="Basic Enemy2" parent="Rooms/First Ladder" index="2" unique_id=78337628 instance=ExtResource("3_y1i4a")]
 position = Vector2(1258, -128)
-attack_behavior = SubResource("Resource_sv8rb")
+attack_behavior = SubResource("Resource_e4144")
 
 [node name="Basic Enemy3" parent="Rooms/First Ladder" index="3" unique_id=1169907394 instance=ExtResource("3_y1i4a")]
 position = Vector2(1507, 64)
-attack_behavior = SubResource("Resource_37wmk")
+attack_behavior = SubResource("Resource_sv8rb")
 
 [node name="Attack Lever" parent="Rooms/First Ladder" index="4" unique_id=797858790 node_paths=PackedStringArray("dependency", "event_objects") instance=ExtResource("18_a770q")]
 position = Vector2(1279, 64)
@@ -457,7 +473,7 @@ position = Vector2(1517, 64)
 
 [node name="Dragger" parent="Rooms/First Ladder" index="8" unique_id=1572439102 node_paths=PackedStringArray("death_events") instance=ExtResource("21_pdenk")]
 position = Vector2(1413, 64)
-attack_behavior = SubResource("Resource_707id")
+attack_behavior = SubResource("Resource_37wmk")
 death_events = [NodePath("../Door3")]
 
 [node name="Bigger room" type="Node2D" parent="Rooms" parent_id_path=PackedInt32Array(457399361) index="3" unique_id=815137328]
@@ -511,37 +527,37 @@ position = Vector2(1968, -64)
 
 [node name="Dragger" parent="Rooms/Bigger room" index="3" unique_id=1399796080 instance=ExtResource("21_pdenk")]
 position = Vector2(1770, 96)
-attack_behavior = SubResource("Resource_6eb3e")
+attack_behavior = SubResource("Resource_707id")
 
 [node name="Dragger2" parent="Rooms/Bigger room" index="4" unique_id=99428637 instance=ExtResource("21_pdenk")]
 position = Vector2(1965, -160)
-attack_behavior = SubResource("Resource_ujotl")
+attack_behavior = SubResource("Resource_6eb3e")
 
 [node name="Dragger4" parent="Rooms/Bigger room" index="5" unique_id=1690093432 instance=ExtResource("21_pdenk")]
 position = Vector2(1579, -288)
-attack_behavior = SubResource("Resource_xx8wq")
+attack_behavior = SubResource("Resource_ujotl")
 
 [node name="Basic Enemy" parent="Rooms/Bigger room" index="6" unique_id=333235030 node_paths=PackedStringArray("fertilizer_events") instance=ExtResource("3_y1i4a")]
 position = Vector2(1904, 96)
-attack_behavior = SubResource("Resource_nua8a")
+attack_behavior = SubResource("Resource_xx8wq")
 fertilizer_events = [NodePath("../Door2")]
 
 [node name="Basic Enemy2" parent="Rooms/Bigger room" index="7" unique_id=563421646 node_paths=PackedStringArray("fertilizer_events") instance=ExtResource("3_y1i4a")]
 position = Vector2(1854, -224)
 start_flipped = false
-attack_behavior = SubResource("Resource_bblxd")
+attack_behavior = SubResource("Resource_nua8a")
 fertilizer_events = [NodePath("../Door2")]
 
 [node name="Basic Enemy4" parent="Rooms/Bigger room" index="8" unique_id=797540789 node_paths=PackedStringArray("fertilizer_events") instance=ExtResource("3_y1i4a")]
 position = Vector2(2198, -160)
 start_flipped = false
-attack_behavior = SubResource("Resource_kh35f")
+attack_behavior = SubResource("Resource_bblxd")
 fertilizer_events = [NodePath("../Door2")]
 
 [node name="Basic Enemy3" parent="Rooms/Bigger room" index="9" unique_id=1682617649 node_paths=PackedStringArray("fertilizer_events") instance=ExtResource("3_y1i4a")]
 position = Vector2(1794, -224)
 start_flipped = false
-attack_behavior = SubResource("Resource_yak5i")
+attack_behavior = SubResource("Resource_kh35f")
 fertilizer_events = [NodePath("../Door2")]
 
 [node name="Door5" type="Node2D" parent="Rooms/Bigger room" index="10" unique_id=469366854 node_paths=PackedStringArray("door_block", "animator")]
