@@ -1,4 +1,4 @@
-<REAPER_PROJECT 0.1 "7.59/win64" 1791616857 0
+<REAPER_PROJECT 0.1 "7.59/win64" 1794368985 0
   <NOTES 0 2
   >
   RIPPLE 0 0
@@ -201,7 +201,7 @@
       FADEIN 1 0 0 1 0 0 0
       FADEOUT 1 0.01 0 1 0 0 0
       MUTE 0 0
-      SEL 1
+      SEL 0
       IGUID {ED2825BE-2B09-4CD6-93E2-113B24FD2F68}
       IID 2
       NAME freesound_community-double-door-lock-101210.mp3
